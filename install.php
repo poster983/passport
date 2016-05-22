@@ -24,6 +24,7 @@ name_title VARCHAR(5) NOT NULL,
 firstname VARCHAR(30) NOT NULL,
 lastname VARCHAR(30) NOT NULL,
 email VARCHAR(50),
+room VARCHAR(10) NOT NULL,
 period VARCHAR(10) NOT NULL
 )";
 
