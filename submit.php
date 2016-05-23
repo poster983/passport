@@ -3,7 +3,7 @@
 if(!isset($_POST['submit'])) exit();
 
 // Required field names
-$required = array('first_name', 'last_name', 'student_id', 'email', 'perTab', 'place');
+$required = array('first_name', 'last_name', 'student_id', 'email', 'perTab', 'place', 'day');
 
 // Loop over field names, make sure each one exists and is not empty
 $error = false;
