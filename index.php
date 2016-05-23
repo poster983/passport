@@ -89,7 +89,29 @@
                             <input id="email" name="email" type="email" class="validate">
                             <label for="email">Email</label>
                         </div>
-                        <!--DATE PICKER GOES HERE (my datepicker is broken in jq2.2 so 1 will have to get a new one)-->
+                        <div class="section">
+                            <h5 class="center">Pick the day that you are coming.*</h5>
+                            <div>
+                                <p class="center">
+                                    <input type="radio" id="monday" name="day" value="<? echo date( 'Y-m-d', strtotime(" monday this week ")); ?>">
+                                    <label for="monday">Monday</label>
+                                    &nbsp &nbsp
+                                    <input type="radio" id="tuesday" name="day" value="<? echo date( 'Y-m-d', strtotime(" tuesday this week ")); ?>">
+                                    <label for="tuesday">Tuesday</label>
+                                    &nbsp &nbsp
+                                    <input type="radio" id="wednesday" name="day" value="<? echo date( 'Y-m-d', strtotime(" wednesday this week ")); ?>">
+                                    <label for="wednesday">Wednesday</label>
+                                    &nbsp &nbsp
+                                    <input type="radio" id="thursday" name="day" value="<? echo date( 'Y-m-d', strtotime(" thursday this week ")); ?>">
+                                    <label for="thursday">Thursday</label>
+                                    &nbsp &nbsp
+                                    <input type="radio" id="friday" name="day" value="<? echo date( 'Y-m-d', strtotime(" friday this week ")); ?>">
+                                    <label for="friday">Friday</label>
+
+                                </p>
+                                <p class="right">*All days relative to current week</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col s12">
@@ -104,24 +126,64 @@
                                 <li class="tab col s3"><a href="#hper">H Period</a></li>
                             </ul>
                         </div>
-                        <!--Is this the best way?-->
+                        <!--The way I am handeling it now will be changed -->
                         <!--AAAAAAAAAAAAAAAAAAA-->
+
                         <div id="aper" class="col s12">
                             <p>
+                                <select name="shTeacherA" class="browser-default">
+                                    <option selected value="">Choose Your Teacher</option>
+
+                                    <?
+                                    include "sqlconnect.php";
+                           
+
+                                    $sql="SELECT id,name_title,lastname FROM teachers WHERE period='a' ORDER BY lastname"; 
+                                    $result = $conn->query($sql);
+                                    
+                                    if ($result->num_rows > 0) {
+                                        // output data of each row
+                                        while($row = $result->fetch_assoc()) {
+                                            
+                                            echo '<option value="'.$row['name_title'] . ' ' . $row['lastname'].'">' .$row['name_title'] . ' ' . $row['lastname'] . "</option>";
+                                        }
+                                        
+                                    } else {
+                                         $conn->close();
+                                    }
+                                ?>
+                                </select>
                                 <input class="with-gap" type="radio" name="perTab" value="a" id="aConfirm" />
                                 <label for="aConfirm">Confirm Study Hall and Period</label>
                             </p>
                         </div>
                         <!--BBBBBBBBBBBBBBBBBBB-->
                         <div id="bper" class="col s12">
-                            <label>Select Study Hall</label>
-                            <select class="browser-default" name="shTeacher">
-                                <option value="" disabled selected>Choose your option</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
-                            </select>
                             <p>
+                                <select name="shTeacherB" class="browser-default">
+                                    <option selected value="">Choose Your Teacher</option>
+
+                                    <?
+                                    include "sqlconnect.php";
+                           
+
+                                    $sql="SELECT id,name_title,lastname FROM teachers WHERE period='b' ORDER BY lastname"; 
+                                    $result = $conn->query($sql);
+                                    
+                                    if ($result->num_rows > 0) {
+                                        // output data of each row
+                                        while($row = $result->fetch_assoc()) {
+                                            
+                                            echo '<option value="'.$row['name_title'] . ' ' . $row['lastname'].'">' .$row['name_title'] . ' ' . $row['lastname'] . "</option>";
+                                        }
+                                        
+                                    } else {
+                                         $conn->close();
+                                    }
+                                ?>
+                                </select>
+
+
                                 <input class="with-gap" type="radio" name="perTab" value="b" id="bConfirm" />
                                 <label for="bConfirm">Confirm Study Hall and Period</label>
                             </p>
@@ -129,6 +191,30 @@
                         <!--CCCCCCCCCCCCCCCCCCCC-->
                         <div id="cper" class="col s12">
                             <p>
+
+                                <select name="shTeacherC" class="browser-default">
+                                    <option selected value="">Choose Your Teacher</option>
+
+                                    <?
+                                    include "sqlconnect.php";
+                           
+
+                                    $sql="SELECT id,name_title,lastname FROM teachers WHERE period='c' ORDER BY lastname"; 
+                                    $result = $conn->query($sql);
+                                    
+                                    if ($result->num_rows > 0) {
+                                        // output data of each row
+                                        while($row = $result->fetch_assoc()) {
+                                            
+                                            echo '<option value="'.$row['name_title'] . ' ' . $row['lastname'].'">' .$row['name_title'] . ' ' . $row['lastname'] . "</option>";
+                                        }
+                                        
+                                    } else {
+                                         $conn->close();
+                                    }
+                                ?>
+                                </select>
+
                                 <input class="with-gap" type="radio" name="perTab" value="c" id="cConfirm" />
                                 <label for="cConfirm">Confirm Study Hall and Period</label>
                             </p>
@@ -136,6 +222,28 @@
                         <!--DDDDDDDDDDDDDDDDDDDD-->
                         <div id="dper" class="col s12">
                             <p>
+                                <select name="shTeacherD" class="browser-default">
+                                    <option selected value="">Choose Your Teacher</option>
+
+                                    <?
+                                    include "sqlconnect.php";
+                           
+
+                                    $sql="SELECT id,name_title,lastname FROM teachers WHERE period='d' ORDER BY lastname"; 
+                                    $result = $conn->query($sql);
+                                    
+                                    if ($result->num_rows > 0) {
+                                        // output data of each row
+                                        while($row = $result->fetch_assoc()) {
+                                            
+                                            echo '<option value="'.$row['name_title'] . ' ' . $row['lastname'].'">' .$row['name_title'] . ' ' . $row['lastname'] . "</option>";
+                                        }
+                                        
+                                    } else {
+                                         $conn->close();
+                                    }
+                                ?>
+                                </select>
                                 <input class="with-gap" type="radio" name="perTab" value="d" id="dConfirm" />
                                 <label for="dConfirm">Confirm Study Hall and Period</label>
                             </p>
@@ -143,6 +251,28 @@
                         <!--EEEEEEEEEEEEEEEEEEEE-->
                         <div id="eper" class="col s12">
                             <p>
+                                <select name="shTeacherE" class="browser-default">
+                                    <option selected value="">Choose Your Teacher</option>
+
+                                    <?
+                                    include "sqlconnect.php";
+                           
+
+                                    $sql="SELECT id,name_title,lastname FROM teachers WHERE period='e' ORDER BY lastname"; 
+                                    $result = $conn->query($sql);
+                                    
+                                    if ($result->num_rows > 0) {
+                                        // output data of each row
+                                        while($row = $result->fetch_assoc()) {
+                                            
+                                            echo '<option value="'.$row['name_title'] . ' ' . $row['lastname'].'">' .$row['name_title'] . ' ' . $row['lastname'] . "</option>";
+                                        }
+                                        
+                                    } else {
+                                         $conn->close();
+                                    }
+                                ?>
+                                </select>
                                 <input class="with-gap" type="radio" name="perTab" value="e" id="eConfirm" />
                                 <label for="eConfirm">Confirm Study Hall and Period</label>
                             </p>
@@ -150,6 +280,28 @@
                         <!--FFFFFFFFFFFFFFFFFFFF-->
                         <div id="fper" class="col s12">
                             <p>
+                                <select name="shTeacherF" class="browser-default">
+                                    <option selected value="">Choose Your Teacher</option>
+
+                                    <?
+                                    include "sqlconnect.php";
+                           
+
+                                    $sql="SELECT id,name_title,lastname FROM teachers WHERE period='f' ORDER BY lastname"; 
+                                    $result = $conn->query($sql);
+                                    
+                                    if ($result->num_rows > 0) {
+                                        // output data of each row
+                                        while($row = $result->fetch_assoc()) {
+                                            
+                                            echo '<option value="'.$row['name_title'] . ' ' . $row['lastname'].'">' .$row['name_title'] . ' ' . $row['lastname'] . "</option>";
+                                        }
+                                        
+                                    } else {
+                                         $conn->close();
+                                    }
+                                ?>
+                                </select>
                                 <input class="with-gap" type="radio" name="perTab" value="f" id="fConfirm" />
                                 <label for="fConfirm">Confirm Study Hall and Period</label>
                             </p>
@@ -157,6 +309,28 @@
                         <!--GGGGGGGGGGGGGGGGGGGG-->
                         <div id="gper" class="col s12">
                             <p>
+                                <select name="shTeacherG" class="browser-default">
+                                    <option selected value="">Choose Your Teacher</option>
+
+                                    <?
+                                    include "sqlconnect.php";
+                           
+
+                                    $sql="SELECT id,name_title,lastname FROM teachers WHERE period='g' ORDER BY lastname"; 
+                                    $result = $conn->query($sql);
+                                    
+                                    if ($result->num_rows > 0) {
+                                        // output data of each row
+                                        while($row = $result->fetch_assoc()) {
+                                            
+                                            echo '<option value="'.$row['name_title'] . ' ' . $row['lastname'].'">' .$row['name_title'] . ' ' . $row['lastname'] . "</option>";
+                                        }
+                                        
+                                    } else {
+                                         $conn->close();
+                                    }
+                                ?>
+                                </select>
                                 <input class="with-gap" type="radio" name="perTab" value="g" id="gConfirm" />
                                 <label for="gConfirm">Confirm Study Hall and Period</label>
                             </p>
@@ -164,15 +338,40 @@
                         <!--HHHHHHHHHHHHHHHHHHHH-->
                         <div id="hper" class="col s12">
                             <p>
+                                <select name="shTeacherH" class="browser-default">
+                                    <option selected value="">Choose Your Teacher</option>
+
+                                    <?
+                                    include "sqlconnect.php";
+                           
+
+                                    $sql="SELECT id,name_title,lastname FROM teachers WHERE period='h' ORDER BY lastname"; 
+                                    $result = $conn->query($sql);
+                                    
+                                    if ($result->num_rows > 0) {
+                                        // output data of each row
+                                        while($row = $result->fetch_assoc()) {
+                                            
+                                            echo '<option value="'.$row['name_title'] . ' ' . $row['lastname'].'">' .$row['name_title'] . ' ' . $row['lastname'] . "</option>";
+                                        }
+                                        
+                                    } else {
+                                         $conn->close();
+                                    }
+                                ?>
+                                </select>
                                 <input class="with-gap" type="radio" name="perTab" value="h" id="hConfirm" />
                                 <label for="hConfirm">Confirm Study Hall and Period</label>
                             </p>
                         </div>
                         <!--END-->
+                        <!--SH Select-->
+
                     </div>
 
                 </div>
             </div>
+
             <button class="btn waves-effect waves-light purple" type="submit" name="submit">Request a pass
                 <i class="material-icons right">send</i>
             </button>
