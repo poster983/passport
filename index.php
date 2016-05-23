@@ -37,6 +37,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+
+
 </head>
 
 <body>
@@ -48,7 +50,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     </nav>
 
     <!--Body-->
+    <div>
+        <a href="https://github.com/poster983/passr"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
+    </div>
     <!--Tabs-->
+    <br>
     <br>
     <br>
     <form method="post" action="/submit.php">
@@ -402,6 +408,21 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         </div>
     </form>
 
+
+
+
+    <!-- Footer -->
+
+
+    <footer class="page-footer white">
+        <div class="footer-copyright">
+            <div class="container">
+                <a class="black-text left" href="">Copyright © 2016 Joseph Hassell</a> &nbsp &nbsp
+                <a class="black-text right" href="http://lijo.pw/1668">Licence </a> &nbsp &nbsp
+                <a class="black-text right" href="http://lijo.pw/1669">Project Page </a>&nbsp &nbsp
+            </div>
+        </div>
+    </footer>
 
 
 
