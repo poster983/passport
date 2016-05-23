@@ -68,6 +68,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             <input type="submit" name="add_new_entry" value="Add New Entry" />
         </p>
     </form>
+
+    <a href="teacherlist.php">Go to teacher list</a>
 </body>
 
 </html>
