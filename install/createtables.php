@@ -63,9 +63,7 @@ username VARCHAR(100) NOT NULL,
 firstname VARCHAR(30) NOT NULL,
 lastname VARCHAR(30) NOT NULL,
 email VARCHAR(50),
-password VARCHAR(100) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`)
+password VARCHAR(100) NOT NULL
 )";
 
 if ($conn->query($sqlpasses) === TRUE) {
