@@ -402,7 +402,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 </div>
             </div>
 
-            <button class="btn waves-effect waves-light purple" type="submit" name="submit">Request a pass
+            <button class="btn waves-effect waves-light red darken-2" type="submit" name="submit">Request a pass
                 <i class="material-icons right">send</i>
             </button>
         </div>
