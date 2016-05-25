@@ -24,7 +24,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 <?
 $servername = "localhost"; 
-$username = "username"; 
-$password = "password"; 
+$dbusername = "username"; 
+$dbpassword = "password"; 
 $database = "database";
 ?>
