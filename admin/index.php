@@ -31,42 +31,7 @@ IN AN ACTION OF CONTRACT, TORTOR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
 
-    <html>
-
-    <head>
-        <title>Admin Dashboard</title>
-
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
-        <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
-
-
-
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-
-    </head>
-
-    <body>
-
-        <nav>
-            <div class="nav-wrapper red darken-4">
-                <a href="#" class="brand-logo center">passr Admin Dashboard</a>
-                <ul id="nav-desktop" class="left hide-on-med-and-down">
-                    <li><a href="sass.html">Sass</a></li>
-                    <li><a href="badges.html">Components</a></li>
-                    <li><a href="collapsible.html">JavaScript</a></li>
-                    <li class="right"><a href="/admin/logout.php">Logout</a></li>
-                </ul>
-
-                <ul id="nav-mobile" class="side-nav">
-                    <p class="center-align black-text"></p>
-                    <li> <a href="">jjjjjjjjjjjj</a></li>
-                    <li> <a href="/admin/logout.php">Logout</a></li>
-                </ul>
-                <a href="#" data-activates="nav-mobile" class="button-collapse right"><i class="material-icons">menu</i></a>
-            </div>
-        </nav>
+    <? include "nav.php"; ?>
 
 
 
@@ -78,7 +43,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                     <li class="tab col s3"><a href="#test1">LEC Dash</a></li>
                     <li class="tab col s3"><a class="active" href="#test2">Math Dash</a></li>
                     <li class="tab col s3"><a href="#test3">Library Dash</a></li>
-                    <li class="tab col s3"><a href="#test4">Help Desk</a></li>
+                    <li class="tab col s3"><a href="#test4">Help Desk Dash</a></li>
                 </ul>
             </div>
             <div id="test1" class="col s12">Nothing Here Yet</div>
@@ -87,24 +52,22 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             <div id="test4" class="col s12">Nothing Here Yet</div>
         </div>
 
-    </body>
+        </body>
+
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="/js/materialize.js"></script>
+        <script src="/js/init.js"></script>
+
+        <!-- Scripts -->
+        <!--[if lte IE 8]><script src="assets/js/respond.min.js"></script><![endif]-->
+        <script>
+            if ('addEventListener' in window) {
+                window.addEventListener('load', function () {
+                    document.body.className = document.body.className.replace(/\bis-loading\b/, '');
+                });
+                document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
+            }
+        </script>
 
 
-
-
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="/js/materialize.js"></script>
-    <script src="/js/init.js"></script>
-
-    <!-- Scripts -->
-    <!--[if lte IE 8]><script src="assets/js/respond.min.js"></script><![endif]-->
-    <script>
-        if ('addEventListener' in window) {
-            window.addEventListener('load', function () {
-                document.body.className = document.body.className.replace(/\bis-loading\b/, '');
-            });
-            document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
-        }
-    </script>
-
-    </html>
+        </html>

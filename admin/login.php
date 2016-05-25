@@ -36,7 +36,7 @@ if (isset($_POST['Submit'])) {
     </head>
 
     <body>
-        <h1>lijo.pw Admin Panel</h1>
+        <h1>passr Admin Panel</h1>
         <form name="form1" method="post" action="">
             <p>Please enter correct username and password to login</p>
             <table border="0" align="center" cellpadding="1" cellspacing="1" bordercolor="#dedede">

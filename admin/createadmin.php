@@ -1,4 +1,9 @@
-<!--
+<?
+include("common.php");
+checklogin();
+$msg = "";
+?>
+    <!--
 
 The MIT License (MIT)
 
@@ -21,52 +26,66 @@ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORTOR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
-<html>
+    <? include "nav.php"; ?>
 
-<head>
-    <title>Passr-Create Admin</title>
-</head>
+        <body>
+            <div class="container">
+                <form method="post" action="">
+                    <div class="input-field">
+                        <p>
+                            <input type="text" required id="firstname" name="firstname">
+                            <label for="firstname">First Name</label>
+                        </p>
+                    </div>
+                    <div class="input-field">
+                        <p>
+                            <input type="text" required id="lastname" name="lastname">
+                            <label for="lastname">Last Name</label>
+                        </p>
+                    </div>
+                    <div class="input-field">
+                        <p>
+                            <input type="text" required id="username" name="usernameadmin">
+                            <label for="username">Username</label>
+                        </p>
+                    </div>
+                    <div class="input-field">
+                        <p>
+                            <input type="password" required id="password" name="passwordadmin">
+                            <label for="password">Password</label>
+                        </p>
+                    </div>
+                    <div class="input-field">
+                        <p>
+                            <input type="password" required id="password2" name="password2admin">
+                            <label for="password2">Password(again)</label>
+                        </p>
+                    </div>
+                    <div class="input-field">
+                        <p>
+                            <input type="email" required id="email" name="email">
+                            <label for="email">Email</label>
+                        </p>
+                    </div>
 
-<body>
-    <div>
-        <form method="post" action="">
-            <p>
-                <input type="text" required id="firstname" name="firstname">
-                <label for="firstname">First Name</label>
-            </p>
-            <p>
-                <input type="text" required id="lastname" name="lastname">
-                <label for="lastname">Last Name</label>
-            </p>
-            <p>
-                <input type="text" required id="username" name="usernameadmin">
-                <label for="username">Username</label>
-            </p>
-            <p>
-                <input type="password" required id="password" name="passwordadmin">
-                <label for="password">Password</label>
-            </p>
-            <p>
-                <input type="password" required id="password2" name="password2admin">
-                <label for="password2">Password(again)</label>
-            </p>
-            <p>
-                <input type="email" required id="email" name="email">
-                <label for="email">Email</label>
-            </p>
-            <p>
-                <input type="submit" name="submit" value="Create Account">
-            </p>
-        </form>
-    </div>
+                    <p>
+                        <button class="btn waves-effect waves-light" type="submit" name="submit">Create Admin Account
+                            <i class="material-icons right">assignment_ind</i>
+                        </button>
+                    </p>
+                </form>
+            </div>
 
 
-</body>
+        </body>
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="/js/materialize.js"></script>
+        <script src="/js/init.js"></script>
 
-</html>
+        </html>
 
 
-<?
+        <?
 if(isset($_POST['submit'])){ 
 
 

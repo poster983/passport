@@ -1,4 +1,9 @@
-<!--
+<?
+include("common.php");
+checklogin();
+$msg = "";
+?>
+    <!--
 
 The MIT License (MIT)
 
@@ -22,27 +27,12 @@ IN AN ACTION OF CONTRACT, TORTOR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
 
-<html>
+    <? include "nav.php"; ?>
 
-<head>
-    <title>Passr-Teacher list</title>
-
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
-
-    <!--Import Google Icon Font-->
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-</head>
-
-<body>
-    <div class="container">
-        <form action="deleteteacher.php" method="post">
-            <?
+        <body>
+            <div class="container">
+                <form action="deleteteacher.php" method="post">
+                    <?
         
     include "../sqlconnect.php";
 
@@ -64,11 +54,14 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 $conn->close();
 ?>
-              <button class="btn waves-effect waves-light" type="submit" name="submitdel">Delete Selected
-    <i class="material-icons right">report_problem</i>
-  </button>
-        </form>
-    </div>
-</body>
+                        <button class="btn waves-effect waves-light" type="submit" name="submitdel">Delete Selected
+                            <i class="material-icons right">report_problem</i>
+                        </button>
+                </form>
+            </div>
+        </body>
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="/js/materialize.js"></script>
+        <script src="/js/init.js"></script>
 
-</html>
+        </html>

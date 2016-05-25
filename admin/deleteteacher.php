@@ -1,4 +1,9 @@
-<!--
+<?
+include("common.php");
+checklogin();
+$msg = "";
+?>
+    <!--
 
 The MIT License (MIT)
 
@@ -22,7 +27,7 @@ IN AN ACTION OF CONTRACT, TORTOR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
 
-<?
+    <?
 include "../sqlconnect.php";
 
 if(isset($_POST['submitdel'])){ 

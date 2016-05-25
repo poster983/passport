@@ -2,7 +2,14 @@
 A web script to electronically distribute passes to students.
 
 # Demo
-http://lijo.pw/passrdemo
+http://lijo.pw/passrdemo  
+
+The Admin Dashboard login:  
+
+u: admin  
+p: admin 
+
+
 
 # Install
 1) Edit the "config.php"  
@@ -12,3 +19,5 @@ http://lijo.pw/passrdemo
 3) Follow the directions.  
 
 4) Done.
+
+
