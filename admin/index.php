@@ -1,6 +1,6 @@
 <?php
 
-include("adminconnect.php.php");
+include("adminconnect.php");
 include("common.php");
 checklogin();
 $msg = "";
