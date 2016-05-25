@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-include("../sqlconnect.php");
+include("adminconnect.php");
 
 $msg = "";
 
