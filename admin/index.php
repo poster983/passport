@@ -1,6 +1,6 @@
 <?php
 
-include("../config.php");
+include("../sqlconnect.php");
 include("common.php");
 checklogin();
 $msg = "";
