@@ -1,101 +1,110 @@
-<?php
-
+<?
 include("adminconnect.php");
 include("common.php");
 checklogin();
 $msg = "";
-
-if(isset($_POST['Submit']))
-{
-	$total = $_POST['total'];
-	$td = 0;
-	$i = 0;
-	
-	for($i = 1; $i <= $total; $i++)
-	{
-		if(isset($_POST["d$i"]))
-		{
-			mysql_query("DELETE FROM url WHERE id=".mysql_real_escape_string($_POST["d$i"]),$link);
-			$td++;
-		}
-	}
-
-	$msg = "$td url(s) deleted!";
-}
-
-
-
-$result = mysql_query("select * from url", $link);
-$num = mysql_num_rows($result);
-$n = 0;
 ?>
 
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-    <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+
+    <!--
+
+The MIT License (MIT)
+
+Copyright (c) Wed May 25 2016 Joseph Hassell joseph@thehassellfamily.net
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORTOR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-->
+
     <html>
 
     <head>
-        <title>Admin - lijo.pw</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-        <link rel="stylesheet" type="text/css" href="style.css" />
+        <title>Admin Dashboard</title>
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+        <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+
+
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
     </head>
 
     <body>
-        <h1>lijo.pw<h1>
-<br /><br />
 
-  <table border="0" cellpadding="6" cellspacing="0" bordercolor="#000000">
-    <tr> 
-<td align="center"><img src="images/home.gif" alt="Home" /></td>
-<td align="center"><img src="images/new.gif" alt="New" /></td>
-<td align="center"><img src="images/delete.gif" alt="Delete" /></td>
-<td align="center"><img src="images/logout.gif" alt="Logout" /></td>
-    </tr>
-    <tr> 
+        <nav>
+            <div class="nav-wrapper red darken-4">
+                <a href="#" class="brand-logo center">passr Admin Dashboard</a>
+                <ul id="nav-desktop" class="left hide-on-med-and-down">
+                    <li><a href="sass.html">Sass</a></li>
+                    <li><a href="badges.html">Components</a></li>
+                    <li><a href="collapsible.html">JavaScript</a></li>
+                    <li class="right"><a href="/admin/logout.php">Logout</a></li>
+                </ul>
 
-<td align="center"><a href="../">Home</a></td>
-<td align="center"><a href="new.php">New</a></td>
-<td align="center"><a href="empty.php">Delete All</a></td>
-<td align="center"><a href="logout.php">Logout</a></td>
-    </tr>
-  </table>
+                <ul id="nav-mobile" class="side-nav">
+                    <p class="center-align black-text"></p>
+                    <li> <a href="">jjjjjjjjjjjj</a></li>
+                    <li> <a href="/admin/logout.php">Logout</a></li>
+                </ul>
+                <a href="#" data-activates="nav-mobile" class="button-collapse right"><i class="material-icons">menu</i></a>
+            </div>
+        </nav>
 
-<p><?php echo $msg?></p>
-<form name="form1" method="post" action="">
-  <br /><br />
-  <table  border="0" cellpadding="1" cellspacing="1" bordercolor="#000000">
-    <tr bgcolor="#dedede"> 
-      <td>Delete</td>
-<td>ID</td>
-<td>Tag</td>
-<td>Edit</td>
-      <td>Url</td>
-<td>User IP</td>
-<td>Hits</td>
-    </tr>
-    <?php while($row = mysql_fetch_array($result, MYSQL_BOTH)){
-$n++;
-?>
-    <tr> 
-      <td><input type="checkbox" name="d<?php echo $n;?>" value="<?php echo htmlspecialchars($row['id']);?>"></td>
-<td> <?php echo htmlspecialchars($row['id']);?></td>
-<td> <?php echo htmlspecialchars($row['tag']);?></td>
-<td align="center"><a href="new.php?id=<?php echo htmlspecialchars($row['id']); ?>"><img src="images/edit.gif" alt="Edit" /></a></td>
-<td> <a href="<?php echo htmlspecialchars($row['url']);?>"><font size="2" face="Verdana, Arial, Helvetica, sans-serif"><?php echo htmlspecialchars($row['url']);?></font></a></td>
-<td><?php echo htmlspecialchars($row['ip']); ?></td>
-<td><?php echo htmlspecialchars($row['count']); ?></td>
 
-    </tr>
-    <?php
 
- }?>
-    <tr> 
-      <td><br /><br /></td>
-      <td><input type="submit" name="Submit" value="Delete"> <input name="total" type="hidden" id="total" value="<?php echo $n?>"></td>
-    </tr>
-  </table>
-<br /></form>
-<br />
-<br />
-</body>
-</html>
+
+        <!--Tabs-->
+        <div class="row">
+            <div class="col s12">
+                <ul class="tabs">
+                    <li class="tab col s3"><a href="#test1">LEC Dash</a></li>
+                    <li class="tab col s3"><a class="active" href="#test2">Math Dash</a></li>
+                    <li class="tab col s3"><a href="#test3">Library Dash</a></li>
+                    <li class="tab col s3"><a href="#test4">Help Desk</a></li>
+                </ul>
+            </div>
+            <div id="test1" class="col s12">Nothing Here Yet</div>
+            <div id="test2" class="col s12">Nothing Here Yet</div>
+            <div id="test3" class="col s12">Nothing Here Yet</div>
+            <div id="test4" class="col s12">Nothing Here Yet</div>
+        </div>
+
+    </body>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="/js/materialize.js"></script>
+    <script src="/js/init.js"></script>
+
+    <!-- Scripts -->
+    <!--[if lte IE 8]><script src="assets/js/respond.min.js"></script><![endif]-->
+    <script>
+        if ('addEventListener' in window) {
+            window.addEventListener('load', function () {
+                document.body.className = document.body.className.replace(/\bis-loading\b/, '');
+            });
+            document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
+        }
+    </script>
+
+    </html>
