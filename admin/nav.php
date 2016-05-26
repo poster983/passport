@@ -21,6 +21,7 @@
             <a href="/admin/index.php" class="brand-logo right">passr Admin Dashboard</a>
             <ul id="nav-desktop" class="left hide-on-med-and-down">
                 <li><a href="passsearch.php">Passes</a></li>
+                <li><a href="blackout.php">Blackout Dates</a></li>
                 <li><a href="editteacher.php">Add Teachers</a></li>
                 <li><a href="teacherlist.php">View/Delete Teachers</a></li>
 

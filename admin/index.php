@@ -34,22 +34,21 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <? include "nav.php"; ?>
 
 
-
-
         <!--Tabs-->
         <div class="row">
             <div class="col s12">
                 <ul class="tabs">
-                    <li class="tab col s3"><a href="#test1">LEC Dash</a></li>
-                    <li class="tab col s3"><a class="active" href="#test2">Math Dash</a></li>
-                    <li class="tab col s3"><a href="#test3">Library Dash</a></li>
-                    <li class="tab col s3"><a href="#test4">Help Desk Dash</a></li>
+                    <li class="tab col s3"><a href="#lec">LEC Dash</a></li>
+                    <li class="tab col s3"><a class="active" href="#math">Math Dash</a></li>
+                    <li class="tab col s3"><a href="#lib">Library Dash</a></li>
+                    <li class="tab col s3"><a href="#HD">Help Desk Dash</a></li>
                 </ul>
             </div>
-            <div id="test1" class="col s12">Nothing Here Yet</div>
-            <div id="test2" class="col s12">Nothing Here Yet</div>
-            <div id="test3" class="col s12">Nothing Here Yet</div>
-            <div id="test4" class="col s12">Nothing Here Yet</div>
+
+            <div id="lec" class="col s12">Nothing.</div>
+            <div id="math" class="col s12">Nothing Here Yet</div>
+            <div id="lib" class="col s12">Nothing Here Yet</div>
+            <div id="HD" class="col s12">Nothing Here Yet</div>
         </div>
 
         </body>
@@ -58,7 +57,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <script src="/js/materialize.js"></script>
         <script src="/js/init.js"></script>
 
-        <!-- Scripts -->
+
+
         <!--[if lte IE 8]><script src="assets/js/respond.min.js"></script><![endif]-->
         <script>
             if ('addEventListener' in window) {

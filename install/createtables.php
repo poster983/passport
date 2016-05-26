@@ -66,6 +66,16 @@ email VARCHAR(50),
 password VARCHAR(100) NOT NULL
 )";
 
+
+// sql to create table blackout
+$sqlblackout = "CREATE TABLE blackout (
+id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+day VARCHAR(20) NOT NULL,
+department VARCHAR(30) NOT NULL,
+period VARCHAR(10) NOT NULL,
+reason VARCHAR(255) NOT NULL
+)";
+
 if ($conn->query($sqlpasses) === TRUE) {
     $tablesucsess += 1;
     echo "Table Passes created successfully";
@@ -87,7 +97,14 @@ if ($conn->query($sqladmin) === TRUE) {
     echo "Error creating table: " . $conn->error;
 }
 
-if ($tablesucsess == 3) {
+if ($conn->query($sqlblackout) === TRUE) {
+    $tablesucsess += 1;
+    echo "Table Blackout created successfully";
+} else {
+    echo "Error creating table: " . $conn->error;
+}
+
+if ($tablesucsess == 4) {
     echo "All tables created";
     $tablenext = "<a href='step3.php'>Next --></a>";
 } else {
