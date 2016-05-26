@@ -44,7 +44,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <body>
     <!--Navbar-->
     <nav>
-        <div class="nav-wrapper white">
+        <div class="nav-wrapper red darken-4">
             <a href="#" class="brand-logo center black-text">Passr</a>
         </div>
     </nav>
