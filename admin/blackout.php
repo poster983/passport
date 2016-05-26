@@ -142,6 +142,21 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         $gper = $_POST['gper'];
         $hper = $_POST['hper'];
         
+        $per = "$aper $bper $cper $dper $eper $fper $gper $hper";
+            
+        $perarray = explode(" ", $per);
+        
+        $perarray_null = array_filter($perarray, 'strlen');
+        
+        $percount = count($perarray_null);
+        
+        echo $per;
+        
+        echo $percount;
+            
+        
+        
+        
         {
             if ($aper == "a") {
                 $loopcount += 1;
@@ -149,6 +164,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             if ($bper == "b") {
                 $loopcount += 1;
             }
+
             if ($cper == "c") {
                 $loopcount += 1;
             }
@@ -168,16 +184,15 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 $loopcount += 1;
             }
         }
-        echo $loopcount;
-        echo $aper;
-    echo $bper;
-        echo $cper;
+        
+        
+
     }
 
-while($loopcount > 0) {
+for($i = 0; $i < $percount; $i++) {
+    
     $sql = "INSERT INTO blackout (day, department, period)
-            VALUES ('$name_title', '$first_name', '$last_name')";
-
+            VALUES ('$blackoutday', '$dep', '$perarray_null[$i]')";
             if ($conn->query($sql) === TRUE) {
                 echo "New record created successfully";
             } else {
