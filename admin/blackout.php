@@ -150,74 +150,22 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         
         $percount = count($perarray_null);
         
-        echo $per;
-        
-        echo $percount;
-            
-        
-        
-        
-        {
-            if ($aper == "a") {
-                $loopcount += 1;
-            }
-            if ($bper == "b") {
-                $loopcount += 1;
-            }
 
-            if ($cper == "c") {
-                $loopcount += 1;
-            }
-            if ($dper == "d") {
-                $loopcount += 1;
-            }
-            if ($eper == "e") {
-                $loopcount += 1;
-            }
-            if ($fper == "f") {
-                $loopcount += 1;
-            }
-            if ($gper == "g") {
-                $loopcount += 1;
-            }
-            if ($hper == "h") {
-                $loopcount += 1;
-            }
-        }
-        
-        
-
-    }
-
+    
+echo "Blacked out period(s):";
 for($i = 0; $i < $percount; $i++) {
     
     $sql = "INSERT INTO blackout (day, department, period)
             VALUES ('$blackoutday', '$dep', '$perarray_null[$i]')";
             if ($conn->query($sql) === TRUE) {
-                echo "New record created successfully";
+                echo "$perarray_null[$i] ";
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }
 
 }
-
-   /* $sql = "SELECT firstname, lastname, email, student_id, period, sh_teacher, place, day_to_come FROM passes $where_day ORDER BY period";
-    $result = $conn->query($sql);
-
-
-
-    if ($loopcount > 0) {
-        echo "<table class='bordered responsive-table'><thead><tr><th>Check In</th><th>Student ID</th><th>Name</th><th>Email</th><th>Period</th><th>Study Hall Teacher</th><th>Department</th><th>Day</th></tr></thead>";
-        // output data of each row
-        echo "<tbody>";
-        while($row = $result->fetch_assoc()) {
-            echo "<tr><td>" . 'Signature:  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp' . "</td><td>" . $row["student_id"]. "</td><td>" . $row["firstname"]. " " . $row["lastname"]. "</td><td>" . $row["email"]. "</td><td>" . $row["period"]. "</td><td>" . $row["sh_teacher"]. "</td><td>" . $row["place"]. "</td><td>" . $row["day_to_come"]. "</td></tr></tbody>";
-        }
-        
-        echo "</tbody></table>";
-        } else {
-            echo "Done";
-        }
-*/
+echo " on $blackoutday";
+  
 $conn->close();
+    }
 ?>
