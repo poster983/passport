@@ -131,7 +131,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     foreach ($_POST as $key => $value) {
 
   }
-        
+        $blackoutday = $_POST['blackoutday'];
+        $dep = $_POST['dep'];
         $aper = $_POST['aper'];
         $bper = $_POST['bper'];
         $cper = $_POST['cper'];
@@ -140,8 +141,6 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         $fper = $_POST['fper'];
         $gper = $_POST['gper'];
         $hper = $_POST['hper'];
-        $datesearch = $_POST['datesearch'];
-        $where_day = "WHERE day_to_come ='$datesearch'";
         
         {
             if ($aper == "a") {
@@ -174,10 +173,25 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     echo $bper;
         echo $cper;
     }
+
+while($loopcount > 0) {
+    $sql = "INSERT INTO blackout (day, department, period)
+            VALUES ('$name_title', '$first_name', '$last_name')";
+
+            if ($conn->query($sql) === TRUE) {
+                echo "New record created successfully";
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+
+}
+
    /* $sql = "SELECT firstname, lastname, email, student_id, period, sh_teacher, place, day_to_come FROM passes $where_day ORDER BY period";
     $result = $conn->query($sql);
 
-    if ($result->num_rows > 0) {
+
+
+    if ($loopcount > 0) {
         echo "<table class='bordered responsive-table'><thead><tr><th>Check In</th><th>Student ID</th><th>Name</th><th>Email</th><th>Period</th><th>Study Hall Teacher</th><th>Department</th><th>Day</th></tr></thead>";
         // output data of each row
         echo "<tbody>";
@@ -187,7 +201,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         
         echo "</tbody></table>";
         } else {
-            echo "0 results";
+            echo "Done";
         }
 */
 $conn->close();
