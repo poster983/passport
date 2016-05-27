@@ -24,9 +24,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 <?php
 include "config.php";
-
+global $conn;
 // Create connection
-$conn = new mysqli($servername, $username, $password, $database);
+$conn = new mysqli($servername, $dbusername, $dbpassword, $database);
 
 // Check connection
 if ($conn->connect_error) {

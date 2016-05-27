@@ -38,42 +38,42 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 </div>
                 <p class="center">Select Blackout Periods</p>
                 <p class="center">
-                    <input type="checkbox" id="aper" name="aper" value="a" />
+                    <input type="checkbox" id="aper" name="aper" value="A" />
                     <label for="aper">A Period</label>
                     &nbsp &nbsp
-                    <input type="checkbox" id="bper" name="bper" value="b" />
+                    <input type="checkbox" id="bper" name="bper" value="B" />
                     <label for="bper">B Period</label>
                     &nbsp &nbsp
-                    <input type="checkbox" id="cper" name="cper" value="c" />
+                    <input type="checkbox" id="cper" name="cper" value="C" />
                     <label for="cper">C Period</label>
                     &nbsp &nbsp
-                    <input type="checkbox" id="dper" name="dper" value="d" />
+                    <input type="checkbox" id="dper" name="dper" value="D" />
                     <label for="dper">D Period</label>
                     &nbsp &nbsp
-                    <input type="checkbox" id="eper" name="eper" value="e" />
+                    <input type="checkbox" id="eper" name="eper" value="E" />
                     <label for="eper">E Period</label>
                     &nbsp &nbsp
-                    <input type="checkbox" id="fper" name="fper" value="f" />
+                    <input type="checkbox" id="fper" name="fper" value="F" />
                     <label for="fper">F Period</label>
                     &nbsp &nbsp
-                    <input type="checkbox" id="gper" name="gper" value="g" />
+                    <input type="checkbox" id="gper" name="gper" value="G" />
                     <label for="gper">G Period</label>
                     &nbsp &nbsp
-                    <input type="checkbox" id="hper" name="hper" value="h" />
+                    <input type="checkbox" id="hper" name="hper" value="H" />
                     <label for="hper">H Period</label>
                 </p>
                 <p class="center">Choose Department</p>
                 <p class="center">
-                    <input type="radio" id="lec" name="dep" value="lec" />
+                    <input type="radio" id="lec" name="dep" value="LEC" />
                     <label for="lec">LEC</label>
                     &nbsp &nbsp
-                    <input type="radio" id="math" name="dep" value="math" />
+                    <input type="radio" id="math" name="dep" value="Math Department" />
                     <label for="math">Math</label>
                     &nbsp &nbsp
-                    <input type="radio" id="lib" name="dep" value="lib" />
+                    <input type="radio" id="lib" name="dep" value="Library" />
                     <label for="lib">Library</label>
                     &nbsp &nbsp
-                    <input type="radio" id="hd" name="dep" value="hd" />
+                    <input type="radio" id="hd" name="dep" value="Help Desk" />
                     <label for="hd">Help Desk</label>
 
                 </p>
@@ -142,11 +142,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         $gper = $_POST['gper'];
         $hper = $_POST['hper'];
         
-        $per = "$aper $bper $cper $dper $eper $fper $gper $hper";
+        $per = "$aper,$bper,$cper,$dper,$eper,$fper,$gper,$hper";
             
-        $perarray = explode(" ", $per);
+        $perarray = explode(",", $per);
         
-        $perarray_null = array_filter($perarray, 'strlen');
+        $perarray_null = array_filter($perarray );
         
         $percount = count($perarray_null);
         
@@ -156,7 +156,7 @@ echo "Blacked out period(s):";
 for($i = 0; $i < $percount; $i++) {
     
     $sql = "INSERT INTO blackout (day, department, period)
-            VALUES ('$blackoutday', '$dep', '$perarray_null[$i]')";
+            VALUES ('$blackoutday', '$dep', '$per')";
             if ($conn->query($sql) === TRUE) {
                 echo "$perarray_null[$i] ";
             } else {
