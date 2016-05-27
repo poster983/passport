@@ -29,39 +29,46 @@ if (isset($_POST['Submit'])) {
     <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
     <html>
 
+
     <head>
-        <title>Login</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-        <link rel="stylesheet" type="text/css" href="style.css" />
+        <title>Admin Dashboard Login</title>
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+        <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+
+
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
     </head>
 
+
     <body>
-        <h1>passr Admin Panel</h1>
-        <form name="form1" method="post" action="">
-            <p>Please enter correct username and password to login</p>
-            <table border="0" align="center" cellpadding="1" cellspacing="1" bordercolor="#dedede">
-                <tr>
-                    <td colspan="2">Admin Login</td>
-                </tr>
-                <tr>
-                    <td>Username:</td>
-                    <td>
-                        <input name="username" type="text" id="username">
-                    </td>
-                </tr>
-                <tr>
-                    <td>Password: </td>
-                    <td>
-                        <input name="password" type="password" id="password">
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <input type="submit" name="Submit" value="Submit">
-                    </td>
-                </tr>
-            </table>
+        <div class="container">
+            <h1 class="center">Passr Admin Login</h1>
+            <form name="form1" method="post" action="">
+
+                <div class="input-field">
+                    <input name="username" type="text" id="username">
+                    <label for="username">Username</label>
+                </div>
+
+                <div class="input-field">
+                    <input name="password" type="password" id="password">
+                    <label for="password">Password</label>
+                </div>
+                <button class="btn waves-effect waves-light" type="submit" name="Submit">Login
+                    <i class="material-icons right">lock_open</i>
+                </button>
+            </form>
+        </div>
+
+
     </body>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="/js/materialize.js"></script>
+    <script src="/js/init.js"></script>
 
     </html>

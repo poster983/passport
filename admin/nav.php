@@ -26,16 +26,17 @@
                 <li><a href="teacherlist.php">View/Delete Teachers</a></li>
 
                 <li><a href="createadmin.php">Create New Admin</a></li>
-                <li class="right"><a href="/admin/logout.php">Logout</a></li>
+                <li class="right"><a href="/admin/logout.php">Logout<i class="material-icons right">lock</i></a></li>
             </ul>
 
             <ul id="nav-mobile" class="side-nav">
                 <p class="center-align black-text"></p>
                 <li><a href="passsearch.php">Passes</a></li>
+                <li><a href="blackout.php">Blackout Dates</a></li>
                 <li><a href="editteacher.php">Add Teachers</a></li>
                 <li><a href="teacherlist.php">View/Delete Teachers</a></li>
                 <li><a href="createadmin.php">Create New Admin</a></li>
-                <li> <a href="/admin/logout.php">Logout</a></li>
+                <li> <a href="/admin/logout.php">Logout<i class="material-icons right">lock_outline</i></a></li>
             </ul>
             <a href="#" data-activates="nav-mobile" class="button-collapse left"><i class="material-icons">menu</i></a>
         </div>
