@@ -154,17 +154,15 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
     
 echo "Blacked out period(s):";
-for($i = 0; $i < $percount; $i++) {
     
     $sql = "INSERT INTO blackout (day, department, period)
             VALUES ('$blackoutday', '$dep', '$per')";
             if ($conn->query($sql) === TRUE) {
-                echo "$perarray_null[$i] ";
-            } else {
+                echo "$per ";
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }
 
-}
+
 echo " on $blackoutday";
   
 $conn->close();
