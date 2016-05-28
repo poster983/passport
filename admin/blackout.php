@@ -84,6 +84,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 </p>
 
             </form>
+            <a class="waves-effect waves-light btn red" href="blackoutcal.php"><i class="material-icons left">today</i>Calender</a>
         </div>
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="/js/materialize.js"></script>

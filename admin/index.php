@@ -32,42 +32,51 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
 
     <? include "nav.php"; ?>
+        <? //include "../checkbo.php"; ?>
 
 
-        <!--Tabs-->
-        <div class="row">
-            <div class="col s12">
-                <ul class="tabs">
-                    <li class="tab col s3"><a href="#lec">LEC Dash</a></li>
-                    <li class="tab col s3"><a class="active" href="#math">Math Dash</a></li>
-                    <li class="tab col s3"><a href="#lib">Library Dash</a></li>
-                    <li class="tab col s3"><a href="#HD">Help Desk Dash</a></li>
-                </ul>
+            <!--Tabs-->
+            <div class="row">
+                <div class="col s12">
+                    <ul class="tabs">
+                        <li class="tab col s3"><a href="#lec">LEC Dash</a></li>
+                        <li class="tab col s3"><a class="active" href="#math">Math Dash</a></li>
+                        <li class="tab col s3"><a href="#lib">Library Dash</a></li>
+                        <li class="tab col s3"><a href="#HD">Help Desk Dash</a></li>
+                    </ul>
+                </div>
+
+                <div id="lec" class="col s12">
+                    <? //LECout(); ?>
+                </div>
+                <div id="math" class="col s12">
+                    <? //MATHout(); ?>
+                </div>
+                <div id="lib" class="col s12">
+                    <? //LIBout(); ?>
+                </div>
+                <div id="HD" class="col s12">
+                    <? //HDout(); ?>
+                </div>
             </div>
 
-            <div id="lec" class="col s12">Nothing.</div>
-            <div id="math" class="col s12">Nothing Here Yet</div>
-            <div id="lib" class="col s12">Nothing Here Yet</div>
-            <div id="HD" class="col s12">Nothing Here Yet</div>
-        </div>
+            </body>
 
-        </body>
-
-        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script src="/js/materialize.js"></script>
-        <script src="/js/init.js"></script>
+            <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+            <script src="/js/materialize.js"></script>
+            <script src="/js/init.js"></script>
 
 
 
-        <!--[if lte IE 8]><script src="assets/js/respond.min.js"></script><![endif]-->
-        <script>
-            if ('addEventListener' in window) {
-                window.addEventListener('load', function () {
-                    document.body.className = document.body.className.replace(/\bis-loading\b/, '');
-                });
-                document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
-            }
-        </script>
+            <!--[if lte IE 8]><script src="assets/js/respond.min.js"></script><![endif]-->
+            <script>
+                if ('addEventListener' in window) {
+                    window.addEventListener('load', function () {
+                        document.body.className = document.body.className.replace(/\bis-loading\b/, '');
+                    });
+                    document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
+                }
+            </script>
 
 
-        </html>
+            </html>
