@@ -155,17 +155,8 @@ if(isset($_POST['add_new_entry'])){
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }
         }
-    $conn->close();
-            
-            
-            
-            
-            
-        
+    $conn->close();      
     }
-    }
-    
-    
- 
+}
 
 ?>
