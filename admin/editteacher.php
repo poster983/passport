@@ -63,22 +63,29 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         </p>
                     </div>
                     <p>
-                        <input type="radio" name="period" value="a" id="perioda" />
-                        <label for="perioda">A Period</label>
-                        <input type="radio" name="period" value="b" id="periodb" />
-                        <label for="periodb">B Period</label>
-                        <input type="radio" name="period" value="c" id="periodc" />
-                        <label for="periodc">C Period</label>
-                        <input type="radio" name="period" value="d" id="periodd" />
-                        <label for="periodd">D Period</label>
-                        <input type="radio" name="period" value="e" id="periode" />
-                        <label for="periode">E Period</label>
-                        <input type="radio" name="period" value="f" id="periodf" />
-                        <label for="periodf">F Period</label>
-                        <input type="radio" name="period" value="g" id="periodg" />
-                        <label for="periodg">G Period</label>
-                        <input type="radio" name="period" value="h" id="periodh" />
-                        <label for="periodh">H Period</label>
+                        <input type="checkbox" id="aper" name="aper" value="A" />
+                        <label for="aper">A Period</label>
+                        &nbsp &nbsp
+                        <input type="checkbox" id="bper" name="bper" value="B" />
+                        <label for="bper">B Period</label>
+                        &nbsp &nbsp
+                        <input type="checkbox" id="cper" name="cper" value="C" />
+                        <label for="cper">C Period</label>
+                        &nbsp &nbsp
+                        <input type="checkbox" id="dper" name="dper" value="D" />
+                        <label for="dper">D Period</label>
+                        &nbsp &nbsp
+                        <input type="checkbox" id="eper" name="eper" value="E" />
+                        <label for="eper">E Period</label>
+                        &nbsp &nbsp
+                        <input type="checkbox" id="fper" name="fper" value="F" />
+                        <label for="fper">F Period</label>
+                        &nbsp &nbsp
+                        <input type="checkbox" id="gper" name="gper" value="G" />
+                        <label for="gper">G Period</label>
+                        &nbsp &nbsp
+                        <input type="checkbox" id="hper" name="hper" value="H" />
+                        <label for="hper">H Period</label>
                     </p>
                     <p>
                         <button class="btn waves-effect waves-light" type="submit" name="add_new_entry">Add New Teacher
@@ -108,32 +115,57 @@ if(isset($_POST['add_new_entry'])){
         $name_title = $_POST['name_title'];
         $email = $_POST['email'];
         $room = $_POST['room'];
-        $period = $_POST['period'];
+        $aper = $_POST['aper'];
+        $bper = $_POST['bper'];
+        $cper = $_POST['cper'];
+        $dper = $_POST['dper'];
+        $eper = $_POST['eper'];
+        $fper = $_POST['fper'];
+        $gper = $_POST['gper'];
+        $hper = $_POST['hper'];
+       
+        $per = "$aper $bper $cper $dper $eper $fper $gper $hper"; 
+             
+        $perarray = explode(" ", $per); 
+         
+        $perarray_null = array_filter($perarray, 'strlen'); 
+         
+        $percount = count($perarray_null); 
+         
+        echo $per; 
+         
+        echo $percount; 
+        
         {
             echo "First Name: " . $first_name;
             echo "Last Name: " . $last_name;
             echo "Title: " . $name_title;
             echo "Email: " . $email;
             echo "Room: " . $room;
-            echo "Period: " . $period;
-        }
-        {
-            include "../sqlconnect.php";
             
+        }
+        include "../sqlconnect.php";
+        foreach($perarray_null as $forper) {
             $sql = "INSERT INTO teachers (name_title, firstname, lastname, email, room, period)
-            VALUES ('$name_title', '$first_name', '$last_name', '$email', '$room', '$period')";
+            VALUES ('$name_title', '$first_name', '$last_name', '$email', '$room', '$forper')";
 
             if ($conn->query($sql) === TRUE) {
                 echo "New record created successfully";
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }
-
-            $conn->close();
         }
+    $conn->close();
+            
+            
+            
+            
+            
+        
+    }
     }
     
     
-}  
+ 
 
 ?>
