@@ -50,6 +50,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <div>
         <a href="https://github.com/poster983/passr"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
     </div>
+
     <!--Tabs-->
     <br>
     <br>
@@ -65,6 +66,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         <li class="tab col s3"><a href="#helpDesk">Help Desk</a></li>
                     </ul>
                 </div>
+                <a class="btn" onclick="Materialize.toast('TEST TOAST', 4000)">Toast!</a>
                 <div class="container">
                     <? include "checkbo.php"; ?>
                         <div id="lec" class="col s12">
@@ -406,7 +408,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                     </div>
                 </div>
 
-                <button class="btn waves-effect waves-light red darken-2" type="submit" name="submit">Request a pass
+                <button class="btn waves-effect waves-light red darken-2 tooltipped" data-position="right" data-delay="50" data-tooltip="Please review your request" type="submit" name="submit">Request a pass
                     <i class="material-icons right">send</i>
                 </button>
             </div>
@@ -453,3 +455,105 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 </body>
 
 </html>
+
+<?php
+
+/*
+
+if(!isset($_POST['submit'])) exit();
+
+// Required field names
+$required = array('first_name', 'last_name', 'student_id', 'email', 'perTab', 'place', 'day');
+
+// Loop over field names, make sure each one exists and is not empty
+$error = false;
+foreach($required as $field) {
+  if (empty($_POST[$field])) {
+    $error = true;
+  }
+}
+
+if ($error) {
+  echo "All fields are required.";
+} else {
+
+    
+    foreach ($_POST as $key => $value) {
+
+  }
+    {
+        $first_name = $_POST['first_name'];
+        $last_name = $_POST['last_name'];
+        $student_id = $_POST['student_id'];
+        $email = $_POST['email'];
+        $place = $_POST['place'];
+        $perTab = $_POST['perTab'];
+        $shTeacherA = $_POST['shTeacherA'];
+        $shTeacherB = $_POST['shTeacherB'];
+        $shTeacherC = $_POST['shTeacherC'];
+        $shTeacherD = $_POST['shTeacherD'];
+        $shTeacherE = $_POST['shTeacherE'];
+        $shTeacherF = $_POST['shTeacherF'];
+        $shTeacherG = $_POST['shTeacherG'];
+        $shTeacherH = $_POST['shTeacherH'];
+        $day = $_POST['day'];
+        {
+            if ($perTab === "a") {
+                $shTeacher = $shTeacherA;
+        } 
+            elseif ($perTab === "b") {
+                $shTeacher = $shTeacherB;
+            }
+            elseif ($perTab === "c") {
+                $shTeacher = $shTeacherC;
+            }
+            elseif ($perTab === "d") {
+                $shTeacher = $shTeacherD;
+            }
+            elseif ($perTab === "e") {
+                $shTeacher = $shTeacherE;
+            }
+            elseif ($perTab === "f") {
+                $shTeacher = $shTeacherF;
+            }
+            elseif ($perTab === "g") {
+                $shTeacher = $shTeacherG;
+            }
+            elseif ($perTab === "h") {
+                $shTeacher = $shTeacherH;
+            }
+            else {
+            echo "ERROR, INVALID PERIOD";
+        }
+        }
+        
+        
+        
+        {
+            echo "First Name: " . $first_name;
+            echo "Last Name: " . $last_name;
+            echo "Student ID: " . $student_id;
+            echo "Email: " . $email;
+            echo "Place: " . $place;
+            echo "Chosen Period: " . $perTab;
+            echo "Chosen Teacher: " . $shTeacher;
+            echo "Day to come: " . $day;
+        }
+        {
+            include "sqlconnect.php";
+            
+            $sql = "INSERT INTO passes (firstname, lastname, email, student_id, period, sh_teacher, place, day_to_come)
+            VALUES ('$first_name', '$last_name', '$email', '$student_id', '$perTab', '$shTeacher', '$place', '$day')";
+
+            if ($conn->query($sql) === TRUE) {
+                echo "New record created successfully";
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+
+            $conn->close();
+        }
+    }
+
+    }*/
+    ?>
