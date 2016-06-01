@@ -64,9 +64,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         <li class="tab col s3"><a href="#math">Math</a></li>
                         <li class="tab col s3"><a href="#library">Library</a></li>
                         <li class="tab col s3"><a href="#helpDesk">Help Desk</a></li>
+                        <li class="tab col s3"><a href="#writingLab">Writing Lab</a></li>
+                        <li class="tab col s3"><a href="#FL">Foreign Language</a></li>
                     </ul>
                 </div>
-                <a class="btn" onclick="Materialize.toast('TEST TOAST', 4000)">Toast!</a>
+                <!--<a class="btn" onclick="Materialize.toast('TEST TOAST', 4000)">Toast!</a> -->
                 <div class="container">
                     <? include "checkbo.php"; ?>
                         <div id="lec" class="col s12">
@@ -95,6 +97,20 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                 <? HDout(); ?>
                                     <input class="with-gap" type="radio" name="place" value="hd" id="HDConfirm" />
                                     <label for="HDConfirm">Confirm Help Desk</label>
+                            </p>
+                        </div>
+                        <div id="writingLab" class="col s12">
+                            <p>
+                                <? WLout(); ?>
+                                    <input class="with-gap" type="radio" name="place" value="Writing Lab" id="WLConfirm" />
+                                    <label for="WLConfirm">Confirm Writing Lab</label>
+                            </p>
+                        </div>
+                        <div id="FL" class="col s12">
+                            <p>
+                                <? FLout(); ?>
+                                    <input class="with-gap" type="radio" name="place" value="Foreign Language" id="FLConfirm" />
+                                    <label for="FLConfirm">Confirm Foreign Language</label>
                             </p>
                         </div>
                 </div>
@@ -425,7 +441,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 <div class="container">
                     <a class="black-text left" href="">Copyright © 2016 Joseph Hassell</a> &nbsp &nbsp
                     <a class="black-text right" href="http://lijo.pw/1668">Licence </a> &nbsp &nbsp
-                    <a class="black-text right" href="http://lijo.pw/1669">Project Page </a>&nbsp &nbsp
+                    <a class="black-text right" href="http://lijo.pw/1669">Project Page &nbsp &nbsp</a>&nbsp &nbsp
                 </div>
             </div>
         </footer>

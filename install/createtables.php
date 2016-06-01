@@ -37,7 +37,7 @@ email VARCHAR(50),
 student_id VARCHAR(10) NOT NULL,
 period VARCHAR(10) NOT NULL,
 sh_teacher VARCHAR(40) NOT NULL,
-place VARCHAR(10) NOT NULL,
+place VARCHAR(50) NOT NULL,
 day_to_come VARCHAR(10) NOT NULL,
 request_date TIMESTAMP
 )";

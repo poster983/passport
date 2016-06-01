@@ -75,7 +75,12 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                     &nbsp &nbsp
                     <input type="radio" id="hd" name="dep" value="Help Desk" />
                     <label for="hd">Help Desk</label>
-
+                    &nbsp &nbsp
+                    <input type="radio" id="wl" name="dep" value="Writing Lab" />
+                    <label for="wl">Writing Lab</label>
+                    &nbsp &nbsp
+                    <input type="radio" id="fl" name="dep" value="Foreign Language" />
+                    <label for="fl">Foreign Language</label>
                 </p>
                 <p>
                     <button class="btn waves-effect waves-light" type="submit" name="blackout">Blackout
