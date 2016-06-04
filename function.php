@@ -323,4 +323,136 @@ function FLout()
     echo "</div>";
 }
 
+
+
+
+
+
+function LECmess()
+{
+        global $conn;
+        global $today;
+    
+    $sqlmessage = "SELECT day, dep, reason FROM message WHERE day = '$today' AND dep = 'LEC'";
+    $resultmessage = $conn->query($sqlmessage);
+    
+        echo "<div class='row'>";
+    if ($resultmessage->num_rows > 0) {
+        echo "<div class='col s12'><div class='hoverable card teal darken-4'><div class='card-content white-text'><span class='card-title'>IMPORTANT MESSAGE FROM THE LEC</span>";
+        // output data of each row
+        while($rowmessage = $resultmessage->fetch_assoc()) {
+            echo "<p>";
+            echo $rowmessage["reason"];
+            echo "</p>";
+        }
+        echo "</div></div></div></div>";
+        }
+}
+
+function MATHmess()
+{
+        global $conn;
+        global $today;
+    
+    $sqlmessage = "SELECT day, dep, reason FROM message WHERE day = '$today' AND dep = 'Math Department'";
+    $resultmessage = $conn->query($sqlmessage);
+    
+        echo "<div class='row'>";
+    if ($resultmessage->num_rows > 0) {
+        echo "<div class='col s12'><div class='hoverable card teal darken-4'><div class='card-content white-text'><span class='card-title'>IMPORTANT MESSAGE FROM THE MATH DEPARTMENT</span>";
+        // output data of each row
+        while($rowmessage = $resultmessage->fetch_assoc()) {
+            echo "<p>";
+            echo $rowmessage["reason"];
+            echo "</p>";
+        }
+        echo "</div></div></div></div>";
+        }
+}
+
+function LIBmess()
+{
+        global $conn;
+        global $today;
+    
+    $sqlmessage = "SELECT day, dep, reason FROM message WHERE day = '$today' AND dep = 'Library'";
+    $resultmessage = $conn->query($sqlmessage);
+    
+        echo "<div class='row'>";
+    if ($resultmessage->num_rows > 0) {
+        echo "<div class='col s12'><div class='hoverable card teal darken-4'><div class='card-content white-text'><span class='card-title'>IMPORTANT MESSAGE FROM THE LIBRARY</span>";
+        // output data of each row
+        while($rowmessage = $resultmessage->fetch_assoc()) {
+            echo "<p>";
+            echo $rowmessage["reason"];
+            echo "</p>";
+        }
+        echo "</div></div></div></div>";
+        }
+}
+
+function HDmess()
+{
+        global $conn;
+        global $today;
+    
+    $sqlmessage = "SELECT day, dep, reason FROM message WHERE day = '$today' AND dep = 'Help Desk'";
+    $resultmessage = $conn->query($sqlmessage);
+    
+        echo "<div class='row'>";
+    if ($resultmessage->num_rows > 0) {
+        echo "<div class='col s12'><div class='hoverable card teal darken-4'><div class='card-content white-text'><span class='card-title'>IMPORTANT MESSAGE FROM THE HELP DESK</span>";
+        // output data of each row
+        while($rowmessage = $resultmessage->fetch_assoc()) {
+            echo "<p>";
+            echo $rowmessage["reason"];
+            echo "</p>";
+        }
+        echo "</div></div></div></div>";
+        }
+}
+
+function WLmess()
+{
+        global $conn;
+        global $today;
+    
+    $sqlmessage = "SELECT day, dep, reason FROM message WHERE day = '$today' AND dep = 'Writing Lab'";
+    $resultmessage = $conn->query($sqlmessage);
+    
+        echo "<div class='row'>";
+    if ($resultmessage->num_rows > 0) {
+        echo "<div class='col s12'><div class='hoverable card teal darken-4'><div class='card-content white-text'><span class='card-title'>IMPORTANT MESSAGE FROM THE WRITING LAB</span>";
+        // output data of each row
+        while($rowmessage = $resultmessage->fetch_assoc()) {
+            echo "<p>";
+            echo $rowmessage["reason"];
+            echo "</p>";
+        }
+        echo "</div></div></div></div>";
+        }
+}
+
+function FLmess()
+{
+        global $conn;
+        global $today;
+    
+    $sqlmessage = "SELECT day, dep, reason FROM message WHERE day = '$today' AND dep = 'Foreign Language'";
+    $resultmessage = $conn->query($sqlmessage);
+    
+        echo "<div class='row'>";
+    if ($resultmessage->num_rows > 0) {
+        echo "<div class='col s12'><div class='hoverable card teal darken-4'><div class='card-content white-text'><span class='card-title'>IMPORTANT MESSAGE FROM THE FOREIGN LANGUAGE DEPARTMENT</span>";
+        // output data of each row
+        while($rowmessage = $resultmessage->fetch_assoc()) {
+            echo "<p>";
+            echo $rowmessage["reason"];
+            echo "</p>";
+        }
+        echo "</div></div></div></div>";
+        }
+}
+
+
 ?>

@@ -63,54 +63,61 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         <li class="tab col s3"><a href="#lec">LEC</a></li>
                         <li class="tab col s3"><a href="#math">Math</a></li>
                         <li class="tab col s3"><a href="#library">Library</a></li>
-                        <li class="tab col s3"><a href="#helpDesk">Help Desk</a></li>
-                        <li class="tab col s3"><a href="#writingLab">Writing Lab</a></li>
-                        <li class="tab col s3"><a href="#FL">Foreign Language</a></li>
+                        <li class="tab col s3"><a href="#helpDesktab">Help Desk</a></li>
+                        <li class="tab col s3"><a href="#writingLabtab">Writing Lab</a></li>
+                        <li class="tab col s3"><a href="#FLtab">Foreign Language</a></li>
                     </ul>
                 </div>
                 <!--<a class="btn" onclick="Materialize.toast('TEST TOAST', 4000)">Toast!</a> -->
                 <div class="container">
-                    <? include "checkbo.php"; ?>
+                    <? include "function.php"; ?>
                         <div id="lec" class="col s12">
                             <p>
                                 <? LECout(); ?>
-                                    <input class="with-gap" type="radio" name="place" value="lec" id="lecConfirm" />
-                                    <label for="lecConfirm">Confirm LEC</label>
+                                    <? LECmess(); ?>
+                                        <input class="with-gap" type="radio" name="place" value="lec" id="lecConfirm" />
+                                        <label for="lecConfirm">Confirm LEC</label>
                             </p>
                         </div>
                         <div id="math" class="col s12">
                             <p>
                                 <? MATHout(); ?>
-                                    <input class="with-gap" type="radio" name="place" value="math" id="mathConfirm" />
-                                    <label for="mathConfirm">Confirm Math</label>
+                                    <? MATHmess(); ?>
+                                        <input class="with-gap" type="radio" name="place" value="math" id="mathConfirm" />
+                                        <label for="mathConfirm">Confirm Math</label>
                             </p>
                         </div>
                         <div id="library" class="col s12">
                             <p>
                                 <? LIBout(); ?>
-                                    <input class="with-gap" type="radio" name="place" value="library" id="libConfirm" />
-                                    <label for="libConfirm">Confirm Library</label>
+                                    <? //LIBmess(); ?>
+                                        <!-- THIS IS BROKEN-->
+                                        <input class="with-gap" type="radio" name="place" value="library" id="libConfirm" />
+                                        <label for="libConfirm">Confirm Library</label>
                             </p>
                         </div>
-                        <div id="helpDesk" class="col s12">
+                        <div id="helpDesktab" class="col s12">
                             <p>
                                 <? HDout(); ?>
-                                    <input class="with-gap" type="radio" name="place" value="hd" id="HDConfirm" />
-                                    <label for="HDConfirm">Confirm Help Desk</label>
+                                    <? HDmess(); ?>
+                                        <input class="with-gap" type="radio" name="place" value="hd" id="HDConfirm" />
+                                        <label for="HDConfirm">Confirm Help Desk</label>
                             </p>
                         </div>
-                        <div id="writingLab" class="col s12">
+                        <div id="writingLabtab" class="col s12">
                             <p>
                                 <? WLout(); ?>
-                                    <input class="with-gap" type="radio" name="place" value="Writing Lab" id="WLConfirm" />
-                                    <label for="WLConfirm">Confirm Writing Lab</label>
+                                    <? WLmess(); ?>
+                                        <input class="with-gap" type="radio" name="place" value="Writing Lab" id="WLConfirm" />
+                                        <label for="WLConfirm">Confirm Writing Lab</label>
                             </p>
                         </div>
-                        <div id="FL" class="col s12">
+                        <div id="FLtab" class="col s12">
                             <p>
                                 <? FLout(); ?>
-                                    <input class="with-gap" type="radio" name="place" value="Foreign Language" id="FLConfirm" />
-                                    <label for="FLConfirm">Confirm Foreign Language</label>
+                                    <? FLmess(); ?>
+                                        <input class="with-gap" type="radio" name="place" value="Foreign Language" id="FLConfirm" />
+                                        <label for="FLConfirm">Confirm Foreign Language</label>
                             </p>
                         </div>
                 </div>
@@ -424,7 +431,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                     </div>
                 </div>
 
-                <button class="btn waves-effect waves-light red darken-2 tooltipped" data-position="right" data-delay="50" data-tooltip="Please review your request" type="submit" name="submit">Request a pass
+                <button class="btn waves-effect waves-light red darken-2 tooltipped" data-position="top" data-delay="50" data-tooltip="You CANNOT cancel this pass.  You are required to come. " type="submit" name="submit">Request a pass
                     <i class="material-icons right">send</i>
                 </button>
             </div>

@@ -76,6 +76,13 @@ period VARCHAR(100) NOT NULL,
 reason VARCHAR(255) NOT NULL
 )";
 
+$sqlmessage = "CREATE TABLE message (
+id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+day VARCHAR(50) NOT NULL,
+dep VARCHAR(100) NOT NULL,
+reason VARCHAR(255) NOT NULL
+)";
+
 if ($conn->query($sqlpasses) === TRUE) {
     $tablesucsess += 1;
     echo "Table Passes created successfully";
@@ -104,7 +111,14 @@ if ($conn->query($sqlblackout) === TRUE) {
     echo "Error creating table: " . $conn->error;
 }
 
-if ($tablesucsess == 4) {
+if ($conn->query($sqlmessage) === TRUE) {
+    $tablesucsess += 1;
+    echo "Table Message created successfully";
+} else {
+    echo "Error creating table: " . $conn->error;
+}
+
+if ($tablesucsess == 5) {
     echo "All tables created";
     $tablenext = "<a href='step3.php'>Next --></a>";
 } else {
