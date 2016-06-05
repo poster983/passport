@@ -332,7 +332,7 @@ function LECmess()
 {
         global $conn;
         global $today;
-    
+    {
     $sqlmessage = "SELECT day, dep, reason FROM message WHERE day = '$today' AND dep = 'LEC'";
     $resultmessage = $conn->query($sqlmessage);
     
@@ -346,14 +346,17 @@ function LECmess()
             echo "</p>";
         }
         echo "</div></div></div></div>";
-        }
+        } else {
+        echo "No Messages";
+    }
+    }
 }
 
 function MATHmess()
 {
         global $conn;
         global $today;
-    
+    {
     $sqlmessage = "SELECT day, dep, reason FROM message WHERE day = '$today' AND dep = 'Math Department'";
     $resultmessage = $conn->query($sqlmessage);
     
@@ -367,14 +370,17 @@ function MATHmess()
             echo "</p>";
         }
         echo "</div></div></div></div>";
-        }
+        } else {
+        echo "No Messages";
+    }
+    }
 }
 
 function LIBmess()
 {
         global $conn;
         global $today;
-    
+    {
     $sqlmessage = "SELECT day, dep, reason FROM message WHERE day = '$today' AND dep = 'Library'";
     $resultmessage = $conn->query($sqlmessage);
     
@@ -388,14 +394,17 @@ function LIBmess()
             echo "</p>";
         }
         echo "</div></div></div></div>";
-        }
+        } else {
+        echo "No Messages";
+    }
+    }
 }
 
 function HDmess()
 {
         global $conn;
         global $today;
-    
+    {
     $sqlmessage = "SELECT day, dep, reason FROM message WHERE day = '$today' AND dep = 'Help Desk'";
     $resultmessage = $conn->query($sqlmessage);
     
@@ -409,14 +418,17 @@ function HDmess()
             echo "</p>";
         }
         echo "</div></div></div></div>";
-        }
+        } else {
+        echo "No Messages";
+    }
+}
 }
 
 function WLmess()
 {
         global $conn;
         global $today;
-    
+    {
     $sqlmessage = "SELECT day, dep, reason FROM message WHERE day = '$today' AND dep = 'Writing Lab'";
     $resultmessage = $conn->query($sqlmessage);
     
@@ -430,14 +442,17 @@ function WLmess()
             echo "</p>";
         }
         echo "</div></div></div></div>";
-        }
+        } else {
+        echo "No Messages";
+    }
+    }
 }
 
 function FLmess()
 {
         global $conn;
         global $today;
-    
+    {
     $sqlmessage = "SELECT day, dep, reason FROM message WHERE day = '$today' AND dep = 'Foreign Language'";
     $resultmessage = $conn->query($sqlmessage);
     
@@ -451,7 +466,10 @@ function FLmess()
             echo "</p>";
         }
         echo "</div></div></div></div>";
-        }
+        } else {
+        echo "No Messages";
+    }
+    }
 }
 
 
