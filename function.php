@@ -318,7 +318,9 @@ function FLout()
         echo "</div></div></div>";
 
 } else {
-            echo "<div class='center col s12'><div class='hoverable card green accent-3'><div class='card-content white-text'><span class='card-title'>Foreign Language tutoring is open all week.</span></div></div></div>";
+            echo "<div celse {
+                                         $conn->close();
+                                    }lass='center col s12'><div class='hoverable card green accent-3'><div class='card-content white-text'><span class='card-title'>Foreign Language tutoring is open all week.</span></div></div></div>";
         }
     echo "</div>";
 }

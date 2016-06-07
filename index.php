@@ -77,6 +77,25 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                     <? //LECmess(); ?>
                                         <input class="with-gap" type="radio" name="place" value="lec" id="lecConfirm" />
                                         <label for="lecConfirm">Confirm LEC</label>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <select name="whylec" class="browser-default">
+                                            <option selected value="">Why are you coming today?</option>
+                                            <?
+                                    $sql="SELECT dep, why FROM why WHERE dep='LEC' ORDER BY why"; 
+                                    $result = $conn->query($sql);
+                                    
+                                    if ($result->num_rows > 0) {
+                                        // output data of each row
+                                        while($row = $result->fetch_assoc()) {
+                                            
+                                            echo '<option value="'.$row['why'].'">' . $row['why']. "</option>";
+                                        }
+                                        
+                                    }
+                                            ?>
+                                        </select>
                             </p>
                         </div>
                         <div id="math" class="col s12">
@@ -85,6 +104,25 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                     <?// MATHmess(); ?>
                                         <input class="with-gap" type="radio" name="place" value="math" id="mathConfirm" />
                                         <label for="mathConfirm">Confirm Math</label>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <select name="whymath" class="browser-default">
+                                            <option selected value="">Why are you coming today?</option>
+                                            <?
+                                    $sql="SELECT dep, why FROM why WHERE dep='Math Department' ORDER BY why"; 
+                                    $result = $conn->query($sql);
+                                    
+                                    if ($result->num_rows > 0) {
+                                        // output data of each row
+                                        while($row = $result->fetch_assoc()) {
+                                            
+                                            echo '<option value="'.$row['why'].'">' . $row['why']. "</option>";
+                                        }
+                                        
+                                    }
+                                            ?>
+                                        </select>
                             </p>
                         </div>
                         <div id="library" class="col s12">
@@ -94,6 +132,25 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                         <!-- THIS IS BROKEN-->
                                         <input class="with-gap" type="radio" name="place" value="library" id="libConfirm" />
                                         <label for="libConfirm">Confirm Library</label>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <select name="whylib" class="browser-default">
+                                            <option selected value="">Why are you coming today?</option>
+                                            <?
+                                    $sql="SELECT dep, why FROM why WHERE dep='Library' ORDER BY why"; 
+                                    $result = $conn->query($sql);
+                                    
+                                    if ($result->num_rows > 0) {
+                                        // output data of each row
+                                        while($row = $result->fetch_assoc()) {
+                                            
+                                            echo '<option value="'.$row['why'].'">' . $row['why']. "</option>";
+                                        }
+                                        
+                                    }
+                                            ?>
+                                        </select>
                             </p>
                         </div>
                         <div id="helpDesktab" class="col s12">
@@ -102,6 +159,25 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                     <? //HDmess(); ?>
                                         <input class="with-gap" type="radio" name="place" value="hd" id="HDConfirm" />
                                         <label for="HDConfirm">Confirm Help Desk</label>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <select name="whyhd" class="browser-default">
+                                            <option selected value="">Why are you coming today?</option>
+                                            <?
+                                    $sql="SELECT dep, why FROM why WHERE dep='Help Desk' ORDER BY why"; 
+                                    $result = $conn->query($sql);
+                                    
+                                    if ($result->num_rows > 0) {
+                                        // output data of each row
+                                        while($row = $result->fetch_assoc()) {
+                                            
+                                            echo '<option value="'.$row['why'].'">' . $row['why']. "</option>";
+                                        }
+                                        
+                                    }
+                                            ?>
+                                        </select>
                             </p>
                         </div>
                         <div id="writingLabtab" class="col s12">
@@ -110,6 +186,25 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                     <? //WLmess(); ?>
                                         <input class="with-gap" type="radio" name="place" value="Writing Lab" id="WLConfirm" />
                                         <label for="WLConfirm">Confirm Writing Lab</label>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <select name="whylec" class="browser-default">
+                                            <option selected value="">Why are you coming today?</option>
+                                            <?
+                                    $sql="SELECT dep, why FROM why WHERE dep='Writing Lab' ORDER BY why"; 
+                                    $result = $conn->query($sql);
+                                    
+                                    if ($result->num_rows > 0) {
+                                        // output data of each row
+                                        while($row = $result->fetch_assoc()) {
+                                            
+                                            echo '<option value="'.$row['why'].'">' . $row['why']. "</option>";
+                                        }
+                                        
+                                    }
+                                            ?>
+                                        </select>
                             </p>
                         </div>
                         <div id="FLtab" class="col s12">
@@ -118,6 +213,25 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                     <? //FLmess(); ?>
                                         <input class="with-gap" type="radio" name="place" value="Foreign Language" id="FLConfirm" />
                                         <label for="FLConfirm">Confirm Foreign Language</label>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <select name="whylec" class="browser-default">
+                                            <option selected value="">Why are you coming today?</option>
+                                            <?
+                                    $sql="SELECT dep, why FROM why WHERE dep='Foreign Language' ORDER BY why"; 
+                                    $result = $conn->query($sql);
+                                    
+                                    if ($result->num_rows > 0) {
+                                        // output data of each row
+                                        while($row = $result->fetch_assoc()) {
+                                            
+                                            echo '<option value="'.$row['why'].'">' . $row['why']. "</option>";
+                                        }
+                                        
+                                    }
+                                            ?>
+                                        </select>
                             </p>
                         </div>
                 </div>

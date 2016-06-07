@@ -71,7 +71,7 @@ password VARCHAR(100) NOT NULL
 $sqlblackout = "CREATE TABLE blackout (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 day VARCHAR(20) NOT NULL,
-department VARCHAR(30) NOT NULL,
+department VARCHAR(50) NOT NULL,
 period VARCHAR(100) NOT NULL,
 reason VARCHAR(255) NOT NULL
 )";
@@ -81,6 +81,12 @@ id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 day VARCHAR(50) NOT NULL,
 dep VARCHAR(100) NOT NULL,
 reason VARCHAR(255) NOT NULL
+)";
+
+$sqlwhy = "CREATE TABLE why (
+id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+dep VARCHAR(50) NOT NULL,
+why VARCHAR(255) NOT NULL
 )";
 
 if ($conn->query($sqlpasses) === TRUE) {
@@ -118,7 +124,14 @@ if ($conn->query($sqlmessage) === TRUE) {
     echo "Error creating table: " . $conn->error;
 }
 
-if ($tablesucsess == 5) {
+if ($conn->query($sqlwhy) === TRUE) {
+    $tablesucsess += 1;
+    echo "Table Why created successfully";
+} else {
+    echo "Error creating table: " . $conn->error;
+}
+
+if ($tablesucsess == 6) {
     echo "All tables created";
     $tablenext = "<a href='step3.php'>Next --></a>";
 } else {

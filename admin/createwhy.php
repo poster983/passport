@@ -7,7 +7,7 @@ $msg = "";
 
 The MIT License (MIT)
 
-Copyright (c) Thu May 26 2016 Joseph Hassell joseph@thehassellfamily.net
+Copyright (c) Mon May 23 2016 Joseph Hassell joseph@thehassellfamily.net
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
@@ -28,21 +28,12 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
 
     <? include "nav.php"; ?>
-        <div class="container">
-            <form method="post" action="">
-                <h4 class="center">Pass Settings</h4>
-                <div class="row">
-                    <div class="input-field col s3">
-                        <input type="text" id="datepicker" required name="messageday" />
-                        <label for="blackoutday">Choose a day to show a message</label>
-                    </div>
 
-                    <div class="input-field col s12">
-                        <textarea id="message" name="message" class="materialize-textarea" length="255"></textarea>
-                        <label for="message">Your Message</label>
-                    </div>
+        <body>
+            <div class="container">
+                <form method="post" action="">
                     <p class="center">Choose Department</p>
-                    <p class="center">
+                    <p class="left">
                         <input type="radio" id="lec" name="dep" value="LEC" />
                         <label for="lec">LEC</label>
                         &nbsp &nbsp
@@ -61,78 +52,56 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         <input type="radio" id="fl" name="dep" value="Foreign Language" />
                         <label for="fl">Foreign Language</label>
                     </p>
+
+
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="why" name="why" type="text" length="50">
+                            <label for="why">Create Dropdown</label>
+                        </div>
+                    </div>
+
                     <p>
-                        <button class="btn waves-effect waves-light" type="submit" name="blackout">Set Message
-                            <i class="material-icons right">announcement</i>
+                        <button class="btn waves-effect waves-light" type="submit" name="add_new_entry">Add New Choice
+                            <i class="material-icons right">send</i>
                         </button>
                     </p>
-                </div>
-            </form>
-            <a class="waves-effect waves-light btn red" href="messagelist.php"><i class="material-icons left">reorder</i>View Messages</a>
-        </div>
+                </form>
+                <a class="waves-effect waves-light btn-large" href="teacherlist.php">Choice List</a>
+            </div>
+        </body>
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="/js/materialize.js"></script>
         <script src="/js/init.js"></script>
 
-
-        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-
-
-        <!-- Scripts -->
-        <script>
-            $(document).ready(function () {
-                $("#datepicker").datepicker({
-                    dateFormat: 'yy-mm-dd'
-                , });
-            });
-        </script>
-        <!--[if lte IE 8]><script src="assets/js/respond.min.js"></script><![endif]-->
-        <script>
-            if ('addEventListener' in window) {
-                window.addEventListener('load', function () {
-                    document.body.className = document.body.className.replace(/\bis-loading\b/, '');
-                });
-                document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
-            }
-        </script>
-
-
         </html>
 
-
-        <?
-        
-    include "../sqlconnect.php";
-    
-    
+        <?php    
+if(isset($_POST['add_new_entry'])){ 
 
     
-    
-    if(isset($_POST['blackout'])) { 
-    
-
-    
-    foreach ($_POST as $key => $value) {
+        foreach ($_POST as $key => $value) {
 
   }
-        $messageday = $_POST['messageday'];
+    {
         $dep = $_POST['dep'];
-        $message = $_POST['message'];
-
+        $why = $_POST['why'];
 
         
+       
+        include "../sqlconnect.php";
 
-    
-    
-    $sqlmessage = "INSERT INTO message (day, dep, reason)
-            VALUES ('$messageday', '$dep', '$message')";
-            if ($conn->query($sqlmessage) === TRUE) {
+            $sql = "INSERT INTO why (dep, why)
+            VALUES ('$dep', '$why')";
+
+            if ($conn->query($sql) === TRUE) {
+                echo "New record created successfully";
+            } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }
-
-
-  
-$conn->close();
+        
+    $conn->close();      
     }
+}
+
 ?>
