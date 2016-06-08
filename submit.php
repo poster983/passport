@@ -61,6 +61,12 @@ if ($error) {
         $shTeacherG = $_POST['shTeacherG'];
         $shTeacherH = $_POST['shTeacherH'];
         $day = $_POST['day'];
+        $whylec = $_POST['whylec'];
+        $whymath = $_POST['whymath'];
+        $whylib = $_POST['whylib'];
+        $whyhd = $_POST['whyhd'];
+        $whywl = $_POST['whywl'];
+        $whyfl = $_POST['whyfl'];
         {
             if ($perTab === "a") {
                 $shTeacher = $shTeacherA;
@@ -89,8 +95,30 @@ if ($error) {
             else {
             echo "ERROR, INVALID PERIOD";
         }
+            
         }
-        
+        {
+            if ($place === "lec") {
+                $why = $whylec;
+            }
+            elseif ($place === "math") {
+                $why = $whymath;
+            }
+            elseif ($place === "library") {
+                $why = $whylib;
+            }
+            elseif ($place === "hd") {
+                $why = $whyhd;
+            }
+            elseif ($place === "Writing Lab") {
+                $why = $whywl;
+            }
+            elseif ($place === "Foreign Language") {
+                $why = $whyfl;
+            } else {
+                echo "Invalid Reason";
+            }
+        }
         
         
         {
@@ -102,12 +130,13 @@ if ($error) {
             echo "Chosen Period: " . $perTab;
             echo "Chosen Teacher: " . $shTeacher;
             echo "Day to come: " . $day;
+            echo "Reason: " . $why;
         }
         {
             include "sqlconnect.php";
             
-            $sql = "INSERT INTO passes (firstname, lastname, email, student_id, period, sh_teacher, place, day_to_come)
-            VALUES ('$first_name', '$last_name', '$email', '$student_id', '$perTab', '$shTeacher', '$place', '$day')";
+            $sql = "INSERT INTO passes (firstname, lastname, email, student_id, period, sh_teacher, place, day_to_come, reason_to_come)
+            VALUES ('$first_name', '$last_name', '$email', '$student_id', '$perTab', '$shTeacher', '$place', '$day', '$why')";
 
             if ($conn->query($sql) === TRUE) {
                 echo "New record created successfully";

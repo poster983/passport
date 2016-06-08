@@ -39,6 +39,7 @@ period VARCHAR(10) NOT NULL,
 sh_teacher VARCHAR(40) NOT NULL,
 place VARCHAR(50) NOT NULL,
 day_to_come VARCHAR(10) NOT NULL,
+reason_to_come VARCHAR(255) NOT NULL,
 request_date TIMESTAMP
 )";
 

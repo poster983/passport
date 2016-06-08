@@ -57,15 +57,19 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     if(!isset($_POST['search'])) { //exit();
     
         $where_day = "";
+        $viewtype = "teacher";
     } else {
     foreach ($_POST as $key => $value) {
 
   }
-    
+        $viewtype = $_POST['view'];
         $datesearch = $_POST['datesearch'];
         $where_day = "WHERE day_to_come ='$datesearch'";
     
     }
+        
+        
+        if ($viewtype == "signin") {
     $sql = "SELECT firstname, lastname, email, student_id, period, sh_teacher, place, day_to_come FROM passes $where_day ORDER BY period";
     $result = $conn->query($sql);
 
@@ -81,7 +85,23 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         } else {
             echo "0 results";
         }
+        } elseif ($viewtype == "teacher") {
+           $sql = "SELECT firstname, lastname, email, student_id, period, sh_teacher, place, day_to_come, reason_to_come FROM passes $where_day ORDER BY period";
+    $result = $conn->query($sql);
 
+    if ($result->num_rows > 0) {
+        echo "<table class='bordered responsive-table'><thead><tr><th>Check In</th><th>Student ID</th><th>Name</th><th>Email</th><th>Period</th><th>Study Hall Teacher</th><th>Department</th><th>Day</th><th>Reason to come</th></tr></thead>";
+        // output data of each row
+        echo "<tbody>";
+        while($row = $result->fetch_assoc()) {
+            echo "<tr><td>" . 'Signature:  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp' . "</td><td>" . $row["student_id"]. "</td><td>" . $row["firstname"]. " " . $row["lastname"]. "</td><td>" . $row["email"]. "</td><td>" . $row["period"]. "</td><td>" . $row["sh_teacher"]. "</td><td>" . $row["place"]. "</td><td>" . $row["day_to_come"]. "</td><td>" . $row["reason_to_come"]. "</td></tr></tbody>";
+        }
+        
+        echo "</tbody></table>";
+        } else {
+            echo "0 results";
+        } 
+        }
 $conn->close();
 ?>
     </body>

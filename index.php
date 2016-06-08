@@ -189,7 +189,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                         <br>
                                         <br>
                                         <br>
-                                        <select name="whylec" class="browser-default">
+                                        <select name="whywl" class="browser-default">
                                             <option selected value="">Why are you coming today?</option>
                                             <?
                                     $sql="SELECT dep, why FROM why WHERE dep='Writing Lab' ORDER BY why"; 
@@ -216,7 +216,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                         <br>
                                         <br>
                                         <br>
-                                        <select name="whylec" class="browser-default">
+                                        <select name="whyfl" class="browser-default">
                                             <option selected value="">Why are you coming today?</option>
                                             <?
                                     $sql="SELECT dep, why FROM why WHERE dep='Foreign Language' ORDER BY why"; 

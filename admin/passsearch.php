@@ -47,9 +47,20 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             <div class="container">
                 <h5 class="center">Search and print the Passes by day.</h5>
                 <form method="post" action="passdisplay.php">
-                    <div class="input-field col s3">
-                        <input type="text" id="datepicker" name="datesearch" />
-                        <label for="datepicker">Choose a day to display.</label>
+                    <div class="row">
+                        <div class="input-field col s3">
+                            <input type="text" id="datepicker" name="datesearch" />
+                            <label for="datepicker">Choose a day to display.</label>
+                        </div>
+                        <div>
+                            <p>
+                                <input name="view" type="radio" id="signin" value="signin" />
+                                <label for="signin">Sign In View</label>
+                                &nbsp &nbsp
+                                <input name="view" type="radio" id="teacherv" value="teacher" />
+                                <label for="teacherv">Teacher View</label>
+                            </p>
+                        </div>
                     </div>
                     <p>
                         <button class="btn waves-effect waves-light" type="submit" name="search">Search
