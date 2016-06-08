@@ -56,7 +56,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
                     <div class="row">
                         <div class="input-field col s6">
-                            <input id="why" name="why" type="text" length="50">
+                            <input id="why" name="why" type="text" length="120">
                             <label for="why">Create Dropdown</label>
                         </div>
                     </div>
@@ -67,7 +67,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         </button>
                     </p>
                 </form>
-                <a class="waves-effect waves-light btn-large" href="teacherlist.php">Choice List</a>
+                <a class="waves-effect waves-light btn-large" href="whylist.php">Choice List</a>
             </div>
         </body>
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
