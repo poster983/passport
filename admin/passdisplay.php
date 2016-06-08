@@ -70,15 +70,15 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         
         
         if ($viewtype == "signin") {
-    $sql = "SELECT firstname, lastname, email, student_id, period, sh_teacher, place, day_to_come FROM passes $where_day ORDER BY period";
+    $sql = "SELECT firstname, lastname, period, sh_teacher, place, day_to_come FROM passes $where_day ORDER BY period";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        echo "<table class='bordered responsive-table'><thead><tr><th>Check In</th><th>Student ID</th><th>Name</th><th>Email</th><th>Period</th><th>Study Hall Teacher</th><th>Department</th><th>Day</th></tr></thead>";
+        echo "<table class='bordered responsive-table'><thead><tr><th>Check In</th><th>Name</th><th>Period</th><th>Study Hall Teacher</th><th>Department</th><th>Day</th></tr></thead>";
         // output data of each row
         echo "<tbody>";
         while($row = $result->fetch_assoc()) {
-            echo "<tr><td>" . 'Signature:  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp' . "</td><td>" . $row["student_id"]. "</td><td>" . $row["firstname"]. " " . $row["lastname"]. "</td><td>" . $row["email"]. "</td><td>" . $row["period"]. "</td><td>" . $row["sh_teacher"]. "</td><td>" . $row["place"]. "</td><td>" . $row["day_to_come"]. "</td></tr></tbody>";
+            echo "<tr><td>" . 'Signature:  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp' . "</td><td>" . $row["firstname"]. " " . $row["lastname"]. "</td><td>" . $row["period"]. "</td><td>" . $row["sh_teacher"]. "</td><td>" . $row["place"]. "</td><td>" . $row["day_to_come"]. "</td></tr></tbody>";
         }
         
         echo "</tbody></table>";
@@ -90,17 +90,19 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        echo "<table class='bordered responsive-table'><thead><tr><th>Check In</th><th>Student ID</th><th>Name</th><th>Email</th><th>Period</th><th>Study Hall Teacher</th><th>Department</th><th>Day</th><th>Reason to come</th></tr></thead>";
+        echo "<table class='bordered responsive-table'><thead><tr><th>Is Here?</th><th>Student ID</th><th>Name</th><th>Email</th><th>Period</th><th>Study Hall Teacher</th><th>Department</th><th>Day</th><th>Reason to come</th></tr></thead>";
         // output data of each row
         echo "<tbody>";
         while($row = $result->fetch_assoc()) {
-            echo "<tr><td>" . 'Signature:  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp' . "</td><td>" . $row["student_id"]. "</td><td>" . $row["firstname"]. " " . $row["lastname"]. "</td><td>" . $row["email"]. "</td><td>" . $row["period"]. "</td><td>" . $row["sh_teacher"]. "</td><td>" . $row["place"]. "</td><td>" . $row["day_to_come"]. "</td><td>" . $row["reason_to_come"]. "</td></tr></tbody>";
+            echo "<tr><td>" . '&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp' . "</td><td>" . $row["student_id"]. "</td><td>" . $row["firstname"]. " " . $row["lastname"]. "</td><td>" . $row["email"]. "</td><td>" . $row["period"]. "</td><td>" . $row["sh_teacher"]. "</td><td>" . $row["place"]. "</td><td>" . $row["day_to_come"]. "</td><td>" . $row["reason_to_come"]. "</td></tr></tbody>";
         }
         
         echo "</tbody></table>";
         } else {
             echo "0 results";
         } 
+        } else {
+            echo "Error: Invalid View";
         }
 $conn->close();
 ?>
