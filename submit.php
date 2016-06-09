@@ -122,7 +122,7 @@ if ($error) {
         
         
         {
-            echo "First Name: " . $first_name;
+           /* echo "First Name: " . $first_name;
             echo "Last Name: " . $last_name;
             echo "Student ID: " . $student_id;
             echo "Email: " . $email;
@@ -131,6 +131,7 @@ if ($error) {
             echo "Chosen Teacher: " . $shTeacher;
             echo "Day to come: " . $day;
             echo "Reason: " . $why;
+            */
         }
         {
             include "sqlconnect.php";
@@ -139,14 +140,10 @@ if ($error) {
             VALUES ('$first_name', '$last_name', '$email', '$student_id', '$perTab', '$shTeacher', '$place', '$day', '$why')";
 
             if ($conn->query($sql) === TRUE) {
-                echo "New record created successfully";
-            } else {
-                echo "Error: " . $sql . "<br>" . $conn->error;
-            }
-
-            $conn->close();
-        }
-    }
-
-    }
-    ?>
+                
+                echo "<iframe src='animate/Confirm/publish/web/Confirm.html' style='border: 0; width: 100%; height: 100%'>Could not load preview, please search for the date instead.</iframe>";
+                
+               
+                
+                } else { echo "Error: " . $sql . "
+                <br>" . $conn->error; } $conn->close(); } } } ?>
