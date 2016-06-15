@@ -90,6 +90,14 @@ dep VARCHAR(50) NOT NULL,
 why VARCHAR(255) NOT NULL
 )";
 
+$sqltally = "CREATE TABLE tally (
+id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+tally VARCHAR(255) NOT NULL,
+date VARCHAR(255) NOT NULL,
+period VARCHAR(255) NOT NULL,
+place VARCHAR(255) NOT NULL
+)";
+
 if ($conn->query($sqlpasses) === TRUE) {
     $tablesucsess += 1;
     echo "Table Passes created successfully";
@@ -131,6 +139,15 @@ if ($conn->query($sqlwhy) === TRUE) {
 } else {
     echo "Error creating table: " . $conn->error;
 }
+
+
+if ($conn->query($sqltally) === TRUE) {
+    $tablesucsess += 1;
+    echo "Table Tally created successfully";
+} else {
+    echo "Error creating table: " . $conn->error;
+}
+
 
 if ($tablesucsess == 6) {
     echo "All tables created";

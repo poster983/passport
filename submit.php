@@ -46,6 +46,7 @@ if ($error) {
 
   }
     {
+        $today = date( 'Y-m-d', strtotime(" today "));
         $first_name = $_POST['first_name'];
         $last_name = $_POST['last_name'];
         $student_id = $_POST['student_id'];
@@ -133,17 +134,65 @@ if ($error) {
             echo "Reason: " . $why;
             */
         }
+        include "sqlconnect.php";
+        
+$sqltally = "SELECT tally, date, period, place FROM tally WHERE day = '$day' AND place = '$place' AND period = '$perTab'";
+$resulttally = $conn->query($sqltally);
+
+if ($resulttally->num_rows > 0) {
+    
+    while($row = $result->fetch_assoc()) {
+        $newtally = $row["tally"] + 1;
+        
+        
+    echo "YAY";
+    
+    /*$sqlupdate = "UPDATE tally SET tally='$newtally' WHERE day = '$day' AND place = '$place' AND period = '$perTab' AND 'MAX(id)'";
+
+        if ($conn->query($sqlupdate) === TRUE) {
+            echo "Record updated successfully";
+        } else {
+            echo "Error updating record: " . $conn->error;
+        }*/
+}
+    
+    
+    
+} else {
+    echo "else";
+        /*$sql = "INSERT INTO tally (tally, date, period, place)
+VALUES ('1', '$day', '$perTab', '$place')";
+
+if ($conn->query($sql) === TRUE) {
+    echo "New record created successfully";
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+    */
+}
+        
+        
+        
+        
+        
+}
+        $placenospace = str_replace(' ', '', $place);
+    $tallylimit = $placenospace . 'slimit';
+    echo $tallylimit;
+    //if $newtally >= 
+        
         {
-            include "sqlconnect.php";
+             
             
             $sql = "INSERT INTO passes (firstname, lastname, email, student_id, period, sh_teacher, place, day_to_come, reason_to_come)
             VALUES ('$first_name', '$last_name', '$email', '$student_id', '$perTab', '$shTeacher', '$place', '$day', '$why')";
 
             if ($conn->query($sql) === TRUE) {
                 
-                echo "<iframe src='animate/Confirm/publish/web/Confirm.html' style='border: 0; width: 100%; height: 100%'>Could not load preview, please search for the date instead.</iframe>";
+                //echo "<iframe src='animate/Confirm/publish/web/Confirm.html' style='border: 0; width: 100%; height: 100%'>Requested Pass.</iframe>";
                 
                
                 
                 } else { echo "Error: " . $sql . "
-                <br>" . $conn->error; } $conn->close(); } } } ?>
+                <br>" . $conn->error; } $conn->close(); } } 
+
+?>

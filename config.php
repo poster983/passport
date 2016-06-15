@@ -23,8 +23,18 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
 
 <?
+//Server Login
 $servername = "localhost"; 
 $dbusername = "username"; 
 $dbpassword = "password"; 
 $database = "database";
+
+//Limit # Of Students 
+$lecslimit = 3;
+$mathslimit = 4;
+$libraryslimit = 4;
+$hdslimit = 999999999;
+$WritingLabslimit = 3;
+$ForeignLanguageslimit = 2;
+
 ?>
