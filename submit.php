@@ -178,8 +178,10 @@ if ($conn->query($sql) === TRUE) {
 }
         $placenospace = str_replace(' ', '', $place);
     $tallylimit = $placenospace . 'slimit';
-    echo $tallylimit;
-    //if $newtally >= 
+    echo $$tallylimit;
+    if ($newtally > $$tallylimit) {
+        echo "Sorry, the " . $place . " is full today during " . $perTab . " period.";
+    } else {
         
         {
              
@@ -189,11 +191,13 @@ if ($conn->query($sql) === TRUE) {
 
             if ($conn->query($sql) === TRUE) {
                 
-                //echo "<iframe src='animate/Confirm/publish/web/Confirm.html' style='border: 0; width: 100%; height: 100%'>Requested Pass.</iframe>";
+                echo "<iframe src='animate/Confirm/publish/web/Confirm.html' style='border: 0; width: 100%; height: 100%'>Requested Pass.</iframe>";
                 
                
                 
                 } else { echo "Error: " . $sql . "
                 <br>" . $conn->error; } $conn->close(); } } }
+    
+}
 
 ?>
