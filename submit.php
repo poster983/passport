@@ -136,38 +136,39 @@ if ($error) {
         }
         include "sqlconnect.php";
         
-$sqltally = "SELECT tally, date, period, place FROM tally WHERE day = '$day' AND place = '$place' AND period = '$perTab'";
+$sqltally = "SELECT tally, date, period, place FROM tally WHERE date = '$day' AND place = '$place' AND period = '$perTab'";
 $resulttally = $conn->query($sqltally);
 
 if ($resulttally->num_rows > 0) {
     
-    while($row = $result->fetch_assoc()) {
-        $newtally = $row["tally"] + 1;
+    while($rowtally = $resulttally->fetch_assoc()) {
+        $newtally = $rowtally["tally"] + 1;
         
         
-    echo "YAY";
+    echo $newtally;
+        //AND 'MAX(id)'
     
-    /*$sqlupdate = "UPDATE tally SET tally='$newtally' WHERE day = '$day' AND place = '$place' AND period = '$perTab' AND 'MAX(id)'";
+    $sqlupdate = "UPDATE tally SET tally='$newtally' WHERE date = '$day' AND place = '$place' AND period = '$perTab'";
 
         if ($conn->query($sqlupdate) === TRUE) {
             echo "Record updated successfully";
         } else {
             echo "Error updating record: " . $conn->error;
-        }*/
+        }
 }
     
     
     
 } else {
     echo "else";
-        /*$sql = "INSERT INTO tally (tally, date, period, place)
+        $sql = "INSERT INTO tally (tally, date, period, place)
 VALUES ('1', '$day', '$perTab', '$place')";
 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
-    */
+    
 }
         
         
@@ -193,6 +194,6 @@ if ($conn->query($sql) === TRUE) {
                
                 
                 } else { echo "Error: " . $sql . "
-                <br>" . $conn->error; } $conn->close(); } } 
+                <br>" . $conn->error; } $conn->close(); } } }
 
 ?>
