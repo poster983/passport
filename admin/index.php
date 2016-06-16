@@ -4,9 +4,6 @@ include("common.php");
 checklogin();
 $msg = "";
 ?>
-
-
-
     <!--
 
 The MIT License (MIT)

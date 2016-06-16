@@ -98,6 +98,9 @@ period VARCHAR(255) NOT NULL,
 place VARCHAR(255) NOT NULL
 )";
 
+
+
+
 if ($conn->query($sqlpasses) === TRUE) {
     $tablesucsess += 1;
     echo "Table Passes created successfully";
@@ -149,7 +152,8 @@ if ($conn->query($sqltally) === TRUE) {
 }
 
 
-if ($tablesucsess == 6) {
+
+if ($tablesucsess == 7) {
     echo "All tables created";
     $tablenext = "<a href='step3.php'>Next --></a>";
 } else {
