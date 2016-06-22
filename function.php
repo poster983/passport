@@ -318,9 +318,7 @@ function FLout()
         echo "</div></div></div>";
 
 } else {
-            echo "<div celse {
-                                         $conn->close();
-                                    }lass='center col s12'><div class='hoverable card green accent-3'><div class='card-content white-text'><span class='card-title'>Foreign Language tutoring is open all week.</span></div></div></div>";
+            echo "<div class='center col s12'><div class='hoverable card green accent-3'><div class='card-content white-text'><span class='card-title'>Foreign Language tutoring is open all week.</span></div></div></div>";
         }
     echo "</div>";
 }
@@ -347,10 +345,11 @@ function LECmess()
             echo $rowmessage["reason"];
             echo "</p>";
         }
-        echo "</div></div></div></div>";
+        echo "</div></div></div>";
         } else {
         echo "No Messages";
     }
+        echo "</div>";
     }
 }
 
@@ -371,10 +370,11 @@ function MATHmess()
             echo $rowmessage["reason"];
             echo "</p>";
         }
-        echo "</div></div></div></div>";
+        echo "</div></div></div>";
         } else {
         echo "No Messages";
     }
+        echo "</div>";
     }
 }
 
@@ -395,10 +395,11 @@ function LIBmess()
             echo $rowmessage["reason"];
             echo "</p>";
         }
-        echo "</div></div></div></div>";
+        echo "</div></div></div>";
         } else {
         echo "No Messages";
     }
+        echo "</div>";
     }
 }
 
@@ -419,10 +420,11 @@ function HDmess()
             echo $rowmessage["reason"];
             echo "</p>";
         }
-        echo "</div></div></div></div>";
+        echo "</div></div></div>";
         } else {
         echo "No Messages";
     }
+        echo "</div>";
 }
 }
 
@@ -443,10 +445,11 @@ function WLmess()
             echo $rowmessage["reason"];
             echo "</p>";
         }
-        echo "</div></div></div></div>";
+        echo "</div></div></div>";
         } else {
         echo "No Messages";
     }
+        echo "</div>";
     }
 }
 
@@ -467,10 +470,11 @@ function FLmess()
             echo $rowmessage["reason"];
             echo "</p>";
         }
-        echo "</div></div></div></div>";
+        echo "</div></div></div>";
         } else {
         echo "No Messages";
     }
+        echo "</div>";
     }
 }
 

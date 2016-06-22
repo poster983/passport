@@ -128,7 +128,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     $sqlmessage = "INSERT INTO message (day, dep, reason)
             VALUES ('$messageday', '$dep', '$message')";
             if ($conn->query($sqlmessage) === TRUE) {
-                echo "Error: " . $sql . "<br>" . $conn->error;
+                echo "Sucsess: " . $sqlmessage . "<br>" . $conn->error;
+            } else {
+                echo "Error: "  . $sqlmessage . "<br>" . $conn->error;
             }
 
 

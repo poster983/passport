@@ -74,7 +74,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         <div id="lec" class="col s12">
                             <p>
                                 <? LECout(); ?>
-                                    <? //LECmess(); ?>
+                                    <? LECmess(); ?>
                                         <input class="with-gap" type="radio" name="place" value="lec" id="lecConfirm" />
                                         <label for="lecConfirm">Confirm LEC</label>
                                         <br>
@@ -101,7 +101,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         <div id="math" class="col s12">
                             <p>
                                 <? MATHout(); ?>
-                                    <?// MATHmess(); ?>
+                                    <? MATHmess(); ?>
                                         <input class="with-gap" type="radio" name="place" value="math" id="mathConfirm" />
                                         <label for="mathConfirm">Confirm Math</label>
                                         <br>
@@ -128,8 +128,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         <div id="library" class="col s12">
                             <p>
                                 <? LIBout(); ?>
-                                    <? //LIBmess(); ?>
-                                        <!-- THIS IS BROKEN-->
+                                    <? LIBmess(); ?>
+
                                         <input class="with-gap" type="radio" name="place" value="library" id="libConfirm" />
                                         <label for="libConfirm">Confirm Library</label>
                                         <br>
@@ -156,7 +156,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         <div id="helpDesktab" class="col s12">
                             <p>
                                 <? HDout(); ?>
-                                    <? //HDmess(); ?>
+                                    <? HDmess(); ?>
                                         <input class="with-gap" type="radio" name="place" value="hd" id="HDConfirm" />
                                         <label for="HDConfirm">Confirm Help Desk</label>
                                         <br>
@@ -183,7 +183,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         <div id="writingLabtab" class="col s12">
                             <p>
                                 <? WLout(); ?>
-                                    <? //WLmess(); ?>
+                                    <? WLmess(); ?>
                                         <input class="with-gap" type="radio" name="place" value="Writing Lab" id="WLConfirm" />
                                         <label for="WLConfirm">Confirm Writing Lab</label>
                                         <br>
@@ -210,7 +210,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         <div id="FLtab" class="col s12">
                             <p>
                                 <? FLout(); ?>
-                                    <? //FLmess(); ?>
+                                    <? FLmess(); ?>
                                         <input class="with-gap" type="radio" name="place" value="Foreign Language" id="FLConfirm" />
                                         <label for="FLConfirm">Confirm Foreign Language</label>
                                         <br>

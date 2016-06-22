@@ -164,11 +164,13 @@ echo "Blacked out period(s):";
             VALUES ('$blackoutday', '$dep', '$per')";
             if ($conn->query($sql) === TRUE) {
                 echo "$per ";
+                echo " on $blackoutday";
+            } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }
 
 
-echo " on $blackoutday";
+
   
 $conn->close();
     }
