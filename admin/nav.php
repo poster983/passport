@@ -45,11 +45,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             <a href="/admin/index.php" class="brand-logo right">passr Admin Dashboard</a>
             <ul id="nav-desktop" class="left hide-on-med-and-down">
                 <li><a href="passsearch.php">Passes</a></li>
-                <li><a href="blackout.php">Blackout Dates</a></li>
+                <li><a href="blackout.php">Blackout</a></li>
                 <li><a href="editteacher.php">Teachers</a></li>
                 <!--<li><a href="teacherlist.php">View/Delete Teachers</a></li>-->
                 <li><a href="createmessage.php">Messages</a></li>
-                <li><a href="createwhy.php">Why</a></li>
+                <li><a href="createwhy.php">Reasons</a></li>
                 <li><a href="createadmin.php">Admins</a></li>
                 <li class="right"><a href="/admin/logout.php">Logout<i class="material-icons right">lock</i></a></li>
             </ul>
@@ -57,11 +57,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             <ul id="nav-mobile" class="side-nav">
                 <p class="center-align black-text"></p>
                 <li><a href="passsearch.php">Passes</a></li>
-                <li><a href="blackout.php">Blackout Dates</a></li>
-                <li><a href="editteacher.php">Add Teachers</a></li>
+                <li><a href="blackout.php">Blackout</a></li>
+                <li><a href="editteacher.php">Teachers</a></li>
                 <li><a href="createmessage.php">Messages</a></li>
                 <!-- <li><a href="teacherlist.php">View/Delete Teachers</a></li>-->
-                <li><a href="createwhy.php">Why</a></li>
+                <li><a href="createwhy.php">Reason</a></li>
                 <li><a href="createadmin.php">Admins</a></li>
                 <li> <a href="/admin/logout.php">Logout<i class="material-icons right">lock_outline</i></a></li>
             </ul>
