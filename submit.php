@@ -136,6 +136,20 @@ if ($error) {
         }
         include "sqlconnect.php";
         
+        ?>
+
+    <html>
+
+    <head>
+        <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+        <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    </head>
+
+    <body>
+
+        <?
+        
+        
 $sqltally = "SELECT tally, date, period, place FROM tally WHERE date = '$day' AND place = '$place' AND period = '$perTab'";
 $resulttally = $conn->query($sqltally);
 
@@ -176,11 +190,15 @@ if ($conn->query($sql) === TRUE) {
         
         
 }
+        echo "<br><a class='waves-effect waves-red btn-flat' href='index.php'>Back</a><br>";
+        
         $placenospace = str_replace(' ', '', $place);
     $tallylimit = $placenospace . 'slimit';
     echo $$tallylimit;
     if ($newtally > $$tallylimit) {
-        echo "Sorry, the " . $place . " is full today during " . $perTab . " period.";
+        echo " <div class='row'><div class='col s12'><div class='card-panel red hoverable'><span class='white-text'>";
+        echo "<p class='center'>Sorry, the " . $place . " is full on " . $day . " during " . $perTab . " period.    </p>";
+        echo "</span></div></div></div>";
     } else {
         
         {
@@ -201,3 +219,11 @@ if ($conn->query($sql) === TRUE) {
 }
 
 ?>
+
+            <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+            <script src="/js/materialize.js"></script>
+            <script src="/js/init.js"></script>
+
+    </body>
+
+    </html>
