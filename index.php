@@ -75,7 +75,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                             <p>
                                 <? LECout(); ?>
                                     <? LECmess(); ?>
-                                        <input class="with-gap" type="radio" name="place" value="lec" id="lecConfirm" />
+                                        <input class="with-gap" type="radio" name="place" value="lec" required id="lecConfirm" />
                                         <label for="lecConfirm">Confirm LEC</label>
                                         <br>
                                         <br>
@@ -245,20 +245,20 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
                         <div class="row">
                             <div class="input-field col s6">
-                                <input id="first_name" name="first_name" type="text" class="validate">
+                                <input id="first_name" name="first_name" type="text" required class="validate">
                                 <label for="first_name">First Name</label>
                             </div>
                             <div class="input-field col s6">
-                                <input id="last_name" name="last_name" type="text" class="validate">
+                                <input id="last_name" name="last_name" type="text" required class="validate">
                                 <label for="last_name">Last Name</label>
                             </div>
                             <div class="input-field col s4 push-s8">
-                                <input id="student_id" name="student_id" type="text" class="validate">
+                                <input id="student_id" name="student_id" type="text" required class="validate">
                                 <label for="student_id">Student ID</label>
                             </div>
 
                             <div class="input-field col s8 pull-s4">
-                                <input id="email" name="email" type="email" class="validate">
+                                <input id="email" name="email" type="email" required class="validate">
                                 <label for="email">Email</label>
                             </div>
                             <div class="section">
@@ -266,7 +266,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
                                 <div>
                                     <p class="center">
-                                        <input type="radio" id="monday" name="day" value="<? echo date( 'Y-m-d', strtotime(" monday this week ")); ?>">
+                                        <input type="radio" id="monday" name="day" required value="<? echo date( 'Y-m-d', strtotime(" monday this week ")); ?>">
                                         <label for="monday">Monday</label>
                                         &nbsp &nbsp
                                         <input type="radio" id="tuesday" name="day" value="<? echo date( 'Y-m-d', strtotime(" tuesday this week ")); ?>">
@@ -299,7 +299,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                     <li class="tab col s3"><a href="#hper">H Period</a></li>
                                 </ul>
                             </div>
-                            <!--The way I am handeling it now will be changed -->
+
                             <!--AAAAAAAAAAAAAAAAAAA-->
 
                             <div id="aper" class="col s12">
@@ -326,7 +326,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                     }
                                 ?>
                                     </select>
-                                    <input class="with-gap" type="radio" name="perTab" value="a" id="aConfirm" />
+                                    <input class="with-gap" type="radio" name="perTab" value="a" required id="aConfirm" />
                                     <label for="aConfirm">Confirm Study Hall and Period</label>
                                 </p>
                             </div>
