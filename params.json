@@ -1,6 +1,6 @@
 {
   "name": "Passr",
   "tagline": "A web script to electronically distribute passes to students.",
-  "body": "# Passr\r\nPassr is a program that allows schools to easily implement an open souse (MIT) library pass distribution system. \r\n\r\n# Demo\r\n<http://lijo.pw/passrdemo>\r\n\r\n# Development\r\nIt is in very early alpha.  It is somewhat functional.  \r\n\r\n\r\n# Install\r\n###1) Edit \"config.php\"  \r\n\r\n###2) Navigate to \"./install/index.php\"  \r\n\r\n###3) Follow the directions.  \r\n\r\n###4) Done.\r\n\r\n\r\n",
+  "body": "# Passr\r\nPassr is a program that allows schools to easily implement an open souse (MIT) library pass distribution system. \r\n\r\n# Demo\r\n<http://lijo.pw/passrdemo>\r\n\r\n# Development\r\nNow in Beta! Most of the features are implemented.  \r\n\r\n\r\n# Install\r\n###1) Edit \"config.php\"  \r\n\r\n###2) Navigate to \"./install/index.php\"  \r\n\r\n###3) Follow the directions.  \r\n\r\n###4) Done.\r\n\r\n\r\n",
   "note": "Don't delete this file! It's used internally to help with page regeneration."
 }
