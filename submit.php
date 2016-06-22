@@ -22,7 +22,20 @@ IN AN ACTION OF CONTRACT, TORTOR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
 
-<?php
+
+
+<html>
+
+<head>
+    <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+</head>
+
+<body>
+
+
+
+    <?php
 
 if(!isset($_POST['submit'])) exit();
 
@@ -39,6 +52,7 @@ foreach($required as $field) {
 
 if ($error) {
   echo "All fields are required.";
+    echo "<br><a class='waves-effect waves-red btn-flat' href='index.php'>Back</a><br>";
 } else {
 
     
@@ -136,18 +150,7 @@ if ($error) {
         }
         include "sqlconnect.php";
         
-        ?>
 
-    <html>
-
-    <head>
-        <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
-        <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    </head>
-
-    <body>
-
-        <?
         
         
 $sqltally = "SELECT tally, date, period, place FROM tally WHERE date = '$day' AND place = '$place' AND period = '$perTab'";
@@ -220,10 +223,18 @@ if ($conn->query($sql) === TRUE) {
 
 ?>
 
-            <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-            <script src="/js/materialize.js"></script>
-            <script src="/js/init.js"></script>
 
-    </body>
+        <script>
+            setTimeout(function () {
+                window.location.href = '/index.php'; // the redirect goes here
 
-    </html>
+            }, 15000); // 10 seconds
+        </script>
+
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="/js/materialize.js"></script>
+        <script src="/js/init.js"></script>
+
+</body>
+
+</html>

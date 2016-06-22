@@ -68,7 +68,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         <li class="tab col s3"><a href="#FLtab">Foreign Language</a></li>
                     </ul>
                 </div>
-                <!--<a class="btn" onclick="Materialize.toast('TEST TOAST', 4000)">Toast!</a> -->
+
                 <div class="container">
                     <? include "function.php"; ?>
                         <div id="lec" class="col s12">
@@ -81,7 +81,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                         <br>
                                         <br>
                                         <select name="whylec" class="browser-default">
-                                            <option selected value="">Why are you coming today?</option>
+                                            <option selected disabled value="">Why are you coming today?</option>
                                             <?
                                     $sql="SELECT dep, why FROM why WHERE dep='LEC' ORDER BY why"; 
                                     $result = $conn->query($sql);
@@ -108,7 +108,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                         <br>
                                         <br>
                                         <select name="whymath" class="browser-default">
-                                            <option selected value="">Why are you coming today?</option>
+                                            <option selected disabled value="">Why are you coming today?</option>
                                             <?
                                     $sql="SELECT dep, why FROM why WHERE dep='Math Department' ORDER BY why"; 
                                     $result = $conn->query($sql);
@@ -136,7 +136,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                         <br>
                                         <br>
                                         <select name="whylib" class="browser-default">
-                                            <option selected value="">Why are you coming today?</option>
+                                            <option selected disabled value="">Why are you coming today?</option>
                                             <?
                                     $sql="SELECT dep, why FROM why WHERE dep='Library' ORDER BY why"; 
                                     $result = $conn->query($sql);
@@ -163,7 +163,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                         <br>
                                         <br>
                                         <select name="whyhd" class="browser-default">
-                                            <option selected value="">Why are you coming today?</option>
+                                            <option selected disabled value="">Why are you coming today?</option>
                                             <?
                                     $sql="SELECT dep, why FROM why WHERE dep='Help Desk' ORDER BY why"; 
                                     $result = $conn->query($sql);
@@ -190,7 +190,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                         <br>
                                         <br>
                                         <select name="whywl" class="browser-default">
-                                            <option selected value="">Why are you coming today?</option>
+                                            <option selected disabled value="">Why are you coming today?</option>
                                             <?
                                     $sql="SELECT dep, why FROM why WHERE dep='Writing Lab' ORDER BY why"; 
                                     $result = $conn->query($sql);
@@ -217,7 +217,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                         <br>
                                         <br>
                                         <select name="whyfl" class="browser-default">
-                                            <option selected value="">Why are you coming today?</option>
+                                            <option selected disabled value="">Why are you coming today?</option>
                                             <?
                                     $sql="SELECT dep, why FROM why WHERE dep='Foreign Language' ORDER BY why"; 
                                     $result = $conn->query($sql);
