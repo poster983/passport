@@ -34,7 +34,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
                 <div class="input-field col s3">
                     <input type="text" id="datepicker" required name="blackoutday" />
-                    <label for="blackoutday">Choose a day to blackout</label>
+                    <label for="blackoutday">Blackout Date</label>
                 </div>
                 <p class="center">Select Blackout Periods</p>
                 <p class="center">

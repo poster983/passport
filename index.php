@@ -561,7 +561,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             <div class="footer-copyright">
                 <div class="container">
                     <a class="black-text left" href="">Copyright © 2016 Joseph Hassell</a> &nbsp &nbsp
-                    <a class="black-text right" href="http://lijo.pw/1668">Licence </a> &nbsp &nbsp
+                    <a class="black-text right" href="http://lijo.pw/1668">License </a> &nbsp &nbsp
                     <a class="black-text right" href="http://lijo.pw/1669">Project Page &nbsp &nbsp</a>&nbsp &nbsp
                 </div>
             </div>
