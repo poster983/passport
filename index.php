@@ -73,8 +73,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                     <? include "function.php"; ?>
                         <div id="lec" class="col s12">
                             <p>
+                                <!-- Blackout Function -->
                                 <? LECout(); ?>
+                                <!-- Message Function -->
                                     <? LECmess(); ?>
+                                <!-- Confirm Radio -->
                                         <input class="with-gap" type="radio" name="place" value="lec" required id="lecConfirm" />
                                         <label for="lecConfirm">Confirm LEC</label>
                                         <br>
@@ -82,6 +85,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                         <br>
                                         <select name="whylec" class="browser-default">
                                             <option selected disabled value="">Why are you coming today?</option>
+                                            <!-- php Reason dropdown -->
                                             <?
                                     $sql="SELECT dep, why FROM why WHERE dep='LEC' ORDER BY why"; 
                                     $result = $conn->query($sql);
@@ -100,8 +104,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         </div>
                         <div id="math" class="col s12">
                             <p>
+                                <!-- Blackout Function -->
                                 <? MATHout(); ?>
+                                <!-- Message Function -->
                                     <? MATHmess(); ?>
+                                <!-- Confirm Radio -->
                                         <input class="with-gap" type="radio" name="place" value="math" id="mathConfirm" />
                                         <label for="mathConfirm">Confirm Math</label>
                                         <br>
@@ -109,6 +116,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                         <br>
                                         <select name="whymath" class="browser-default">
                                             <option selected disabled value="">Why are you coming today?</option>
+                                            <!-- php Reason dropdown -->
                                             <?
                                     $sql="SELECT dep, why FROM why WHERE dep='Math Department' ORDER BY why"; 
                                     $result = $conn->query($sql);
@@ -127,8 +135,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         </div>
                         <div id="library" class="col s12">
                             <p>
+                                <!-- Blackout Function -->
                                 <? LIBout(); ?>
+                                <!-- Message Function -->
                                     <? LIBmess(); ?>
+                                <!-- Confirm Radio -->
 
                                         <input class="with-gap" type="radio" name="place" value="library" id="libConfirm" />
                                         <label for="libConfirm">Confirm Library</label>
@@ -137,6 +148,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                         <br>
                                         <select name="whylib" class="browser-default">
                                             <option selected disabled value="">Why are you coming today?</option>
+                                            <!-- php Reason dropdown -->
                                             <?
                                     $sql="SELECT dep, why FROM why WHERE dep='Library' ORDER BY why"; 
                                     $result = $conn->query($sql);
@@ -155,8 +167,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         </div>
                         <div id="helpDesktab" class="col s12">
                             <p>
+                                <!-- Blackout Function -->
                                 <? HDout(); ?>
+                                <!-- Message Function -->
                                     <? HDmess(); ?>
+                                <!-- Confirm Radio -->
                                         <input class="with-gap" type="radio" name="place" value="hd" id="HDConfirm" />
                                         <label for="HDConfirm">Confirm Help Desk</label>
                                         <br>
@@ -164,6 +179,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                         <br>
                                         <select name="whyhd" class="browser-default">
                                             <option selected disabled value="">Why are you coming today?</option>
+                                            <!-- php Reason dropdown -->
                                             <?
                                     $sql="SELECT dep, why FROM why WHERE dep='Help Desk' ORDER BY why"; 
                                     $result = $conn->query($sql);
@@ -182,8 +198,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         </div>
                         <div id="writingLabtab" class="col s12">
                             <p>
+                                <!-- Blackout Function -->
                                 <? WLout(); ?>
+                                <!-- Message Function -->
                                     <? WLmess(); ?>
+                                <!-- Confirm Radio -->
                                         <input class="with-gap" type="radio" name="place" value="Writing Lab" id="WLConfirm" />
                                         <label for="WLConfirm">Confirm Writing Lab</label>
                                         <br>
@@ -191,6 +210,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                         <br>
                                         <select name="whywl" class="browser-default">
                                             <option selected disabled value="">Why are you coming today?</option>
+                                            <!-- php Reason dropdown -->
                                             <?
                                     $sql="SELECT dep, why FROM why WHERE dep='Writing Lab' ORDER BY why"; 
                                     $result = $conn->query($sql);
@@ -209,8 +229,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         </div>
                         <div id="FLtab" class="col s12">
                             <p>
+                                <!-- Blackout Function -->
                                 <? FLout(); ?>
+                                <!-- Message Function -->
                                     <? FLmess(); ?>
+                                <!-- Confirm Radio -->
                                         <input class="with-gap" type="radio" name="place" value="Foreign Language" id="FLConfirm" />
                                         <label for="FLConfirm">Confirm Foreign Language</label>
                                         <br>
@@ -218,6 +241,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                         <br>
                                         <select name="whyfl" class="browser-default">
                                             <option selected disabled value="">Why are you coming today?</option>
+                                            <!-- php Reason dropdown -->
                                             <?
                                     $sql="SELECT dep, why FROM why WHERE dep='Foreign Language' ORDER BY why"; 
                                     $result = $conn->query($sql);
@@ -236,7 +260,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         </div>
                 </div>
             </div>
-
+            <!-- general info inputs -->
             <div class="container">
                 <div class="row">
                     <div class="col s12">
@@ -262,6 +286,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                 <label for="email">Email</label>
                             </div>
                             <div class="section">
+                                <!-- Date radios -->
                                 <h5 class="center">Pick the day that you are coming.*</h5>
 
                                 <div>
@@ -286,6 +311,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                 </div>
                             </div>
                         </div>
+                        <!-- Period Tabs -->
                         <div class="row">
                             <div class="col s12">
                                 <ul class="tabs">
@@ -593,104 +619,3 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 </html>
 
-<?php
-
-/*
-
-if(!isset($_POST['submit'])) exit();
-
-// Required field names
-$required = array('first_name', 'last_name', 'student_id', 'email', 'perTab', 'place', 'day');
-
-// Loop over field names, make sure each one exists and is not empty
-$error = false;
-foreach($required as $field) {
-  if (empty($_POST[$field])) {
-    $error = true;
-  }
-}
-
-if ($error) {
-  echo "All fields are required.";
-} else {
-
-    
-    foreach ($_POST as $key => $value) {
-
-  }
-    {
-        $first_name = $_POST['first_name'];
-        $last_name = $_POST['last_name'];
-        $student_id = $_POST['student_id'];
-        $email = $_POST['email'];
-        $place = $_POST['place'];
-        $perTab = $_POST['perTab'];
-        $shTeacherA = $_POST['shTeacherA'];
-        $shTeacherB = $_POST['shTeacherB'];
-        $shTeacherC = $_POST['shTeacherC'];
-        $shTeacherD = $_POST['shTeacherD'];
-        $shTeacherE = $_POST['shTeacherE'];
-        $shTeacherF = $_POST['shTeacherF'];
-        $shTeacherG = $_POST['shTeacherG'];
-        $shTeacherH = $_POST['shTeacherH'];
-        $day = $_POST['day'];
-        {
-            if ($perTab === "a") {
-                $shTeacher = $shTeacherA;
-        } 
-            elseif ($perTab === "b") {
-                $shTeacher = $shTeacherB;
-            }
-            elseif ($perTab === "c") {
-                $shTeacher = $shTeacherC;
-            }
-            elseif ($perTab === "d") {
-                $shTeacher = $shTeacherD;
-            }
-            elseif ($perTab === "e") {
-                $shTeacher = $shTeacherE;
-            }
-            elseif ($perTab === "f") {
-                $shTeacher = $shTeacherF;
-            }
-            elseif ($perTab === "g") {
-                $shTeacher = $shTeacherG;
-            }
-            elseif ($perTab === "h") {
-                $shTeacher = $shTeacherH;
-            }
-            else {
-            echo "ERROR, INVALID PERIOD";
-        }
-        }
-        
-        
-        
-        {
-            echo "First Name: " . $first_name;
-            echo "Last Name: " . $last_name;
-            echo "Student ID: " . $student_id;
-            echo "Email: " . $email;
-            echo "Place: " . $place;
-            echo "Chosen Period: " . $perTab;
-            echo "Chosen Teacher: " . $shTeacher;
-            echo "Day to come: " . $day;
-        }
-        {
-            include "sqlconnect.php";
-            
-            $sql = "INSERT INTO passes (firstname, lastname, email, student_id, period, sh_teacher, place, day_to_come)
-            VALUES ('$first_name', '$last_name', '$email', '$student_id', '$perTab', '$shTeacher', '$place', '$day')";
-
-            if ($conn->query($sql) === TRUE) {
-                echo "New record created successfully";
-            } else {
-                echo "Error: " . $sql . "<br>" . $conn->error;
-            }
-
-            $conn->close();
-        }
-    }
-
-    }*/
-    ?>
