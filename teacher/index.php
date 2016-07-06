@@ -66,7 +66,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 include "../sqlconnect.php";
 ?>
     
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!--<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
     <script src="/js/materialize.js"></script>
     <script src="/js/init.js"></script>
     <script>

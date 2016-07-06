@@ -151,6 +151,7 @@ if ($error) {
         include "sqlconnect.php";
         
 
+
         
         
 $sqltally = "SELECT tally, date, period, place FROM tally WHERE date = '$day' AND place = '$place' AND period = '$perTab'";
