@@ -81,6 +81,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                     <label for="room">Room Number</label>
                 </p>
             </div>
+
             <p>
                 <input type="checkbox" id="aper" required name="aper" value="A" />
                 <label for="aper">A Period</label> &nbsp &nbsp
