@@ -29,31 +29,44 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
 
     <? include "nav.php"; ?>
+    <? include "functions.php"; ?>
         <? //include "../checkbo.php"; ?>
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.bundle.js"></script>
             <!--Tabs-->
             <div class="row">
                 <div class="col s12">
                     <ul class="tabs">
-                        <li class="tab col s3"><a href="#lec">LEC Dash</a></li>
-                        <li class="tab col s3"><a class="active" href="#math">Math Dash</a></li>
+                        <li class="tab col s3"><a class="active" href="#lec">LEC Dash</a></li>
+                        <li class="tab col s3"><a href="#math">Math Dash</a></li>
                         <li class="tab col s3"><a href="#lib">Library Dash</a></li>
                         <li class="tab col s3"><a href="#HD">Help Desk Dash</a></li>
+                        <li class="tab col s3"><a href="#WL">Writing Lab Dash</a></li>
+                        <li class="tab col s3"><a href="#FL">Foreign Language Dash</a></li>
                     </ul>
                 </div>
 
                 <div id="lec" class="col s12">
-                    <? //LECout(); ?>
+                    <? barChartTally('lec');
+                    //lineChartMonth('lec');
+                    ?>
+                   
+                    
                 </div>
                 <div id="math" class="col s12">
-                    <? //MATHout(); ?>
+                    <? barChartTally('math') ?>
                 </div>
                 <div id="lib" class="col s12">
-                    <? //LIBout(); ?>
+                    <? barChartTally('library') ?>
                 </div>
                 <div id="HD" class="col s12">
-                    <? //HDout(); ?>
+                    <? barChartTally('hd') ?>
+                </div>
+                <div id="WL" class="col s12">
+                    <? barChartTally('Writing Lab') ?>
+                </div>
+                <div id="FL" class="col s12">
+                    <? barChartTally('Foreign Language') ?>
                 </div>
             </div>
 
@@ -62,6 +75,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
             <script src="/js/materialize.js"></script>
             <script src="/js/init.js"></script>
+
 
 
 
@@ -74,6 +88,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                     document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
                 }
             </script>
+
 
 
             </html>
