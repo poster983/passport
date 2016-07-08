@@ -9,15 +9,10 @@ The Admin Dashboard login:
 u: admin  
 p: admin 
 
+# Download and install  
+[see wiki] (https://github.com/poster983/passr/wiki/Install)
 
-
-# Install
-1) Edit the "config.php"  
-
-2) Navigate to "./install/index.php"  
-
-3) Follow the directions.  
-
-4) Done.
+# Features  
+[see wiki] (https://github.com/poster983/passr/wiki/Features)
 
 
