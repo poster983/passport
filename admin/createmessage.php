@@ -34,13 +34,10 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 <div class="row">
                     <div class="input-field col s3">
                         <input type="text" id="datepicker" required name="messageday" />
-                        <label for="blackoutday">Choose a day to show a message</label>
+                        <label for="blackoutday">Date</label>
                     </div>
 
-                    <div class="input-field col s12">
-                        <textarea id="message" name="message" class="materialize-textarea" length="255"></textarea>
-                        <label for="message">Your Message</label>
-                    </div>
+                   
                     <p class="center">Choose Department</p>
                     <p class="center">
                         <input type="radio" id="lec" name="dep" value="LEC" />
@@ -61,6 +58,10 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         <input type="radio" id="fl" name="dep" value="Foreign Language" />
                         <label for="fl">Foreign Language</label>
                     </p>
+                     <div class="input-field col s12">
+                        <textarea id="message" name="message" class="materialize-textarea" length="255"></textarea>
+                        <label for="message">Your Message</label>
+                    </div>
                     <p>
                         <button class="btn waves-effect waves-light" type="submit" name="blackout">Set Message
                             <i class="material-icons right">announcement</i>
