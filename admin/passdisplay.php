@@ -70,7 +70,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         
         
         if ($viewtype == "signin") {
-    $sql = "SELECT firstname, lastname, period, sh_teacher, place, day_to_come FROM passes $where_day ORDER BY period";
+    $sql = "SELECT firstname, lastname, period, sh_teacher, place, day_to_come FROM passes $where_day ORDER BY period, lastname";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -78,7 +78,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         // output data of each row
         echo "<tbody>";
         while($row = $result->fetch_assoc()) {
-            echo "<tr><td>" . 'Signature:  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp' . "</td><td>" . $row["firstname"]. " " . $row["lastname"]. "</td><td>" . $row["period"]. "</td><td>" . $row["sh_teacher"]. "</td><td>" . $row["place"]. "</td><td>" . $row["day_to_come"]. "</td></tr></tbody>";
+            echo "<tr><td>" . 'Signature:  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp' . "</td><td>" . $row["lastname"].  " " . $row["firstname"]. "</td><td>" . $row["period"]. "</td><td>" . $row["sh_teacher"]. "</td><td>" . $row["place"]. "</td><td>" . $row["day_to_come"]. "</td></tr></tbody>";
         }
         
         echo "</tbody></table>";
@@ -87,7 +87,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         }
         } elseif ($viewtype == "teacher") {
             echo "<form method = 'post' action = ''>";
-           $sql = "SELECT id, firstname, lastname, email, student_id, period, sh_teacher, place, day_to_come, reason_to_come, isHere FROM passes $where_day ORDER BY period";
+           $sql = "SELECT id, firstname, lastname, email, student_id, period, sh_teacher, place, day_to_come, reason_to_come, isHere FROM passes $where_day ORDER BY period, lastname";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -104,7 +104,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             $inputAll = '';
         }
             
-            echo "<tr><td> <input type='checkbox' id='" . $row["id"] . "' name='" . $row["id"] . "'" . $inputAll . " value='1' /> <label for='" . $row["id"] . "'>Is Here?</label> </td><td>" . $row["student_id"]. "</td><td>" . $row["firstname"]. " " . $row["lastname"]. "</td><td>" . $row["email"]. "</td><td>" . $row["period"]. "</td><td>" . $row["sh_teacher"]. "</td><td>" . $row["place"]. "</td><td>" . $row["day_to_come"]. "</td><td>" . $row["reason_to_come"]. "</td></tr></tbody>";
+            echo "<tr><td> <input type='checkbox' id='" . $row["id"] . "' name='" . $row["id"] . "'" . $inputAll . " value='1' /> <label for='" . $row["id"] . "'>Is Here?</label> </td><td>" . $row["student_id"]. "</td><td>" . $row["lastname"].  " " . $row["firstname"]. "</td><td>" . $row["email"]. "</td><td>" . $row["period"]. "</td><td>" . $row["sh_teacher"]. "</td><td>" . $row["place"]. "</td><td>" . $row["day_to_come"]. "</td><td>" . $row["reason_to_come"]. "</td></tr></tbody>";
         }
         
         echo "</tbody></table>";
