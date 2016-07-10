@@ -2,6 +2,7 @@
 include("common.php");
 checklogin();
 $msg = "";
+
 ?>
     <!--
 
@@ -63,6 +64,23 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
   }
         $viewtype = $_POST['view'];
+        
+        $tper = $_POST['tper'];
+        $_SESSION["tper"] = $tper;
+        echo $_SESSION["tper"];
+            if ($_SESSION["tper"] == "") {
+                $tperpost = "";
+            } else {
+                $tperpost = "AND period = '" . $_SESSION["tper"] . "'";
+            }
+
+        $tdep = $_POST['tdep'];
+        $_SESSION["tdep"] = $tdep;
+            if ($_SESSION["tdep"] == "") {
+                $tdeppost = "";
+            } else {
+                $tdeppost = "AND place = '" . $_SESSION["tdep"] . "'";
+            }
         $datesearch = $_POST['datesearch'];
         $where_day = "WHERE day_to_come ='$datesearch'";
     
@@ -87,7 +105,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         }
         } elseif ($viewtype == "teacher") {
             echo "<form method = 'post' action = ''>";
-           $sql = "SELECT id, firstname, lastname, email, student_id, period, sh_teacher, place, day_to_come, reason_to_come, isHere FROM passes $where_day ORDER BY period, lastname";
+           $sql = "SELECT id, firstname, lastname, email, student_id, period, sh_teacher, place, day_to_come, reason_to_come, isHere FROM passes $where_day $tperpost $tdeppost ORDER BY period, lastname";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -125,7 +143,7 @@ if(isset($_POST['updateIsHere'])){
         foreach ($_POST as $key => $value) {
 
   }
-    $sql = "SELECT id, isHere FROM passes $where_day ORDER BY id";
+    $sql = "SELECT id, isHere FROM passes $where_day $tperpost $tdeppost ORDER BY id";
     $result = $conn->query($sql);
     
     if ($result->num_rows > 0) {

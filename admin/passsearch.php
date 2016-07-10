@@ -41,6 +41,13 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 , });
             });
         </script>
+        <script>
+            $(document).ready(function () {
+                $("#viewType li").click(function(){
+                    $("#search-type").val($(this).attr("value"));
+                    });
+                });
+        </script>
 
 
         <body>
@@ -52,7 +59,69 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                             <input type="text" id="datepicker" name="datesearch" />
                             <label for="datepicker">Choose a day to display.</label>
                         </div>
-                        <div>
+                        
+                            <div class="col s8">
+                                 <input type="hidden" id="search-type" name="view" value="teacher">
+                                <ul class="tabs" id="viewType">
+                                    <li class="tab col s3" name="view-option" id="signinview" value="signin"><a href="#signinv">Sign In View</a></li>
+                                    <li class="tab col s3"name="view-option" id="teacherview" value="teacher"><a class="active" href="#teacherv">Instructor View</a></li>
+
+                                </ul>
+                            </div>
+                            <div id="signinv" class="col s12">Test 1</div>
+                            <div id="teacherv">
+                                <div class="col s9 offset-s3">
+                                <p>Filter By Period</p>
+                                <input name="tper" type="radio" id="a" value="a" />
+                                <label for="a">A Period</label>
+                                &nbsp &nbsp
+                                <input name="tper" type="radio" id="b" value="b" />
+                                <label for="b">B Period</label>
+                                &nbsp &nbsp
+                                <input name="tper" type="radio" id="c" value="c" />
+                                <label for="c">C Period</label>
+                                &nbsp &nbsp
+                                <input name="tper" type="radio" id="d" value="d" />
+                                <label for="d">D Period</label>
+                                &nbsp &nbsp
+                                <input name="tper" type="radio" id="e" value="e" />
+                                <label for="e">E Period</label>
+                                &nbsp &nbsp
+                                <input name="tper" type="radio" id="f" value="f" />
+                                <label for="f">F Period</label>
+                                &nbsp &nbsp
+                                <input name="tper" type="radio" id="g" value="g" />
+                                <label for="g">G Period</label>
+                                &nbsp &nbsp
+                                <input name="tper" type="radio" id="h" value="h" />
+                                <label for="h">H Period</label>
+                                &nbsp &nbsp
+                                </div>
+                                <div class="col s9 offset-s3">
+                                <p>Filter By Department</p>
+                                <input name="tdep" type="radio" id="tlec" value="lec" />
+                                <label for="tlec">LEC</label>
+                                &nbsp &nbsp
+                                <input name="tdep" type="radio" id="tmath" value="math" />
+                                <label for="tmath">Math</label>
+                                &nbsp &nbsp
+                                    <input name="tdep" type="radio" id="tlib" value="library" />
+                                <label for="tlib">Library</label>
+                                &nbsp &nbsp
+                                    <input name="tdep" type="radio" id="tlec" value="hd" />
+                                <label for="tlec">Help Desk</label>
+                                &nbsp &nbsp
+                                    <input name="tdep" type="radio" id="twl" value="Writing Lab" />
+                                <label for="twl">Writing Lab</label>
+                                &nbsp &nbsp
+                                    <input name="tdep" type="radio" id="tfl" value="Foreign Language" />
+                                <label for="tfl">Foreign Language</label>
+                                &nbsp &nbsp
+                                </div>
+                            </div>
+                        
+                    </div>
+                  <!--      <div>
                             <p>
                                 <input name="view" type="radio" id="signin" value="signin" />
                                 <label for="signin">Sign In View</label>
@@ -60,12 +129,13 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                 <input name="view" type="radio" id="teacherv" value="teacher" />
                                 <label for="teacherv">Teacher View</label>
                             </p>
-                        </div>
-                    </div>
+                        </div> -->
+                    
                     <p>
                         <button class="btn waves-effect waves-light" type="submit" name="search">Search
                             <i class="material-icons right">search</i>
                         </button>
+                        </div>
                     </p>
                 </form>
             </div>
