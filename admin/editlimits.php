@@ -32,7 +32,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
     include "../sqlconnect.php"; 
                                                             //change sql limit to match the current nuumber of departments.
-            $sqlslimit = "SELECT studentlimit, dep FROM studentlimit LIMIT 5";
+            $sqlslimit = "SELECT studentlimit, dep FROM studentlimit LIMIT 6";
         $resultslimit = $conn->query($sqlslimit);
 
         if ($resultslimit->num_rows > 0) {
@@ -47,7 +47,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             
             }
         }
-echo $ForeignLanguagelimit;
+
 ?>
         <div class="container">
             <form method="post" action="">
@@ -60,26 +60,26 @@ echo $ForeignLanguagelimit;
                 <p class="center">Choose Department</p>
                 <p class="center">Hover for current limit</p>
                 <p class="center">
-                    <input type="radio" id="lec" name="dep" value="lec" />
-                    <label for="lec">LEC</label>
+                    <input type="radio" id="lec" required name="dep" value="lec" />
+                    <label for="lec" title="<? echo $leclimit; ?>">LEC</label>
                     &nbsp &nbsp
                     <input type="radio" id="math" name="dep" value="math" />
-                    <label for="math" title="blabla bla">Math</label>
+                    <label for="math" title="<? echo $mathlimit; ?>">Math</label>
                     &nbsp &nbsp
                     <input type="radio" id="lib" name="dep" value="library" />
-                    <label for="lib">Library</label>
+                    <label for="lib" title="<? echo $librarylimit; ?>">Library</label>
                     &nbsp &nbsp
                     <input type="radio" id="hd" name="dep" value="hd" />
-                    <label for="hd">Help Desk</label>
+                    <label for="hd" title="<? echo $hdlimit; ?>">Help Desk</label>
                     &nbsp &nbsp
                     <input type="radio" id="wl" name="dep" value="Writing Lab" />
-                    <label for="wl">Writing Lab</label>
+                    <label for="wl" title="<? echo $WritingLablimit; ?>">Writing Lab</label>
                     &nbsp &nbsp
                     <input type="radio" id="fl" name="dep" value="Foreign Language" />
-                    <label for="fl">Foreign Language</label>
+                    <label for="fl" title="<? echo $ForeignLanguagelimit; ?>">Foreign Language</label>
                 </p>
                 <p>
-                    <button class="btn waves-effect waves-light" type="submit" name="blackout">Update limits<i class="material-icons right">call_merge</i></button>
+                    <button class="btn waves-effect waves-light" type="submit" name="submit">Update limits<i class="material-icons right">call_merge</i></button>
                 </p>
                 
                 </form>
@@ -109,3 +109,40 @@ echo $ForeignLanguagelimit;
 
 
         </html>
+
+<?
+
+if(isset($_POST['submit'])){ 
+
+    
+        foreach ($_POST as $key => $value) {
+
+  }
+    {
+$limitslide = $_POST['limitslide'];
+$updep = $_POST['dep'];
+    }
+        $sqlupdate = "UPDATE studentlimit SET studentlimit='$limitslide' WHERE dep = '$updep'";
+
+        if ($conn->query($sqlupdate) === TRUE) {
+            echo "Record updated successfully";
+            
+            ?>
+            
+            <script>
+            setTimeout(function () {
+                window.location.href = '/admin/editlimits.php'; // the redirect goes here
+
+            }, 1000); // 1 second
+        </script>
+
+        <?
+
+        } else {
+            echo "Error updating record: " . $conn->error;
+        }
+    
+}
+
+
+?>
