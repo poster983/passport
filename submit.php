@@ -194,12 +194,24 @@ if ($conn->query($sql) === TRUE) {
         
         
 }
-        echo "<br><a class='waves-effect waves-red btn-flat' href='index.php'>Back</a><br>";
         
+        //LIMIT CHECKER
+        echo "<br><a class='waves-effect waves-red btn-flat' href='index.php'>Back</a><br>";
+        /*
         $placenospace = str_replace(' ', '', $place);
     $tallylimit = $placenospace . 'slimit';
     echo $$tallylimit;
-    if ($newtally > $$tallylimit) {
+        echo $tallylimit;
+        */
+        
+        $sqlslimit = "SELECT studentlimit, dep FROM studentlimit WHERE dep = '$place' LIMIT 1";
+        $resultslimit = $conn->query($sqlslimit);
+
+        if ($resultslimit->num_rows > 0) {
+    
+            while($rowslimit = $resultslimit->fetch_assoc()) {
+            echo $rowslimit["studentlimit"];
+    if ($newtally > $rowslimit["studentlimit"]) {
         echo " <div class='row'><div class='col s12'><div class='card-panel red hoverable'><span class='white-text'>";
         echo "<p class='center'>Sorry, the " . $place . " is full on " . $day . " during " . $perTab . " period.    </p>";
         echo "</span></div></div></div>";
@@ -218,7 +230,7 @@ if ($conn->query($sql) === TRUE) {
                
                 
                 } else { echo "Error: " . $sql . "
-                <br>" . $conn->error; } $conn->close(); } } }
+                <br>" . $conn->error; } $conn->close(); } } } } }
     
 }
 
