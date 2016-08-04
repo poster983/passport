@@ -50,6 +50,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 <!--<li><a href="teacherlist.php">View/Delete Teachers</a></li>-->
                 <li><a href="createmessage.php">Messages</a></li>
                 <li><a href="createwhy.php">Reasons</a></li>
+                <li><a href="editlimits.php">Limits</a></li>
                 <li><a href="createadmin.php">Admins</a></li>
                 <li class="right"><a href="/admin/logout.php">Logout<i class="material-icons right">lock</i></a></li>
             </ul>
@@ -62,6 +63,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 <li><a href="createmessage.php">Messages</a></li>
                 <!-- <li><a href="teacherlist.php">View/Delete Teachers</a></li>-->
                 <li><a href="createwhy.php">Reason</a></li>
+                <li><a href="editlimits.php">Limits</a></li>
                 <li><a href="createadmin.php">Admins</a></li>
                 <li> <a href="/admin/logout.php">Logout<i class="material-icons right">lock_outline</i></a></li>
             </ul>
