@@ -67,7 +67,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             </p>
         </form>
         <p>
-            <a href="end.php">Next --></a>
+            <a href="step4.php">Next --></a>
         </p>
     </div>
 

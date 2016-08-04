@@ -66,12 +66,13 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
     {
         include "../sqlconnect.php";
-        //Add departments into this array.
+        //To add new departments into this array, remove the departments already added and then add the new ones.
+        //The names must mach the values of the departments in index.php
         //NO SPACES 
-        $deparray = array("lec", "math", "library", "hd", "WritingLab", "ForeignLanguages");
+        $deparray = array("lec", "math", "library", "hd", "Writing Lab", "Foreign Language");
            //also change "x" to the total of the array
            for ($x = 5; $x >= 0; $x--) {
-                $depfinal = $deparray[$x] . "slimit";
+                $depfinal = $deparray[$x];
                 echo $depfinal;
            $sql = "INSERT INTO studentlimit (studentlimit, dep)
             VALUES ('20', '$depfinal')";
