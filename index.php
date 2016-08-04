@@ -29,7 +29,14 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
-
+    <!--Browser Colors-->
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#b71c1c">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#b71c1c">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -586,7 +593,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <footer class="page-footer white">
             <div class="footer-copyright">
                 <div class="container">
-                    <a class="black-text left" href="">Copyright © 2016 Joseph Hassell</a> &nbsp &nbsp
+                    <a class="black-text left" href="https://www.josephhassell.com/">Copyright © 2016 Joseph Hassell</a> &nbsp &nbsp
                     <a class="black-text right" href="http://lijo.pw/1668">License </a> &nbsp &nbsp
                     <a class="black-text right" href="http://lijo.pw/1669">Project Page &nbsp &nbsp</a>&nbsp &nbsp
                 </div>

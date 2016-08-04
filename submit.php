@@ -29,6 +29,15 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <head>
     <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    
+        <!--Browser Colors-->
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#b71c1c">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#b71c1c">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
 
 <body>
