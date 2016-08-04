@@ -32,6 +32,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <body>
             <div class="container">
                 <form method="post" action="">
+                    <h4 class="center">Teacher Manager</h4>
                     <div class="input-field">
                         <p>
                             <input type="text" required name="name_title" id="name_title" />

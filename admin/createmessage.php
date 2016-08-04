@@ -30,7 +30,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <? include "nav.php"; ?>
         <div class="container">
             <form method="post" action="">
-                <h4 class="center">Pass Settings</h4>
+                <h4 class="center">Message Manager</h4>
                 <div class="row">
                     <div class="input-field col s3">
                         <input type="text" id="datepicker" required name="messageday" />

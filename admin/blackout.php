@@ -30,7 +30,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <? include "nav.php"; ?>
         <div class="container">
             <form method="post" action="">
-                <h4 class="center">Pass Settings</h4>
+                <h4 class="center">Blackout Manager</h4>
 
                 <div class="input-field col s3">
                     <input type="text" id="datepicker" required name="blackoutday" />
@@ -89,7 +89,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 </p>
 
             </form>
-            <a class="waves-effect waves-light btn red" href="blackoutcal.php"><i class="material-icons left">today</i>Calender</a>
+            <a class="waves-effect waves-light btn red" href="blackoutcal.php"><i class="material-icons left">today</i>Blackout Calender</a>
         </div>
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="/js/materialize.js"></script>
@@ -117,7 +117,6 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
             }
         </script>
-
 
         </html>
 

@@ -31,6 +31,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <body>
             <div class="container">
                 <form method="post" action="">
+                    <h4 class="center">Admin Manager</h4>
                     <div class="input-field">
                         <p>
                             <input type="text" required id="firstname" name="firstname">
