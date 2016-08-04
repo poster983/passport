@@ -39,6 +39,18 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <h3>Step 4</h3>
     <p>Now, a limit is being set on how many passes can be requested</p>
     <p>(You can change it later)</p>
+    <br>
+    <br>
+    <p>Currently, the following departments and respective limits will be inserted.</p>
+    <p>Departments can be added in the future by adding the name of the department to the array.</p>
+      <ul>
+        <li>Lec</li>
+        <li>Math</li>
+        <li>Library</li>
+        <li>Help Desk</li>
+        <li>Writing Lab</li>
+        <li>Foreign Languages</li>
+      </ul>
     <div>
         <p>
             <a href="end.php">Next --></a>
@@ -53,22 +65,30 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <?
 
     {
-            
-            $sql = "INSERT INTO studentlimit (studentlimit, dep)
-            VALUES ('5', '$first_name')";
+        include "../sqlconnect.php";
+        //Add departments into this array.
+        //NO SPACES 
+        $deparray = array("lec", "math", "library", "hd", "WritingLab", "ForeignLanguages");
+           //also change "x" to the total of the array
+           for ($x = 5; $x >= 0; $x--) {
+                $depfinal = $deparray[$x] . "slimit";
+                echo $depfinal;
+           $sql = "INSERT INTO studentlimit (studentlimit, dep)
+            VALUES ('20', '$depfinal')";
 
             if ($conn->query($sql) === TRUE) {
-                echo "New account created successfully";
+                echo "New record created successfully";
                 
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
                 
             }
-
+            
+           }
             $conn->close();
         }
-    }
     
     
-} 
+    
+
 ?>

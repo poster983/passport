@@ -99,11 +99,11 @@ period VARCHAR(255) NOT NULL,
 place VARCHAR(255) NOT NULL
 )";
 
-/*$sqlstudentlimit = "CREATE TABLE studentlimit (
+$sqlstudentlimit = "CREATE TABLE studentlimit (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 studentlimit INT(6) UNSIGNED,
 dep VARCHAR(255) NOT NULL
-)";*/
+)";
 
 
 
@@ -160,17 +160,17 @@ if ($conn->query($sqltally) === TRUE) {
 }
 
 
-/*if ($conn->query($sqlstudentlimit) === TRUE) {
+if ($conn->query($sqlstudentlimit) === TRUE) {
     $tablesucsess += 1;
     echo "Table Studentlimit created successfully";
 } else {
     echo "Error creating table: " . $conn->error;
-}*/
+}
 
 
 
 
-if ($tablesucsess == 7) {
+if ($tablesucsess == 8) {
     echo "7 tables created";
     $tablenext = "<a href='step3.php'>Next --></a>";
 } else {
