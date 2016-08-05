@@ -55,17 +55,17 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
     
     
-    if(!isset($_POST['search'])) { //exit();
+    if(!isset($_GET['search'])) { //exit();
     
         $where_day = "";
         $viewtype = "teacher";
     } else {
-    foreach ($_POST as $key => $value) {
+    foreach ($_GET as $key => $value) {
 
   }
-        $viewtype = $_POST['view'];
+        $viewtype = $_GET['view'];
         
-        $tper = $_POST['tper'];
+        $tper = $_GET['tper'];
         $_SESSION["tper"] = $tper;
         echo $_SESSION["tper"];
             if ($_SESSION["tper"] == "") {
@@ -74,14 +74,14 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 $tperpost = "AND period = '" . $_SESSION["tper"] . "'";
             }
 
-        $tdep = $_POST['tdep'];
+        $tdep = $_GET['tdep'];
         $_SESSION["tdep"] = $tdep;
             if ($_SESSION["tdep"] == "") {
                 $tdeppost = "";
             } else {
                 $tdeppost = "AND place = '" . $_SESSION["tdep"] . "'";
             }
-        $datesearch = $_POST['datesearch'];
+        $datesearch = $_GET['datesearch'];
         $where_day = "WHERE day_to_come ='$datesearch'";
     
     }
@@ -166,7 +166,8 @@ if(isset($_POST['updateIsHere'])){
                 echo "Error updating record: " . $conn->error;
             }            
         }
-        echo "<script>  setTimeout(function () { window.location.href = '/admin/passdisplay.php'; }, 500);  </script>";
+        echo "<script>  setTimeout(function () { window.location.href = '/admin/passdisplay.php?" . $_SERVER["QUERY_STRING"] . "'; }, 500);  </script>";
+        
     }
 
 }

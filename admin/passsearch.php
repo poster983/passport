@@ -53,7 +53,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <body>
             <div class="container">
                 <h5 class="center">Search and print the Passes by day.</h5>
-                <form method="post" action="passdisplay.php">
+                <form method="get" action="passdisplay.php">
                     <div class="row">
                         <div class="input-field col s3">
                             <input type="text" id="datepicker" name="datesearch" />
