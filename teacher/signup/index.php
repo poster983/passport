@@ -101,7 +101,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 <label for="hper">H Period</label>
             </p>
             <p>
-                <button class="btn waves-effect waves-light" type="submit" name="add_new_entry">Add New Teacher <i class="material-icons right">send</i> </button>
+                <button class="btn waves-effect waves-light" type="submit" name="add_new_entry">Submit <i class="material-icons right">send</i> </button>
             </p>
         </form>  </div>
 </body>
