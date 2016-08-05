@@ -139,8 +139,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         $bugdate = date( 'Y-m-d', strtotime(" today "));
     }
     
-        $sqlbug = "INSERT INTO feedback (name, email, comment, rating, report_type, date)
-        VALUES ('$bugname', '$bugemail', '$bugtext', '$bugseverity', 'bug', '$bugdate')";
+        $sqlbug = "INSERT INTO feedback (name, email, comment, rating, report_type, date, role)
+        VALUES ('$bugname', '$bugemail', '$bugtext', '$bugseverity', 'bug', '$bugdate', 'student')";
 
         if ($conn->query($sqlbug) === TRUE) {
         echo "<script> Materialize.toast('Bug report submitted successfully', 4000) </script>";
@@ -224,8 +224,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         $reviewdate = date( 'Y-m-d', strtotime(" today "));
     }
     
-        $sqlreview = "INSERT INTO feedback (name, email, comment, rating, report_type, date)
-        VALUES ('$reviewname', '$reviewemail', '$reviewtext', '$reviewseverity', 'review', '$reviewdate')";
+        $sqlreview = "INSERT INTO feedback (name, email, comment, rating, report_type, date, role)
+        VALUES ('$reviewname', '$reviewemail', '$reviewtext', '$reviewseverity', 'review', '$reviewdate', 'student')";
 
         if ($conn->query($sqlreview) === TRUE) {
         echo "<script> Materialize.toast('Review submitted successfully', 4000) </script>";
