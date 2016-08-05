@@ -106,6 +106,17 @@ dep VARCHAR(255) NOT NULL
 )";
 
 
+$sqlfeedback = "CREATE TABLE feedback (
+id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(255) NOT NULL,
+email VARCHAR(255) NOT NULL,
+comment VARCHAR(255) NOT NULL,
+rating VARCHAR(255) NOT NULL,
+report_type VARCHAR(255) NOT NULL,
+date VARCHAR(255) NOT NULL
+)";
+
+
 
 
 
@@ -167,10 +178,16 @@ if ($conn->query($sqlstudentlimit) === TRUE) {
     echo "Error creating table: " . $conn->error;
 }
 
+if ($conn->query($sqlfeedback) === TRUE) {
+    $tablesucsess += 1;
+    echo "Table Feedback created successfully";
+} else {
+    echo "Error creating table: " . $conn->error;
+}
 
 
 
-if ($tablesucsess == 8) {
+if ($tablesucsess == 9) {
     echo "7 tables created";
     $tablenext = "<a href='step3.php'>Next --></a>";
 } else {

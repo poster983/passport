@@ -41,7 +41,10 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
 
 </head>
 
@@ -58,11 +61,192 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <a href="https://github.com/poster983/passr"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
     </div>
 
+    <!--FEEDBACK FAB-->
+    
+    
+    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+        <a class="btn-floating btn-large red tooltipped" data-position="left" data-delay="50" data-tooltip="Feedback">
+            <i class="large material-icons">assignment</i>
+        </a>
+        <ul>
+            <li><a class="btn-floating red modal-trigger tooltipped" data-position="left" data-delay="50" data-tooltip="Bug Report" href="#bugmodal"><i class="material-icons">report_problem</i></a></li>
+            <li><a class="btn-floating yellow darken-1 modal-trigger tooltipped" data-position="left" data-delay="50" data-tooltip="Leave A Review" href="#reviewmodaldis"><i class="material-icons">thumbs_up_down</i></a></li>
+            <li><a class="btn-floating green tooltipped" data-position="left" data-delay="50" data-tooltip="Wiki" href="https://github.com/poster983/passr/wiki"><i class="material-icons">live_help</i></a></li>
+            <li><a class="btn-floating blue tooltipped" data-position="left" data-delay="50" data-tooltip="Version Info and Licence"><i class="material-icons">info</i></a></li>
+        </ul>
+    </div>
+    
+    
+    <? include "sqlconnect.php"; ?>
+    
+    
+  <!-- Bug Modal -->
+  <div id="bugmodal" class="modal bottom-sheet">
+    <div class="modal-content">
+        <h4>Bug report</h4>
+        <div class="row">
+            <form class="col s12" method="post" action="">
+                <div class="row">
+                    <div class="input-field col s6"> <i class="material-icons prefix">account_circle</i>
+                        <input id="bugname" name="bugname" required type="text" class="validate">
+                        <label for="bugname">Name</label>
+                    </div>
+                    <div class="input-field col s6"> <i class="material-icons prefix">email</i>
+                        <input id="bugemail" name="bugemail" required type="email" class="validate">
+                        <label for="bugemail">Email</label>
+                    </div>
+                    <div class="input-field col s12"> <i class="material-icons prefix">comment</i>
+                        <textarea id="bugtext" name="bugtext" required class="materialize-textarea" length="255"></textarea>
+                        <label for="bugtext">Describe the bug or issue</label>
+                    </div>
+                    <h5 class="center">Bug Severity</h5>
+                    <p class="center">1 being low priority and 5 being high priority</p>
+                        <p class="range-field">
+                            <input type="range" id="bugseverity" name="bugseverity" min="1" max="5" value="3" />
+                        </p>
+                </div>
+                <div class="modal-footer">
+                    
+                    <button class="btn waves-effect waves-light modal-action modal-close" type="submit" name="submitbug">Submit Bug Report
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </form>
+        </div>
+      
+    </div>
+    
+  </div>
+    
+    <?
+    
+    //bug report submit code
+    
+    
+    if(isset($_POST['submitbug'])){ 
+
+    
+        foreach ($_POST as $key => $value) {
+
+    }
+    {
+
+
+        $bugname = $_POST['bugname'];
+        $bugemail = $_POST['bugemail'];
+        $bugtext = $_POST['bugtext'];
+        $bugseverity = $_POST['bugseverity'];
+        $bugdate = date( 'Y-m-d', strtotime(" today "));
+    }
+    
+        $sqlbug = "INSERT INTO feedback (name, email, comment, rating, report_type, date)
+        VALUES ('$bugname', '$bugemail', '$bugtext', '$bugseverity', 'bug', '$bugdate')";
+
+        if ($conn->query($sqlbug) === TRUE) {
+        echo "<script> Materialize.toast('Bug report submitted successfully', 4000) </script>";
+        //echo "Bug report submitted successfully";
+        } else {
+        echo "Error: " . $sqlbug . "<br>" . $conn->error;
+    
+}
+        
+    }
+    
+    ?>
+    
+      <!--Review Modal disclaimer -->
+  <div id="reviewmodaldis" class="modal">
+    <div class="modal-content">
+      <h4>Reminder</h4>
+      <p>A review should include helpful information. Reviews that are bias and/or spam will be ignored.</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#reviewmodal" class=" modal-action modal-close modal-trigger waves-effect waves-green btn-flat">I Agree</a>
+    </div>
+  </div>
+    
+    <!-- Review Modal -->
+  <div id="reviewmodal" class="modal bottom-sheet">
+    <div class="modal-content">
+        <h4>Leave a review</h4>
+        <div class="row">
+            <form class="col s12" method="post" action="">
+                <div class="row">
+                    <div class="input-field col s6"> <i class="material-icons prefix">account_circle</i>
+                        <input id="reviewname" name="reviewname" required type="text" class="validate">
+                        <label for="reviewname">Name</label>
+                    </div>
+                    <div class="input-field col s6"> <i class="material-icons prefix">email</i>
+                        <input id="reviewemail" name="reviewemail" required type="email" class="validate">
+                        <label for="reviewemail">Email</label>
+                    </div>
+                    <div class="input-field col s12"> <i class="material-icons prefix">comment</i>
+                        <textarea id="reviewtext" name="reviewtext" class="materialize-textarea" length="255"></textarea>
+                        <label for="reviewtext">Comment</label>
+                    </div>
+                    <h5 class="center">Rating</h5>
+                    
+                        <p class="range-field">
+                            <input type="range" id="rating" name="rating" min="1" max="10" value="5" />
+                        </p>
+                </div>
+                <div class="modal-footer">
+                    
+                    <button class="btn waves-effect waves-light modal-action modal-close" type="submit" name="submitreview">Submit Review
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </form>
+        </div>
+      
+    </div>
+    
+  </div>
+    
+    <?
+    
+    //bug report submit code
+    
+    
+    if(isset($_POST['submitreview'])){ 
+
+    
+        foreach ($_POST as $key => $value) {
+
+    }
+    {
+
+
+        $reviewname = $_POST['reviewname'];
+        $reviewemail = $_POST['reviewemail'];
+        $reviewtext = $_POST['reviewtext'];
+        $reviewseverity = $_POST['rating'];
+        $reviewdate = date( 'Y-m-d', strtotime(" today "));
+    }
+    
+        $sqlreview = "INSERT INTO feedback (name, email, comment, rating, report_type, date)
+        VALUES ('$reviewname', '$reviewemail', '$reviewtext', '$reviewseverity', 'review', '$reviewdate')";
+
+        if ($conn->query($sqlreview) === TRUE) {
+        echo "<script> Materialize.toast('Review submitted successfully', 4000) </script>";
+        //echo "Review submitted successfully";
+        } else {
+        echo "Error: " . $sqlreview . "<br>" . $conn->error;
+    
+}
+        
+    }
+    
+    ?>
+    
+    
+    
+    
     <!--Tabs-->
     <br>
     <br>
     <br>
-    <? include "sqlconnect.php"; ?>
+    
         <form method="post" action="/submit.php">
             <div class="row">
                 <div class="col s12">
@@ -605,13 +789,10 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
         <!--js-->
 
-        <script type="text/javascript" src=/js/passr.js></script>
+        
 
-        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-
-        <!-- Compiled and minified JavaScript -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-
+        
+        
         <!-- Scripts -->
         <!--[if lte IE 8]><script src="assets/js/respond.min.js"></script><![endif]-->
         <script>
@@ -622,6 +803,13 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
             }
         </script>
+        <script>
+              $(document).ready(function(){
+                // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+                $('.modal-trigger').leanModal();
+              });
+        </script>
+    
 </body>
 
 </html>
