@@ -29,6 +29,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="/css/passr.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <!--Browser Colors-->
     <!-- Chrome, Firefox OS and Opera -->
     <meta name="theme-color" content="#b71c1c">
@@ -45,10 +46,44 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <script src="/js/passr.js"></script>
 
 </head>
 
 <body>
+    
+    <!-- Request closed overlay -->
+    
+    <?
+    
+    if(date("l") == "Sunday" OR date("l") == "Saturday") {
+        $overlayClosedReasonH1 = "Pass Requests are closed on the weekends.";
+        $closedFormAction = "";
+        $blurClass = "blur-g";
+        echo "<script>$(document).ready(function(){openFullOverlay()});</script>";
+    } elseif(date("H") >= 16) {
+        $overlayClosedReasonH1 = "Pass Requests are closed after school.";
+        $closedFormAction = "";
+        
+        echo "<script>$(document).ready(function(){openFullOverlay()});</script>";
+    } else {
+        $closedFormAction = "/submit.php";
+        
+    }
+    
+    ?>
+    
+    
+    <div id="overlayFull" class="overlay-full">
+    
+        <div class="overlay-full-content">
+            <h1 class="black-text"><? echo $overlayClosedReasonH1; ?></h1>
+        </div>
+        
+    </div>
+    
+    <div id="blurg" class="<? echo $blurClass; ?>">
+    
     <!--Navbar-->
     <nav>
         <div class="nav-wrapper red darken-4">
@@ -60,6 +95,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <div>
         <a href="https://github.com/poster983/passr"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
     </div>
+   
 
     <!--FEEDBACK FAB-->
     
@@ -247,7 +283,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <br>
     <br>
     
-        <form method="post" action="/submit.php">
+        <form method="post" action=" <? echo $closedFormAction; ?> ">
             <div class="row">
                 <div class="col s12">
                     <ul class="tabs">
@@ -455,7 +491,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             <div class="container">
                 <div class="row">
                     <div class="col s12">
-
+                         
 
 
                         <div class="row">
@@ -783,7 +819,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 </div>
             </div>
         </footer>
-
+    </div>
 
 
 
