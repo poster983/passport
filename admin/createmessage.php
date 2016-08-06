@@ -119,7 +119,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   }
         $messageday = $_POST['messageday'];
         $dep = $_POST['dep'];
-        $message = $_POST['message'];
+        $message = htmlspecialchars($_POST['message'],ENT_QUOTES);
 
 
         

@@ -87,7 +87,7 @@ if(isset($_POST['add_new_entry'])){
   }
     {
         $dep = $_POST['dep'];
-        $why = $_POST['why'];
+        $why = htmlspecialchars($_POST['why'],ENT_QUOTES);
 
         
        

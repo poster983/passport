@@ -134,9 +134,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
         $bugname = $_POST['bugname'];
         $bugemail = $_POST['bugemail'];
-        $bugtext = $_POST['bugtext'];
         $bugseverity = $_POST['bugseverity'];
         $bugdate = date( 'Y-m-d', strtotime(" today "));
+        $bugtext = htmlspecialchars($_POST['bugtext'],ENT_QUOTES);
     }
     
         $sqlbug = "INSERT INTO feedback (name, email, comment, rating, report_type, date, role)
@@ -219,7 +219,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
         $reviewname = $_POST['reviewname'];
         $reviewemail = $_POST['reviewemail'];
-        $reviewtext = $_POST['reviewtext'];
+        $reviewtext = htmlspecialchars($_POST['reviewtext'],ENT_QUOTES);
         $reviewseverity = $_POST['rating'];
         $reviewdate = date( 'Y-m-d', strtotime(" today "));
     }
