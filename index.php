@@ -61,11 +61,6 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         $closedFormAction = "";
         $blurClass = "blur-g";
         echo "<script>$(document).ready(function(){openFullOverlay()});</script>";
-    } elseif(date("H") >= 16) {
-        $overlayClosedReasonH1 = "Pass Requests are closed after school.";
-        $closedFormAction = "";
-        
-        echo "<script>$(document).ready(function(){openFullOverlay()});</script>";
     } else {
         $closedFormAction = "/submit.php";
         
