@@ -82,7 +82,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <!--Navbar-->
     <nav>
         <div class="nav-wrapper red darken-4">
-            <a href="#" class="brand-logo black-text center glitch" data-text="passr_Pilot">passr_Pilot</a>
+            <a href="#" class="brand-logo black-text center">passr</a>
             
         </div>
     </nav>
