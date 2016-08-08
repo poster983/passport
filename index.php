@@ -56,7 +56,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     
     <?
     
-    if(date("l") == "Sunday" OR date("l") == "Saturday") {
+    if(date("l") == "Sundsay" OR date("l") == "Saturday") {
         $overlayClosedReasonH1 = "Pass Requests are closed on the weekends.";
         $closedFormAction = "";
         $blurClass = "blur-g";
@@ -82,7 +82,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <!--Navbar-->
     <nav>
         <div class="nav-wrapper red darken-4">
-            <a href="#" class="brand-logo center black-text">Passr</a>
+            <a href="#" class="brand-logo black-text center glitch" data-text="passr_Pilot">passr_Pilot</a>
+            
         </div>
     </nav>
 

@@ -27,11 +27,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 /*open*/
 function openFullOverlay() {
     document.getElementById("overlayFull").style.width = "100%";
-    document.getElementById("blurg").style.filter = "blur(60px)";
-    document.getElementById("blurg").style.webkitFilter = "blur(60px)";
-    document.getElementById("blurg").style.mozFilter = "blur(60px)";
-    document.getElementById("blurg").style.oFilter = "blur(60px)";
-    document.getElementById("blurg").style.msFilter = "blur(60px)";
+    document.getElementById("blurg").style.filter = "blur(40px)";
+    document.getElementById("blurg").style.webkitFilter = "blur(40px)";
+    document.getElementById("blurg").style.mozFilter = "blur(40px)";
+    document.getElementById("blurg").style.oFilter = "blur(40px)";
+    document.getElementById("blurg").style.msFilter = "blur(40px)";
 }
 
 /* Close when someone clicks on the "x" symbol inside the overlay */
