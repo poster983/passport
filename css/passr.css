@@ -36,8 +36,35 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 }
 
 
+.containerlogin {
+    margin: 0 auto;
+    max-width: 1280px;
+    width: 50%;
+}
 
+@media only screen and (min-width: 601px) {
+    .containerlogin {
+        width: 45%;
+    }
+}
 
+@media only screen and (min-width: 993px) {
+    .containerlogin {
+        width: 30%;
+    }
+}
+
+.containerlogin .row {
+    margin-left: -0.75rem;
+    margin-right: -0.75rem;
+}
+
+.signin-allign{
+    float: none;
+    margin: 100px auto;
+    width: 300px;
+    height: 300px;
+}
 
 
  /* The Overlay (background) */

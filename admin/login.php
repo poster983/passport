@@ -3,6 +3,8 @@ session_start();
 include("adminconnect.php");
 
 $msg = "";
+$failshake = "";
+$fadein = "animated fadeInDown";
 
 if (isset($_POST['Submit'])) {
 	$username = mysql_real_escape_string($_POST['username']);
@@ -19,9 +21,13 @@ if (isset($_POST['Submit'])) {
 			header("Location: index.php");
 		} else {
 			$msg = "Password incorrect";
+            $failshake = "animated wobble";
+            $fadein = "";
 		}
 	} else {
 		$msg = "Username incorrect";
+        $failshake = "animated wobble";
+        $fadein = "";
     }
 }
 ?>
@@ -36,8 +42,8 @@ if (isset($_POST['Submit'])) {
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
         <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
-
-
+        <link href="/css/passr.css" type="text/css" rel="stylesheet" media="screen,projection" />
+        <link href="/css/animate.css" type="text/css" rel="stylesheet" media="screen,projection" />
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -45,11 +51,15 @@ if (isset($_POST['Submit'])) {
     </head>
 
 
-    <body>
-        <div class="container">
-            <h1 class="center">Passr Admin Login</h1>
+    <body class="grey darken-4">
+        <div class="containerlogin signin-allign">
+            
+            <div class="card-panel grey darken-3 <? echo $fadein; ?>">
             <form name="form1" method="post" action="">
+                <h3 class="center">Admin Login</h3>
+                <div class="card-panel <? echo $failshake; ?>">
 
+                
                 <div class="input-field">
                     <input name="username" type="text" id="username">
                     <label for="username">Username</label>
@@ -59,10 +69,12 @@ if (isset($_POST['Submit'])) {
                     <input name="password" type="password" id="password">
                     <label for="password">Password</label>
                 </div>
-                <button class="btn waves-effect waves-light" type="submit" name="Submit">Login
+                </div>
+                <button class="btn waves-effect waves-light red darken-4" type="submit" name="Submit">Login
                     <i class="material-icons right">lock_open</i>
                 </button>
             </form>
+            </div>
         </div>
 
 
