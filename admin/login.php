@@ -54,7 +54,7 @@ if (isset($_POST['Submit'])) {
     <body class="grey darken-4">
         <div class="containerlogin signin-allign">
             
-            <div class="card-panel grey darken-3 <? echo $fadein; ?>">
+            <div class="card-panel blue-teal <? echo $fadein; ?>">
             <form name="form1" method="post" action="">
                 <h3 class="center">Admin Login</h3>
                 <div class="card-panel <? echo $failshake; ?>">

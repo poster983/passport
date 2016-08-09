@@ -66,6 +66,13 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     height: 300px;
 }
 
+.blue-teal{
+    background: -webkit-linear-gradient(#03A9F4, #009688); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#03A9F4, #009688); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#03A9F4, #009688);
+    background: linear-gradient(#03A9F4, #009688);
+}
+
 
  /* The Overlay (background) */
 .overlay-full {
