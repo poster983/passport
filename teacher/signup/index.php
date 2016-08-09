@@ -83,7 +83,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             </div>
 
             <p>
-                <input type="checkbox" id="aper" required name="aper" value="A" />
+                <input type="checkbox" id="aper" name="aper" value="A" />
                 <label for="aper">A Period</label> &nbsp &nbsp
                 <input type="checkbox" id="bper" name="bper" value="B" />
                 <label for="bper">B Period</label> &nbsp &nbsp

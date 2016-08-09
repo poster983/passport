@@ -68,7 +68,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
                                 </ul>
                             </div>
-                            <div id="signinv" class="col s12">Test 1</div>
+                            <div id="signinv" class="col s12"></div>
                             <div id="teacherv">
                                 <div class="col s9 offset-s3">
                                 <p>Filter By Period</p>

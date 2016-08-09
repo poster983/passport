@@ -281,7 +281,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             }
         echo $teacherNameComb;
             
-           $today = date( 'Y-m-d', strtotime(" friday this week "));
+           $today = date( 'Y-m-d', strtotime(" today "));
             
              $sql = "SELECT firstname, lastname, period, sh_teacher, place, day_to_come FROM passes WHERE sh_teacher = '$teacherNameComb' AND day_to_come = '$today' ORDER BY period";
             $result = $conn->query($sql);
