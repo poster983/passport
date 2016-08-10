@@ -22,7 +22,7 @@ function LECout()
     $resultlecoutfut = $conn->query($sqllecoutfut);
     echo "<div class='row'>";
     if ($resultlecout->num_rows > 0) {
-        echo "<div class='col s12 m6'><div class='hoverable card orange'><div class='card-content white-text'><span class='card-title'>ATTENTION!</span><p> The LEC is closed today during the following periods: &nbsp</p>";
+        echo "<div class='col s12 m6'><div class='hoverable card orange'><div class='card-content white-text'><span class='card-title'>ATTENTION!</span><p> The Executive Functioning Department is closed today during the following periods: &nbsp</p>";
         // output data of each row
         
         while($rowlecout = $resultlecout->fetch_assoc()) {
@@ -36,10 +36,10 @@ function LECout()
         }
         echo "</div></div></div>";
         } else {
-            echo "<div class='center col s12'><div class='hoverable card green'><div class='card-content white-text'><span class='card-title'>The LEC is open today.</span></div></div></div>";
+            echo "<div class='center col s12'><div class='hoverable card green'><div class='card-content white-text'><span class='card-title'>The Executive Functioning Department is open today.</span></div></div></div>";
         }
      if ($resultlecoutfut->num_rows > 0) {
-        echo "<div class='col s12 m6'><div class='hoverable card red'><div class='card-content white-text'><span class='card-title'>This Week</span><p> This week, the LEC will be closed on:</p>";
+        echo "<div class='col s12 m6'><div class='hoverable card red'><div class='card-content white-text'><span class='card-title'>This Week</span><p> This week, The Executive Functioning Department will be closed on:</p>";
         
         while($rowlecoutfut = $resultlecoutfut->fetch_assoc()) {
             $perexpfut = explode(",", $rowlecoutfut["period"]);
@@ -55,7 +55,7 @@ function LECout()
         echo "</div></div></div>";
 
 } else {
-            echo "<div class='center col s12'><div class='hoverable card green accent-3'><div class='card-content white-text'><span class='card-title'>LEC is open all week.</span></div></div></div>";
+            echo "<div class='center col s12'><div class='hoverable card green accent-3'><div class='card-content white-text'><span class='card-title'>The Executive Functioning Department is open all week.</span></div></div></div>";
         }
     echo "</div>";
 }

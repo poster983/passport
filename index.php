@@ -56,7 +56,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     
     <?
     
-    if(date("l") == "Sunday" OR date("l") == "Saturday") {
+    if(date("l") == "Sundayiii" OR date("l") == "Saturdayiii") {
         $overlayClosedReasonH1 = "Pass Requests are closed on the weekends.";
         $closedFormAction = "";
         $blurClass = "blur-g";
@@ -283,7 +283,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             <div class="row">
                 <div class="col s12">
                     <ul class="tabs">
-                        <li class="tab col s3"><a href="#lec">LEC</a></li>
+                        <li class="tab col s3"><a href="#lec">Executive Functioning</a></li>
                         <li class="tab col s3"><a href="#math">Math</a></li>
                         <li class="tab col s3"><a href="#library">Library</a></li>
                         <li class="tab col s3"><a href="#helpDesktab">Help Desk</a></li>
@@ -302,7 +302,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                     <? LECmess(); ?>
                                 <!-- Confirm Radio -->
                                         <input class="with-gap" type="radio" name="place" value="lec" required id="lecConfirm" />
-                                        <label for="lecConfirm">Confirm LEC</label>
+                                        <label for="lecConfirm">Confirm Executive Functioning</label>
                                         <br>
                                         <br>
                                         <br>
