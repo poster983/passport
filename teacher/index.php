@@ -225,7 +225,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
     <br>
     <br>
-    <form method="post" action="">
+    <form method="get" action="">
         <div class="row">
             <div class="input-field col s5">
                 <label class="active">Enter Email</label>
@@ -270,8 +270,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 <?
         
-        if(isset($_POST['search'])){ 
-        $teacherName = $_POST['teacherName'];
+        if(isset($_GET['search'])){ 
+        $teacherName = $_GET['teacherName'];
             $sql = "SELECT DISTINCT name_title, lastname, email FROM teachers WHERE email = '$teacherName' ORDER BY lastname";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
@@ -279,7 +279,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                      $teacherNameComb = $row["name_title"] . " " . $row["lastname"];
                  }
             }
-        echo $teacherNameComb;
+        echo $teacherNameComb . ", bookmark this page inorder to quickley return here.";
             
            $today = date( 'Y-m-d', strtotime(" today "));
             
