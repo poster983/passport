@@ -44,6 +44,7 @@ include "../sqlconnect.php";
     $where_day = "WHERE day_to_come ='2016-07-07'";
 
 echo "<form method = 'post' action = ''>";
+        echo "<a class='waves-effect waves-light btn modal-trigger' href='#nextID'>Next <i class='material-icons right'>trending_flat</i></a>";
            $sql = "SELECT id, firstname, lastname, email, student_id, period, sh_teacher, place, day_to_come, reason_to_come, isHere FROM passes $where_day ORDER BY period, lastname";
     $result = $conn->query($sql);
 
@@ -63,13 +64,13 @@ echo "<form method = 'post' action = ''>";
             $inputType = "<input type='radio' id='" . $row["id"] . "' name='kioskIsHere' required value='" . $row["id"] . "' />";
         }
             
-            echo "<tr><td> " . $inputType . " <label for='" . $row["id"] . "'>Is Here?</label> " . $row["student_id"].  " </td><td>" . $row["lastname"].  " " . $row["firstname"]. "</td><td>" . $row["period"]. "</td><td>" . $row["sh_teacher"]. "</td><td>" . $row["place"]. "</td><td>" . $row["reason_to_come"]. "</td></tr></tbody>";
+            echo "<tr><td> " . $inputType . " <label for='" . $row["id"] . "'>Is Here?</label> </td><td>" . $row["lastname"].  " " . $row["firstname"]. "</td><td>" . $row["period"]. "</td><td>" . $row["sh_teacher"]. "</td><td>" . $row["place"]. "</td><td>" . $row["reason_to_come"]. "</td></tr></tbody>";
         }
         
         echo "</tbody></table>";
         echo "<a class='waves-effect waves-light btn modal-trigger' href='#nextID'>Next <i class='material-icons right'>trending_flat</i></a>";
 
-        echo "<button class='btn waves-effect waves-light' type='submit' name='updateIshereKIOSK'>Sign in <i class='material-icons right'>mode_edit</i></button>";
+        //echo "<button class='btn waves-effect waves-light' type='submit' name='updateIshereKIOSK'>Sign in <i class='material-icons right'>mode_edit</i></button>";
         
         } else {
             echo "0 results";

@@ -338,7 +338,7 @@ function LECmess()
     
         echo "<div class='row'>";
     if ($resultmessage->num_rows > 0) {
-        echo "<div class='col s12'><div class='hoverable card teal darken-4'><div class='card-content white-text'><span class='card-title'>IMPORTANT MESSAGE FROM THE LEC</span>";
+        echo "<div class='col s12'><div class='hoverable card teal darken-4'><div class='card-content white-text'><span class='card-title'>IMPORTANT MESSAGE FROM EXECUTIVE FUNCTIONING DEPARTMENT</span>";
         // output data of each row
         while($rowmessage = $resultmessage->fetch_assoc()) {
             echo "<p>";
