@@ -46,7 +46,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     
     <nav>
         <div class="nav-wrapper red darken-4">
-            <a href="/admin/index.php" class="brand-logo Center">Search Passes</a>
+            <a href="/admin/index.php" class="brand-logo Center">Teacher Dashboard</a>
         </div>
     </nav>
     
@@ -221,7 +221,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     ?>
     
     
-
+<? include "functions.php"; ?>
 
     <br>
     <br>
@@ -231,12 +231,14 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 <label class="active">Enter Email</label>
                 <input type="text" id="autocompleteName" name="teacherName" required class="autocomplete inputFields">
             </div>
-            <div class="col s7">
+            <div class="col s1">
                 <button class="btn waves-effect waves-light" type="submit" name="search">Search
                     <i class="material-icons right">send</i>
                 </button>
             </div>
+            <? echo blackout(); ?>
         </div>
+        
     </form>
 
 
