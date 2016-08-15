@@ -89,7 +89,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         <textarea id="bugtext" name="bugtext" required class="materialize-textarea" length="255"></textarea>
                         <label for="bugtext">Describe the bug or issue</label>
                     </div>
-                    <h5 class="center">Bug Severity</h5>
+                    <h5 class="center">Bug Severity Slider</h5>
                     <p class="center">1 being low priority and 5 being high priority</p>
                         <p class="range-field">
                             <input type="range" id="bugseverity" name="bugseverity" min="1" max="5" value="3" />
@@ -165,7 +165,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         <textarea id="reviewtext" name="reviewtext" class="materialize-textarea" length="255"></textarea>
                         <label for="reviewtext">Comment</label>
                     </div>
-                    <h5 class="center">Rating</h5>
+                    <h5 class="center">Rating Slider</h5>
                     
                         <p class="range-field">
                             <input type="range" id="rating" name="rating" min="1" max="10" value="5" />
