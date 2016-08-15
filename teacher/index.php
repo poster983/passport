@@ -279,7 +279,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                      $teacherNameComb = $row["name_title"] . " " . $row["lastname"];
                  }
             }
-        echo $teacherNameComb . ", bookmark this page inorder to quickley return here.";
+        echo $teacherNameComb . ", bookmark this page in order to quickly return here.";
             
            $today = date( 'Y-m-d', strtotime(" today "));
             

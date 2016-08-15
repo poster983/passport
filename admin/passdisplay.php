@@ -96,7 +96,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         // output data of each row
         echo "<tbody>";
         while($row = $result->fetch_assoc()) {
-            echo "<tr><td>" . 'Signature:  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp' . "</td><td>" . $row["lastname"].  " " . $row["firstname"]. "</td><td>" . $row["period"]. "</td><td>" . $row["sh_teacher"]. "</td><td>" . $row["place"]. "</td><td>" . $row["day_to_come"]. "</td></tr></tbody>";
+            echo "<tr><td>" . 'Signature:  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp' . "</td><td>" . $row["lastname"].  ", " . $row["firstname"]. "</td><td>" . $row["period"]. "</td><td>" . $row["sh_teacher"]. "</td><td>" . $row["place"]. "</td><td>" . $row["day_to_come"]. "</td></tr></tbody>";
         }
         
         echo "</tbody></table>";
@@ -122,7 +122,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             $inputAll = '';
         }
             
-            echo "<tr><td> <input type='checkbox' id='" . $row["id"] . "' name='" . $row["id"] . "'" . $inputAll . " value='1' /> <label for='" . $row["id"] . "'>Is Here?</label> </td><td>" . $row["student_id"]. "</td><td>" . $row["lastname"].  " " . $row["firstname"]. "</td><td>" . $row["email"]. "</td><td>" . $row["period"]. "</td><td>" . $row["sh_teacher"]. "</td><td>" . $row["place"]. "</td><td>" . $row["day_to_come"]. "</td><td>" . $row["reason_to_come"]. "</td></tr></tbody>";
+            echo "<tr><td> <input type='checkbox' id='" . $row["id"] . "' name='" . $row["id"] . "'" . $inputAll . " value='1' /> <label for='" . $row["id"] . "'>Is Here?</label> </td><td>" . $row["student_id"]. "</td><td>" . $row["lastname"].  ", " . $row["firstname"]. "</td><td>" . $row["email"]. "</td><td>" . $row["period"]. "</td><td>" . $row["sh_teacher"]. "</td><td>" . $row["place"]. "</td><td>" . $row["day_to_come"]. "</td><td>" . $row["reason_to_come"]. "</td></tr></tbody>";
         }
         
         echo "</tbody></table>";

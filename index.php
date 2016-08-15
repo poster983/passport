@@ -695,8 +695,10 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                     }
                                 ?>
                                     </select>
-                                    <input class="with-gap" type="radio" name="perTab" value="e" id="eConfirm" />
-                                    <label for="eConfirm">Confirm Study Hall and Period</label>
+                                    <input class="with-gap" type="radio" name="perTab" value="eL1" id="eL1Confirm" />
+                                    <label for="eL1Confirm">Confirm E Period (First Lunch)</label>
+                                    <input class="with-gap" type="radio" name="perTab" value="eL2" id="eL2Confirm" />
+                                    <label for="eL2Confirm">Confirm E Period (Second Lunch)</label>
                                 </p>
                             </div>
                             <!--FFFFFFFFFFFFFFFFFFFF-->

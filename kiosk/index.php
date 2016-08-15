@@ -40,8 +40,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <? 
 include "../sqlconnect.php";
     
-    //$where_day = "WHERE day_to_come ='" . date( 'Y-m-d', strtotime(" today ")) . "'";
-    $where_day = "WHERE day_to_come ='2016-07-07'";
+    $where_day = "WHERE day_to_come ='" . date( 'Y-m-d', strtotime(" today ")) . "'";
+    //$where_day = "WHERE day_to_come ='2016-07-07'";
 
 echo "<form method = 'post' action = ''>";
         echo "<a class='waves-effect waves-light btn modal-trigger' href='#nextID'>Next <i class='material-icons right'>trending_flat</i></a>";

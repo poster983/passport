@@ -84,8 +84,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                 <input name="tper" type="radio" id="d" value="d" />
                                 <label for="d">D Period</label>
                                 &nbsp &nbsp
-                                <input name="tper" type="radio" id="e" value="e" />
-                                <label for="e">E Period</label>
+                                <input name="tper" type="radio" id="eL1" value="eL1" />
+                                <label for="eL1">E Period (First Lunch)</label>
+                                &nbsp &nbsp
+                                <input name="tper" type="radio" id="eL2" value="eL2" />
+                                <label for="eL2">E Period (Second Lunch)</label>
                                 &nbsp &nbsp
                                 <input name="tper" type="radio" id="f" value="f" />
                                 <label for="f">F Period</label>

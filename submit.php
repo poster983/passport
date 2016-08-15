@@ -104,7 +104,7 @@ if ($error) {
             elseif ($perTab === "d") {
                 $shTeacher = $shTeacherD;
             }
-            elseif ($perTab === "e") {
+            elseif ($perTab === "eL1" or "eL2") {
                 $shTeacher = $shTeacherE;
             }
             elseif ($perTab === "f") {

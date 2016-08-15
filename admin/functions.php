@@ -54,15 +54,16 @@ function barChartTally($dep) {
     var <? echo $tallyBar;?> = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ["A", "B", "C", "D", "E", "F", "G", "H"],
+        labels: ["A", "B", "C", "D", "E L1", "E L2", "F", "G", "H"],
         datasets: [{
             //label: '# of Votes',
-            data: [<? echo $a;?>, <? echo $b;?>, <? echo $c;?>, <? echo $d;?>, <? echo $e;?>, <? echo $f;?>, <? echo $g;?>, <? echo $h;?>],
+            data: [<? echo $a;?>, <? echo $b;?>, <? echo $c;?>, <? echo $d;?>, <? echo $eL1;?>, <? echo $eL2;?>, <? echo $f;?>, <? echo $g;?>, <? echo $h;?>],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
                 'rgba(255, 206, 86, 0.2)',
                 'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
                 'rgba(153, 102, 255, 0.2)',
                 'rgba(255, 159, 64, 0.2)',
                 'rgba(0, 150, 136, 0.2)',
@@ -73,6 +74,7 @@ function barChartTally($dep) {
                 'rgba(54, 162, 235, 1)',
                 'rgba(255, 206, 86, 1)',
                 'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
                 'rgba(153, 102, 255, 1)',
                 'rgba(255, 159, 64, 1)',
                 'rgba(0, 150, 136, 1)',

@@ -50,8 +50,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                     <input type="checkbox" id="dper" name="dper" value="D" />
                     <label for="dper">D Period</label>
                     &nbsp &nbsp
-                    <input type="checkbox" id="eper" name="eper" value="E" />
-                    <label for="eper">E Period</label>
+                    <input type="checkbox" id="eperL1" name="eperL1" value="E(First Lunch)" />
+                    <label for="eperL1">E Period (1st Lunch)</label>
+                    &nbsp &nbsp
+                    <input type="checkbox" id="eperL2" name="eperL2" value="E(Second Lunch)" />
+                    <label for="eperL2">E Period (2nd Lunch)</label>
                     &nbsp &nbsp
                     <input type="checkbox" id="fper" name="fper" value="F" />
                     <label for="fper">F Period</label>
@@ -142,12 +145,13 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         $bper = $_POST['bper'];
         $cper = $_POST['cper'];
         $dper = $_POST['dper'];
-        $eper = $_POST['eper'];
+        $eperL1 = $_POST['eperL1'];
+        $eperL2 = $_POST['eperL2'];
         $fper = $_POST['fper'];
         $gper = $_POST['gper'];
         $hper = $_POST['hper'];
         
-        $per = "$aper,$bper,$cper,$dper,$eper,$fper,$gper,$hper";
+        $per = "$aper,$bper,$cper,$dper,$eperL1,$eperL2,$fper,$gper,$hper";
             
         $perarray = explode(",", $per);
         
