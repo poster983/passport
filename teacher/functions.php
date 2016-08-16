@@ -63,7 +63,7 @@ function blackout()
         echo "<p> Please keep the students in your study hall </p>";
         echo "</div></div></div>";
         } else {
-            echo "<div class='center col s12'><div class='hoverable card green'><div class='card-content white-text'><span class='card-title'>ALL Departments are open today.</span></div></div></div>";
+            echo "<div class='center col s12 m6'><div class='hoverable card green'><div class='card-content white-text'><span class='card-title'>ALL Departments are open today.</span></div></div></div>";
     }
     
 }

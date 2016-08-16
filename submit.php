@@ -70,8 +70,8 @@ if ($error) {
   }
     {
         $today = date( 'Y-m-d', strtotime(" today "));
-        $first_name = $_POST['first_name'];
-        $last_name = $_POST['last_name'];
+        $first_name = htmlspecialchars($_POST['first_name'],ENT_QUOTES);
+        $last_name = htmlspecialchars($_POST['last_name'],ENT_QUOTES);
         $student_id = $_POST['student_id'];
         $email = $_POST['email'];
         $place = $_POST['place'];
@@ -104,17 +104,21 @@ if ($error) {
             elseif ($perTab === "d") {
                 $shTeacher = $shTeacherD;
             }
-            elseif ($perTab === "eL1" or "eL2") {
+            elseif ($perTab == "eL1" ) {
                 $shTeacher = $shTeacherE;
             }
-            elseif ($perTab === "f") {
+            elseif ($perTab == "eL2" ) {
+                $shTeacher = $shTeacherE;
+            }
+            elseif ($perTab == "f") {
                 $shTeacher = $shTeacherF;
             }
-            elseif ($perTab === "g") {
+            elseif ($perTab == "g") {
                 $shTeacher = $shTeacherG;
             }
-            elseif ($perTab === "h") {
+            elseif ($perTab == "h") {
                 $shTeacher = $shTeacherH;
+                
             }
             else {
             echo "ERROR, INVALID PERIOD";
@@ -158,7 +162,7 @@ if ($error) {
             */
         }
         include "sqlconnect.php";
-        
+        echo $shTeacher . "Teacher";
 
 
         

@@ -111,10 +111,10 @@ if(isset($_POST['add_new_entry'])){
 
   }
     {
-        $first_name = $_POST['first_name'];
-        $last_name = $_POST['last_name'];
+        $first_name = htmlspecialchars($_POST['first_name'],ENT_QUOTES);
+        $last_name = htmlspecialchars($_POST['last_name'],ENT_QUOTES);
         $name_title = $_POST['name_title'];
-        $email = $_POST['email'];
+        $email = strtolower($_POST['email']);
         $room = $_POST['room'];
         $aper = $_POST['aper'];
         $bper = $_POST['bper'];

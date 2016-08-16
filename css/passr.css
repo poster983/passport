@@ -306,3 +306,52 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   clip: rect(0, 900px, 0, 0);
   animation: noise-anim-2 3s infinite linear alternate-reverse;
 }
+
+
+
+/*AUTO COMPLETE */
+
+.autocomplete-content {
+    position: relative;
+    background: #E0E0E0;
+    margin-top: -.9rem;
+    z-index: 1000;
+}
+
+.autocomplete-content li {
+    clear: both;
+    color: rgba(0, 0, 0, 0.87);
+    cursor: pointer;
+    line-height: 0;
+    width: 100%;
+    text-align: left;
+    text-transform: none;
+    padding: 10px;
+}
+
+.autocomplete-content li > span {
+    color: #000000;
+    font-size: .9rem;
+    padding: 1.2rem;
+    display: block;
+}
+
+.autocomplete-content li > span .highlight {
+    color: #000000;
+}
+
+.autocomplete-content li img {
+    height: 52px;
+    width: 52px;
+    padding: 5px;
+    margin: 0 15px;
+}
+
+.autocomplete-content li:hover {
+    background: #eee;
+    cursor: pointer;
+}
+
+.autocomplete-content > li:hover {
+    background: #009688;
+}

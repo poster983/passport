@@ -15,7 +15,7 @@ if (isset($_POST['Submit'])) {
 		$row = mysql_fetch_array($result, MYSQL_BOTH);
 		if($password == $row["password"]) {
 			session_regenerate_id();
-			$_SESSION['adminok'] = "ok";
+			$_SESSION['kioskok'] = "ok";
 			$_SESSION['username'] = "username";
 			$_SESSION['password'] = "password";
 			header("Location: index.php");
