@@ -73,6 +73,16 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     background: linear-gradient(#03A9F4, #009688);
 }
 
+.red-purple {
+    background-image: linear-gradient(rgb(231, 76, 60) 25%, rgb(155, 38, 175) 100%);
+    background-image: -moz-linear-gradient( rgb(231, 76, 60) 25%, rgb(155, 38, 175) 100%);
+    background-image: -webkit-linear-gradient( rgb(231, 76, 60) 25%, rgb(155, 38, 175) 100%);
+    background-image: -o-linear-gradient(rgb(231, 76, 60) 25%, rgb(155, 38, 175) 100%);
+    background-image: -ms-linear-gradient( rgb(231, 76, 60) 25%, rgb(155, 38, 175) 100%);
+}
+
+
+
 
  /* The Overlay (background) */
 .overlay-full {

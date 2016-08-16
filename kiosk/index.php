@@ -1,3 +1,8 @@
+<?
+include("common.php");
+checklogin();
+$msg = "";
+?>
 <!--
 
 The MIT License (MIT)
@@ -29,13 +34,15 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="/css/passr.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="/css/kiosk.css" type="text/css" rel="stylesheet" media="screen,projection" />
         
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
     </head>
-    <body>
+    <body class="grey darken-4">
+        <h1 class="center" style='color: #ecf0f1'>Student Sign In</h1>
     
 <? 
 include "../sqlconnect.php";
@@ -43,15 +50,15 @@ include "../sqlconnect.php";
     $where_day = "WHERE day_to_come ='" . date( 'Y-m-d', strtotime(" today ")) . "'";
     //$where_day = "WHERE day_to_come ='2016-07-07'";
 
-echo "<form method = 'post' action = ''>";
+echo "<div class= 'container'> <form method = 'post' action = ''>";
         
            $sql = "SELECT id, firstname, lastname, email, student_id, period, sh_teacher, place, day_to_come, reason_to_come, isHere FROM passes $where_day ORDER BY period, lastname";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-
         
-        echo "<table class='bordered responsive-table'><thead><tr><th>Is Here?</th><th>Name</th><th>Period</th><th>Study Hall Teacher</th><th>Department</th><th>Reason to come</th></tr></thead>";
+        
+        echo "<table class='bordered responsive-table'><thead style='color: #ecf0f1'><tr><th>Is Here?</th><th>Name</th><th>Period</th><th>Study Hall Teacher</th><th>Department</th><th>Reason to come</th></tr></thead>";
         // output data of each row
         echo "<tbody>";
         while($row = $result->fetch_assoc()) {
@@ -61,14 +68,14 @@ echo "<form method = 'post' action = ''>";
             $inputType = "<input type='checkbox' id='" . $row["id"] . "' name='" . $row["id"] . "'   checked='checked' disabled='disabled' value='1' />";
         } else {
             $inputAll = '';
-            $inputType = "<input type='radio' id='" . $row["id"] . "' name='kioskIsHere' onclick='openNextID()' required value='" . $row["id"] . "' />";
+            $inputType = "<input type='radio' class='with-gap' id='" . $row["id"] . "' name='kioskIsHere' onclick='openNextID()' required value='" . $row["id"] . "' />";
         }
             
-            echo "<tr><td> " . $inputType . " <label for='" . $row["id"] . "'>Is Here?</label> </td><td>" . $row["lastname"].  " " . $row["firstname"]. "</td><td>" . $row["period"]. "</td><td>" . $row["sh_teacher"]. "</td><td>" . $row["place"]. "</td><td>" . $row["reason_to_come"]. "</td></tr></tbody>";
+            echo "<tr style='color: #ecf0f1'><td> " . $inputType . " <label for='" . $row["id"] . "'>Is Here?</label> </td><td>" . $row["lastname"].  ", " . $row["firstname"]. "</td><td>" . $row["period"]. "</td><td>" . $row["sh_teacher"]. "</td><td>" . $row["place"]. "</td><td>" . $row["reason_to_come"]. "</td></tr></tbody>";
         }
         
         echo "</tbody></table>";
-        echo "<a class='waves-effect waves-light btn modal-trigger' href='#nextID'>Next <i class='material-icons right'>trending_flat</i></a>";
+        //echo "<a class='waves-effect waves-light btn modal-trigger' href='#nextID'>Next <i class='material-icons right'>trending_flat</i></a>";
 
         //echo "<button class='btn waves-effect waves-light' type='submit' name='updateIshereKIOSK'>Sign in <i class='material-icons right'>mode_edit</i></button>";
         
@@ -97,6 +104,7 @@ echo "<form method = 'post' action = ''>";
         </div>        
         
         </form>
+    </div>
         
         <?
 
