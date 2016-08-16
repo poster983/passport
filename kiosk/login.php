@@ -70,7 +70,7 @@ if (isset($_POST['Submit'])) {
                     <label for="password">Password</label>
                 </div>
                 </div>
-                <button class="btn waves-effect waves-light teal" type="submit" name="Submit">Login
+                <button class="waves-effect waves-light btn-flat" type="submit" name="Submit">Login
                     <i class="material-icons right">lock_open</i>
                 </button>
             </form>
