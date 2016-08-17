@@ -5,6 +5,6 @@ $dbusername = "uname";
 $dbpassword = "pass";
 $database = "dbname";
 
-//Set to "0" to disable debug echos
+//Set to "0" to disable debug echos (optional)
 $devDebugEchoToggle = 1;
 ?>
