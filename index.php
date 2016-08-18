@@ -51,11 +51,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 </head>
 
 <body>
-    
+
     <!-- Request closed overlay -->
-    
+
     <?
-    
+
     if(date("l") == "Sundayiii" OR date("l") == "Saturdayiii") {
         $overlayClosedReasonH1 = "Pass Requests are closed on the weekends.";
         $closedFormAction = "";
@@ -63,27 +63,27 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         echo "<script>$(document).ready(function(){openFullOverlay()});</script>";
     } else {
         $closedFormAction = "/submit.php";
-        
+
     }
-    
+
     ?>
-    
-    
+
+
     <div id="overlayFull" class="overlay-full">
-    
+
         <div class="overlay-full-content">
             <h1 class="black-text"><? echo $overlayClosedReasonH1; ?></h1>
         </div>
-        
+
     </div>
-    
+
     <div id="blurg" class="<? echo $blurClass; ?>">
-    
+
     <!--Navbar-->
     <nav>
         <div class="nav-wrapper red darken-4">
             <a href="#" class="brand-logo black-text center">passr</a>
-            
+
         </div>
     </nav>
 
@@ -91,11 +91,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <div>
         <a href="https://github.com/poster983/passr"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
     </div>
-   
+
 
     <!--FEEDBACK FAB-->
-    
-    
+
+
     <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
         <a class="btn-floating btn-large red tooltipped" data-position="left" data-delay="50" data-tooltip="Feedback">
             <i class="large material-icons">assignment</i>
@@ -107,11 +107,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             <li><a class="btn-floating blue tooltipped" data-position="left" data-delay="50" data-tooltip="Version Info and Licence"><i class="material-icons">info</i></a></li>
         </ul>
     </div>
-    
-    
+
+
     <? include "sqlconnect.php"; ?>
-    
-    
+
+
   <!-- Bug Modal -->
   <div id="bugmodal" class="modal bottom-sheet">
     <div class="modal-content">
@@ -138,26 +138,26 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         </p>
                 </div>
                 <div class="modal-footer">
-                    
+
                     <button class="btn waves-effect waves-light modal-action modal-close" type="submit" name="submitbug">Submit Bug Report
                         <i class="material-icons right">send</i>
                     </button>
                 </div>
             </form>
         </div>
-      
-    </div>
-    
-  </div>
-    
-    <?
-    
-    //bug report submit code
-    
-    
-    if(isset($_POST['submitbug'])){ 
 
-    
+    </div>
+
+  </div>
+
+    <?
+
+    //bug report submit code
+
+
+    if(isset($_POST['submitbug'])){
+
+
         foreach ($_POST as $key => $value) {
 
     }
@@ -170,7 +170,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         $bugdate = date( 'Y-m-d', strtotime(" today "));
         $bugtext = htmlspecialchars($_POST['bugtext'],ENT_QUOTES);
     }
-    
+
         $sqlbug = "INSERT INTO feedback (name, email, comment, rating, report_type, date, role)
         VALUES ('$bugname', '$bugemail', '$bugtext', '$bugseverity', 'bug', '$bugdate', 'student')";
 
@@ -179,13 +179,13 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         //echo "Bug report submitted successfully";
         } else {
         echo "Error: " . $sqlbug . "<br>" . $conn->error;
-    
+
 }
-        
+
     }
-    
+
     ?>
-    
+
       <!--Review Modal disclaimer -->
   <div id="reviewmodaldis" class="modal">
     <div class="modal-content">
@@ -196,7 +196,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       <a href="#reviewmodal" class=" modal-action modal-close modal-trigger waves-effect waves-green btn-flat">I Agree</a>
     </div>
   </div>
-    
+
     <!-- Review Modal -->
   <div id="reviewmodal" class="modal bottom-sheet">
     <div class="modal-content">
@@ -217,32 +217,32 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         <label for="reviewtext">Comment</label>
                     </div>
                     <h5 class="center">Rating Slider</h5>
-                    
+
                         <p class="range-field">
                             <input type="range" id="rating" name="rating" min="1" max="10" value="5" />
                         </p>
                 </div>
                 <div class="modal-footer">
-                    
+
                     <button class="btn waves-effect waves-light modal-action modal-close" type="submit" name="submitreview">Submit Review
                         <i class="material-icons right">send</i>
                     </button>
                 </div>
             </form>
         </div>
-      
-    </div>
-    
-  </div>
-    
-    <?
-    
-    //bug report submit code
-    
-    
-    if(isset($_POST['submitreview'])){ 
 
-    
+    </div>
+
+  </div>
+
+    <?
+
+    //bug report submit code
+
+
+    if(isset($_POST['submitreview'])){
+
+
         foreach ($_POST as $key => $value) {
 
     }
@@ -255,7 +255,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         $reviewseverity = $_POST['rating'];
         $reviewdate = date( 'Y-m-d', strtotime(" today "));
     }
-    
+
         $sqlreview = "INSERT INTO feedback (name, email, comment, rating, report_type, date, role)
         VALUES ('$reviewname', '$reviewemail', '$reviewtext', '$reviewseverity', 'review', '$reviewdate', 'student')";
 
@@ -264,21 +264,21 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         //echo "Review submitted successfully";
         } else {
         echo "Error: " . $sqlreview . "<br>" . $conn->error;
-    
+
 }
-        
+
     }
-    
+
     ?>
-    
-    
-    
-    
+
+
+
+
     <!--Tabs-->
     <br>
     <br>
     <br>
-    
+
         <form method="post" action=" <? echo $closedFormAction; ?> ">
             <div class="row">
                 <div class="col s12">
@@ -310,16 +310,16 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                             <option selected disabled value="">Why are you coming today?</option>
                                             <!-- php Reason dropdown -->
                                             <?
-                                    $sql="SELECT dep, why FROM why WHERE dep='LEC' ORDER BY why"; 
+                                    $sql="SELECT dep, why FROM why WHERE dep='LEC' ORDER BY why";
                                     $result = $conn->query($sql);
-                                    
+
                                     if ($result->num_rows > 0) {
                                         // output data of each row
                                         while($row = $result->fetch_assoc()) {
-                                            
+
                                             echo '<option value="'.$row['why'].'">' . $row['why']. "</option>";
                                         }
-                                        
+
                                     }
                                             ?>
                                         </select>
@@ -341,16 +341,16 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                             <option selected disabled value="">Why are you coming today?</option>
                                             <!-- php Reason dropdown -->
                                             <?
-                                    $sql="SELECT dep, why FROM why WHERE dep='Math Department' ORDER BY why"; 
+                                    $sql="SELECT dep, why FROM why WHERE dep='Math Department' ORDER BY why";
                                     $result = $conn->query($sql);
-                                    
+
                                     if ($result->num_rows > 0) {
                                         // output data of each row
                                         while($row = $result->fetch_assoc()) {
-                                            
+
                                             echo '<option value="'.$row['why'].'">' . $row['why']. "</option>";
                                         }
-                                        
+
                                     }
                                             ?>
                                         </select>
@@ -373,16 +373,16 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                             <option selected disabled value="">Why are you coming today?</option>
                                             <!-- php Reason dropdown -->
                                             <?
-                                    $sql="SELECT dep, why FROM why WHERE dep='Library' ORDER BY why"; 
+                                    $sql="SELECT dep, why FROM why WHERE dep='Library' ORDER BY why";
                                     $result = $conn->query($sql);
-                                    
+
                                     if ($result->num_rows > 0) {
                                         // output data of each row
                                         while($row = $result->fetch_assoc()) {
-                                            
+
                                             echo '<option value="'.$row['why'].'">' . $row['why']. "</option>";
                                         }
-                                        
+
                                     }
                                             ?>
                                         </select>
@@ -404,16 +404,16 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                             <option selected disabled value="">Why are you coming today?</option>
                                             <!-- php Reason dropdown -->
                                             <?
-                                    $sql="SELECT dep, why FROM why WHERE dep='Help Desk' ORDER BY why"; 
+                                    $sql="SELECT dep, why FROM why WHERE dep='Help Desk' ORDER BY why";
                                     $result = $conn->query($sql);
-                                    
+
                                     if ($result->num_rows > 0) {
                                         // output data of each row
                                         while($row = $result->fetch_assoc()) {
-                                            
+
                                             echo '<option value="'.$row['why'].'">' . $row['why']. "</option>";
                                         }
-                                        
+
                                     }
                                             ?>
                                         </select>
@@ -435,16 +435,16 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                             <option selected disabled value="">Why are you coming today?</option>
                                             <!-- php Reason dropdown -->
                                             <?
-                                    $sql="SELECT dep, why FROM why WHERE dep='Writing Lab' ORDER BY why"; 
+                                    $sql="SELECT dep, why FROM why WHERE dep='Writing Lab' ORDER BY why";
                                     $result = $conn->query($sql);
-                                    
+
                                     if ($result->num_rows > 0) {
                                         // output data of each row
                                         while($row = $result->fetch_assoc()) {
-                                            
+
                                             echo '<option value="'.$row['why'].'">' . $row['why']. "</option>";
                                         }
-                                        
+
                                     }
                                             ?>
                                         </select>
@@ -466,16 +466,16 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                             <option selected disabled value="">Why are you coming today?</option>
                                             <!-- php Reason dropdown -->
                                             <?
-                                    $sql="SELECT dep, why FROM why WHERE dep='Foreign Language' ORDER BY why"; 
+                                    $sql="SELECT dep, why FROM why WHERE dep='Foreign Language' ORDER BY why";
                                     $result = $conn->query($sql);
-                                    
+
                                     if ($result->num_rows > 0) {
                                         // output data of each row
                                         while($row = $result->fetch_assoc()) {
-                                            
+
                                             echo '<option value="'.$row['why'].'">' . $row['why']. "</option>";
                                         }
-                                        
+
                                     }
                                             ?>
                                         </select>
@@ -487,7 +487,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             <div class="container">
                 <div class="row">
                     <div class="col s12">
-                         
+
 
 
                         <div class="row">
@@ -558,18 +558,18 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
                                         <?
                                     include "sqlconnect.php";
-                           
 
-                                    $sql="SELECT id,name_title,lastname FROM teachers WHERE period='a' ORDER BY lastname"; 
+
+                                    $sql="SELECT name_title,firstname,lastname,email FROM teachers WHERE period='a' ORDER BY lastname";
                                     $result = $conn->query($sql);
-                                    
+
                                     if ($result->num_rows > 0) {
                                         // output data of each row
                                         while($row = $result->fetch_assoc()) {
-                                            
-                                            echo '<option value="'.$row['name_title'] . ' ' . $row['lastname'].'">' .$row['name_title'] . ' ' . $row['lastname'] . "</option>";
+
+                                            echo '<option value="'. $row['email'] . '">' .$row['name_title'] . ' ' . $row['firstname'] . ' ' . $row['lastname'] . "</option>";
                                         }
-                                        
+
                                     } else {
                                          $conn->close();
                                     }
@@ -587,18 +587,18 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
                                         <?
                                     include "sqlconnect.php";
-                           
 
-                                    $sql="SELECT id,name_title,lastname FROM teachers WHERE period='b' ORDER BY lastname"; 
+
+                                    $sql="SELECT name_title,firstname,lastname,email FROM teachers WHERE period='b' ORDER BY lastname";
                                     $result = $conn->query($sql);
-                                    
+
                                     if ($result->num_rows > 0) {
                                         // output data of each row
                                         while($row = $result->fetch_assoc()) {
-                                            
-                                            echo '<option value="'.$row['name_title'] . ' ' . $row['lastname'].'">' .$row['name_title'] . ' ' . $row['lastname'] . "</option>";
+
+                                            echo '<option value="'. $row['email'] . '">' .$row['name_title'] . ' ' . $row['firstname'] . ' ' . $row['lastname'] . "</option>";
                                         }
-                                        
+
                                     } else {
                                          $conn->close();
                                     }
@@ -619,18 +619,18 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
                                         <?
                                     include "sqlconnect.php";
-                           
 
-                                    $sql="SELECT id,name_title,lastname FROM teachers WHERE period='c' ORDER BY lastname"; 
+
+                                    $sql="SELECT name_title,firstname,lastname,email FROM teachers WHERE period='c' ORDER BY lastname";
                                     $result = $conn->query($sql);
-                                    
+
                                     if ($result->num_rows > 0) {
                                         // output data of each row
                                         while($row = $result->fetch_assoc()) {
-                                            
-                                            echo '<option value="'.$row['name_title'] . ' ' . $row['lastname'].'">' .$row['name_title'] . ' ' . $row['lastname'] . "</option>";
+
+                                            echo '<option value="'. $row['email'] . '">' .$row['name_title'] . ' ' . $row['firstname'] . ' ' . $row['lastname'] . "</option>";
                                         }
-                                        
+
                                     } else {
                                          $conn->close();
                                     }
@@ -649,18 +649,18 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
                                         <?
                                     include "sqlconnect.php";
-                           
 
-                                    $sql="SELECT id,name_title,lastname FROM teachers WHERE period='d' ORDER BY lastname"; 
+
+                                    $sql="SELECT name_title,firstname,lastname,email FROM teachers WHERE period='d' ORDER BY lastname";
                                     $result = $conn->query($sql);
-                                    
+
                                     if ($result->num_rows > 0) {
                                         // output data of each row
                                         while($row = $result->fetch_assoc()) {
-                                            
-                                            echo '<option value="'.$row['name_title'] . ' ' . $row['lastname'].'">' .$row['name_title'] . ' ' . $row['lastname'] . "</option>";
+
+                                            echo '<option value="'. $row['email'] . '">' .$row['name_title'] . ' ' . $row['firstname'] . ' ' . $row['lastname'] . "</option>";
                                         }
-                                        
+
                                     } else {
                                          $conn->close();
                                     }
@@ -678,18 +678,18 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
                                         <?
                                     include "sqlconnect.php";
-                           
 
-                                    $sql="SELECT id,name_title,lastname FROM teachers WHERE period='e' ORDER BY lastname"; 
+
+                                    $sql="SELECT name_title,firstname,lastname,email FROM teachers WHERE period='e' ORDER BY lastname";
                                     $result = $conn->query($sql);
-                                    
+
                                     if ($result->num_rows > 0) {
                                         // output data of each row
                                         while($row = $result->fetch_assoc()) {
-                                            
-                                            echo '<option value="'.$row['name_title'] . ' ' . $row['lastname'].'">' .$row['name_title'] . ' ' . $row['lastname'] . "</option>";
+
+                                            echo '<option value="'. $row['email'] . '">' .$row['name_title'] . ' ' . $row['firstname'] . ' ' . $row['lastname'] . "</option>";
                                         }
-                                        
+
                                     } else {
                                          $conn->close();
                                     }
@@ -709,18 +709,18 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
                                         <?
                                     include "sqlconnect.php";
-                           
 
-                                    $sql="SELECT id,name_title,lastname FROM teachers WHERE period='f' ORDER BY lastname"; 
+
+                                    $sql="SELECT name_title,firstname,lastname,email FROM teachers WHERE period='f' ORDER BY lastname";
                                     $result = $conn->query($sql);
-                                    
+
                                     if ($result->num_rows > 0) {
                                         // output data of each row
                                         while($row = $result->fetch_assoc()) {
-                                            
-                                            echo '<option value="'.$row['name_title'] . ' ' . $row['lastname'].'">' .$row['name_title'] . ' ' . $row['lastname'] . "</option>";
+
+                                            echo '<option value="'. $row['email'] . '">' .$row['name_title'] . ' ' . $row['firstname'] . ' ' . $row['lastname'] . "</option>";
                                         }
-                                        
+
                                     } else {
                                          $conn->close();
                                     }
@@ -738,18 +738,18 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
                                         <?
                                     include "sqlconnect.php";
-                           
 
-                                    $sql="SELECT id,name_title,lastname FROM teachers WHERE period='g' ORDER BY lastname"; 
+
+                                    $sql="SELECT name_title,firstname,lastname,email FROM teachers WHERE period='g' ORDER BY lastname";
                                     $result = $conn->query($sql);
-                                    
+
                                     if ($result->num_rows > 0) {
                                         // output data of each row
                                         while($row = $result->fetch_assoc()) {
-                                            
-                                            echo '<option value="'.$row['name_title'] . ' ' . $row['lastname'].'">' .$row['name_title'] . ' ' . $row['lastname'] . "</option>";
+
+                                            echo '<option value="'. $row['email'] . '">' .$row['name_title'] . ' ' . $row['firstname'] . ' ' . $row['lastname'] . "</option>";
                                         }
-                                        
+
                                     } else {
                                          $conn->close();
                                     }
@@ -767,18 +767,18 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
                                         <?
                                     include "sqlconnect.php";
-                           
 
-                                    $sql="SELECT id,name_title,lastname FROM teachers WHERE period='h' ORDER BY lastname"; 
+
+                                    $sql="SELECT name_title,firstname,lastname,email FROM teachers WHERE period='h' ORDER BY lastname";
                                     $result = $conn->query($sql);
-                                    
+
                                     if ($result->num_rows > 0) {
                                         // output data of each row
                                         while($row = $result->fetch_assoc()) {
-                                            
-                                            echo '<option value="'.$row['name_title'] . ' ' . $row['lastname'].'">' .$row['name_title'] . ' ' . $row['lastname'] . "</option>";
+
+                                            echo '<option value="'. $row['email'] . '">' .$row['name_title'] . ' ' . $row['firstname'] . ' ' . $row['lastname'] . "</option>";
                                         }
-                                        
+
                                     } else {
                                          $conn->close();
                                     }
@@ -823,10 +823,10 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
         <!--js-->
 
-        
 
-        
-        
+
+
+
         <!-- Scripts -->
         <!--[if lte IE 8]><script src="assets/js/respond.min.js"></script><![endif]-->
         <script>
@@ -843,8 +843,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 $('.modal-trigger').leanModal();
               });
         </script>
-    
+
 </body>
 
 </html>
-

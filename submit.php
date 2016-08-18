@@ -93,31 +93,31 @@ if ($error) {
         $whyfl = $_POST['whyfl'];
         {
             if ($perTab === "a") {
-                $shTeacher = $shTeacherA;
+                $shTeacherEmail = $shTeacherA;
         }
             elseif ($perTab === "b") {
-                $shTeacher = $shTeacherB;
+                $shTeacherEmail = $shTeacherB;
             }
             elseif ($perTab === "c") {
-                $shTeacher = $shTeacherC;
+                $shTeacherEmail = $shTeacherC;
             }
             elseif ($perTab === "d") {
-                $shTeacher = $shTeacherD;
+                $shTeacherEmail = $shTeacherD;
             }
             elseif ($perTab == "eL1" ) {
-                $shTeacher = $shTeacherE;
+                $shTeacherEmail = $shTeacherE;
             }
             elseif ($perTab == "eL2" ) {
-                $shTeacher = $shTeacherE;
+                $shTeacherEmail = $shTeacherE;
             }
             elseif ($perTab == "f") {
-                $shTeacher = $shTeacherF;
+                $shTeacherEmail = $shTeacherF;
             }
             elseif ($perTab == "g") {
-                $shTeacher = $shTeacherG;
+                $shTeacherEmail = $shTeacherG;
             }
             elseif ($perTab == "h") {
-                $shTeacher = $shTeacherH;
+                $shTeacherEmail = $shTeacherH;
 
             }
             else {
@@ -162,6 +162,18 @@ if ($error) {
             */
         }
         include "sqlconnect.php";
+
+        //Convert teacherID to Nametitle Lastname (ID Can be any DISTINCT way of identifying a teacher)
+        $sqltID = "SELECT name_title, lastname, email FROM teachers WHERE email = '$shTeacherEmail'";
+        $resulttID = $conn->query($sqltID);
+
+        if ($resulttID->num_rows > 0) {
+
+            while($rowtID = $resulttID->fetch_assoc()) {
+              $shTeacher =  $rowtID["name_title"] . " " . $rowtID["lastname"];
+            }
+          }
+
         if ($devDebugEchoToggle == 1){
           echo $shTeacher . "Teacher";
         }
@@ -244,8 +256,8 @@ if ($conn->query($sql) === TRUE) {
 
             $isHere = 0;
             $shTeacherExcused = 0;
-            $sql = "INSERT INTO passes (firstname, lastname, email, student_id, period, sh_teacher, place, day_to_come, reason_to_come, isHere, shTeacherExcused)
-            VALUES ('$first_name', '$last_name', '$email', '$student_id', '$perTab', '$shTeacher', '$place', '$day', '$why', '$isHere', '$shTeacherExcused')";
+            $sql = "INSERT INTO passes (firstname, lastname, email, student_id, period, sh_teacher, place, day_to_come, reason_to_come, isHere, shTeacherExcused, teacherEmail)
+            VALUES ('$first_name', '$last_name', '$email', '$student_id', '$perTab', '$shTeacher', '$place', '$day', '$why', '$isHere', '$shTeacherExcused', '$shTeacherEmail')";
 
             if ($conn->query($sql) === TRUE) {
 

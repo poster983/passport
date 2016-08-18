@@ -279,13 +279,16 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             if ($result->num_rows > 0) {
                  while($row = $result->fetch_assoc()) {
                      $teacherNameComb = $row["name_title"] . " " . $row["lastname"];
+                     $teacherEmail = $row["email"];
                  }
             }
         echo $teacherNameComb . ", bookmark this page in order to quickly return here.";
 
+        echo $teacherEmail;
+
            $today = date( 'Y-m-d', strtotime(" today "));
             echo "<form method = 'post' action = ''>";
-             $sql = "SELECT id, firstname, lastname, period, sh_teacher, place, day_to_come, shTeacherExcused FROM passes WHERE sh_teacher = '$teacherNameComb' AND day_to_come = '$today' ORDER BY period, lastname";
+             $sql = "SELECT id, firstname, lastname, period, sh_teacher, place, day_to_come, shTeacherExcused, teacherEmail FROM passes WHERE teacherEmail = '$teacherEmail' AND day_to_come = '$today' ORDER BY period, lastname";
             $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -298,11 +301,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         } else {
             $inputChecked = '';
         }
-            echo "<tr><td><input type='checkbox' id='" . $row["id"] . "' name='" . $row["id"] . "' disabled='disabled' value='" . $row["id"] . "' /> <label for='" . $row["id"] . "'>Student Excused (FEATURE COMING SOON)</label> </td><td>" . $row["lastname"] . ", " . $row["firstname"]. "</td><td>" . $row["period"]. "</td><td>" . $row["sh_teacher"]. "</td><td>" . $row["place"]. "</td><td>" . $row["day_to_come"]. "</td></tr></tbody>";
+            echo "<tr><td><input type='checkbox' id='" . $row["id"] . "' name='" . $row["id"] . "'" . $inputChecked . "' value='1' /> <label for='" . $row["id"] . "'>Student Excused</label> </td><td>" . $row["lastname"] . ", " . $row["firstname"]. "</td><td>" . $row["period"]. "</td><td>" . $row["sh_teacher"]. "</td><td>" . $row["place"]. "</td><td>" . $row["day_to_come"]. "</td></tr></tbody>";
         }
 
         echo "</tbody></table>";
-        //echo "<button class='btn waves-effect waves-light' type='submit' name='updateIsExcused'>Submit <i class='material-icons right'>mode_edit</i></button>";
+        echo "<button class='btn waves-effect waves-light' type='submit' name='updateIsExcused'>Submit <i class='material-icons right'>mode_edit</i></button>";
         echo "</form>";
         } else {
             echo "0 results";
@@ -332,18 +335,18 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 </html>
 
 <?
-/*
-if(isset($_POST['updateIsExcused'])){ 
 
-    
-    
+if(isset($_POST['updateIsExcused'])){
+
+
+
         foreach ($_POST as $key => $value) {
 
   }
     $checkID = $_POST[$row["id"]];
-    $sql = "SELECT id, shTeacherExcused FROM passes WHERE day_to_come = '$today' ORDER BY id";
+    $sql = "SELECT id, shTeacherExcused FROM passes WHERE day_to_come = '$today' AND teacherEmail = '$teacherEmail' ORDER BY id";
     $result = $conn->query($sql);
-    
+
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
             $$row["id"] = $_POST[$row["id"]];
@@ -356,21 +359,21 @@ if(isset($_POST['updateIsExcused'])){
                 $isHere = 0;
                 echo $isHere;
             }
-            $sqlu = "UPDATE passes SET shTeacherExcused='$isHere' WHERE id='$hereid'";
+            $sqlu = "UPDATE passes SET shTeacherExcused='$isHere' WHERE id='$hereid' AND teacherEmail = '$teacherEmail'";
             if ($conn->query($sqlu) === TRUE) {
                 echo "Record updated successfully";
-                
+
             } else {
                 echo "Error updating record: " . $conn->error;
-            }            
+            }
         }
         //echo "<script>  setTimeout(function () { window.location.href = '/teacher/index.php?" . $_SERVER["QUERY_STRING"] . "'; }, 500);  </script>";
-        
+
     } else {
         echo "nope";
     }
 
 }
 
-*/
+
 ?>

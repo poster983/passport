@@ -42,6 +42,7 @@ day_to_come VARCHAR(10) NOT NULL,
 reason_to_come VARCHAR(255) NOT NULL,
 isHere VARCHAR(5) NOT NULL,
 shTeacherExcused VARCHAR(5) NOT NULL,
+teacherEmail VARCHAR(255) NOT NULL,
 request_date TIMESTAMP
 )";
 
@@ -195,7 +196,7 @@ if ($tablesucsess == 9) {
 } else {
     echo "There was an error creating all of the tables.";
     $tablenext = "<a href='index.php'>Try Again</a>";
-        
+
 }
 
 
