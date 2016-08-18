@@ -367,7 +367,7 @@ if(isset($_POST['updateIsExcused'])){
                 echo "Error updating record: " . $conn->error;
             }
         }
-        //echo "<script>  setTimeout(function () { window.location.href = '/teacher/index.php?" . $_SERVER["QUERY_STRING"] . "'; }, 500);  </script>";
+        echo "<script>  setTimeout(function () { window.location.href = '/teacher/index.php?" . $_SERVER["QUERY_STRING"] . "'; }, 500);  </script>";
 
     } else {
         echo "nope";
