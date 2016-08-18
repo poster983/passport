@@ -34,7 +34,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <!--<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
     <script src="/js/materialize.js"></script>
@@ -43,17 +43,17 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 </head>
 
 <body>
-    
+
     <nav>
         <div class="nav-wrapper red darken-4">
             <a href="/admin/index.php" class="brand-logo Center">Teacher Dashboard</a>
         </div>
     </nav>
-    
-    
+
+
     <!--FEEDBACK FAB-->
-    
-    
+
+
     <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
         <a class="btn-floating btn-large red tooltipped" data-position="left" data-delay="50" data-tooltip="Feedback">
             <i class="large material-icons">assignment</i>
@@ -65,11 +65,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             <li><a class="btn-floating blue tooltipped" data-position="left" data-delay="50" data-tooltip="Version Info and Licence"><i class="material-icons">info</i></a></li>
         </ul>
     </div>
-    
-    
+
+
     <? include "../sqlconnect.php"; ?>
-    
-    
+
+
   <!-- Bug Modal -->
   <div id="bugmodal" class="modal bottom-sheet">
     <div class="modal-content">
@@ -96,26 +96,26 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         </p>
                 </div>
                 <div class="modal-footer">
-                    
+
                     <button class="btn waves-effect waves-light modal-action modal-close" type="submit" name="submitbug">Submit Bug Report
                         <i class="material-icons right">send</i>
                     </button>
                 </div>
             </form>
         </div>
-      
-    </div>
-    
-  </div>
-    
-    <?
-    
-    //bug report submit code
-    
-    
-    if(isset($_POST['submitbug'])){ 
 
-    
+    </div>
+
+  </div>
+
+    <?
+
+    //bug report submit code
+
+
+    if(isset($_POST['submitbug'])){
+
+
         foreach ($_POST as $key => $value) {
 
     }
@@ -128,7 +128,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         $bugseverity = $_POST['bugseverity'];
         $bugdate = date( 'Y-m-d', strtotime(" today "));
     }
-    
+
         $sqlbug = "INSERT INTO feedback (name, email, comment, rating, report_type, date, role)
         VALUES ('$bugname', '$bugemail', '$bugtext', '$bugseverity', 'bug', '$bugdate', 'teacher')";
 
@@ -137,15 +137,15 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         //echo "Bug report submitted successfully";
         } else {
         echo "Error: " . $sqlbug . "<br>" . $conn->error;
-    
+
 }
-        
+
     }
-    
+
     ?>
-    
-      
-    
+
+
+
     <!-- Review Modal -->
   <div id="reviewmodal" class="modal bottom-sheet">
     <div class="modal-content">
@@ -166,32 +166,32 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         <label for="reviewtext">Comment</label>
                     </div>
                     <h5 class="center">Rating Slider</h5>
-                    
+
                         <p class="range-field">
                             <input type="range" id="rating" name="rating" min="1" max="10" value="5" />
                         </p>
                 </div>
                 <div class="modal-footer">
-                    
+
                     <button class="btn waves-effect waves-light modal-action modal-close" type="submit" name="submitreview">Submit Review
                         <i class="material-icons right">send</i>
                     </button>
                 </div>
             </form>
         </div>
-      
-    </div>
-    
-  </div>
-    
-    <?
-    
-    //bug report submit code
-    
-    
-    if(isset($_POST['submitreview'])){ 
 
-    
+    </div>
+
+  </div>
+
+    <?
+
+    //bug report submit code
+
+
+    if(isset($_POST['submitreview'])){
+
+
         foreach ($_POST as $key => $value) {
 
     }
@@ -204,7 +204,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         $reviewseverity = $_POST['rating'];
         $reviewdate = date( 'Y-m-d', strtotime(" today "));
     }
-    
+
         $sqlreview = "INSERT INTO feedback (name, email, comment, rating, report_type, date, role)
         VALUES ('$reviewname', '$reviewemail', '$reviewtext', '$reviewseverity', 'review', '$reviewdate', 'teacher')";
 
@@ -213,14 +213,14 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         //echo "Review submitted successfully";
         } else {
         echo "Error: " . $sqlreview . "<br>" . $conn->error;
-    
+
 }
-        
+
     }
-    
+
     ?>
-    
-    
+
+
 <? include "functions.php"; ?>
 
     <br>
@@ -238,17 +238,17 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             </div>
             <? echo blackout(); ?>
         </div>
-        
+
     </form>
 
 
 
-    
+
 
     <script>
         var lNameData = [
     <?
-       
+
     $sql = "SELECT DISTINCT email FROM teachers ORDER BY email";
     $result = $conn -> query($sql);
     if ($result -> num_rows > 0) {
@@ -267,12 +267,12 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
         $('#autocompleteName').data('array', lNameData);
     </script>
-    
+
 
 
 <?
-        
-        if(isset($_GET['search'])){ 
+
+        if(isset($_GET['search'])){
         $teacherName = $_GET['teacherName'];
             $sql = "SELECT DISTINCT name_title, lastname, email FROM teachers WHERE email = '$teacherName' ORDER BY lastname";
             $result = $conn->query($sql);
@@ -282,28 +282,35 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                  }
             }
         echo $teacherNameComb . ", bookmark this page in order to quickly return here.";
-            
+
            $today = date( 'Y-m-d', strtotime(" today "));
-            
-             $sql = "SELECT firstname, lastname, period, sh_teacher, place, day_to_come FROM passes WHERE sh_teacher = '$teacherNameComb' AND day_to_come = '$today' ORDER BY period";
+            echo "<form method = 'post' action = ''>";
+             $sql = "SELECT id, firstname, lastname, period, sh_teacher, place, day_to_come, shTeacherExcused FROM passes WHERE sh_teacher = '$teacherNameComb' AND day_to_come = '$today' ORDER BY period, lastname";
             $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        echo "<table class='bordered responsive-table'><thead><tr><th>Name</th><th>Period</th><th>Study Hall Teacher</th><th>Department</th><th>Day</th></tr></thead>";
+        echo "<table class='bordered responsive-table'><thead><tr><th>Excused?</th><th>Name</th><th>Period</th><th>Study Hall Teacher</th><th>Department</th><th>Day</th></tr></thead>";
         // output data of each row
         echo "<tbody>";
         while($row = $result->fetch_assoc()) {
-            echo "<tr><td>" . $row["firstname"]. " " . $row["lastname"]. "</td><td>" . $row["period"]. "</td><td>" . $row["sh_teacher"]. "</td><td>" . $row["place"]. "</td><td>" . $row["day_to_come"]. "</td></tr></tbody>";
+            if($row["shTeacherExcused"] == 1){
+            $inputChecked = ' checked="checked"';
+        } else {
+            $inputChecked = '';
         }
-        
+            echo "<tr><td><input type='checkbox' id='" . $row["id"] . "' name='" . $row["id"] . "' disabled='disabled' value='" . $row["id"] . "' /> <label for='" . $row["id"] . "'>Student Excused (FEATURE COMING SOON)</label> </td><td>" . $row["lastname"] . ", " . $row["firstname"]. "</td><td>" . $row["period"]. "</td><td>" . $row["sh_teacher"]. "</td><td>" . $row["place"]. "</td><td>" . $row["day_to_come"]. "</td></tr></tbody>";
+        }
+
         echo "</tbody></table>";
+        //echo "<button class='btn waves-effect waves-light' type='submit' name='updateIsExcused'>Submit <i class='material-icons right'>mode_edit</i></button>";
+        echo "</form>";
         } else {
             echo "0 results";
         }
-            
+
         }
     ?>
-    
+
             <footer class="page-footer white">
         <div class="footer-copyright">
             <div class="container">
@@ -313,7 +320,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             </div>
         </div>
     </footer>
-    
+
     <script>
               $(document).ready(function(){
                 // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
@@ -323,3 +330,47 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 </body>
 
 </html>
+
+<?
+/*
+if(isset($_POST['updateIsExcused'])){ 
+
+    
+    
+        foreach ($_POST as $key => $value) {
+
+  }
+    $checkID = $_POST[$row["id"]];
+    $sql = "SELECT id, shTeacherExcused FROM passes WHERE day_to_come = '$today' ORDER BY id";
+    $result = $conn->query($sql);
+    
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $$row["id"] = $_POST[$row["id"]];
+            $hereid = $row["id"];
+            echo $hereid;
+            if ($$row["id"] == 1) {
+                $isHere = 1;
+                echo $isHere;
+            } else {
+                $isHere = 0;
+                echo $isHere;
+            }
+            $sqlu = "UPDATE passes SET shTeacherExcused='$isHere' WHERE id='$hereid'";
+            if ($conn->query($sqlu) === TRUE) {
+                echo "Record updated successfully";
+                
+            } else {
+                echo "Error updating record: " . $conn->error;
+            }            
+        }
+        //echo "<script>  setTimeout(function () { window.location.href = '/teacher/index.php?" . $_SERVER["QUERY_STRING"] . "'; }, 500);  </script>";
+        
+    } else {
+        echo "nope";
+    }
+
+}
+
+*/
+?>

@@ -243,8 +243,9 @@ if ($conn->query($sql) === TRUE) {
         {
 
             $isHere = 0;
-            $sql = "INSERT INTO passes (firstname, lastname, email, student_id, period, sh_teacher, place, day_to_come, reason_to_come, isHere)
-            VALUES ('$first_name', '$last_name', '$email', '$student_id', '$perTab', '$shTeacher', '$place', '$day', '$why', '$isHere')";
+            $shTeacherExcused = 0;
+            $sql = "INSERT INTO passes (firstname, lastname, email, student_id, period, sh_teacher, place, day_to_come, reason_to_come, isHere, shTeacherExcused)
+            VALUES ('$first_name', '$last_name', '$email', '$student_id', '$perTab', '$shTeacher', '$place', '$day', '$why', '$isHere', '$shTeacherExcused')";
 
             if ($conn->query($sql) === TRUE) {
 

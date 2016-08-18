@@ -30,6 +30,15 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <? include "nav.php"; ?>
 
         <body>
+            <!-- Modal Structure -->
+    <div id="instructions" class="modal">
+        <div class="modal-content">
+            <h4>NOTICE!</h4>
+            <p>Please fill out all of the fields. </p>
+            <p>If the teacher has multiple study halls with different room numbers, please fill in the form again for each room number with the appropriate periods respectively. </p>
+        </div>
+        <div class="modal-footer"> <a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat">Continue</a> </div>
+    </div>
             <div class="container">
                 <form method="post" action="">
                     <h4 class="center">Teacher Manager</h4>
@@ -100,7 +109,13 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="/js/materialize.js"></script>
         <script src="/js/init.js"></script>
-
+          <!-- Modal Trigger -->
+        <script>
+            $(document).ready(function () {
+                // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+                $('#instructions').openModal();
+            });
+        </script>
         </html>
 
         <?php    

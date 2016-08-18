@@ -41,6 +41,7 @@ place VARCHAR(50) NOT NULL,
 day_to_come VARCHAR(10) NOT NULL,
 reason_to_come VARCHAR(255) NOT NULL,
 isHere VARCHAR(5) NOT NULL,
+shTeacherExcused VARCHAR(5) NOT NULL,
 request_date TIMESTAMP
 )";
 
