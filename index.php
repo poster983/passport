@@ -500,14 +500,13 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                 <input id="last_name" name="last_name" type="text" required class="validate">
                                 <label for="last_name">Last Name</label>
                             </div>
-                            <div class="input-field col s4 push-s8">
-                                <input id="student_id" name="student_id" type="text" required class="validate">
-                                <label for="student_id">Student ID</label>
-                            </div>
-
-                            <div class="input-field col s8 pull-s4">
+                            <div class="input-field col s8">
                                 <input id="email" name="email" type="email" required class="validate">
                                 <label for="email">Email</label>
+                            </div>
+                            <div class="input-field col s4">
+                                <input id="student_id" name="student_id" type="text" required class="validate">
+                                <label for="student_id">Student ID</label>
                             </div>
                             <div class="section">
                                 <!-- Date radios -->
