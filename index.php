@@ -21,6 +21,19 @@ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORTOR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
+
+<!--
+
+Special Thanks
+
+Carson Rau - He came up with the idea.
+The LC staff at STHS
+Mr. Hodge
+The study halls and teachers who participated in the pilot program in the fall of 2016.
+Materializecss.com - They created the material design js and css library.
+
+-->
+
 <html>
 
 <head>
@@ -83,7 +96,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <!--Navbar-->
     <nav>
         <div class="nav-wrapper red darken-4">
-            <a href="#" class="brand-logo black-text center">passr</a>
+            <a href="#" class="brand-logo black-text center">Passport</a>
 
         </div>
     </nav>
