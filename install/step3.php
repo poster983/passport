@@ -31,7 +31,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 <body>
     <div>
-        <h1>Welcome to the Passr auto installer.</h1>
+        <h1>Welcome to the Passr/Passport auto installer.</h1>
     </div>
     <h3>Step 3</h3>
     <p>Now, lets create admin accounts</p>
@@ -77,10 +77,10 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 </html>
 
 <?
-if(isset($_POST['submit'])){ 
+if(isset($_POST['submit'])){
 
-    
-    
+
+
         foreach ($_POST as $key => $value) {
 
   }
@@ -96,22 +96,22 @@ if(isset($_POST['submit'])){
             echo "ERROR: Passwords must match";
         } else {
             include "../sqlconnect.php";
-            
+
             $sql = "INSERT INTO admin (username, firstname, lastname, email, password)
             VALUES ('$usernameadmin', '$first_name', '$last_name', '$email', '$passwordadmin')";
 
             if ($conn->query($sql) === TRUE) {
                 echo "New account created successfully";
-                
+
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
-                
+
             }
 
             $conn->close();
         }
     }
-    
-    
-} 
+
+
+}
 ?>

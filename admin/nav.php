@@ -42,7 +42,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
     <nav>
         <div class="nav-wrapper red darken-4">
-            <a href="/admin/index.php" class="brand-logo right">passr Admin Dashboard</a>
+            <a href="/admin/index.php" class="brand-logo right">Passport Admin Dashboard</a>
             <ul id="nav-desktop" class="left hide-on-med-and-down">
                 <li><a href="passsearch.php">Passes</a></li>
                 <li><a href="blackout.php">Blackout</a></li>

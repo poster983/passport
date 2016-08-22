@@ -30,7 +30,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 <body>
     <div>
-        <h1>Welcome to the Passr auto installer.</h1>
+        <h1>Welcome to the Passr/Passport auto installer.</h1>
     </div>
     <h3>Thank You!</h3>
     <p>PLEASE PLEASE PLEASE REMOVE "/install" AND ALL FILES AFTER YOU HAVE CONFIRMED THAT THIS HAS WORKED!!!</p>

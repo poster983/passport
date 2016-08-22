@@ -34,7 +34,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 <body>
     <div>
-        <h1>Welcome to the Passr auto installer.</h1>
+        <h1>Welcome to the Passr/Passport auto installer.</h1>
     </div>
     <h3>Step 4</h3>
     <p>Now, a limit is being set on how many passes can be requested</p>
@@ -68,7 +68,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         include "../sqlconnect.php";
         //To add new departments into this array, remove the departments already added and then add the new ones.
         //The names must mach the values of the departments in index.php
-        //NO SPACES 
+        //NO SPACES
         $deparray = array("lec", "math", "library", "hd", "Writing Lab", "Foreign Language");
            //also change "x" to the total of the array
            for ($x = 5; $x >= 0; $x--) {
@@ -79,17 +79,17 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
             if ($conn->query($sql) === TRUE) {
                 echo "New record created successfully";
-                
+
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
-                
+
             }
-            
+
            }
             $conn->close();
         }
-    
-    
-    
+
+
+
 
 ?>

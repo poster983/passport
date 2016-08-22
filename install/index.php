@@ -30,7 +30,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 <body>
     <div>
-        <h1>Welcome to the Passr auto installer.</h1>
+        <h1>Welcome to the Passr/Passport auto installer.</h1>
     </div>
     <h3>Step 1</h3>
     <p>Please edit the MySQL login values in "config.php"</p>

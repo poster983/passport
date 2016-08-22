@@ -36,17 +36,17 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     </nav>
 
 
-    
+
     <!-- Modal Structure -->
     <div id="instructions" class="modal">
         <div class="modal-content">
             <h4>NOTICE!</h4>
             <p>Please fill out all of the fields. </p>
-            <p>If you have multiple study halls with different room numbers, please fill in the form again for each room number with the appropriate periods respectively. </p>
+            <!--<p>If you have multiple study halls with different room numbers, please fill in the form again for each room number with the appropriate periods respectively. </p>-->
         </div>
         <div class="modal-footer"> <a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat">Continue</a> </div>
     </div>
-    
+
 
 
     <div class="container">
@@ -77,8 +77,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             </div>
             <div class="input-field">
                 <p>
-                    <input type="number" required name="room" id="room" />
-                    <label for="room">Room Number</label>
+                    <input type="number" disabled name="room" id="room" />
+                    <label for="room">Room Number (No longer Required)</label>
                 </p>
             </div>
 
@@ -112,16 +112,16 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <script>
   $(document).ready(function(){
     // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-    
+
       $('#instructions').openModal();
   });
    </script>
 
 </html>
-<?php    
-if(isset($_POST['add_new_entry'])){ 
+<?php
+if(isset($_POST['add_new_entry'])){
 
-    
+
         foreach ($_POST as $key => $value) {
 
   }
@@ -139,31 +139,31 @@ if(isset($_POST['add_new_entry'])){
         $fper = $_POST['fper'];
         $gper = $_POST['gper'];
         $hper = $_POST['hper'];
-       
-        $per = "$aper $bper $cper $dper $eper $fper $gper $hper"; 
-             
-        $perarray = explode(" ", $per); 
-         
-        $perarray_null = array_filter($perarray, 'strlen'); 
-         
-        $percount = count($perarray_null); 
-         
-        echo $per; 
-         
-        echo $percount; 
-        
+
+        $per = "$aper $bper $cper $dper $eper $fper $gper $hper";
+
+        $perarray = explode(" ", $per);
+
+        $perarray_null = array_filter($perarray, 'strlen');
+
+        $percount = count($perarray_null);
+
+        echo $per;
+
+        echo $percount;
+
         {
             echo "First Name: " . $first_name;
             echo "Last Name: " . $last_name;
             echo "Title: " . $name_title;
             echo "Email: " . $email;
             echo "Room: " . $room;
-            
+
         }
         include "../../sqlconnect.php";
         foreach($perarray_null as $forper) {
-            $sql = "INSERT INTO teachers (name_title, firstname, lastname, email, room, period)
-            VALUES ('$name_title', '$first_name', '$last_name', '$email', '$room', '$forper')";
+            $sql = "INSERT INTO teachers (name_title, firstname, lastname, email, period)
+            VALUES ('$name_title', '$first_name', '$last_name', '$email', '$forper')";
 
             if ($conn->query($sql) === TRUE) {
                 echo "New record created successfully";
@@ -171,7 +171,7 @@ if(isset($_POST['add_new_entry'])){
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }
         }
-    $conn->close();      
+    $conn->close();
     }
 }
 
