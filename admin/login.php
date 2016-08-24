@@ -10,7 +10,7 @@ if (isset($_POST['Submit'])) {
 	$username = mysql_real_escape_string($_POST['username']);
 	$password = mysql_real_escape_string($_POST['password']);
 	$result = mysql_query("select * from admin where username='$username'", $link);
-	
+
 	if(mysql_num_rows($result) > 0) {
 		$row = mysql_fetch_array($result, MYSQL_BOTH);
 		if($password == $row["password"]) {
@@ -51,15 +51,16 @@ if (isset($_POST['Submit'])) {
     </head>
 
 
-    <body class="grey darken-4">
+    <body class="blur-back">
+
         <div class="containerlogin signin-allign">
-            
+
             <div class="card-panel blue-teal <? echo $fadein; ?>">
             <form name="form1" method="post" action="">
                 <h3 class="center">Admin Login</h3>
                 <div class="card-panel <? echo $failshake; ?>">
 
-                
+
                 <div class="input-field">
                     <input name="username" type="text" id="username">
                     <label for="username">Username</label>
