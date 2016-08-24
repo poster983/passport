@@ -90,6 +90,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   right: 0;
   z-index: -1;
   display: block;
+  background-color: #2c3e50;
   background-image: url("https://source.unsplash.com/category/nature/1920x1080");
   width: auto;
   height: 100%;
