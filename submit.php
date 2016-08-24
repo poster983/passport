@@ -164,19 +164,32 @@ if ($error) {
         include "sqlconnect.php";
 
         //Convert teacherID to Nametitle Lastname (ID Can be any DISTINCT way of identifying a teacher)
-        $sqltID = "SELECT name_title, lastname, email FROM teachers WHERE email = '$shTeacherEmail'";
-        $resulttID = $conn->query($sqltID);
+        if ($sqltID = $conn->prepare("SELECT name_title, lastname, email FROM teachers WHERE email = ?")) {
 
-        if ($resulttID->num_rows > 0) {
+        $sqltID->bind_param("s", $shTeacherEmail);
+        $sqltID->execute();
+        //$resulttID = $conn->query($sqltID);
+        $sqltID->bind_result($tname_title, $tlastname, $void);
+        //if ($resulttID->num_rows > 0) {
+        while ($sqltID->fetch()) {
+          $tname_title;
+          $tlastname;
 
-            while($rowtID = $resulttID->fetch_assoc()) {
-              $shTeacher =  $rowtID["name_title"] . " " . $rowtID["lastname"];
-            }
-          }
-
+        }
+        $sqltID->close();
+         //while($rowtID = $resulttID->fetch_assoc()) {
+              //$shTeacher =  $rowtID["name_title"] . " " . $rowtID["lastname"];
+            //}
+          //}
+        } else {
+          echo "Error finding Teacher Name";
+          die ("Mysql Error: " . $conn->error);
+        }
+        $shTeacher = $tname_title . " " . $tlastname;
         if ($devDebugEchoToggle == 1){
           echo $shTeacher . "Teacher";
         }
+
 
 
 
@@ -210,18 +223,20 @@ if ($resulttally->num_rows > 0) {
     if ($devDebugEchoToggle == 1){
       echo "else";
     }
-        $sql = "INSERT INTO tally (tally, date, period, place)
-VALUES ('1', '$day', '$perTab', '$place')";
-
+        $one = 1;
+        $sqlnTally = $conn->prepare("INSERT INTO tally (tally, date, period, place) VALUES (?, ?, ?, ?)");
+        $sqlnTally->bind_param("isss", $one, $day, $perTab, $place);
+        $sqlnTally->execute();
+        $sqlnTally->close();
+/*
 if ($conn->query($sql) === TRUE) {
   if ($devDebugEchoToggle = 1){
     echo "New record created successfully";
   }
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
-
 }
-
+*/
 
 
 
@@ -256,30 +271,38 @@ if ($conn->query($sql) === TRUE) {
 
             $isHere = 0;
             $shTeacherExcused = 0;
-            $sql = "INSERT INTO passes (firstname, lastname, email, student_id, period, sh_teacher, place, day_to_come, reason_to_come, isHere, shTeacherExcused, teacherEmail)
-            VALUES ('$first_name', '$last_name', '$email', '$student_id', '$perTab', '$shTeacher', '$place', '$day', '$why', '$isHere', '$shTeacherExcused', '$shTeacherEmail')";
-
-            if ($conn->query($sql) === TRUE) {
+            $sqlpin = $conn->prepare("INSERT INTO passes (firstname, lastname, email, student_id, period, sh_teacher, place, day_to_come, reason_to_come, isHere, shTeacherExcused, teacherEmail)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            //'$first_name', '$last_name', '$email', '$student_id', '$perTab', '$shTeacher', '$place', '$day', '$why', '$isHere', '$shTeacherExcused', '$shTeacherEmail'
+            $sqlpin->bind_param("sssisssssiis", $first_name, $last_name, $email, $student_id, $perTab, $shTeacher, $place, $day, $why, $isHere, $shTeacherExcused, $shTeacherEmail);
+            $sqlpin->execute();
+            $sqlpin->close();
+            /*
+            if ($conn->query($sqlpin) === TRUE) {
 
                 echo "<iframe src='animate/Confirm/publish/web/Confirm.html' style='border: 0; width: 100%; height: 100%'>Requested Pass.</iframe>";
 
 
 
-                } else { echo "Error: " . $sql . "
-                <br>" . $conn->error; } $conn->close(); } } } } }
-
-}
+              } else { echo "Error: " . $sqlpin . "
+              <br>" . $conn->error; }*/
+              $conn->close();
+            }
+          }
+        }
+      }
+    }
+  }
 
 ?>
-
-
+        <!--
         <script>
             setTimeout(function () {
                 window.location.href = '/index.php'; // the redirect goes here
 
             }, 15000); // 10 seconds
         </script>
-
+      -->
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="/js/materialize.js"></script>
         <script src="/js/init.js"></script>

@@ -157,12 +157,12 @@ if(isset($_POST['updateIshereKIOSK'])){
 
 ?>
 
-        <footer class="page-footer white">
+        <footer class="page-footer grey darken-3">
             <div class="footer-copyright">
                 <div class="container">
-                    <a class="black-text left" href="https://www.josephhassell.com/">Copyright © 2016 Joseph Hassell</a> &nbsp &nbsp
-                    <a class="black-text right" href="https://github.com/poster983/passr/blob/master/LICENSE">License </a> &nbsp &nbsp
-                    <a class="black-text right" href="https://poster983.github.io/passr/">Project Page &nbsp &nbsp</a>&nbsp &nbsp
+                    <a class="white-text left" href="https://www.josephhassell.com/">Copyright © 2016 Joseph Hassell</a> &nbsp &nbsp
+                    <a class="white-text right" href="https://github.com/poster983/passr/blob/master/LICENSE">License </a> &nbsp &nbsp
+                    <a class="white-text right" href="https://poster983.github.io/passr/">Project Page &nbsp &nbsp</a>&nbsp &nbsp
                 </div>
             </div>
         </footer>
