@@ -1,4 +1,9 @@
-# passr
+![Passport for Schools](https://github.com/poster983/passr/blob/gh-pages/images/PassportHeader.png)
+
+
+
+
+# Passport
 A web script to electronically distribute passes to students.
 
 # Demo
