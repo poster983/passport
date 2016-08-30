@@ -1,4 +1,4 @@
-![Passport for Schools](https://github.com/poster983/passr/blob/gh-pages/images/PassportHeader.png)
+![Passport for Schools](https://github.com/poster983/passport/blob/gh-pages/images/PassportHeader.png)
 
 
 
