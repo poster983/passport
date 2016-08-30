@@ -191,22 +191,33 @@ if ($error) {
         }
 
 
+//
+mysqli_report(MYSQLI_REPORT_ERROR);
+if ($sqltally = $conn->prepare("SELECT tally, `date`, place, period FROM `tally` WHERE `date`= ? AND `place`= ? AND `period`= ?")) {
+$sqltally->bind_param("sss", $day, $place, $perTab);
+$result = $sqltally->execute();
+$sqltally->store_result();
+$sqltally->bind_result($ctally, $void2, $void3, $void4);
 
 
-$sqltally = "SELECT tally, date, period, place FROM tally WHERE date = '$day' AND place = '$place' AND period = '$perTab'";
-$resulttally = $conn->query($sqltally);
-
-if ($resulttally->num_rows > 0) {
-
-    while($rowtally = $resulttally->fetch_assoc()) {
-        $newtally = $rowtally["tally"] + 1;
+if ($sqltally->num_rows > "0") {
+    $sqltallyRow = 1;
+    echo "Number of rows " . $sqltally->num_rows;
+    while($sqltally->fetch()) {
+        $newtally = $ctally + 1;
 
     if ($devDebugEchoToggle == 1){
       echo $newtally;
     }
         //AND 'MAX(id)'
-
-    $sqlupdate = "UPDATE tally SET tally='$newtally' WHERE date = '$day' AND place = '$place' AND period = '$perTab'";
+}
+} else {
+  $sqltallyRow = 0;
+}
+$sqltally->close();
+}
+  if ($sqltallyRow == 1 ) {
+    $sqlupdate = "UPDATE tally SET tally='$newtally' WHERE `date` = '$day' AND place = '$place' AND period = '$perTab'";
 
         if ($conn->query($sqlupdate) === TRUE) {
           if ($devDebugEchoToggle == 1){
@@ -215,7 +226,7 @@ if ($resulttally->num_rows > 0) {
         } else {
             echo "Error updating record: " . $conn->error;
         }
-}
+
 
 
 
