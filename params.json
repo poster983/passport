@@ -1,6 +1,6 @@
 {
-  "name": "Passr",
+  "name": "Passport",
   "tagline": "A web script to electronically distribute passes to students.",
-  "body": "![Passport for Schools](https://github.com/poster983/passport/blob/gh-pages/images/PassportHeader.png)\r\n\r\nPassport is a program that allows schools to easily implement an open souse (MIT) library pass distribution system. \r\n\r\n# Demo\r\n<http://lec.josephhassell.com>\r\n\r\n# Wiki  \r\nSee the [https://github.com/poster983/passport/wiki](Wiki) for further documentation.\r\n \r\n",
+  "body": "![Passport for Schools](https://github.com/poster983/passport/blob/gh-pages/images/PassportHeader.png?raw=true)\r\n\r\nPassport is a program that allows schools to easily implement an open souse (MIT) library pass distribution system. \r\n\r\n# Demo\r\n<http://lec.josephhassell.com>\r\n\r\n# Wiki  \r\nSee the [https://github.com/poster983/passport/wiki](Wiki) for further documentation.\r\n \r\n",
   "note": "Don't delete this file! It's used internally to help with page regeneration."
 }
