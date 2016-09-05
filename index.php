@@ -527,7 +527,7 @@ Materializecss.com - They created the material design js and css library.
 
                                 <div>
                                     <p class="center">
-                                        <input type="radio" id="monday" name="day" required value="<? echo date( 'Y-m-d', strtotime(" monday this week ")); ?>">
+                                        <input type="radio" id="monday" name="day" required value="<? echo date( 'Y-m-d', strtotime("monday this week")); ?>">
                                         <label for="monday">Monday</label>
                                         &nbsp &nbsp
                                         <input type="radio" id="tuesday" name="day" value="<? echo date( 'Y-m-d', strtotime(" tuesday this week ")); ?>">

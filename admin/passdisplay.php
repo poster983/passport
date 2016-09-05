@@ -48,15 +48,15 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <body>
 
         <?
-        
-    include "../sqlconnect.php";
-    
-    
 
-    
-    
+    include "../sqlconnect.php";
+
+
+
+
+
     if(!isset($_GET['search'])) { //exit();
-    
+
         $where_day = "";
         $viewtype = "teacher";
     } else {
@@ -64,7 +64,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
   }
         $viewtype = $_GET['view'];
-        
+
         $tper = $_GET['tper'];
         $_SESSION["tper"] = $tper;
         echo $_SESSION["tper"];
@@ -83,10 +83,10 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             }
         $datesearch = $_GET['datesearch'];
         $where_day = "WHERE day_to_come ='$datesearch'";
-    
+
     }
-        
-        
+
+
         if ($viewtype == "signin") {
     $sql = "SELECT firstname, lastname, period, sh_teacher, place, day_to_come FROM passes $where_day ORDER BY period, lastname";
     $result = $conn->query($sql);
@@ -98,54 +98,59 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         while($row = $result->fetch_assoc()) {
             echo "<tr><td>" . 'Signature:  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp' . "</td><td>" . $row["lastname"].  ", " . $row["firstname"]. "</td><td>" . $row["period"]. "</td><td>" . $row["sh_teacher"]. "</td><td>" . $row["place"]. "</td><td>" . $row["day_to_come"]. "</td></tr></tbody>";
         }
-        
+
         echo "</tbody></table>";
         } else {
             echo "0 results";
         }
         } elseif ($viewtype == "teacher") {
             echo "<form method = 'post' action = ''>";
-           $sql = "SELECT id, firstname, lastname, email, student_id, period, sh_teacher, place, day_to_come, reason_to_come, isHere FROM passes $where_day $tperpost $tdeppost ORDER BY period, lastname";
+           $sql = "SELECT id, firstname, lastname, email, student_id, period, sh_teacher, place, day_to_come, reason_to_come, isHere, shTeacherExcused FROM passes $where_day $tperpost $tdeppost ORDER BY period, lastname";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
 
-        
-        echo "<table class='bordered responsive-table'><thead><tr><th>Is Here?</th><th>Student ID</th><th>Name</th><th>Email</th><th>Period</th><th>Study Hall Teacher</th><th>Department</th><th>Day</th><th>Reason to come</th></tr></thead>";
+
+        echo "<table class='bordered responsive-table'><thead><tr><th>Is Here?</th><th>Student ID</th><th>Name</th><th>Email</th><th>Period</th><th>Study Hall Teacher</th><th>Department</th><th>Day</th><th>Reason to come</th><th>Exused By Study hall teacher</th></tr></thead>";
         // output data of each row
         echo "<tbody>";
         while($row = $result->fetch_assoc()) {
-            
+
         if($row["isHere"] == 1){
             $inputAll = ' checked="checked"';
         } else {
             $inputAll = '';
         }
-            
-            echo "<tr><td> <input type='checkbox' id='" . $row["id"] . "' name='" . $row["id"] . "'" . $inputAll . " value='1' /> <label for='" . $row["id"] . "'>Is Here?</label> </td><td>" . $row["student_id"]. "</td><td>" . $row["lastname"].  ", " . $row["firstname"]. "</td><td>" . $row["email"]. "</td><td>" . $row["period"]. "</td><td>" . $row["sh_teacher"]. "</td><td>" . $row["place"]. "</td><td>" . $row["day_to_come"]. "</td><td>" . $row["reason_to_come"]. "</td></tr></tbody>";
+        if($row["shTeacherExcused"] == 1) {
+          $shTeacherExcused = "checked='checked'";
+        } else {
+          $shTeacherExcused = "";
         }
-        
+
+            echo "<tr><td> <input type='checkbox' id='" . $row["id"] . "' name='" . $row["id"] . "'" . $inputAll . " value='1' /> <label for='" . $row["id"] . "'>Is Here?</label> </td><td>" . $row["student_id"]. "</td><td>" . $row["lastname"].  ", " . $row["firstname"]. "</td><td>" . $row["email"]. "</td><td>" . $row["period"]. "</td><td>" . $row["sh_teacher"]. "</td><td>" . $row["place"]. "</td><td>" . $row["day_to_come"]. "</td><td>" . $row["reason_to_come"]. "</td><td><input type='checkbox' id='" . $row["id"] . "teacher' ". $shTeacherExcused . " disabled='disabled' /> <label for='" . $row["id"] . "teacher'>Excused?</label> </td></tr></tbody>";
+        }
+
         echo "</tbody></table>";
         echo "<button class='btn waves-effect waves-light' type='submit' name='updateIsHere'>Submit <i class='material-icons right'>mode_edit</i></button>";
         echo "</form>";
         } else {
             echo "0 results";
-        } 
+        }
         } else {
             echo "Error: Invalid View";
         }
-        
 
 
-if(isset($_POST['updateIsHere'])){ 
 
-    
+if(isset($_POST['updateIsHere'])){
+
+
         foreach ($_POST as $key => $value) {
 
   }
     $sql = "SELECT id, isHere FROM passes $where_day $tperpost $tdeppost ORDER BY id";
     $result = $conn->query($sql);
-    
+
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
             $$row["id"] = $_POST[$row["id"]];
@@ -161,19 +166,19 @@ if(isset($_POST['updateIsHere'])){
             $sqlu = "UPDATE passes SET isHere='$isHere' WHERE id='$hereid'";
             if ($conn->query($sqlu) === TRUE) {
                 echo "Record updated successfully";
-                
+
             } else {
                 echo "Error updating record: " . $conn->error;
-            }            
+            }
         }
         echo "<script>  setTimeout(function () { window.location.href = '/admin/passdisplay.php?" . $_SERVER["QUERY_STRING"] . "'; }, 500);  </script>";
-        
+
     }
 
 }
 
 
 ?>
-        
+
     </body>
 </html>
