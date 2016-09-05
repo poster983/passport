@@ -207,7 +207,7 @@ if ($sqltally->num_rows > "0") {
         $newtally = $ctally + 1;
 
     if ($devDebugEchoToggle == 1){
-      echo $newtally;
+      echo " new Tally: " . $newtally . ".......";
     }
         //AND 'MAX(id)'
 }
@@ -217,16 +217,21 @@ if ($sqltally->num_rows > "0") {
 $sqltally->close();
 }
   if ($sqltallyRow == 1 ) {
-    $sqlupdate = "UPDATE tally SET tally='$newtally' WHERE `date` = '$day' AND place = '$place' AND period = '$perTab'";
+    $sqlupdate = $conn->prepare("UPDATE tally SET tally= ? WHERE `date` = ? AND place = ? AND period = ?");
 
-        if ($conn->query($sqlupdate) === TRUE) {
+    $sqlupdate->bind_param('isss', $newtally, $day, $place, $perTab);
+
+
+    $status = $sqlupdate->execute();
+      if ($status === false) {
+        trigger_error($sqlupdate->error, E_USER_ERROR);
+      }
+
           if ($devDebugEchoToggle == 1){
-            echo "Record updated successfully";
+            printf("%d Row inserted.\n", $sqlupdate->affected_rows);
           }
-        } else {
-            echo "Error updating record: " . $conn->error;
-        }
 
+  $sqlupdate->close();
 
 
 
@@ -263,16 +268,21 @@ if ($conn->query($sql) === TRUE) {
         echo $tallylimit;
         */
 
-        $sqlslimit = "SELECT studentlimit, dep FROM studentlimit WHERE dep = '$place' LIMIT 1";
-        $resultslimit = $conn->query($sqlslimit);
+        $sqlslimit = $conn->prepare( "SELECT studentlimit FROM studentlimit WHERE dep = ? LIMIT 1");
+        $sqlslimit->bind_param( "s", $place);
 
-        if ($resultslimit->num_rows > 0) {
+        $sqlslimit->execute();
 
-            while($rowslimit = $resultslimit->fetch_assoc()) {
+        $sqlslimit->bind_result($studentlimitl);
+
+        while ($sqlslimit->fetch()) {
+          $studentlimitl;
+        }
+        $sqlslimit->close();
               if ($devDebugEchoToggle == 1){
-                echo $rowslimit["studentlimit"];
+                echo "student limit for this dep: " . $studentlimitl;
               }
-    if ($newtally > $rowslimit["studentlimit"]) {
+    if ($newtally > $studentlimitl) {
         echo " <div class='row'><div class='col s12'><div class='card-panel red hoverable'><span class='white-text'>";
         echo "<p class='center'>Sorry, the " . $place . " is full on " . $day . " during " . $perTab . " period.    </p>";
         echo "</span></div></div></div>";
@@ -284,26 +294,23 @@ if ($conn->query($sql) === TRUE) {
             $shTeacherExcused = 0;
             $sqlpin = $conn->prepare("INSERT INTO passes (firstname, lastname, email, student_id, period, sh_teacher, place, day_to_come, reason_to_come, isHere, shTeacherExcused, teacherEmail)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            //'$first_name', '$last_name', '$email', '$student_id', '$perTab', '$shTeacher', '$place', '$day', '$why', '$isHere', '$shTeacherExcused', '$shTeacherEmail'
+
             $sqlpin->bind_param("sssisssssiis", $first_name, $last_name, $email, $student_id, $perTab, $shTeacher, $place, $day, $why, $isHere, $shTeacherExcused, $shTeacherEmail);
             $sqlpin->execute();
             $sqlpin->close();
-            /*
-            if ($conn->query($sqlpin) === TRUE) {
+
 
                 echo "<iframe src='animate/Confirm/publish/web/Confirm.html' style='border: 0; width: 100%; height: 100%'>Requested Pass.</iframe>";
 
 
 
-              } else { echo "Error: " . $sqlpin . "
-              <br>" . $conn->error; }*/
+
               $conn->close();
             }
           }
         }
       }
-    }
-  }
+
 
 ?>
         <!--
