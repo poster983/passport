@@ -38,11 +38,12 @@ Materializecss.com - They created the material design js and css library.
 
 <head>
     <title>Passport</title>
-    <? include "personalCode.php"; ?>
+    <? include "personalCode.php";
+	     trackerGA(); ?>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    <link href="/css/passr.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="/passport/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="/passport/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="/passport/css/passr.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <!--Browser Colors-->
     <!-- Chrome, Firefox OS and Opera -->
     <meta name="theme-color" content="#b71c1c">
@@ -59,13 +60,13 @@ Materializecss.com - They created the material design js and css library.
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-    <script src="/js/passr.js"></script>
-    <? heatmapTracker(); ?>
+    <script src="/passport/js/passr.js"></script>
+
 
 </head>
 
 <body>
-
+  <? date_default_timezone_set('America/Chicago'); ?>
     <!-- Request closed overlay -->
 
     <?
@@ -76,7 +77,7 @@ Materializecss.com - They created the material design js and css library.
         $blurClass = "blur-g";
         echo "<script>$(document).ready(function(){openFullOverlay()});</script>";
     } else {
-        $closedFormAction = "/submit.php";
+        $closedFormAction = "/passport/submit.php";
 
     }
 
@@ -102,9 +103,7 @@ Materializecss.com - They created the material design js and css library.
     </nav>
 
     <!--Body-->
-    <div>
-        <a href="https://github.com/poster983/passport"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
-    </div>
+
 
 
     <!--FEEDBACK FAB-->
@@ -289,8 +288,6 @@ Materializecss.com - They created the material design js and css library.
 
 
     <!--Tabs-->
-    <br>
-    <br>
     <br>
 
         <form method="post" action=" <? echo $closedFormAction; ?> ">

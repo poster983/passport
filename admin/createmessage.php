@@ -37,7 +37,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         <label for="blackoutday">Date</label>
                     </div>
 
-                   
+
                     <p class="center">Choose Department</p>
                     <p class="center">
                         <input type="radio" id="lec" name="dep" value="LEC" />
@@ -72,8 +72,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             <a class="waves-effect waves-light btn red" href="messagelist.php"><i class="material-icons left">reorder</i>View Messages</a>
         </div>
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script src="/js/materialize.js"></script>
-        <script src="/js/init.js"></script>
+        <script src="/passport/js/materialize.js"></script>
+        <script src="/passport/js/init.js"></script>
 
 
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -103,17 +103,17 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
         <?
-        
+
     include "../sqlconnect.php";
-    
-    
 
-    
-    
-    if(isset($_POST['blackout'])) { 
-    
 
-    
+
+
+
+    if(isset($_POST['blackout'])) {
+
+
+
     foreach ($_POST as $key => $value) {
 
   }
@@ -122,10 +122,10 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         $message = htmlspecialchars($_POST['message'],ENT_QUOTES);
 
 
-        
 
-    
-    
+
+
+
     $sqlmessage = "INSERT INTO message (day, dep, reason)
             VALUES ('$messageday', '$dep', '$message')";
             if ($conn->query($sqlmessage) === TRUE) {
@@ -135,7 +135,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             }
 
 
-  
+
 $conn->close();
     }
 ?>

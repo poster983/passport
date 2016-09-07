@@ -50,8 +50,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                     <? barChartTally('lec');
                     //lineChartMonth('lec');
                     ?>
-                   
-                    
+
+
                 </div>
                 <div id="math" class="col s12">
                     <? barChartTally('math') ?>
@@ -73,8 +73,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             </body>
 
             <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-            <script src="/js/materialize.js"></script>
-            <script src="/js/init.js"></script>
+            <script src="/passport/js/materialize.js"></script>
+            <script src="/passport/js/init.js"></script>
 
 
 

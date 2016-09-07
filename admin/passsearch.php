@@ -59,7 +59,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                             <input type="text" id="datepicker" name="datesearch" />
                             <label for="datepicker">Choose a day to display.</label>
                         </div>
-                        
+
                             <div class="col s8">
                                  <input type="hidden" id="search-type" name="view" value="teacher">
                                 <ul class="tabs" id="viewType">
@@ -122,7 +122,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                 &nbsp &nbsp
                                 </div>
                             </div>
-                        
+
                     </div>
                   <!--      <div>
                             <p>
@@ -133,7 +133,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                 <label for="teacherv">Teacher View</label>
                             </p>
                         </div> -->
-                    
+
                     <p>
                         <button class="btn waves-effect waves-light" type="submit" name="search">Search
                             <i class="material-icons right">search</i>
@@ -145,7 +145,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             <!--<iframe src="passdisplay.php" style="border: 0; width: 100%; height: 100%">Could not load preview, please search for the date instead.</iframe>-->
         </body>
 
-        <script src="/js/materialize.js"></script>
-        <script src="/js/init.js"></script>
+        <script src="/passport/js/materialize.js"></script>
+        <script src="/passport/js/init.js"></script>
 
         </html>

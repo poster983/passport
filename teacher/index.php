@@ -27,26 +27,29 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <head>
     <title>Teacher Dashboard</title>
 
+    <? include "../personalCode.php";
+	     trackerGA(); ?>
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    <link href="/css/passr.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="/passport/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="/passport/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="/passport/css/passr.css" type="text/css" rel="stylesheet" media="screen,projection" />
 
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <!--<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
-    <script src="/js/materialize.js"></script>
-    <script src="/js/init.js"></script>
+    <script src="/passport/js/materialize.js"></script>
+    <script src="/passport/js/init.js"></script>
 
 </head>
 
 <body>
-
+    <? date_default_timezone_set('America/Chicago'); ?>
     <nav>
         <div class="nav-wrapper red darken-4">
-            <a href="/admin/index.php" class="brand-logo Center">Teacher Dashboard</a>
+            <a href="" class="brand-logo Center">Teacher Dashboard</a>
         </div>
     </nav>
 
@@ -367,7 +370,7 @@ if(isset($_POST['updateIsExcused'])){
                 echo "Error updating record: " . $conn->error;
             }
         }
-        echo "<script>  setTimeout(function () { window.location.href = '/teacher/index.php?" . $_SERVER["QUERY_STRING"] . "'; }, 500);  </script>";
+        echo "<script>  setTimeout(function () { window.location.href = '/passport/teacher/index.php?" . $_SERVER["QUERY_STRING"] . "'; }, 500);  </script>";
 
     } else {
         echo "nope";

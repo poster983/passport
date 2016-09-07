@@ -26,10 +26,12 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 <head>
     <title>Admin Dashboard</title>
+    <? include "../personalCode.php";
+	     trackerGA(); ?>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="/passport/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="/passport/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
 
 
 
@@ -70,3 +72,5 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             <a href="#" data-activates="nav-mobile" class="button-collapse left"><i class="material-icons">menu</i></a>
         </div>
     </nav>
+
+<? date_default_timezone_set('America/Chicago'); ?>

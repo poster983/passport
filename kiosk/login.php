@@ -10,7 +10,7 @@ if (isset($_POST['Submit'])) {
 	$username = mysql_real_escape_string($_POST['username']);
 	$password = mysql_real_escape_string($_POST['password']);
 	$result = mysql_query("select * from admin where username='$username'", $link);
-	
+
 	if(mysql_num_rows($result) > 0) {
 		$row = mysql_fetch_array($result, MYSQL_BOTH);
 		if($password == $row["password"]) {
@@ -40,10 +40,10 @@ if (isset($_POST['Submit'])) {
         <title>Kiosk Login</title>
 
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
-        <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
-        <link href="/css/passr.css" type="text/css" rel="stylesheet" media="screen,projection" />
-        <link href="/css/animate.css" type="text/css" rel="stylesheet" media="screen,projection" />
+        <link href="/passport/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+        <link href="/passport/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+        <link href="/passport/css/passr.css" type="text/css" rel="stylesheet" media="screen,projection" />
+        <link href="/passport/css/animate.css" type="text/css" rel="stylesheet" media="screen,projection" />
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -53,13 +53,13 @@ if (isset($_POST['Submit'])) {
 
     <body class="grey darken-4">
         <div class="containerlogin signin-allign">
-            
+
             <div class="card-panel red-purple <? echo $fadein; ?>">
             <form name="form1" method="post" action="">
                 <h3 class="center">Kiosk Login</h3>
                 <div class="card-panel <? echo $failshake; ?>">
 
-                
+
                 <div class="input-field">
                     <input name="username" type="text" id="username">
                     <label for="username">Username</label>
@@ -80,7 +80,7 @@ if (isset($_POST['Submit'])) {
 
     </body>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="/js/materialize.js"></script>
-    <script src="/js/init.js"></script>
+    <script src="/passport/js/materialize.js"></script>
+    <script src="/passport/js/init.js"></script>
 
     </html>

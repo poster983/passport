@@ -1,8 +1,8 @@
 <?
-session_start(); 
-session_destroy(); 
+session_start();
+session_destroy();
 
-echo "<META HTTP-EQUIV=\"refresh\" content=\"2; URL=index.php\"> "; 
+echo "<META HTTP-EQUIV=\"refresh\" content=\"2; URL=index.php\"> ";
 ?>
 
 <html>
@@ -11,7 +11,7 @@ echo "<META HTTP-EQUIV=\"refresh\" content=\"2; URL=index.php\"> ";
             div {
     width: 100px;
     height: 100px;
-    
+
 
     position: absolute;
     top:0;
@@ -26,10 +26,10 @@ echo "<META HTTP-EQUIV=\"refresh\" content=\"2; URL=index.php\"> ";
     </head>
     <body style="background-color:#212121;">
         <div>
-            
-            <img src="/image/bars.svg" />
-            
-           
+
+            <img src="/passport/image/bars.svg" />
+
+
         </div>
     </body>
 </html>

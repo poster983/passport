@@ -31,7 +31,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
         <body>
             <div class="container">
-                
+
                 <form method="post" action="">
                     <h4 class="center">Reason-to-come Manager</h4>
                     <p class="center">Choose Department</p>
@@ -73,15 +73,15 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             </div>
         </body>
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script src="/js/materialize.js"></script>
-        <script src="/js/init.js"></script>
+        <script src="/passport/js/materialize.js"></script>
+        <script src="/passport/js/init.js"></script>
 
         </html>
 
-        <?php    
-if(isset($_POST['add_new_entry'])){ 
+        <?php
+if(isset($_POST['add_new_entry'])){
 
-    
+
         foreach ($_POST as $key => $value) {
 
   }
@@ -89,8 +89,8 @@ if(isset($_POST['add_new_entry'])){
         $dep = $_POST['dep'];
         $why = htmlspecialchars($_POST['why'],ENT_QUOTES);
 
-        
-       
+
+
         include "../sqlconnect.php";
 
             $sql = "INSERT INTO why (dep, why)
@@ -101,8 +101,8 @@ if(isset($_POST['add_new_entry'])){
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }
-        
-    $conn->close();      
+
+    $conn->close();
     }
 }
 

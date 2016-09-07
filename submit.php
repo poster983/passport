@@ -27,8 +27,12 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <html>
 
 <head>
-    <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+
+  <? include "personalCode.php";
+     trackerGA(); ?>
+
+    <link href="/passport/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="/passport/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
 
         <!--Browser Colors-->
     <!-- Chrome, Firefox OS and Opera -->
@@ -45,6 +49,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
     <?php
+    date_default_timezone_set('America/Chicago');
 
 if(!isset($_POST['submit'])) exit();
 
@@ -322,8 +327,8 @@ if ($conn->query($sql) === TRUE) {
         </script>
       -->
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script src="/js/materialize.js"></script>
-        <script src="/js/init.js"></script>
+        <script src="/passport/js/materialize.js"></script>
+        <script src="/passport/js/init.js"></script>
 
 </body>
 

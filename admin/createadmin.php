@@ -80,17 +80,17 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
         </body>
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script src="/js/materialize.js"></script>
-        <script src="/js/init.js"></script>
+        <script src="/passport/js/materialize.js"></script>
+        <script src="/passport/js/init.js"></script>
 
         </html>
 
 
         <?
-if(isset($_POST['submit'])){ 
+if(isset($_POST['submit'])){
 
 
-    
+
         foreach ($_POST as $key => $value) {
 
   }
@@ -106,7 +106,7 @@ if(isset($_POST['submit'])){
             echo "ERROR: Passwords must match";
         } else {
             include "../sqlconnect.php";
-            
+
             $sql = "INSERT INTO admin (username, firstname, lastname, email, password)
             VALUES ('$usernameadmin', '$first_name', '$last_name', '$email', '$passwordadmin')";
 
@@ -121,7 +121,7 @@ if(isset($_POST['submit'])){
             $conn->close();
         }
     }
-    
-    
-} 
+
+
+}
 ?>

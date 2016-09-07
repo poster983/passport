@@ -171,7 +171,7 @@ if(isset($_POST['updateIsHere'])){
                 echo "Error updating record: " . $conn->error;
             }
         }
-        echo "<script>  setTimeout(function () { window.location.href = '/admin/passdisplay.php?" . $_SERVER["QUERY_STRING"] . "'; }, 500);  </script>";
+        echo "<script>  setTimeout(function () { window.location.href = '/passport/admin/passdisplay.php?" . $_SERVER["QUERY_STRING"] . "'; }, 500);  </script>";
 
     }
 
@@ -180,5 +180,8 @@ if(isset($_POST['updateIsHere'])){
 
 ?>
 
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="/passport/js/materialize.js"></script>
+<script src="/passport/js/init.js"></script>
     </body>
 </html>

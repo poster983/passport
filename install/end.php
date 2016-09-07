@@ -35,7 +35,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <h3>Thank You!</h3>
     <p>PLEASE PLEASE PLEASE REMOVE "/install" AND ALL FILES AFTER YOU HAVE CONFIRMED THAT THIS HAS WORKED!!!</p>
 
-    <a href="/admin/">Go to admin login</a>
+    <a href="/passport/admin/">Go to admin login</a>
 
 
 </body>

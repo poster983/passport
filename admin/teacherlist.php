@@ -33,7 +33,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             <div class="container">
                 <form action="deleteteacher.php" method="post">
                     <?
-        
+
     include "../sqlconnect.php";
 
     $sql = "SELECT id, name_title, firstname, lastname, email, room, period FROM teachers ORDER BY lastname";
@@ -46,7 +46,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         while($row = $result->fetch_assoc()) {
             echo "<tr><td><input type='radio' name='delete' value=" . $row["id"] . " id=" . $row["id"] . "><label for=" . $row["id"] . ">'Delete'</label></td><td>" . $row["name_title"] . " " . $row["firstname"]. " " . $row["lastname"]. "</td><td>" . $row["email"]. "</td><td>" . $row["room"]. "</td><td>" . $row["period"]. "</td></tr>";
         }
-        
+
         echo "</tbody></table>";
         } else {
             echo "0 results";
@@ -61,7 +61,7 @@ $conn->close();
             </div>
         </body>
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script src="/js/materialize.js"></script>
-        <script src="/js/init.js"></script>
+        <script src="/passport/js/materialize.js"></script>
+        <script src="/passport/js/init.js"></script>
 
         </html>

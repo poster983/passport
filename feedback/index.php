@@ -25,37 +25,39 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 <head>
     <title>Feedback</title>
+    <? include "../personalCode.php";
+	     trackerGA(); ?>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="/passport/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="/passport/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /> </head>
 
 <body>
     <nav>
         <div class="nav-wrapper red darken-4"> <a href="" class="brand-logo center">Feedback Manager</a> </div>
     </nav>
-    
-    
-    
 
-        
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
     <div class="container">
-    
+
     <?
-    
+
     include "../sqlconnect.php";
-    
+
     $sql = "SELECT id, name, email, comment, rating, report_type, date, role FROM feedback ORDER BY date DESC";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
         echo "<ul class='collapsible' data-collapsible='accordion'>";
-       
+
         while($row = $result->fetch_assoc()) {
             if ($row['report_type'] == "bug") {
                 $icon = "report_problem";
@@ -71,14 +73,14 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         }
         echo "</ul>";
     }
-    
+
     ?>
-    
+
     </div>
-    
+
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="/js/materialize.js"></script>
-    <script src="/js/init.js"></script>
+    <script src="/passport/js/materialize.js"></script>
+    <script src="/passport/js/init.js"></script>
     <!--[if lte IE 8]><script src="assets/js/respond.min.js"></script><![endif]-->
     <script>
         if ('addEventListener' in window) {

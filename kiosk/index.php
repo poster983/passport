@@ -31,10 +31,10 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <head>
         <title>Sign in Kiosk</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    <link href="/css/passr.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    <link href="/css/kiosk.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="/passport/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="/passport/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="/passport/css/passr.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="/passport/css/kiosk.css" type="text/css" rel="stylesheet" media="screen,projection" />
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
@@ -45,6 +45,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <h1 class="center" style='color: #ecf0f1'>Student Sign In</h1>
 
 <?
+
+  date_default_timezone_set('America/Chicago');
+
 include "../sqlconnect.php";
 
     $where_day = "WHERE day_to_come ='" . date( 'Y-m-d', strtotime(" today ")) . "'";
@@ -130,7 +133,7 @@ if(isset($_POST['updateIshereKIOSK'])){
                  $sqlu = "UPDATE passes SET isHere='1' WHERE id='$kioskValue'";
                 if ($conn->query($sqlu) === TRUE) {
                     echo "Record updated successfully";
-                    echo "<script>  setTimeout(function () { window.location.href = '/kiosk/'; }, 500);  </script>";
+                    echo "<script>  setTimeout(function () { window.location.href = '/passport/kiosk/'; }, 500);  </script>";
 
                 } else {
                 echo "Error updating record: " . $conn->error;

@@ -95,8 +95,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             <a class="waves-effect waves-light btn red" href="blackoutcal.php"><i class="material-icons left">today</i>Blackout Calender</a>
         </div>
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script src="/js/materialize.js"></script>
-        <script src="/js/init.js"></script>
+        <script src="/passport/js/materialize.js"></script>
+        <script src="/passport/js/init.js"></script>
 
 
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -125,17 +125,17 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
         <?
-        
-    include "../sqlconnect.php";
-    
-    
 
-    
-    
-    if(isset($_POST['blackout'])) { 
-    
+    include "../sqlconnect.php";
+
+
+
+
+
+    if(isset($_POST['blackout'])) {
+
         $loopcount = 0;
-    
+
     foreach ($_POST as $key => $value) {
 
   }
@@ -150,19 +150,19 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         $fper = $_POST['fper'];
         $gper = $_POST['gper'];
         $hper = $_POST['hper'];
-        
-        $per = "$aper,$bper,$cper,$dper,$eperL1,$eperL2,$fper,$gper,$hper";
-            
-        $perarray = explode(",", $per);
-        
-        $perarray_null = array_filter($perarray );
-        
-        $percount = count($perarray_null);
-        
 
-    
+        $per = "$aper,$bper,$cper,$dper,$eperL1,$eperL2,$fper,$gper,$hper";
+
+        $perarray = explode(",", $per);
+
+        $perarray_null = array_filter($perarray );
+
+        $percount = count($perarray_null);
+
+
+
 echo "Blacked out period(s):";
-    
+
     $sql = "INSERT INTO blackout (day, department, period)
             VALUES ('$blackoutday', '$dep', '$per')";
             if ($conn->query($sql) === TRUE) {
@@ -174,7 +174,7 @@ echo "Blacked out period(s):";
 
 
 
-  
+
 $conn->close();
     }
 ?>

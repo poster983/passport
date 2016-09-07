@@ -28,23 +28,23 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
 
 <? include "nav.php"; ?>
-<? 
+<?
 
-    include "../sqlconnect.php"; 
+    include "../sqlconnect.php";
                                                             //change sql limit to match the current nuumber of departments.
             $sqlslimit = "SELECT studentlimit, dep FROM studentlimit LIMIT 6";
         $resultslimit = $conn->query($sqlslimit);
 
         if ($resultslimit->num_rows > 0) {
-        
+
             while($rowslimit = $resultslimit->fetch_assoc()) {
-                
-                
+
+
             $placenospace = str_replace(' ', '', $rowslimit["dep"]);
                 $deplimit = $placenospace . 'limit';
             $$deplimit = $rowslimit["studentlimit"];
-        
-            
+
+
             }
         }
 
@@ -56,7 +56,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 <p class="range-field">
                 <input type="range" id="limitslide" name="limitslide" min="1" max="100" value="10" />
                 </p>
-                
+
                 <p class="center">Choose Department</p>
                 <p class="center">Hover for current limit</p>
                 <p class="center">
@@ -81,19 +81,19 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 <p>
                     <button class="btn waves-effect waves-light" type="submit" name="submit">Update limits<i class="material-icons right">call_merge</i></button>
                 </p>
-                
+
                 </form>
-            
+
         </div>
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script src="/js/materialize.js"></script>
-        <script src="/js/init.js"></script>
+        <script src="/passport/js/materialize.js"></script>
+        <script src="/passport/js/init.js"></script>
 
 
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
- 
+
 
 
 
@@ -112,9 +112,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 <?
 
-if(isset($_POST['submit'])){ 
+if(isset($_POST['submit'])){
 
-    
+
         foreach ($_POST as $key => $value) {
 
   }
@@ -126,9 +126,9 @@ $updep = $_POST['dep'];
 
         if ($conn->query($sqlupdate) === TRUE) {
             echo "Record updated successfully";
-            
+
             ?>
-            
+
             <script>
             setTimeout(function () {
                 window.location.href = '/admin/editlimits.php'; // the redirect goes here
@@ -141,7 +141,7 @@ $updep = $_POST['dep'];
         } else {
             echo "Error updating record: " . $conn->error;
         }
-    
+
 }
 
 
