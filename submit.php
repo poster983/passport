@@ -207,7 +207,9 @@ $sqltally->bind_result($ctally, $void2, $void3, $void4);
 
 if ($sqltally->num_rows > "0") {
     $sqltallyRow = 1;
+    if ($devDebugEchoToggle == 1){
     echo "Number of rows " . $sqltally->num_rows;
+    }
     while($sqltally->fetch()) {
         $newtally = $ctally + 1;
 

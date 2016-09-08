@@ -34,37 +34,37 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                     <h4 class="center">Admin Manager</h4>
                     <div class="input-field">
                         <p>
-                            <input type="text" required id="firstname" name="firstname">
+                            <input type="text" required id="firstname" autocomplete="off" name="firstname">
                             <label for="firstname">First Name</label>
                         </p>
                     </div>
                     <div class="input-field">
                         <p>
-                            <input type="text" required id="lastname" name="lastname">
+                            <input type="text" required id="lastname" autocomplete="off" name="lastname">
                             <label for="lastname">Last Name</label>
                         </p>
                     </div>
                     <div class="input-field">
                         <p>
-                            <input type="text" required id="username" name="usernameadmin">
+                            <input type="text" required id="username" autocomplete="off" name="usernameadmin">
                             <label for="username">Username</label>
                         </p>
                     </div>
                     <div class="input-field">
                         <p>
-                            <input type="password" required id="password" name="passwordadmin">
+                            <input type="password" required id="password" autocomplete="off" name="passwordadmin">
                             <label for="password">Password</label>
                         </p>
                     </div>
                     <div class="input-field">
                         <p>
-                            <input type="password" required id="password2" name="password2admin">
+                            <input type="password" required id="password2" autocomplete="off" name="password2admin">
                             <label for="password2">Password(again)</label>
                         </p>
                     </div>
                     <div class="input-field">
                         <p>
-                            <input type="email" required id="email" name="email">
+                            <input type="email" required id="email" autocomplete="off" name="email">
                             <label for="email">Email</label>
                         </p>
                     </div>

@@ -44,7 +44,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
     <nav>
         <div class="nav-wrapper red darken-4">
-            <a href="/admin/index.php" class="brand-logo right">Passport Admin Dashboard</a>
+            <a href="index.php" class="brand-logo right">Passport Admin Dashboard</a>
             <ul id="nav-desktop" class="left hide-on-med-and-down">
                 <li><a href="passsearch.php">Passes</a></li>
                 <li><a href="blackout.php">Blackout</a></li>
@@ -54,7 +54,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 <li><a href="createwhy.php">Reasons</a></li>
                 <li><a href="editlimits.php">Limits</a></li>
                 <li><a href="createadmin.php">Admins</a></li>
-                <li class="right"><a href="/admin/logout.php">Logout<i class="material-icons right">lock</i></a></li>
+                <li class="right"><a href="logout.php">Logout<i class="material-icons right">lock</i></a></li>
             </ul>
 
             <ul id="nav-mobile" class="side-nav">
@@ -67,7 +67,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 <li><a href="createwhy.php">Reason</a></li>
                 <li><a href="editlimits.php">Limits</a></li>
                 <li><a href="createadmin.php">Admins</a></li>
-                <li> <a href="/admin/logout.php">Logout<i class="material-icons right">lock_outline</i></a></li>
+                <li> <a href="logout.php">Logout<i class="material-icons right">lock_outline</i></a></li>
             </ul>
             <a href="#" data-activates="nav-mobile" class="button-collapse left"><i class="material-icons">menu</i></a>
         </div>

@@ -131,7 +131,7 @@ $updep = $_POST['dep'];
 
             <script>
             setTimeout(function () {
-                window.location.href = '/admin/editlimits.php'; // the redirect goes here
+                window.location.href = '/passport/admin/editlimits.php'; // the redirect goes here
 
             }, 1000); // 1 second
         </script>

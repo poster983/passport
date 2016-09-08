@@ -232,7 +232,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <div class="row">
             <div class="input-field col s5">
                 <label class="active">Enter Email</label>
-                <input type="text" id="autocompleteName" name="teacherName" required class="autocomplete inputFields">
+                <input type="text" autocomplete="off" id="autocompleteName" name="teacherName" required class="autocomplete inputFields">
             </div>
             <div class="col s1">
                 <button class="btn waves-effect waves-light" type="submit" name="search">Search

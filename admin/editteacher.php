@@ -44,25 +44,25 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                     <h4 class="center">Teacher Manager</h4>
                     <div class="input-field">
                         <p>
-                            <input type="text" required name="name_title" id="name_title" />
+                            <input type="text" required name="name_title" autocomplete="off" id="name_title" />
                             <label for="name_title">Title</label>
                         </p>
                     </div>
                     <div class="input-field">
                         <p>
-                            <input type="text" required name="first_name" id="first_name" />
+                            <input type="text" required name="first_name" autocomplete="off" id="first_name" />
                             <label for="firstname">First Name</label>
                         </p>
                     </div>
                     <div class="input-field">
                         <p>
-                            <input type="text" required name="last_name" id="last_name" />
+                            <input type="text" required name="last_name" autocomplete="off" id="last_name" />
                             <label for="lastname">Last Name</label>
                         </p>
                     </div>
                     <div class="input-field">
                         <p>
-                            <input type="email" required name="email" id="email" />
+                            <input type="email" required name="email" autocomplete="off" id="email" />
                             <label for="email">Email</label>
                         </p>
                     </div>
