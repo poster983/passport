@@ -139,7 +139,7 @@ if ($conn->query($sqlteachers) === TRUE) {
 
 if ($conn->query($sqladmin) === TRUE) {
     $tablesucsess += 1;
-    echo "Table teachers created successfully";
+    echo "Table Admin created successfully";
 } else {
     echo "Error creating table: " . $conn->error;
 }

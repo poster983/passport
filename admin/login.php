@@ -7,25 +7,25 @@ $failshake = "";
 $fadein = "animated fadeInDown";
 
 if (isset($_POST['Submit'])) {
-	$username = mysql_real_escape_string($_POST['username']);
-	$password = mysql_real_escape_string($_POST['password']);
+	$username = urlencode(mysql_real_escape_string($_POST['username']));
+	$password = urlencode(mysql_real_escape_string($_POST['password']));
 	$result = mysql_query("select * from admin where username='$username'", $link);
 
 	if(mysql_num_rows($result) > 0) {
 		$row = mysql_fetch_array($result, MYSQL_BOTH);
-		if($password == $row["password"]) {
+		if(password_verify($password, $row["password"])) {
 			session_regenerate_id();
 			$_SESSION['adminok'] = "ok";
 			$_SESSION['username'] = "username";
 			$_SESSION['password'] = "password";
 			header("Location: index.php");
 		} else {
-			$msg = "Password incorrect";
+			$msg = "Username or Password incorrect";
             $failshake = "animated wobble";
             $fadein = "";
 		}
 	} else {
-		$msg = "Username incorrect";
+		$msg = "Username or Password incorrect";
         $failshake = "animated wobble";
         $fadein = "";
     }

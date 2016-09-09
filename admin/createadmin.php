@@ -95,20 +95,26 @@ if(isset($_POST['submit'])){
 
   }
     {
-        $first_name = $_POST['firstname'];
-        $last_name = $_POST['lastname'];
-        $usernameadmin = $_POST['usernameadmin'];
+        $first_name = urlencode($_POST['firstname']);
+        $last_name = urlencode($_POST['lastname']);
+        $usernameadmin = urlencode($_POST['usernameadmin']);
         $email = $_POST['email'];
-        $passwordadmin = $_POST['passwordadmin'];
-        $password2admin = $_POST['password2admin'];
+        $passwordadmin = urlencode($_POST['passwordadmin']);
+        $password2admin = urlencode($_POST['password2admin']);
 
         if ($passwordadmin != $password2admin) {
             echo "ERROR: Passwords must match";
         } else {
             include "../sqlconnect.php";
 
+            $hashedPass = password_hash($passwordadmin, PASSWORD_DEFAULT);
+            if ($hashedPass == false) {
+              echo "Error Encrypting the password!";
+            } else {
+
+
             $sql = "INSERT INTO admin (username, firstname, lastname, email, password)
-            VALUES ('$usernameadmin', '$first_name', '$last_name', '$email', '$passwordadmin')";
+            VALUES ('$usernameadmin', '$first_name', '$last_name', '$email', '$hashedPass')";
 
             if ($conn->query($sql) === TRUE) {
                 echo "New account created successfully";
@@ -117,7 +123,7 @@ if(isset($_POST['submit'])){
                 echo "Error: " . $sql . "<br>" . $conn->error;
 
             }
-
+          }
             $conn->close();
         }
     }

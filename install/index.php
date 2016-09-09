@@ -35,6 +35,12 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <h3>Step 1</h3>
     <p>Please edit the MySQL login values in "config.php"</p>
     <p>Once you have done that, please continue on to the next step.</p>
+
+
+    <?php
+    echo 'Current PHP version: ' . phpversion();
+    ?>
+    
     <a href="step2.php">Next --></a>
     <div>
     </div>
