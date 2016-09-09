@@ -7,13 +7,14 @@ $failshake = "";
 $fadein = "animated fadeInDown";
 
 if (isset($_POST['Submit'])) {
-	$username = urlencode(mysql_real_escape_string($_POST['username']));
-	$password = urlencode(mysql_real_escape_string($_POST['password']));
+	$username = mysql_real_escape_string($_POST['username']);
+	$password = mysql_real_escape_string($_POST['password']);
 	$result = mysql_query("select * from admin where username='$username'", $link);
 
 	if(mysql_num_rows($result) > 0) {
 		$row = mysql_fetch_array($result, MYSQL_BOTH);
-		if(password_verify($password, $row["password"])) {
+		$hashedPass = $row["password"];
+		if(crypt($password, $hashedPass) == $hashedPass) {
 			session_regenerate_id();
 			$_SESSION['adminok'] = "ok";
 			$_SESSION['username'] = "username";

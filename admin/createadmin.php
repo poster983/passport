@@ -95,23 +95,31 @@ if(isset($_POST['submit'])){
 
   }
     {
-        $first_name = urlencode($_POST['firstname']);
-        $last_name = urlencode($_POST['lastname']);
-        $usernameadmin = urlencode($_POST['usernameadmin']);
+        $first_name = $_POST['firstname'];
+        $last_name = $_POST['lastname'];
+        $usernameadmin = $_POST['usernameadmin'];
         $email = $_POST['email'];
-        $passwordadmin = urlencode($_POST['passwordadmin']);
-        $password2admin = urlencode($_POST['password2admin']);
+        $passwordadmin = $_POST['passwordadmin'];
+        $password2admin = $_POST['password2admin'];
+        if(preg_match('/^[a-zA-Z0-9.]+$/', $usernameadmin) == 1) {
+
+
+
+
 
         if ($passwordadmin != $password2admin) {
             echo "ERROR: Passwords must match";
         } else {
             include "../sqlconnect.php";
 
-            $hashedPass = password_hash($passwordadmin, PASSWORD_DEFAULT);
-            if ($hashedPass == false) {
-              echo "Error Encrypting the password!";
-            } else {
+            $salt = '$2a$10$' . rand() . $usernameadmin . rand() . rand() . '$';
+            echo $salt . "\n";
+            $hashedPass = crypt($passwordadmin, $salt);
 
+            echo $hashedPass;
+            if ($hashedPass == '*0') {
+              echo "Error Encrypting";
+            } else {
 
             $sql = "INSERT INTO admin (username, firstname, lastname, email, password)
             VALUES ('$usernameadmin', '$first_name', '$last_name', '$email', '$hashedPass')";
@@ -125,6 +133,9 @@ if(isset($_POST['submit'])){
             }
           }
             $conn->close();
+        }
+        } else {
+          echo "you may only use a-z A-Z 0-9 in your username";
         }
     }
 
