@@ -26,7 +26,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 Special Thanks
 
-Carson Rau - He came up with the idea.
+Carson Rau - He came up with the idea and told me how bad my design was.
 The LC staff at STHS
 Mr. Hodge
 The study halls and teachers who participated in the pilot program in the fall of 2016.
