@@ -1,3 +1,13 @@
+<?
+if(isset($_GET['search'])) {
+    $teacherEmailID=$_GET['teacherName'];
+    $cookie_name = "teacherEmailRem";
+    setcookie($cookie_name, $teacherEmailID, time() + (86400 * 30), "/passport/teacher/");
+    //setcookie($cookie_name, $teacherEmailID, 0, "/");
+}
+
+?>
+
 <!--
 
 The MIT License (MIT)
@@ -34,7 +44,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <link href="/passport/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="/passport/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="/passport/css/passr.css" type="text/css" rel="stylesheet" media="screen,projection" />
-
+    <link href="/passport/css/kiosk.css" type="text/css" rel="stylesheet" media="screen,projection" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -45,14 +55,17 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 </head>
 
-<body>
+<body class="grey darken-4">
     <? date_default_timezone_set('America/Chicago'); ?>
+    <h1 class="center" style='color: #ecf0f1'>Teachers</h1>
+    <!-- I donno about the nav -->
+    <!--
     <nav>
         <div class="nav-wrapper red darken-4">
             <a href="" class="brand-logo Center">Teacher Dashboard</a>
         </div>
     </nav>
-
+  -->
 
     <!--FEEDBACK FAB-->
 
@@ -223,23 +236,24 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
     ?>
 
+    <div class="container">
 
 <? include "functions.php"; ?>
-
+    <div style='color: #ecf0f1'>
     <br>
     <br>
     <form method="get" action="">
         <div class="row">
             <div class="input-field col s5">
-                <label class="active">Enter Email</label>
+                <label class="active">Email</label>
                 <input type="text" autocomplete="off" id="autocompleteName" name="teacherName" required class="autocomplete inputFields">
             </div>
-            <div class="col s1">
+            <? echo blackout(); ?>
+            <div>
                 <button class="btn waves-effect waves-light" type="submit" name="search">Search
-                    <i class="material-icons right">send</i>
+                    <i class="material-icons right">search</i>
                 </button>
             </div>
-            <? echo blackout(); ?>
         </div>
 
     </form>
@@ -275,19 +289,28 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 <?
 
-        if(isset($_GET['search'])){
-        $teacherName = $_GET['teacherName'];
-            $sql = "SELECT DISTINCT name_title, lastname, email FROM teachers WHERE email = '$teacherName' ORDER BY lastname";
+
+
+
+        if(isset($_GET['search']) || isset($_COOKIE['teacherEmailRem'])){
+          if(!isset($_GET['search'])) {
+            $teacherName = $_COOKIE['teacherEmailRem'];
+          } else {
+            $teacherName = $_GET['teacherName'];
+          }
+
+
+            $sql = "SELECT DISTINCT name_title, firstname, lastname, email FROM teachers WHERE email = '$teacherName' ORDER BY lastname";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                  while($row = $result->fetch_assoc()) {
-                     $teacherNameComb = $row["name_title"] . " " . $row["lastname"];
+                     $teacherNameComb = $row["name_title"] . " " . $row["firstname"] . " " . $row["lastname"];
                      $teacherEmail = $row["email"];
                  }
             }
-        echo $teacherNameComb . ", bookmark this page in order to quickly return here.";
+        echo "Showing passes for: <div class='chip'>" . $teacherNameComb . "</div>";
 
-        echo $teacherEmail;
+        //echo $teacherEmail;
 
            $today = date( 'Y-m-d', strtotime(" today "));
             echo "<form method = 'post' action = ''>";
@@ -295,7 +318,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        echo "<table class='bordered responsive-table'><thead><tr><th>Excused?</th><th>Name</th><th>Period</th><th>Study Hall Teacher</th><th>Department</th><th>Day</th></tr></thead>";
+        echo "<table class='bordered responsive-table'><thead style='color: #ecf0f1'><tr><th>Excused?</th><th>Name</th><th>Period</th><th>Study Hall Teacher</th><th>Department</th><th>Day</th></tr></thead>";
         // output data of each row
         echo "<tbody>";
         while($row = $result->fetch_assoc()) {
@@ -304,7 +327,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         } else {
             $inputChecked = '';
         }
-            echo "<tr><td><input type='checkbox' id='" . $row["id"] . "' name='" . $row["id"] . "'" . $inputChecked . "' value='1' /> <label for='" . $row["id"] . "'>Student Excused</label> </td><td>" . $row["lastname"] . ", " . $row["firstname"]. "</td><td>" . $row["period"]. "</td><td>" . $row["sh_teacher"]. "</td><td>" . $row["place"]. "</td><td>" . $row["day_to_come"]. "</td></tr></tbody>";
+            echo "<tr style='color: #ecf0f1'><td><input type='checkbox' id='" . $row["id"] . "' name='" . $row["id"] . "'" . $inputChecked . "' value='1' /> <label for='" . $row["id"] . "'>Student Excused</label> </td><td>" . $row["lastname"] . ", " . $row["firstname"]. "</td><td>" . $row["period"]. "</td><td>" . $row["sh_teacher"]. "</td><td>" . $row["place"]. "</td><td>" . $row["day_to_come"]. "</td></tr></tbody>";
         }
 
         echo "</tbody></table>";
@@ -316,8 +339,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
         }
     ?>
-
-            <footer class="page-footer white">
+  </div>
+</div>
+            <footer class="page-footer grey darken-3">
         <div class="footer-copyright">
             <div class="container">
                 <a class="black-text left" href="https://www.josephhassell.com/">Copyright © 2016 Joseph Hassell</a> &nbsp &nbsp
@@ -333,9 +357,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 $('.modal-trigger').leanModal();
               });
     </script>
-</body>
 
-</html>
 
 <?
 
@@ -380,3 +402,8 @@ if(isset($_POST['updateIsExcused'])){
 
 
 ?>
+
+
+</body>
+
+</html>
