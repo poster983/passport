@@ -1,4 +1,8 @@
 <?
+include("common.php");
+checklogin();
+$msg = "";
+
 if(isset($_GET['search'])) {
     $teacherEmailID=$_GET['teacherName'];
     $cookie_name = "teacherEmailRem";
@@ -246,7 +250,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <div class="row">
             <div class="input-field col s5">
                 <label class="active">Email</label>
-                <input type="text" autocomplete="off" id="autocompleteName" name="teacherName" required class="autocomplete inputFields">
+                <input type="text" autocomplete="off" id="autocompleteName" name="teacherName" value="<? echo $_SESSION['teacherEmail']; ?>" required class="autocomplete inputFields">
             </div>
             <? echo blackout(); ?>
             <div>
@@ -292,9 +296,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
 
-        if(isset($_GET['search']) || isset($_COOKIE['teacherEmailRem'])){
+        if(isset($_GET['search']) || isset($_SESSION['teacherEmail'])){
           if(!isset($_GET['search'])) {
-            $teacherName = $_COOKIE['teacherEmailRem'];
+            $teacherName = $_SESSION['teacherEmail'];
           } else {
             $teacherName = $_GET['teacherName'];
           }

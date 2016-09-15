@@ -1,4 +1,5 @@
 <?
+
 //Server Login
 $servername = "localhost";
 $dbusername = "uname";
@@ -7,4 +8,8 @@ $database = "dbname";
 
 //Set to "0" to disable debug echos (optional)
 $devDebugEchoToggle = 1;
+
+//Default Teacher Password
+$defaultTeacherPassword = "teacher";
+
 ?>

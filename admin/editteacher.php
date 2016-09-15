@@ -27,7 +27,10 @@ IN AN ACTION OF CONTRACT, TORTOR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
 
-    <? include "nav.php"; ?>
+    <?
+      include "nav.php";
+      include "../sqlconnect.php";
+    ?>
 
         <body>
             <!-- Modal Structure -->
@@ -68,8 +71,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                     </div>
                     <div class="input-field">
                         <p>
-                            <input type="number" disabled name="room" id="room" />
-                            <label for="room">Room Number (No longer Required)</label>
+                            <input type="text" disabled name="password" value="<? echo $defaultTeacherPassword; ?>" id="password" />
+                            <label for="password">Password (changed by teacher)</label>
                         </p>
                     </div>
                     <p>
@@ -130,7 +133,7 @@ if(isset($_POST['add_new_entry'])){
         $last_name = htmlspecialchars($_POST['last_name'],ENT_QUOTES);
         $name_title = $_POST['name_title'];
         $email = strtolower($_POST['email']);
-        $room = $_POST['room'];
+        $password = $defaultTeacherPassword;
         $aper = $_POST['aper'];
         $bper = $_POST['bper'];
         $cper = $_POST['cper'];
@@ -152,6 +155,15 @@ if(isset($_POST['add_new_entry'])){
 
         echo $percount;
 
+        $salt = '$2a$10$' . rand() . rand() . rand() . '$';
+        echo $salt . "\n";
+        $hashedPass = crypt($password, $salt);
+
+        echo $hashedPass;
+        if ($hashedPass == '*0') {
+          echo "Error Encrypting";
+        } else {
+
         {
             echo "First Name: " . $first_name;
             echo "Last Name: " . $last_name;
@@ -160,10 +172,10 @@ if(isset($_POST['add_new_entry'])){
             echo "Room: " . $room;
 
         }
-        include "../sqlconnect.php";
+
         foreach($perarray_null as $forper) {
-            $sql = "INSERT INTO teachers (name_title, firstname, lastname, email, period)
-            VALUES ('$name_title', '$first_name', '$last_name', '$email', '$forper')";
+            $sql = "INSERT INTO teachers (name_title, firstname, lastname, email, period, password)
+            VALUES ('$name_title', '$first_name', '$last_name', '$email', '$forper', '$hashedPass')";
 
             if ($conn->query($sql) === TRUE) {
                 echo "New record created successfully";
@@ -174,5 +186,5 @@ if(isset($_POST['add_new_entry'])){
     $conn->close();
     }
 }
-
+}
 ?>
