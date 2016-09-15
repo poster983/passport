@@ -21,6 +21,10 @@ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORTOR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
+<?
+
+  include "../../sqlconnect.php";
+?>
 <html>
 
 <head>
@@ -77,102 +81,120 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             </div>
             <div class="input-field">
                 <p>
-                    <input type="number" disabled name="room" autocomplete="off" id="room" />
-                    <label for="room">Room Number (No longer Required)</label>
+                    <input type="text" disabled name="password" value="<? echo $defaultTeacherPassword; ?>" id="password" />
+                    <label for="password">Password (changed by teacher)</label>
                 </p>
             </div>
-
             <p>
                 <input type="checkbox" id="aper" name="aper" value="A" />
-                <label for="aper">A Period</label> &nbsp &nbsp
+                <label for="aper">A Period</label>
+                &nbsp &nbsp
                 <input type="checkbox" id="bper" name="bper" value="B" />
-                <label for="bper">B Period</label> &nbsp &nbsp
+                <label for="bper">B Period</label>
+                &nbsp &nbsp
                 <input type="checkbox" id="cper" name="cper" value="C" />
-                <label for="cper">C Period</label> &nbsp &nbsp
+                <label for="cper">C Period</label>
+                &nbsp &nbsp
                 <input type="checkbox" id="dper" name="dper" value="D" />
-                <label for="dper">D Period</label> &nbsp &nbsp
+                <label for="dper">D Period</label>
+                &nbsp &nbsp
                 <input type="checkbox" id="eper" name="eper" value="E" />
-                <label for="eper">E Period</label> &nbsp &nbsp
+                <label for="eper">E Period</label>
+                &nbsp &nbsp
                 <input type="checkbox" id="fper" name="fper" value="F" />
-                <label for="fper">F Period</label> &nbsp &nbsp
+                <label for="fper">F Period</label>
+                &nbsp &nbsp
                 <input type="checkbox" id="gper" name="gper" value="G" />
-                <label for="gper">G Period</label> &nbsp &nbsp
+                <label for="gper">G Period</label>
+                &nbsp &nbsp
                 <input type="checkbox" id="hper" name="hper" value="H" />
                 <label for="hper">H Period</label>
             </p>
             <p>
-                <button class="btn waves-effect waves-light" type="submit" name="add_new_entry">Submit <i class="material-icons right">send</i> </button>
+                <button class="btn waves-effect waves-light" type="submit" name="add_new_entry">Add New Teacher
+                    <i class="material-icons right">send</i>
+                </button>
             </p>
-        </form>  </div>
+        </form>
+        <a class="waves-effect waves-light btn-large" href="teacherlist.php">Teacher List</a>
+    </div>
 </body>
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="/passport/js/materialize.js"></script>
 <script src="/passport/js/init.js"></script>
-            <!-- Modal Trigger -->
-    <script>
-  $(document).ready(function(){
-    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-
-      $('#instructions').openModal();
-  });
-   </script>
-
+  <!-- Modal Trigger -->
+<script>
+    $(document).ready(function () {
+        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+        $('#instructions').openModal();
+    });
+</script>
 </html>
+
 <?php
 if(isset($_POST['add_new_entry'])){
 
 
-        foreach ($_POST as $key => $value) {
+foreach ($_POST as $key => $value) {
 
-  }
-    {
-        $first_name = htmlspecialchars($_POST['first_name'],ENT_QUOTES);
-        $last_name = htmlspecialchars($_POST['last_name'],ENT_QUOTES);
-        $name_title = $_POST['name_title'];
-        $email = strtolower($_POST['email']);
-        $room = $_POST['room'];
-        $aper = $_POST['aper'];
-        $bper = $_POST['bper'];
-        $cper = $_POST['cper'];
-        $dper = $_POST['dper'];
-        $eper = $_POST['eper'];
-        $fper = $_POST['fper'];
-        $gper = $_POST['gper'];
-        $hper = $_POST['hper'];
+}
+{
+$first_name = htmlspecialchars($_POST['first_name'],ENT_QUOTES);
+$last_name = htmlspecialchars($_POST['last_name'],ENT_QUOTES);
+$name_title = $_POST['name_title'];
+$email = strtolower($_POST['email']);
+$password = $defaultTeacherPassword;
+$aper = $_POST['aper'];
+$bper = $_POST['bper'];
+$cper = $_POST['cper'];
+$dper = $_POST['dper'];
+$eper = $_POST['eper'];
+$fper = $_POST['fper'];
+$gper = $_POST['gper'];
+$hper = $_POST['hper'];
 
-        $per = "$aper $bper $cper $dper $eper $fper $gper $hper";
+$per = "$aper $bper $cper $dper $eper $fper $gper $hper";
 
-        $perarray = explode(" ", $per);
+$perarray = explode(" ", $per);
 
-        $perarray_null = array_filter($perarray, 'strlen');
+$perarray_null = array_filter($perarray, 'strlen');
 
-        $percount = count($perarray_null);
+$percount = count($perarray_null);
 
-        echo $per;
+echo $per;
 
-        echo $percount;
+echo $percount;
 
-        {
-            echo "First Name: " . $first_name;
-            echo "Last Name: " . $last_name;
-            echo "Title: " . $name_title;
-            echo "Email: " . $email;
-            echo "Room: " . $room;
+$salt = '$2a$10$' . rand() . rand() . rand() . '$';
+echo $salt . "\n";
+$hashedPass = crypt($password, $salt);
 
-        }
-        include "../../sqlconnect.php";
-        foreach($perarray_null as $forper) {
-            $sql = "INSERT INTO teachers (name_title, firstname, lastname, email, period)
-            VALUES ('$name_title', '$first_name', '$last_name', '$email', '$forper')";
+echo $hashedPass;
+if ($hashedPass == '*0') {
+  echo "Error Encrypting";
+} else {
 
-            if ($conn->query($sql) === TRUE) {
-                echo "New record created successfully";
-            } else {
-                echo "Error: " . $sql . "<br>" . $conn->error;
-            }
-        }
-    $conn->close();
-    }
+{
+    echo "First Name: " . $first_name;
+    echo "Last Name: " . $last_name;
+    echo "Title: " . $name_title;
+    echo "Email: " . $email;
+    echo "Room: " . $room;
+
 }
 
+foreach($perarray_null as $forper) {
+    $sql = "INSERT INTO teachers (name_title, firstname, lastname, email, period, password)
+    VALUES ('$name_title', '$first_name', '$last_name', '$email', '$forper', '$hashedPass')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+}
+$conn->close();
+}
+}
+}
 ?>
