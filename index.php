@@ -46,9 +46,9 @@ Materializecss.com - They created the material design js and css library.
     <link href="/passport/css/passr.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <!--Browser Colors-->
     <!-- Chrome, Firefox OS and Opera -->
-    <meta name="theme-color" content="#b71c1c">
+    <meta name="theme-color" content="#D32F2F">
     <!-- Windows Phone -->
-    <meta name="msapplication-navbutton-color" content="#b71c1c">
+    <meta name="msapplication-navbutton-color" content="#D32F2F">
     <!-- iOS Safari -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -96,8 +96,8 @@ Materializecss.com - They created the material design js and css library.
 
     <!--Navbar-->
     <nav>
-        <div class="nav-wrapper red darken-4">
-            <a href="#" class="brand-logo black-text center">Passport</a>
+        <div class="nav-wrapper ">
+            <a href="#" class="brand-logo center">Passport</a>
 
         </div>
     </nav>
@@ -110,7 +110,7 @@ Materializecss.com - They created the material design js and css library.
 
 
     <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-        <a class="btn-floating btn-large red tooltipped" data-position="left" data-delay="50" data-tooltip="Feedback">
+        <a class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="Feedback">
             <i class="large material-icons">assignment</i>
         </a>
         <ul>
@@ -806,7 +806,7 @@ Materializecss.com - They created the material design js and css library.
                     </div>
                 </div>
 
-                <button class="btn waves-effect waves-light red darken-2 tooltipped" data-position="top" data-delay="50" data-tooltip="You CANNOT cancel this pass.  You are required to come. " type="submit" name="submit">Request a pass
+                <button class="btn waves-effect waves-light tooltipped" data-position="top" data-delay="50" data-tooltip="You CANNOT cancel this pass.  You are required to come. " type="submit" name="submit">Request a pass
                     <i class="material-icons right">send</i>
                 </button>
             </div>

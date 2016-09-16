@@ -32,8 +32,29 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="/passport/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="/passport/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="/passport/css/hamburgers.css" rel="stylesheet">
 
+    <script>
 
+    $('.button-collapse').sideNav({
+      menuWidth: 300, // Default is 240
+      closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+    }
+  );
+  $('.collapsible').collapsible();
+
+  </script>
+  <style>
+  header, main, footer {
+     padding-left: 300px;
+   }
+
+   @media only screen and (max-width : 992px) {
+     header, main, footer {
+       padding-left: 0;
+     }
+   }
+   </style>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -43,33 +64,35 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <body>
 
     <nav>
-        <div class="nav-wrapper red darken-4">
+        <div class="nav-wrapper">
             <a href="index.php" class="brand-logo right">Passport Admin Dashboard</a>
+            <!--
             <ul id="nav-desktop" class="left hide-on-med-and-down">
                 <li><a href="passsearch.php">Passes</a></li>
                 <li><a href="blackout.php">Blackout</a></li>
                 <li><a href="editteacher.php">Teachers</a></li>
-                <!--<li><a href="teacherlist.php">View/Delete Teachers</a></li>-->
+
                 <li><a href="createmessage.php">Messages</a></li>
                 <li><a href="createwhy.php">Reasons</a></li>
                 <li><a href="editlimits.php">Limits</a></li>
                 <li><a href="createadmin.php">Admins</a></li>
                 <li class="right"><a href="logout.php">Logout<i class="material-icons right">lock</i></a></li>
             </ul>
-
-            <ul id="nav-mobile" class="side-nav">
+          -->
+            <ul id="slide-out" class="side-nav">
                 <p class="center-align black-text"></p>
                 <li><a href="passsearch.php">Passes</a></li>
                 <li><a href="blackout.php">Blackout</a></li>
                 <li><a href="editteacher.php">Teachers</a></li>
                 <li><a href="createmessage.php">Messages</a></li>
-                <!-- <li><a href="teacherlist.php">View/Delete Teachers</a></li>-->
+
                 <li><a href="createwhy.php">Reason</a></li>
                 <li><a href="editlimits.php">Limits</a></li>
                 <li><a href="createadmin.php">Admins</a></li>
                 <li> <a href="logout.php">Logout<i class="material-icons right">lock_outline</i></a></li>
             </ul>
-            <a href="#" data-activates="nav-mobile" class="button-collapse left"><i class="material-icons">menu</i></a>
+            <a href="#" data-activates="slide-out" class="button-collapse left-allign show-on-large"><i class="material-icons">menu</i></a>
+
         </div>
     </nav>
 

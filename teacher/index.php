@@ -60,22 +60,45 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 </head>
 
 <body class="grey darken-4">
-    <? date_default_timezone_set('America/Chicago'); ?>
-    <h1 class="center" style='color: #ecf0f1'>Teachers</h1>
-    <!-- I donno about the nav -->
-    <!--
+
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo right">Teachers</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a href="">Account</a></li>
+
+        <li class="right"><a href="logout.php">Logout<i class="material-icons right">lock</i></a></li>
+      </ul>
+    </div>
+  </nav>
     <nav>
-        <div class="nav-wrapper red darken-4">
-            <a href="" class="brand-logo Center">Teacher Dashboard</a>
+
+    <div class="nav-wrapper theme-second">
+
+      <form method="get" action="">
+        <div class="input-field">
+          <input autocomplete="off" id="autocomplete-input" name="teacherName" type="search" required class="autocomplete">
+          <label for="autocomplete-input"><i class="material-icons">search</i></label>
+          <i class="material-icons">close</i>
+
+
+          <button class="btn waves-effect waves-light" style="position: absolute; left: -9999px"  type="submit" name="search">Search
+              <i class="material-icons right">search</i>
+          </button>
         </div>
-    </nav>
-  -->
+      </form>
+    </div>
+  </nav>
+    <? date_default_timezone_set('America/Chicago'); ?>
+
+    <? include "../sqlconnect.php"; ?>
+
 
     <!--FEEDBACK FAB-->
 
 
     <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-        <a class="btn-floating btn-large red tooltipped" data-position="left" data-delay="50" data-tooltip="Feedback">
+        <a class="btn-floating btn-large tooltipped" data-position="left" data-delay="50" data-tooltip="Feedback">
             <i class="large material-icons">assignment</i>
         </a>
         <ul>
@@ -87,7 +110,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     </div>
 
 
-    <? include "../sqlconnect.php"; ?>
+
 
 
   <!-- Bug Modal -->
@@ -243,33 +266,23 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <div class="container">
 
 <? include "functions.php"; ?>
-    <div style='color: #ecf0f1'>
+
     <br>
     <br>
-    <form method="get" action="">
-        <div class="row">
-            <div class="input-field col s5">
-                <label class="active">Email</label>
-                <input type="text" autocomplete="off" id="autocompleteName" name="teacherName" value="<? echo $_SESSION['teacherEmail']; ?>" required class="autocomplete inputFields">
-            </div>
-            <? echo blackout(); ?>
-            <div>
-                <button class="btn waves-effect waves-light" type="submit" name="search">Search
-                    <i class="material-icons right">search</i>
-                </button>
-            </div>
-        </div>
 
-    </form>
+
+<div style='color: #ecf0f1'>
+  <? echo blackout(); ?>
 
 
 
 
-
+<!--
     <script>
+
         var lNameData = [
     <?
-
+    /*
     $sql = "SELECT DISTINCT email FROM teachers ORDER BY email";
     $result = $conn -> query($sql);
     if ($result -> num_rows > 0) {
@@ -279,15 +292,17 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     } else {
         echo "{ value: 'No Teachers'}, ";
     }
-
+        */
         ?>
 ];
 
 
 
 
-        $('#autocompleteName').data('array', lNameData);
+        $('#search').data('array', lNameData);
     </script>
+-->
+
 
 
 
@@ -360,6 +375,25 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
                 $('.modal-trigger').leanModal();
               });
+    </script>
+    <script>
+    $(document).ready(function(){
+    $('input.autocomplete').autocomplete({
+        data: {
+        <?
+        $sql = "SELECT DISTINCT email FROM teachers ORDER BY email";
+        $result = $conn -> query($sql);
+        if ($result -> num_rows > 0) {
+                    while ($row = $result -> fetch_assoc()) {
+                        echo '"' . $row['email']. '"'. ": null, ";
+                    }
+        } else {
+            echo "{ value: 'No Teachers'}, ";
+        }
+        ?>
+      }
+    });
+  });
     </script>
 
 
