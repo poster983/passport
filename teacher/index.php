@@ -3,12 +3,7 @@ include("common.php");
 checklogin();
 $msg = "";
 
-if(isset($_GET['search'])) {
-    $teacherEmailID=$_GET['teacherName'];
-    $cookie_name = "teacherEmailRem";
-    setcookie($cookie_name, $teacherEmailID, time() + (86400 * 30), "/passport/teacher/");
-    //setcookie($cookie_name, $teacherEmailID, 0, "/");
-}
+
 
 ?>
 
@@ -60,14 +55,21 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 </head>
 
 <body class="grey darken-4">
-
+  <!-- Dropdown Structure -->
+  <ul id="threeDot" class="dropdown-content">
+    <li><a href="account.php">Account</a></li>
+    <li class="divider"></li>
+    <li><a href="logout.php">Logout<i class="material-icons right">lock</i></a></li>
+  </ul>
+  <!-- Nav Bar-->
   <nav>
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo right">Teachers</a>
-      <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <li><a href="">Account</a></li>
-
-        <li class="right"><a href="logout.php">Logout<i class="material-icons right">lock</i></a></li>
+      <a href="#" class="brand-logo left">Teachers</a>
+      <ul id="nav-mobile" class="right">
+        <!--<li class="right"><a href="logout.php">Logout<i class="material-icons right">lock</i></a></li>-->
+        <li><a href="index.php"><i class="material-icons">refresh</i></a></li>
+        <li><a class="dropdown-button" href="#!" data-activates="threeDot">	&nbsp; &nbsp; &nbsp;	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<i class="material-icons left">more_vert</i> </a></li>
+        <li><a href=""></a></li>
       </ul>
     </div>
   </nav>
@@ -370,13 +372,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         </div>
     </footer>
 
+
     <script>
-              $(document).ready(function(){
-                // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-                $('.modal-trigger').leanModal();
-              });
-    </script>
-    <script>
+    $('.modal-trigger').leanModal();
     $(document).ready(function(){
     $('input.autocomplete').autocomplete({
         data: {

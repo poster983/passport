@@ -103,6 +103,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     background-image: -ms-linear-gradient( rgb(231, 76, 60) 25%, rgb(155, 38, 175) 100%);
 }
 
+.red-orange {
+  background: linear-gradient(180deg, rgb(231, 76, 60), rgb(230, 126, 34));
+  background: -webkit-linear-gradient(180deg, rgb(231, 76, 60), rgb(230, 126, 34));
+}
+
 
 /* Blur background*/
 .blur-back:before {

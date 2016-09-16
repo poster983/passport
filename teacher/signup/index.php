@@ -116,7 +116,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 </button>
             </p>
         </form>
-        <a class="waves-effect waves-light btn-large" href="teacherlist.php">Teacher List</a>
+        
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

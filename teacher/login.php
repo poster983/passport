@@ -100,7 +100,7 @@ if (isset($_POST['Submit'])) {
 
         <div class="containerlogin signin-allign">
 
-            <div class="card-panel blue-teal <? echo $fadein; ?>">
+            <div class="card-panel red-orange <? echo $fadein; ?>">
             <form name="form1" method="post" action="">
                 <h3 class="center">Teacher Login</h3>
                 <div class="card-panel <? echo $failshake; ?>">
@@ -116,7 +116,7 @@ if (isset($_POST['Submit'])) {
                     <label for="password">Password</label>
                 </div>
                 </div>
-                <button class="btn waves-effect waves-light red darken-4" type="submit" name="Submit">Login
+                <button class="btn waves-effect waves-light" type="submit" name="Submit">Login
                     <i class="material-icons right">lock_open</i>
                 </button>
                 <h6> <? echo $msg; ?> </h6>
