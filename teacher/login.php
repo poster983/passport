@@ -107,7 +107,7 @@ if (isset($_POST['Submit'])) {
 
 
                 <div class="input-field">
-                    <input name="username" type="text" id="username">
+                    <input name="username" type="email" id="username">
                     <label for="username">Email</label>
                 </div>
 

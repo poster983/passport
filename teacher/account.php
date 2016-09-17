@@ -66,8 +66,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <div class="nav-wrapper">
       <a href="#" class="brand-logo left">Teachers</a>
       <ul id="nav-mobile" class="right">
-        <!--<li class="right"><a href="logout.php">Logout<i class="material-icons right">lock</i></a></li>-->
-        <li><a href="index.php"><i class="material-icons">refresh</i></a></li>
+
         <li><a class="dropdown-button" href="#!" data-activates="threeDot">	&nbsp; &nbsp; &nbsp;	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<i class="material-icons left">more_vert</i> </a></li>
         <li><a href=""></a></li>
       </ul>
@@ -135,37 +134,37 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
       //Check if old pass is right
       mysqli_report(MYSQLI_REPORT_ERROR);
-      if ($stmt = $conn->prepare("SELECT email, password FROM teachers WHERE email = ?")) {
+      if ($stmt = $conn->prepare("SELECT password FROM teachers WHERE email = ?")) {
         /* bind parameters for markers */
-        echo "1";
+    //    echo "1";
        $stmt->bind_param("s", $email);
        /* execute query */
         $stmt->execute();
         $stmt->store_result();
         /* bind result variables */
-        $stmt->bind_result($void, $hashedPass);
-        echo "2";
+        $stmt->bind_result($hashedPass);
+    //    echo "2";
     	   if($stmt->num_rows > "0") {
-           echo "3";
+          // echo "3";
            while ($stmt->fetch()) {
-             echo "4";
+        //     echo "4";
            $hashedPass;
          }
     		if(crypt($oldPass, $hashedPass) == $hashedPass) {
-          echo "5";
+          //echo "5";
           $oldIsGood = 1;
         } else {
-          echo "6";
+        //  echo "6";
           $oldIsGood = 0;
         }
       } else {
-        echo "7";
+      //  echo "7";
         echo "<script> Materialize.toast('Incorect Password', 10000) </script>";
         $oldIsGood = 0;
       }
       $stmt->close();
     } else {
-      echo "8";
+      //echo "8";
       echo "<script> Materialize.toast('Its all broken, Contact IT.', 10000) </script>";
     }
       if ($oldIsGood == 1) {
@@ -184,6 +183,14 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
               echo "<script> Materialize.toast('Error, Encryption Failed', 10000) </script>";
             } else {
               echo "it all works";
+              $sql = "UPDATE teachers SET password='$newHhashedPass' WHERE email='$email'";
+
+              if ($conn->query($sql) === TRUE) {
+                echo "<script> Materialize.toast('Your Password has now been updated.', 10000) </script>";
+              } else {
+                echo "<script> Materialize.toast('Error updating record: " . $conn->error . "', 10000) </script>";
+              }
+
           }
         }
       } else {
