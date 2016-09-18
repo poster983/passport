@@ -34,7 +34,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 <body>
     <nav>
-        <div class="nav-wrapper red darken-4"> <a href="" class="brand-logo center">Feedback Manager</a> </div>
+        <div class="nav-wrapper"> <a href="" class="brand-logo center">Feedback Manager</a> </div>
     </nav>
 
 
