@@ -64,7 +64,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   <!-- Nav Bar-->
   <nav>
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo left">Teachers</a>
+      <a href="index.php" class="brand-logo left">Teachers</a>
       <ul id="nav-mobile" class="right">
 
         <li><a class="dropdown-button" href="#!" data-activates="threeDot">	&nbsp; &nbsp; &nbsp;	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<i class="material-icons left">more_vert</i> </a></li>
