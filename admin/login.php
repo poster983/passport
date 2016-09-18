@@ -43,12 +43,12 @@ if (isset($_POST['Submit'])) {
 			header("Location: index.php");
       $msg = "Your in!";
 		} else {
-			$msg = "Username or Password incorrect Pass";
+			$msg = "Username or Password incorrect";
             $failshake = "animated wobble";
             $fadein = "";
 		}
 	} else {
-		$msg = "Username or Password incorrect User";
+		$msg = "Username or Password incorrect";
         $failshake = "animated wobble";
         $fadein = "";
     }

@@ -1,25 +1,44 @@
 <?php
 session_start();
-include("adminconnect.php");
+include "adminconnect.php";
 
 $msg = "";
 $failshake = "";
 $fadein = "animated fadeInDown";
 
 if (isset($_POST['Submit'])) {
-	$username = mysql_real_escape_string($_POST['username']);
-	$password = mysql_real_escape_string($_POST['password']);
-	$result = mysql_query("select * from admin where username='$username'", $link);
+	$Uusername = $_POST['username'];
+	$password = $conn->real_escape_string($_POST['password']);
+  //echo "username: " . $username . " Password: " . $password . "  ";
+  //mysqli_report(MYSQLI_REPORT_ERROR);
+  //  #&@% Prepared statements!!!
+	if ($stmt = $conn->prepare("SELECT password FROM admin WHERE username = ?")) {
+    //echo "HI";
+    /* bind parameters for markers */
+   $stmt->bind_param("s", $Uusername);
+   /* execute query */
+    $stmt->execute();
+    $stmt->store_result();
 
-	if(mysql_num_rows($result) > 0) {
-		$row = mysql_fetch_array($result, MYSQL_BOTH);
-		$hashedPass = $row["password"];
+    /* bind result variables */
+    $stmt->bind_result($hashedPass);
+
+
+
+	if($stmt->num_rows > "0") {
+    while ($stmt->fetch()) {
+      $hashedPass;
+    }
+		//echo "Hashed: " . $hashedPass . "_____ Un hashed " . crypt($password, $hashedPass);
+
 		if(crypt($password, $hashedPass) == $hashedPass) {
 			session_regenerate_id();
 			$_SESSION['kioskok'] = "ok";
 			$_SESSION['username'] = "username";
 			$_SESSION['password'] = "password";
+
 			header("Location: index.php");
+      $msg = "Your in!";
 		} else {
 			$msg = "Username or Password incorrect";
             $failshake = "animated wobble";
@@ -30,6 +49,10 @@ if (isset($_POST['Submit'])) {
         $failshake = "animated wobble";
         $fadein = "";
     }
+    $stmt->close();
+} else {
+	echo "NOPE";
+}
 }
 ?>
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">

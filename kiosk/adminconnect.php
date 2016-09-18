@@ -1,6 +1,7 @@
-<?
+<?php
 include "../config.php";
-    
-$link = mysql_connect("$servername", "$dbusername", "$dbpassword")or die("Could not connect");
-$db = mysql_select_db("$database", $link)or die("Could not select database");
+global $conn;
+// Create connection
+$conn = new mysqli($servername, $dbusername, $dbpassword, $database);
+
 ?>
