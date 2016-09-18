@@ -182,18 +182,21 @@ Materializecss.com - They created the material design js and css library.
         $bugseverity = $_POST['bugseverity'];
         $bugdate = date( 'Y-m-d', strtotime(" today "));
         $bugtext = htmlspecialchars($_POST['bugtext'],ENT_QUOTES);
+        $bugReportType = "bug";
+        $bugRole = "student";
     }
 
-        $sqlbug = "INSERT INTO feedback (name, email, comment, rating, report_type, date, role)
-        VALUES ('$bugname', '$bugemail', '$bugtext', '$bugseverity', 'bug', '$bugdate', 'student')";
+        $sqlbug = $conn->prepare("INSERT INTO feedback (name, email, comment, rating, report_type, `date`, role)
+        VALUES (?, ?, ?, ?, ?, ?, ?)");
 
-        if ($conn->query($sqlbug) === TRUE) {
-        echo "<script> Materialize.toast('Bug report submitted successfully', 4000) </script>";
-        //echo "Bug report submitted successfully";
+        $sqlbug->bind_param("sssisss", $bugname, $bugemail, $bugtext, $bugseverity, $bugReportType, $bugdate, $bugRole);
+        if ($sqlbug->execute()) {
+          echo "<script> Materialize.toast('Bug report submitted successfully', 4000) </script>";
         } else {
-        echo "Error: " . $sqlbug . "<br>" . $conn->error;
+          echo "<script> Materialize.toast('There was an error. contact IT', 14000) </script>";
+        }
+        $sqlbug->close();
 
-}
 
     }
 
@@ -267,19 +270,20 @@ Materializecss.com - They created the material design js and css library.
         $reviewtext = htmlspecialchars($_POST['reviewtext'],ENT_QUOTES);
         $reviewseverity = $_POST['rating'];
         $reviewdate = date( 'Y-m-d', strtotime(" today "));
+        $reviewReportType = "review";
+        $reviewRole = "student";
     }
 
-        $sqlreview = "INSERT INTO feedback (name, email, comment, rating, report_type, date, role)
-        VALUES ('$reviewname', '$reviewemail', '$reviewtext', '$reviewseverity', 'review', '$reviewdate', 'student')";
+        $sqlbug = $conn->prepare("INSERT INTO feedback (name, email, comment, rating, report_type, `date`, role)
+        VALUES (?, ?, ?, ?, ?, ?, ?)");
 
-        if ($conn->query($sqlreview) === TRUE) {
-        echo "<script> Materialize.toast('Review submitted successfully', 4000) </script>";
-        //echo "Review submitted successfully";
+        $sqlbug->bind_param("sssisss", $reviewname, $reviewemail, $reviewtext, $reviewseverity, $reviewReportType, $reviewdate, $reviewRole);
+        if ($sqlbug->execute()) {
+          echo "<script> Materialize.toast('Review submitted successfully', 4000) </script>";
         } else {
-        echo "Error: " . $sqlreview . "<br>" . $conn->error;
-
-}
-
+          echo "<script> Materialize.toast('There was an error. contact IT', 14000) </script>";
+        }
+        $sqlbug->close();
     }
 
     ?>

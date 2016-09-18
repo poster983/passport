@@ -61,13 +61,15 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         while($row = $result->fetch_assoc()) {
             if ($row['report_type'] == "bug") {
                 $icon = "report_problem";
+                $iconTitle = "title='Bug Report'";
                 $ratingstar = "Priority of ";
             } else {
                 $icon = "thumbs_up_down";
+                $iconTitle = "title='Rating'";
                 $ratingstar = "Rating of ";
             }
             echo "<li>";
-            echo "<div class='collapsible-header'><i class='material-icons'>" . $icon . "</i>" . $row['name'] . " <div class='chip'>" . $ratingstar . $row['rating'] . " </div> &nbsp &nbsp Ticket id: <div class='chip'>" . $row['id'] . " </div> &nbsp &nbsp Date: <div class='chip'>" . $row['date'] . " </div>  &nbsp &nbsp A <div class='chip'>" . $row['role'] . " </div> submitted this</div>";
+            echo "<div class='collapsible-header'><i class='material-icons' " . $iconTitle . ">" . $icon . "</i>" . $row['name'] . " <div class='chip'>" . $ratingstar . $row['rating'] . " </div> &nbsp &nbsp Ticket id: <div class='chip'>" . $row['id'] . " </div> &nbsp &nbsp Date: <div class='chip'>" . $row['date'] . " </div>  &nbsp &nbsp A <div class='chip'>" . $row['role'] . " </div> submitted this</div>";
             echo "<div class='collapsible-body'><p>" . $row['comment'] . "</p> <p><a href='mailto:" . $row['email'] . "?Subject=Passport%20Feedback%20Followup' target='_top'>Send an email</a></p></div>";
             echo "</li>";
         }
