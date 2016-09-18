@@ -44,17 +44,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   $('.collapsible').collapsible();
 
   </script>
-  <style>
-  header, main, footer {
-     padding-left: 300px;
-   }
 
-   @media only screen and (max-width : 992px) {
-     header, main, footer {
-       padding-left: 0;
-     }
-   }
-   </style>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -81,15 +71,38 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
           -->
             <ul id="slide-out" class="side-nav">
                 <p class="center-align black-text"></p>
-                <li><a href="passsearch.php">Passes</a></li>
-                <li><a href="blackout.php">Blackout</a></li>
-                <li><a href="editteacher.php">Teachers</a></li>
-                <li><a href="createmessage.php">Messages</a></li>
+                <li><a class="waves-effect" href="passsearch.php">Passes</a></li>
+                <!--Blackout Dropdown-->
+                <li><a class="dropdown-button waves-effect" href="#!" data-activates="dropdownBO">Blackout<i class="material-icons right">arrow_drop_down</i></a></li>
+                 <ul id='dropdownBO' class='dropdown-content'>
+                   <li><a class="waves-effect" href="blackout.php">Schedule a blackout </a></li>
+                   <li><a class="waves-effect" href="blackoutcal.php">View Blackouts</a></li>
+                 </ul>
+                <!--Teacher Dropdown-->
+                <li><a class="dropdown-button waves-effect" href="#!" data-activates="dropdownTea">Teachers<i class="material-icons right">arrow_drop_down</i></a></li>
+                 <ul id='dropdownTea' class='dropdown-content'>
+                   <li><a class="waves-effect" href="editteacher.php">New Teacher</a></li>
+                   <li><a class="waves-effect" href="teacherlist.php">View Teachers</a></li>
+                   <li><a class="waves-effect" href="/passport/teacher/index.php" target="_blank"><i class="material-icons">open_in_new</i>Go to Teacher Panel</a></li>
+                 </ul>
 
-                <li><a href="createwhy.php">Reason</a></li>
-                <li><a href="editlimits.php">Limits</a></li>
-                <li><a href="createadmin.php">Admins</a></li>
-                <li> <a href="logout.php">Logout<i class="material-icons right">lock_outline</i></a></li>
+                <!--Messages Dropdown-->
+                <li><a class="dropdown-button waves-effect" href="#!" data-activates="dropdownMes">Messages<i class="material-icons right">arrow_drop_down</i></a></li>
+                 <ul id='dropdownMes' class='dropdown-content'>
+                   <li><a class="waves-effect" href="createmessage.php">New Message</a></li>
+                   <li><a class="waves-effect" href="messagelist.php">View Messages</a></li>
+                 </ul>
+
+                <!--Reason Dropdown-->
+                <li><a class="dropdown-button waves-effect" href="#!" data-activates="dropdownRea">Reasons<i class="material-icons right">arrow_drop_down</i></a></li>
+                 <ul id='dropdownRea' class='dropdown-content'>
+                   <li><a class="waves-effect" href="createwhy.php">New Reason</a></li>
+                   <li><a class="waves-effect" href="whylist.php">View Reasons</a></li>
+                 </ul>
+                <li><a class="waves-effect" href="editlimits.php">Limits</a></li>
+                <li><a class="waves-effect" href="createadmin.php">Admins</a></li>
+                <li><div class="divider"></div></li>
+                <li> <a class="waves-effect" href="logout.php">Logout<i class="material-icons right">lock_outline</i></a></li>
             </ul>
             <a href="#" data-activates="slide-out" class="button-collapse left-allign show-on-large"><i class="material-icons">menu</i></a>
 
