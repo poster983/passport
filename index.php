@@ -524,7 +524,7 @@ Materializecss.com - They created the material design js and css library.
                             </div>
                             <div class="section">
                                 <!-- Date radios -->
-                                <h5 class="center">Pick the day that you are coming.*</h5>
+                                <h5 class="center">Pick the day that you are coming.</h5>
 
                                 <div>
                                     <p class="center">
@@ -544,7 +544,7 @@ Materializecss.com - They created the material design js and css library.
                                         <label for="friday">Friday</label>
 
                                     </p>
-                                    <p class="right">*All days relative to current week</p>
+                                    
                                 </div>
                             </div>
                         </div>
