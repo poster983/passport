@@ -28,7 +28,7 @@ Special Thanks
 
 Carson Rau - He came up with the idea and told me how bad my design was.
 The LC staff at STHS
-Mr. Hodge
+IT Department at STHS
 The study halls and teachers who participated in the pilot program in the fall of 2016.
 Materializecss.com - They created the material design js and css library.
 
@@ -304,6 +304,7 @@ Materializecss.com - They created the material design js and css library.
                         <li class="tab col s3"><a href="#helpDesktab">Help Desk</a></li>
                         <li class="tab col s3"><a href="#writingLabtab">Writing Lab</a></li>
                         <li class="tab col s3"><a href="#FLtab">Foreign Language</a></li>
+                        <li class="tab col s3"><a href="#AMtab">Athletic Mentor</a></li>
                     </ul>
                 </div>
 
@@ -482,6 +483,37 @@ Materializecss.com - They created the material design js and css library.
                                             <!-- php Reason dropdown -->
                                             <?
                                     $sql="SELECT dep, why FROM why WHERE dep='Foreign Language' ORDER BY why";
+                                    $result = $conn->query($sql);
+
+                                    if ($result->num_rows > 0) {
+                                        // output data of each row
+                                        while($row = $result->fetch_assoc()) {
+
+                                            echo '<option value="'.$row['why'].'">' . $row['why']. "</option>";
+                                        }
+
+                                    }
+                                            ?>
+                                        </select>
+                            </p>
+                        </div>
+                        <div id="AMtab" class="col s12">
+                            <p>
+                                <!-- Blackout Function -->
+                                <? AMout(); ?>
+                                <!-- Message Function -->
+                                    <? AMmess(); ?>
+                                <!-- Confirm Radio -->
+                                        <input class="with-gap" type="radio" name="place" value="Athletic Mentor" id="AMConfirm" />
+                                        <label for="AMConfirm">Confirm Athletic Mentor</label>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <select name="whyam" class="browser-default">
+                                            <option selected disabled value="">Why are you coming today?</option>
+                                            <!-- php Reason dropdown -->
+                                            <?
+                                    $sql="SELECT dep, why FROM why WHERE dep='Athletic Mentor' ORDER BY why";
                                     $result = $conn->query($sql);
 
                                     if ($result->num_rows > 0) {

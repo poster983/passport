@@ -117,9 +117,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                     <input name="tdep" type="radio" id="twl" value="Writing Lab" />
                                 <label for="twl">Writing Lab</label>
                                 &nbsp &nbsp
-                                    <input name="tdep" type="radio" id="tfl" value="Foreign Language" />
+                                <input name="tdep" type="radio" id="tfl" value="Foreign Language" />
                                 <label for="tfl">Foreign Language</label>
                                 &nbsp &nbsp
+                                <input name="tdep" type="radio" id="tam" value="Athletic Mentor" />
+                                <label for="tam">Athletic Mentor</label>
                                 </div>
                             </div>
 

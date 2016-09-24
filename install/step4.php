@@ -50,6 +50,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <li>Help Desk</li>
         <li>Writing Lab</li>
         <li>Foreign Languages</li>
+        <li>Athletic Mentor</li>
       </ul>
     <div>
         <p>
@@ -69,9 +70,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         //To add new departments into this array, remove the departments already added and then add the new ones.
         //The names must mach the values of the departments in index.php
         //NO SPACES
-        $deparray = array("lec", "math", "library", "hd", "Writing Lab", "Foreign Language");
+        $deparray = array("lec", "math", "library", "hd", "Writing Lab", "Foreign Language", "Athletic Mentor");
            //also change "x" to the total of the array
-           for ($x = 5; $x >= 0; $x--) {
+           for ($x = 6; $x >= 0; $x--) {
                 $depfinal = $deparray[$x];
                 echo $depfinal;
            $sql = "INSERT INTO studentlimit (studentlimit, dep)

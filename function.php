@@ -1,4 +1,6 @@
-<? 
+<?
+
+//yes i realize that im not using functions correctly..... but SHhhhhhhhhhh
 $mondisday = date( 'Y-m-d', strtotime(" monday this week "));
 $tusdisday = date( 'Y-m-d', strtotime(" tuesday this week "));
 $weddisday = date( 'Y-m-d', strtotime(" wednesday this week "));
@@ -7,7 +9,7 @@ $fridisday = date( 'Y-m-d', strtotime(" friday this week "));
 
 $today = date( 'Y-m-d', strtotime(" today "));
 //WHERE day = '$mondisday' OR day = '$tusdisday' OR day = '$weddisday' OR day = '$thurdisday' OR day = '$fridisday'
-function LECout() 
+function LECout()
 {
     global $mondisday;
     global $tusdisday;
@@ -24,7 +26,7 @@ function LECout()
     if ($resultlecout->num_rows > 0) {
         echo "<div class='col s12 m6'><div class='hoverable card orange'><div class='card-content white-text'><span class='card-title'>ATTENTION!</span><p> The Executive Functioning Department is closed today during the following periods: &nbsp</p>";
         // output data of each row
-        
+
         while($rowlecout = $resultlecout->fetch_assoc()) {
             $perexp = explode(",", $rowlecout["period"]);
             $percount = count($perexp);
@@ -40,16 +42,16 @@ function LECout()
         }
      if ($resultlecoutfut->num_rows > 0) {
         echo "<div class='col s12 m6'><div class='hoverable card red'><div class='card-content white-text'><span class='card-title'>This Week</span><p> This week, The Executive Functioning Department will be closed on:</p>";
-        
+
         while($rowlecoutfut = $resultlecoutfut->fetch_assoc()) {
             $perexpfut = explode(",", $rowlecoutfut["period"]);
             $percountfut = count($perexpfut);
-            
+
             echo "<p>" . $rowlecoutfut["day"] . " during the period(s) of: ";
             for($i = 0; $i < $percountfut; $i++) {
                 echo $perexpfut[$i] . " ";
             }
-            
+
         }
          echo "</p><p>Thank you for your cooperation.</p>";
         echo "</div></div></div>";
@@ -61,7 +63,7 @@ function LECout()
 }
 
 
-function MATHout() 
+function MATHout()
 {
     global $mondisday;
     global $tusdisday;
@@ -78,7 +80,7 @@ function MATHout()
     if ($resultlecout->num_rows > 0) {
         echo "<div class='col s12 m6'><div class='hoverable card orange'><div class='card-content white-text'><span class='card-title'>ATTENTION!</span><p> The Math Department is closed today during the following periods: &nbsp</p>";
         // output data of each row
-        
+
         while($rowlecout = $resultlecout->fetch_assoc()) {
             $perexp = explode(",", $rowlecout["period"]);
             $percount = count($perexp);
@@ -94,17 +96,17 @@ function MATHout()
         }
      if ($resultlecoutfut->num_rows > 0) {
         echo "<div class='col s12 m6'><div class='hoverable card red'><div class='card-content white-text'><span class='card-title'>This Week</span><p> This week, the Math Department will be closed on:</p>";
-        
+
         while($rowlecoutfut = $resultlecoutfut->fetch_assoc()) {
             $perexpfut = explode(",", $rowlecoutfut["period"]);
             $percountfut = count($perexpfut);
-            
+
             echo "<p>" . $rowlecoutfut["day"] . " during the period(s) of: ";
             for($i = 0; $i < $percountfut; $i++) {
                 echo $perexpfut[$i] . " ";
             }
-            
-        } 
+
+        }
          echo "</p><p>Thank you for your cooperation.</p>";
         echo "</div></div></div>";
 
@@ -114,7 +116,7 @@ function MATHout()
     echo "</div>";
 }
 
-function LIBout() 
+function LIBout()
 {
     global $mondisday;
     global $tusdisday;
@@ -146,17 +148,17 @@ function LIBout()
         }
      if ($resultlecoutfut->num_rows > 0) {
         echo "<div class='col s12 m6'><div class='hoverable card red'><div class='card-content white-text'><span class='card-title'>This Week</span><p> This week, the Library will be closed on:</p>";
-        
+
         while($rowlecoutfut = $resultlecoutfut->fetch_assoc()) {
             $perexpfut = explode(",", $rowlecoutfut["period"]);
             $percountfut = count($perexpfut);
-            
+
             echo "<p>" . $rowlecoutfut["day"] . " during the period(s) of: ";
             for($i = 0; $i < $percountfut; $i++) {
                 echo $perexpfut[$i] . " ";
             }
-            
-        } 
+
+        }
          echo "</p><p>Thank you for your cooperation.</p>";
         echo "</div></div></div>";
 
@@ -166,7 +168,7 @@ function LIBout()
     echo "</div>";
 }
 
-function HDout() 
+function HDout()
 {
     global $mondisday;
     global $tusdisday;
@@ -198,17 +200,17 @@ function HDout()
         }
      if ($resultlecoutfut->num_rows > 0) {
         echo "<div class='col s12 m6'><div class='hoverable card red'><div class='card-content white-text'><span class='card-title'>This Week</span><p> This week, the Help Desk will be closed on:</p>";
-        
+
         while($rowlecoutfut = $resultlecoutfut->fetch_assoc()) {
             $perexpfut = explode(",", $rowlecoutfut["period"]);
             $percountfut = count($perexpfut);
-            
+
             echo "<p>" . $rowlecoutfut["day"] . " during the period(s) of: ";
             for($i = 0; $i < $percountfut; $i++) {
                 echo $perexpfut[$i] . " ";
             }
-            
-        } 
+
+        }
          echo "</p><p>Thank you for your cooperation.</p>";
         echo "</div></div></div>";
 
@@ -218,7 +220,7 @@ function HDout()
     echo "</div>";
 }
 
-function WLout() 
+function WLout()
 {
     global $mondisday;
     global $tusdisday;
@@ -250,17 +252,17 @@ function WLout()
         }
      if ($resultlecoutfut->num_rows > 0) {
         echo "<div class='col s12 m6'><div class='hoverable card red'><div class='card-content white-text'><span class='card-title'>This Week</span><p> This week, the Writing Lab will be closed on:</p>";
-        
+
         while($rowlecoutfut = $resultlecoutfut->fetch_assoc()) {
             $perexpfut = explode(",", $rowlecoutfut["period"]);
             $percountfut = count($perexpfut);
-            
+
             echo "<p>" . $rowlecoutfut["day"] . " during the period(s) of: ";
             for($i = 0; $i < $percountfut; $i++) {
                 echo $perexpfut[$i] . " ";
             }
-            
-        } 
+
+        }
          echo "</p><p>Thank you for your cooperation.</p>";
         echo "</div></div></div>";
 
@@ -271,7 +273,7 @@ function WLout()
 }
 
 
-function FLout() 
+function FLout()
 {
     global $mondisday;
     global $tusdisday;
@@ -303,17 +305,17 @@ function FLout()
         }
      if ($resultlecoutfut->num_rows > 0) {
         echo "<div class='col s12 m6'><div class='hoverable card red'><div class='card-content white-text'><span class='card-title'>This Week</span><p> This week, Foreign Language tutoring will be closed on:</p>";
-        
+
         while($rowlecoutfut = $resultlecoutfut->fetch_assoc()) {
             $perexpfut = explode(",", $rowlecoutfut["period"]);
             $percountfut = count($perexpfut);
-            
+
             echo "<p>" . $rowlecoutfut["day"] . " during the period(s) of: ";
             for($i = 0; $i < $percountfut; $i++) {
                 echo $perexpfut[$i] . " ";
             }
-            
-        } 
+
+        }
          echo "</p><p>Thank you for your cooperation.</p>";
         echo "</div></div></div>";
 
@@ -324,7 +326,57 @@ function FLout()
 }
 
 
+function AMout()
+{
+    global $mondisday;
+    global $tusdisday;
+    global $weddisday;
+    global $thurdisday;
+    global $fridisday;
+    global $conn;
+    global $today;
+    $sqllecout = "SELECT day, department, period FROM blackout WHERE day = '$today' AND department = 'Athletic Mentor' ORDER BY department";
+    $sqllecoutfut = "SELECT day, department, period FROM blackout WHERE department = 'Athletic Mentor' AND (day = '$mondisday' OR day = '$tusdisday' OR day = '$weddisday' OR day = '$thurdisday' OR day = '$fridisday') ORDER BY day";
+    $resultlecout = $conn->query($sqllecout);
+    $resultlecoutfut = $conn->query($sqllecoutfut);
+    echo "<div class='row'>";
+    if ($resultlecout->num_rows > 0) {
+        echo "<div class='col s12 m6'><div class='hoverable card orange'><div class='card-content white-text'><span class='card-title'>ATTENTION!</span><p> The Athletic Mentor is not available today during the following periods: &nbsp</p>";
+        // output data of each row
+        while($rowlecout = $resultlecout->fetch_assoc()) {
+            $perexp = explode(",", $rowlecout["period"]);
+            $percount = count($perexp);
+            echo "<p>";
+            for($i = 0; $i < $percount; $i++) {
+                echo $perexp[$i] . " ";
+            }
+            echo "</p><p> Please stay in your study hall </p>";
+        }
+        echo "</div></div></div>";
+        } else {
+            echo "<div class='center col s12'><div class='hoverable card green'><div class='card-content white-text'><span class='card-title'> The Athletic Mentor is available today.</span></div></div></div>";
+        }
+     if ($resultlecoutfut->num_rows > 0) {
+        echo "<div class='col s12 m6'><div class='hoverable card red'><div class='card-content white-text'><span class='card-title'>This Week</span><p> This week, The Athletic Mentor will be unavailable during:</p>";
 
+        while($rowlecoutfut = $resultlecoutfut->fetch_assoc()) {
+            $perexpfut = explode(",", $rowlecoutfut["period"]);
+            $percountfut = count($perexpfut);
+
+            echo "<p>" . $rowlecoutfut["day"] . " during the period(s) of: ";
+            for($i = 0; $i < $percountfut; $i++) {
+                echo $perexpfut[$i] . " ";
+            }
+
+        }
+         echo "</p><p>Thank you for your cooperation.</p>";
+        echo "</div></div></div>";
+
+} else {
+            echo "<div class='center col s12'><div class='hoverable card green accent-3'><div class='card-content white-text'><span class='card-title'>The Athletic Mentor is available all week.</span></div></div></div>";
+        }
+    echo "</div>";
+}
 
 
 
@@ -335,10 +387,10 @@ function LECmess()
     {
     $sqlmessage = "SELECT day, dep, reason FROM message WHERE day = '$today' AND dep = 'LEC'";
     $resultmessage = $conn->query($sqlmessage);
-    
+
         echo "<div class='row'>";
     if ($resultmessage->num_rows > 0) {
-        echo "<div class='col s12'><div class='hoverable card teal darken-4'><div class='card-content white-text'><span class='card-title'>IMPORTANT MESSAGE FROM EXECUTIVE FUNCTIONING DEPARTMENT</span>";
+        echo "<div class='col s12'><div class='hoverable card teal darken-4'><div class='card-content white-text'><span class='card-title'>IMPORTANT MESSAGE FROM THE EXECUTIVE FUNCTIONING DEPARTMENT</span>";
         // output data of each row
         while($rowmessage = $resultmessage->fetch_assoc()) {
             echo "<p>";
@@ -360,7 +412,7 @@ function MATHmess()
     {
     $sqlmessage = "SELECT day, dep, reason FROM message WHERE day = '$today' AND dep = 'Math Department'";
     $resultmessage = $conn->query($sqlmessage);
-    
+
         echo "<div class='row'>";
     if ($resultmessage->num_rows > 0) {
         echo "<div class='col s12'><div class='hoverable card teal darken-4'><div class='card-content white-text'><span class='card-title'>IMPORTANT MESSAGE FROM THE MATH DEPARTMENT</span>";
@@ -385,7 +437,7 @@ function LIBmess()
     {
     $sqlmessage = "SELECT day, dep, reason FROM message WHERE day = '$today' AND dep = 'Library'";
     $resultmessage = $conn->query($sqlmessage);
-    
+
         echo "<div class='row'>";
     if ($resultmessage->num_rows > 0) {
         echo "<div class='col s12'><div class='hoverable card teal darken-4'><div class='card-content white-text'><span class='card-title'>IMPORTANT MESSAGE FROM THE LIBRARY</span>";
@@ -410,7 +462,7 @@ function HDmess()
     {
     $sqlmessage = "SELECT day, dep, reason FROM message WHERE day = '$today' AND dep = 'Help Desk'";
     $resultmessage = $conn->query($sqlmessage);
-    
+
         echo "<div class='row'>";
     if ($resultmessage->num_rows > 0) {
         echo "<div class='col s12'><div class='hoverable card teal darken-4'><div class='card-content white-text'><span class='card-title'>IMPORTANT MESSAGE FROM THE HELP DESK</span>";
@@ -435,7 +487,7 @@ function WLmess()
     {
     $sqlmessage = "SELECT day, dep, reason FROM message WHERE day = '$today' AND dep = 'Writing Lab'";
     $resultmessage = $conn->query($sqlmessage);
-    
+
         echo "<div class='row'>";
     if ($resultmessage->num_rows > 0) {
         echo "<div class='col s12'><div class='hoverable card teal darken-4'><div class='card-content white-text'><span class='card-title'>IMPORTANT MESSAGE FROM THE WRITING LAB</span>";
@@ -460,7 +512,7 @@ function FLmess()
     {
     $sqlmessage = "SELECT day, dep, reason FROM message WHERE day = '$today' AND dep = 'Foreign Language'";
     $resultmessage = $conn->query($sqlmessage);
-    
+
         echo "<div class='row'>";
     if ($resultmessage->num_rows > 0) {
         echo "<div class='col s12'><div class='hoverable card teal darken-4'><div class='card-content white-text'><span class='card-title'>IMPORTANT MESSAGE FROM THE FOREIGN LANGUAGE DEPARTMENT</span>";
@@ -477,6 +529,35 @@ function FLmess()
         echo "</div>";
     }
 }
+
+function AMmess()
+{
+        global $conn;
+        global $today;
+    {
+    $sqlmessage = "SELECT day, dep, reason FROM message WHERE day = '$today' AND dep = 'Athletic Mentor'";
+    $resultmessage = $conn->query($sqlmessage);
+
+        echo "<div class='row'>";
+    if ($resultmessage->num_rows > 0) {
+        echo "<div class='col s12'><div class='hoverable card teal darken-4'><div class='card-content white-text'><span class='card-title'>IMPORTANT MESSAGE FROM THE ATHLETIC MENTOR</span>";
+        // output data of each row
+        while($rowmessage = $resultmessage->fetch_assoc()) {
+            echo "<p>";
+            echo $rowmessage["reason"];
+            echo "</p>";
+        }
+        echo "</div></div></div>";
+        } else {
+        echo "No Messages";
+    }
+        echo "</div>";
+    }
+}
+
+
+
+
 
 
 ?>

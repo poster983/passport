@@ -53,6 +53,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         &nbsp &nbsp
                         <input type="radio" id="fl" name="dep" value="Foreign Language" />
                         <label for="fl">Foreign Language</label>
+                        &nbsp &nbsp
+                        <input type="radio" id="am" name="dep" value="Athletic Mentor" />
+                        <label for="am">Athletic Mentor</label>
                     </p>
 
 

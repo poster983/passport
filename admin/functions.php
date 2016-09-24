@@ -30,11 +30,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 function barChartTally($dep) {
     include "../sqlconnect.php";
     $day = date( 'Y-m-d', strtotime(" Today "));
-    
+
     $sql = "SELECT tally, date, period, place FROM tally WHERE date = '$day' AND place = '$dep' ORDER BY period";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
-    
+
         while($row = $result->fetch_assoc()) {
             $$row["period"] = $row["tally"];
 
@@ -84,10 +84,10 @@ function barChartTally($dep) {
         }]
             },
     options: {
-        
-        
+
+
         responsive: true,
-        maintainAspectRatio: false,      
+        maintainAspectRatio: false,
         scales: {
             yAxes: [{
                 ticks: {
@@ -100,14 +100,14 @@ function barChartTally($dep) {
         },
         title: {
             display: true,
-            text: 'Todays total of pass requests.'
+            text: 'Todays Pass Demand'
         }
     }
 
-                                  
+
     });
     </script>
-         
+
         </div>
       </div>
     </div>
@@ -119,10 +119,10 @@ function barChartTally($dep) {
 function lineChartMonth($dep) {
     include "../sqlconnect.php";
      $sqlm = "SELECT tally, MID(date,1,7) AS dates place FROM tally WHERE place = '$dep' ORDER BY date";
-   
+
     $resultm = $conn->query($sqlm);
     if ($resultm->num_rows > 0) {
-    
+
         while($rowm = $resultm->fetch_assoc()) {
            /* $premonth = $rowm["date"];
             $monthwd = substr ($premonth,0,7);
@@ -131,11 +131,11 @@ function lineChartMonth($dep) {
            // $month = $rowm["sdate"];
             $$month = 0;
           //  echo $2016l06;
-            
-            
-           
 
-                
+
+
+
+
         }
     }
 }

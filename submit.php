@@ -96,6 +96,7 @@ if ($error) {
         $whyhd = $_POST['whyhd'];
         $whywl = $_POST['whywl'];
         $whyfl = $_POST['whyfl'];
+        $whyam = $_POST['whyam'];
         {
             if ($perTab === "a") {
                 $shTeacherEmail = $shTeacherA;
@@ -148,6 +149,9 @@ if ($error) {
             }
             elseif ($place === "Foreign Language") {
                 $why = $whyfl;
+            }
+            elseif ($place === "Athletic Mentor") {
+                $why = $whyam;
             } else {
                 echo "Invalid Reason";
             }

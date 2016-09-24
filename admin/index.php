@@ -43,6 +43,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         <li class="tab col s3"><a href="#HD">Help Desk Dash</a></li>
                         <li class="tab col s3"><a href="#WL">Writing Lab Dash</a></li>
                         <li class="tab col s3"><a href="#FL">Foreign Language Dash</a></li>
+                        <li class="tab col s3"><a href="#AM">Athletic Mentor Dash</a></li>
                     </ul>
                 </div>
 
@@ -67,6 +68,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 </div>
                 <div id="FL" class="col s12">
                     <? barChartTally('Foreign Language') ?>
+                </div>
+                <div id="AM" class="col s12">
+                    <? barChartTally('Athletic Mentor') ?>
                 </div>
             </div>
 
