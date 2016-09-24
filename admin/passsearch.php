@@ -34,13 +34,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
-        <script>
-            $(document).ready(function () {
-                $("#datepicker").datepicker({
-                    dateFormat: 'yy-mm-dd'
-                , });
-            });
-        </script>
+
         <script>
             $(document).ready(function () {
                 $("#viewType li").click(function(){
@@ -56,8 +50,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 <form method="get" action="passdisplay.php">
                     <div class="row">
                         <div class="input-field col s3">
-                            <input type="text" id="datepicker" name="datesearch" />
-                            <label for="datepicker">Choose a day to display.</label>
+
+                            <input type="date" class="datepicker" name="datesearch" id="datepicker" required readonly>
+                            <label for="datepicker">Day</label>
                         </div>
 
                             <div class="col s8">
@@ -144,10 +139,18 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                     </p>
                 </form>
             </div>
-            <!--<iframe src="passdisplay.php" style="border: 0; width: 100%; height: 100%">Could not load preview, please search for the date instead.</iframe>-->
+
         </body>
 
         <script src="/passport/js/materialize.js"></script>
         <script src="/passport/js/init.js"></script>
+        <script>
+        $('.datepicker').pickadate({
+          selectMonths: true, // Creates a dropdown to control month
+          selectYears: 2, // Creates a dropdown of 2 years to control year
+          formatSubmit: 'yyyy-mm-dd',
+          hiddenName: true
+        });
+        </script>
 
         </html>

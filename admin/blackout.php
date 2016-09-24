@@ -33,8 +33,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 <h4 class="center">Blackout Manager</h4>
 
                 <div class="input-field col s3">
-                    <input type="text" id="datepicker" required name="blackoutday" />
-                    <label for="blackoutday">Blackout Date</label>
+                  <input type="date" class="datepicker" name="blackoutday" id="datepicker" required readonly>
+                  <label for="datepicker">Blackout Date</label>
+
                 </div>
                 <p class="center">Select Blackout Periods</p>
                 <p class="center">
@@ -108,11 +109,12 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
         <!-- Scripts -->
         <script>
-            $(document).ready(function () {
-                $("#datepicker").datepicker({
-                    dateFormat: 'yy-mm-dd'
-                , });
-            });
+        $('.datepicker').pickadate({
+          selectMonths: true, // Creates a dropdown to control month
+          selectYears: 2, // Creates a dropdown of 2 years to control year
+          formatSubmit: 'yyyy-mm-dd',
+          hiddenName: true
+        });
         </script>
         <!--[if lte IE 8]><script src="assets/js/respond.min.js"></script><![endif]-->
         <script>
