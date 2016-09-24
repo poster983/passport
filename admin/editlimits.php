@@ -77,6 +77,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                     &nbsp &nbsp
                     <input type="radio" id="fl" name="dep" value="Foreign Language" />
                     <label for="fl" title="<? echo $ForeignLanguagelimit; ?>">Foreign Language</label>
+                    &nbsp &nbsp
+                    <input type="radio" id="am" name="dep" value="Athletic Mentor" />
+                    <label for="am" title="<? echo $AthleticMentorlimit; ?>">Athletic Mentor</label>
                 </p>
                 <p>
                     <button class="btn waves-effect waves-light" type="submit" name="submit">Update limits<i class="material-icons right">call_merge</i></button>
