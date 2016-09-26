@@ -36,7 +36,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                     <h4 class="center">Reason-to-come Manager</h4>
                     <p class="center">Choose Department</p>
                     <p class="left">
-                        <input type="radio" id="lec" name="dep" value="LEC" />
+                        <input type="radio" id="lec" name="dep" required value="LEC" />
                         <label for="lec">LEC</label>
                         &nbsp &nbsp
                         <input type="radio" id="math" name="dep" value="Math Department" />
@@ -61,7 +61,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
                     <div class="row">
                         <div class="input-field col s6">
-                            <input id="why" name="why" type="text" length="120">
+                            <input id="why" required name="why" type="text" length="120">
                             <label for="why">Create Dropdown</label>
                         </div>
                     </div>

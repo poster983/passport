@@ -322,23 +322,7 @@ Materializecss.com - They created the material design js and css library.
                                         <br>
                                         <br>
                                         <br>
-                                        <select name="whylec" class="browser-default">
-                                            <option selected disabled value="">Why are you coming today?</option>
-                                            <!-- php Reason dropdown -->
-                                            <?
-                                    $sql="SELECT dep, why FROM why WHERE dep='LEC' ORDER BY why";
-                                    $result = $conn->query($sql);
-
-                                    if ($result->num_rows > 0) {
-                                        // output data of each row
-                                        while($row = $result->fetch_assoc()) {
-
-                                            echo '<option value="'.$row['why'].'">' . $row['why']. "</option>";
-                                        }
-
-                                    }
-                                            ?>
-                                        </select>
+                                        <? reasonSel('LEC'); ?>
                             </p>
                         </div>
                         <div id="math" class="col s12">
@@ -353,23 +337,8 @@ Materializecss.com - They created the material design js and css library.
                                         <br>
                                         <br>
                                         <br>
-                                        <select name="whymath" class="browser-default">
-                                            <option selected disabled value="">Why are you coming today?</option>
-                                            <!-- php Reason dropdown -->
-                                            <?
-                                    $sql="SELECT dep, why FROM why WHERE dep='Math Department' ORDER BY why";
-                                    $result = $conn->query($sql);
+                                        <? reasonSel('Math Department'); ?>
 
-                                    if ($result->num_rows > 0) {
-                                        // output data of each row
-                                        while($row = $result->fetch_assoc()) {
-
-                                            echo '<option value="'.$row['why'].'">' . $row['why']. "</option>";
-                                        }
-
-                                    }
-                                            ?>
-                                        </select>
                             </p>
                         </div>
                         <div id="library" class="col s12">
@@ -385,23 +354,8 @@ Materializecss.com - They created the material design js and css library.
                                         <br>
                                         <br>
                                         <br>
-                                        <select name="whylib" class="browser-default">
-                                            <option selected disabled value="">Why are you coming today?</option>
-                                            <!-- php Reason dropdown -->
-                                            <?
-                                    $sql="SELECT dep, why FROM why WHERE dep='Library' ORDER BY why";
-                                    $result = $conn->query($sql);
+                                        <? reasonSel('Library'); ?>
 
-                                    if ($result->num_rows > 0) {
-                                        // output data of each row
-                                        while($row = $result->fetch_assoc()) {
-
-                                            echo '<option value="'.$row['why'].'">' . $row['why']. "</option>";
-                                        }
-
-                                    }
-                                            ?>
-                                        </select>
                             </p>
                         </div>
                         <div id="helpDesktab" class="col s12">
@@ -416,23 +370,8 @@ Materializecss.com - They created the material design js and css library.
                                         <br>
                                         <br>
                                         <br>
-                                        <select name="whyhd" class="browser-default">
-                                            <option selected disabled value="">Why are you coming today?</option>
-                                            <!-- php Reason dropdown -->
-                                            <?
-                                    $sql="SELECT dep, why FROM why WHERE dep='Help Desk' ORDER BY why";
-                                    $result = $conn->query($sql);
+                                        <? reasonSel('Help Desk'); ?>
 
-                                    if ($result->num_rows > 0) {
-                                        // output data of each row
-                                        while($row = $result->fetch_assoc()) {
-
-                                            echo '<option value="'.$row['why'].'">' . $row['why']. "</option>";
-                                        }
-
-                                    }
-                                            ?>
-                                        </select>
                             </p>
                         </div>
                         <div id="writingLabtab" class="col s12">
@@ -447,23 +386,8 @@ Materializecss.com - They created the material design js and css library.
                                         <br>
                                         <br>
                                         <br>
-                                        <select name="whywl" class="browser-default">
-                                            <option selected disabled value="">Why are you coming today?</option>
-                                            <!-- php Reason dropdown -->
-                                            <?
-                                    $sql="SELECT dep, why FROM why WHERE dep='Writing Lab' ORDER BY why";
-                                    $result = $conn->query($sql);
+                                        <? reasonSel('Writing Lab'); ?>
 
-                                    if ($result->num_rows > 0) {
-                                        // output data of each row
-                                        while($row = $result->fetch_assoc()) {
-
-                                            echo '<option value="'.$row['why'].'">' . $row['why']. "</option>";
-                                        }
-
-                                    }
-                                            ?>
-                                        </select>
                             </p>
                         </div>
                         <div id="FLtab" class="col s12">
@@ -478,23 +402,8 @@ Materializecss.com - They created the material design js and css library.
                                         <br>
                                         <br>
                                         <br>
-                                        <select name="whyfl" class="browser-default">
-                                            <option selected disabled value="">Why are you coming today?</option>
-                                            <!-- php Reason dropdown -->
-                                            <?
-                                    $sql="SELECT dep, why FROM why WHERE dep='Foreign Language' ORDER BY why";
-                                    $result = $conn->query($sql);
+                                        <? reasonSel('Foreign Language'); ?>
 
-                                    if ($result->num_rows > 0) {
-                                        // output data of each row
-                                        while($row = $result->fetch_assoc()) {
-
-                                            echo '<option value="'.$row['why'].'">' . $row['why']. "</option>";
-                                        }
-
-                                    }
-                                            ?>
-                                        </select>
                             </p>
                         </div>
                         <div id="AMtab" class="col s12">
@@ -509,23 +418,8 @@ Materializecss.com - They created the material design js and css library.
                                         <br>
                                         <br>
                                         <br>
-                                        <select name="whyam" class="browser-default">
-                                            <option selected disabled value="">Why are you coming today?</option>
-                                            <!-- php Reason dropdown -->
-                                            <?
-                                    $sql="SELECT dep, why FROM why WHERE dep='Athletic Mentor' ORDER BY why";
-                                    $result = $conn->query($sql);
-
-                                    if ($result->num_rows > 0) {
-                                        // output data of each row
-                                        while($row = $result->fetch_assoc()) {
-
-                                            echo '<option value="'.$row['why'].'">' . $row['why']. "</option>";
-                                        }
-
-                                    }
-                                            ?>
-                                        </select>
+                                        <? reasonSel('Athletic Mentor'); ?>
+                                      
                             </p>
                         </div>
                 </div>
@@ -576,7 +470,7 @@ Materializecss.com - They created the material design js and css library.
                                         <label for="friday">Friday</label>
 
                                     </p>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -888,7 +782,8 @@ Materializecss.com - They created the material design js and css library.
                 // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
                 $('.modal-trigger').leanModal();
               });
-        </script>
+
+              </script>
 
 </body>
 

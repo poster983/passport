@@ -90,13 +90,13 @@ if ($error) {
         $shTeacherG = $_POST['shTeacherG'];
         $shTeacherH = $_POST['shTeacherH'];
         $day = $_POST['day'];
-        $whylec = $_POST['whylec'];
-        $whymath = $_POST['whymath'];
-        $whylib = $_POST['whylib'];
-        $whyhd = $_POST['whyhd'];
-        $whywl = $_POST['whywl'];
-        $whyfl = $_POST['whyfl'];
-        $whyam = $_POST['whyam'];
+        $whylec = $_POST['whyLEC'];
+        $whymath = $_POST['whyMathDepartment'];
+        $whylib = $_POST['whyLibrary'];
+        $whyhd = $_POST['whyHelpDesk'];
+        $whywl = $_POST['whyWritingLab'];
+        $whyfl = $_POST['whyForeignLanguage'];
+        $whyam = $_POST['whyAthleticMentor'];
         {
             if ($perTab === "a") {
                 $shTeacherEmail = $shTeacherA;
@@ -307,15 +307,19 @@ if ($conn->query($sql) === TRUE) {
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
             $sqlpin->bind_param("sssisssssiis", $first_name, $last_name, $email, $student_id, $perTab, $shTeacher, $place, $day, $why, $isHere, $shTeacherExcused, $shTeacherEmail);
-            $sqlpin->execute();
-            $sqlpin->close();
+            $pinexRes = $sqlpin->execute();
 
+                if ($sqlpin && $pinexRes) {
 
                 echo "<iframe src='animate/Confirm/publish/web/Confirm.html' style='border: 0; width: 100%; height: 100%'>Requested Pass.</iframe>";
 
+              } else {
+                echo " <div class='row'><div class='col s12'><div class='card-panel red hoverable'><span class='white-text'>";
+                echo "<p class='center'>Sorry, There was an error, please try again or go see IT.</p>";
+                echo "</span></div></div></div>";
+              }
 
-
-
+              $sqlpin->close();
               $conn->close();
             }
           }
