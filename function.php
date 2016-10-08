@@ -561,7 +561,7 @@ function AMmess()
 function reasonSel($reaDep) {
     global $conn;
     $reaDepNoSpace = preg_replace('/\s+/', '', $reaDep);
-    echo "<select name='why" . $reaDepNoSpace . "' class='browser-default'>";
+    echo "<select id='" . $reaDepNoSpace . "ID' name='why" . $reaDepNoSpace . "' class='browser-default' onchange=\"incBlur('why')\">";
 
 
 

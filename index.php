@@ -42,8 +42,8 @@ Materializecss.com - They created the material design js and css library.
 	     trackerGA(); ?>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="/passport/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    <link href="/passport/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="/passport/css/passr.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="/passport/css/animate.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <!--Browser Colors-->
     <!-- Chrome, Firefox OS and Opera -->
     <meta name="theme-color" content="#D32F2F">
@@ -60,7 +60,7 @@ Materializecss.com - They created the material design js and css library.
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-    <script src="/passport/js/passr.js"></script>
+
 
 
 </head>
@@ -71,7 +71,7 @@ Materializecss.com - They created the material design js and css library.
 
     <?
 
-    if(date("l") == "Sundayiii" OR date("l") == "Saturdayiii") {
+    if(date("l") == "Sunday" OR date("l") == "Saturday") {
         $overlayClosedReasonH1 = "Pass Requests are closed on the weekends.";
         $closedFormAction = "";
         $blurClass = "blur-g";
@@ -298,18 +298,20 @@ Materializecss.com - They created the material design js and css library.
             <div class="row">
                 <div class="col s12">
                     <ul class="tabs">
-                        <li class="tab col s3"><a href="#lec">Executive Functioning</a></li>
-                        <li class="tab col s3"><a href="#math">Math</a></li>
-                        <li class="tab col s3"><a href="#library">Library</a></li>
-                        <li class="tab col s3"><a href="#helpDesktab">Help Desk</a></li>
-                        <li class="tab col s3"><a href="#writingLabtab">Writing Lab</a></li>
-                        <li class="tab col s3"><a href="#FLtab">Foreign Language</a></li>
-                        <li class="tab col s3"><a href="#AMtab">Athletic Mentor</a></li>
+
+                        <li class="tab col s3"><a id="efTab" href="#lec">Executive Functioning</a></li>
+                        <li class="tab col s3"><a id="mathTab" href="#math">Math</a></li>
+                        <li class="tab col s3"><a id="libTab" href="#library">Library</a></li>
+                        <li class="tab col s3"><a id="hdTab" href="#helpDesktab">Help Desk</a></li>
+                        <li class="tab col s3"><a id="wlTab" href="#writingLabtab">Writing Lab</a></li>
+                        <li class="tab col s3"><a id="flTab" href="#FLtab">Foreign Language</a></li>
+                        <li class="tab col s3"><a id="amTab" href="#AMtab">Athletic Mentor</a></li>
                     </ul>
                 </div>
 
-                <div class="container">
+                <div id="depCont" class="container blur-sect">
                     <? include "function.php"; ?>
+
                         <div id="lec" class="col s12">
                             <p>
                                 <!-- Blackout Function -->
@@ -419,7 +421,7 @@ Materializecss.com - They created the material design js and css library.
                                         <br>
                                         <br>
                                         <? reasonSel('Athletic Mentor'); ?>
-                                      
+
                             </p>
                         </div>
                 </div>
@@ -431,7 +433,7 @@ Materializecss.com - They created the material design js and css library.
 
 
 
-                        <div class="row">
+                        <div id="genInfoInput" class="row blur-sect">
                             <div class="input-field col s6">
                                 <input id="first_name" name="first_name" type="text" required class="validate">
                                 <label for="first_name">First Name</label>
@@ -454,19 +456,19 @@ Materializecss.com - They created the material design js and css library.
 
                                 <div>
                                     <p class="center">
-                                        <input type="radio" id="monday" name="day" required value="<? echo date( 'Y-m-d', strtotime("monday this week")); ?>">
+                                        <input type="radio" id="monday" onclick="incBlur('day')" name="day" on required value="<? echo date( 'Y-m-d', strtotime("monday this week")); ?>">
                                         <label for="monday">Monday</label>
                                         &nbsp &nbsp
-                                        <input type="radio" id="tuesday" name="day" value="<? echo date( 'Y-m-d', strtotime(" tuesday this week ")); ?>">
+                                        <input type="radio" id="tuesday" onclick="incBlur('day')" name="day" value="<? echo date( 'Y-m-d', strtotime(" tuesday this week ")); ?>">
                                         <label for="tuesday">Tuesday</label>
                                         &nbsp &nbsp
-                                        <input type="radio" id="wednesday" name="day" value="<? echo date( 'Y-m-d', strtotime(" wednesday this week ")); ?>">
+                                        <input type="radio" id="wednesday" onclick="incBlur('day')" name="day" value="<? echo date( 'Y-m-d', strtotime(" wednesday this week ")); ?>">
                                         <label for="wednesday">Wednesday</label>
                                         &nbsp &nbsp
-                                        <input type="radio" id="thursday" name="day" value="<? echo date( 'Y-m-d', strtotime(" thursday this week ")); ?>">
+                                        <input type="radio" id="thursday" onclick="incBlur('day')" name="day" value="<? echo date( 'Y-m-d', strtotime(" thursday this week ")); ?>">
                                         <label for="thursday">Thursday</label>
                                         &nbsp &nbsp
-                                        <input type="radio" id="friday" name="day" value="<? echo date( 'Y-m-d', strtotime(" friday this week ")); ?>">
+                                        <input type="radio" id="friday" onclick="incBlur('day')" name="day" value="<? echo date( 'Y-m-d', strtotime(" friday this week ")); ?>">
                                         <label for="friday">Friday</label>
 
                                     </p>
@@ -477,23 +479,23 @@ Materializecss.com - They created the material design js and css library.
                         <!-- Period Tabs -->
                         <div class="row">
                             <div class="col s12">
-                                <ul class="tabs">
-                                    <li class="tab col s3"><a href="#aper">A Period</a></li>
-                                    <li class="tab col s3"><a href="#bper">B Period</a></li>
-                                    <li class="tab col s3"><a href="#cper">C Period</a></li>
-                                    <li class="tab col s3"><a href="#dper">D Period</a></li>
-                                    <li class="tab col s3"><a href="#eper">E Period</a></li>
-                                    <li class="tab col s3"><a href="#fper">F Period</a></li>
-                                    <li class="tab col s3"><a href="#gper">G Period</a></li>
-                                    <li class="tab col s3"><a href="#hper">H Period</a></li>
+                                <ul id="periodTabs" class="tabs blur-sect">
+                                    <li class="tab col s3"><a id="aperTab" href="#aper">A Period</a></li>
+                                    <li class="tab col s3"><a id="bperTab" href="#bper">B Period</a></li>
+                                    <li class="tab col s3"><a id="cperTab" href="#cper">C Period</a></li>
+                                    <li class="tab col s3"><a id="dperTab" href="#dper">D Period</a></li>
+                                    <li class="tab col s3"><a id="eperTab" href="#eper">E Period</a></li>
+                                    <li class="tab col s3"><a id="fperTab" href="#fper">F Period</a></li>
+                                    <li class="tab col s3"><a id="gperTab" href="#gper">G Period</a></li>
+                                    <li class="tab col s3"><a id="hperTab" href="#hper">H Period</a></li>
                                 </ul>
                             </div>
-
+                            <div id="shTeacherALLSelect" class="blur-sect">
                             <!--AAAAAAAAAAAAAAAAAAA-->
 
                             <div id="aper" class="col s12">
                                 <p>
-                                    <select name="shTeacherA" class="browser-default">
+                                    <select name="shTeacherA" class="browser-default" onchange="perTabBundCheck('shTeacher')">
                                         <option selected value="">Choose Your Teacher</option>
 
                                         <?
@@ -515,15 +517,15 @@ Materializecss.com - They created the material design js and css library.
                                     }
                                 ?>
                                     </select>
-                                    <input class="with-gap" type="radio" name="perTab" value="a" required id="aConfirm" />
+                                    <input class="with-gap" type="radio" onclick="perTabBundCheck('confirm')" name="perTab" value="a" required id="aConfirm" />
                                     <label for="aConfirm">Confirm Study Hall and Period</label>
                                 </p>
                             </div>
                             <!--BBBBBBBBBBBBBBBBBBB-->
                             <div id="bper" class="col s12">
                                 <p>
-                                    <select name="shTeacherB" class="browser-default">
-                                        <option selected value="">Choose Your Teacher</option>
+                                    <select name="shTeacherB" class="browser-default" onchange="perTabBundCheck('shTeacher')">
+                                        <option selected disabled value="">Choose Your Teacher</option>
 
                                         <?
                                     include "sqlconnect.php";
@@ -546,7 +548,7 @@ Materializecss.com - They created the material design js and css library.
                                     </select>
 
 
-                                    <input class="with-gap" type="radio" name="perTab" value="b" id="bConfirm" />
+                                    <input class="with-gap" type="radio" onclick="perTabBundCheck('confirm')" name="perTab" value="b" id="bConfirm" />
                                     <label for="bConfirm">Confirm Study Hall and Period</label>
                                 </p>
                             </div>
@@ -554,8 +556,8 @@ Materializecss.com - They created the material design js and css library.
                             <div id="cper" class="col s12">
                                 <p>
 
-                                    <select name="shTeacherC" class="browser-default">
-                                        <option selected value="">Choose Your Teacher</option>
+                                    <select name="shTeacherC" class="browser-default" onchange="perTabBundCheck('shTeacher')">
+                                        <option selected disabled value="">Choose Your Teacher</option>
 
                                         <?
                                     include "sqlconnect.php";
@@ -577,15 +579,15 @@ Materializecss.com - They created the material design js and css library.
                                 ?>
                                     </select>
 
-                                    <input class="with-gap" type="radio" name="perTab" value="c" id="cConfirm" />
+                                    <input class="with-gap" type="radio" onclick="perTabBundCheck('confirm')" name="perTab" value="c" id="cConfirm" />
                                     <label for="cConfirm">Confirm Study Hall and Period</label>
                                 </p>
                             </div>
                             <!--DDDDDDDDDDDDDDDDDDDD-->
                             <div id="dper" class="col s12">
                                 <p>
-                                    <select name="shTeacherD" class="browser-default">
-                                        <option selected value="">Choose Your Teacher</option>
+                                    <select name="shTeacherD" class="browser-default" onchange="perTabBundCheck('shTeacher')">
+                                        <option selected disabled value="">Choose Your Teacher</option>
 
                                         <?
                                     include "sqlconnect.php";
@@ -606,15 +608,15 @@ Materializecss.com - They created the material design js and css library.
                                     }
                                 ?>
                                     </select>
-                                    <input class="with-gap" type="radio" name="perTab" value="d" id="dConfirm" />
+                                    <input class="with-gap" type="radio" onclick="perTabBundCheck('confirm')" name="perTab" value="d" id="dConfirm" />
                                     <label for="dConfirm">Confirm Study Hall and Period</label>
                                 </p>
                             </div>
                             <!--EEEEEEEEEEEEEEEEEEEE-->
                             <div id="eper" class="col s12">
                                 <p>
-                                    <select name="shTeacherE" class="browser-default">
-                                        <option selected value="">Choose Your Teacher</option>
+                                    <select name="shTeacherE" class="browser-default" onchange="perTabBundCheck('shTeacher')">
+                                        <option selected disabled value="">Choose Your Teacher</option>
 
                                         <?
                                     include "sqlconnect.php";
@@ -635,17 +637,17 @@ Materializecss.com - They created the material design js and css library.
                                     }
                                 ?>
                                     </select>
-                                    <input class="with-gap" type="radio" name="perTab" value="eL1" id="eL1Confirm" />
+                                    <input class="with-gap" type="radio" onclick="perTabBundCheck('confirm')" name="perTab" value="eL1" id="eL1Confirm" />
                                     <label for="eL1Confirm">Confirm E Period (First Lunch)</label>
-                                    <input class="with-gap" type="radio" name="perTab" value="eL2" id="eL2Confirm" />
+                                    <input class="with-gap" type="radio" onclick="perTabBundCheck('confirm')" name="perTab" value="eL2" id="eL2Confirm" />
                                     <label for="eL2Confirm">Confirm E Period (Second Lunch)</label>
                                 </p>
                             </div>
                             <!--FFFFFFFFFFFFFFFFFFFF-->
                             <div id="fper" class="col s12">
                                 <p>
-                                    <select name="shTeacherF" class="browser-default">
-                                        <option selected value="">Choose Your Teacher</option>
+                                    <select name="shTeacherF" class="browser-default" onchange="perTabBundCheck('shTeacher')">
+                                        <option selected disabled value="">Choose Your Teacher</option>
 
                                         <?
                                     include "sqlconnect.php";
@@ -666,15 +668,15 @@ Materializecss.com - They created the material design js and css library.
                                     }
                                 ?>
                                     </select>
-                                    <input class="with-gap" type="radio" name="perTab" value="f" id="fConfirm" />
+                                    <input class="with-gap" type="radio" onclick="perTabBundCheck('confirm')" name="perTab" value="f" id="fConfirm" />
                                     <label for="fConfirm">Confirm Study Hall and Period</label>
                                 </p>
                             </div>
                             <!--GGGGGGGGGGGGGGGGGGGG-->
                             <div id="gper" class="col s12">
                                 <p>
-                                    <select name="shTeacherG" class="browser-default">
-                                        <option selected value="">Choose Your Teacher</option>
+                                    <select name="shTeacherG" class="browser-default" onchange="perTabBundCheck('shTeacher')">
+                                        <option selected disabled value="">Choose Your Teacher</option>
 
                                         <?
                                     include "sqlconnect.php";
@@ -695,15 +697,15 @@ Materializecss.com - They created the material design js and css library.
                                     }
                                 ?>
                                     </select>
-                                    <input class="with-gap" type="radio" name="perTab" value="g" id="gConfirm" />
+                                    <input class="with-gap" type="radio" onclick="perTabBundCheck('confirm')" name="perTab" value="g" id="gConfirm" />
                                     <label for="gConfirm">Confirm Study Hall and Period</label>
                                 </p>
                             </div>
                             <!--HHHHHHHHHHHHHHHHHHHH-->
                             <div id="hper" class="col s12">
                                 <p>
-                                    <select name="shTeacherH" class="browser-default">
-                                        <option selected value="">Choose Your Teacher</option>
+                                    <select name="shTeacherH" class="browser-default" onchange="perTabBundCheck('shTeacher')">
+                                        <option selected disabled value="">Choose Your Teacher</option>
 
                                         <?
                                     include "sqlconnect.php";
@@ -724,10 +726,11 @@ Materializecss.com - They created the material design js and css library.
                                     }
                                 ?>
                                     </select>
-                                    <input class="with-gap" type="radio" name="perTab" value="h" id="hConfirm" />
+                                    <input class="with-gap" type="radio" onclick="perTabBundCheck('confirm')" name="perTab" value="h" id="hConfirm" />
                                     <label for="hConfirm">Confirm Study Hall and Period</label>
                                 </p>
                             </div>
+                          </div>
                             <!--END-->
                             <!--SH Select-->
 
@@ -736,7 +739,7 @@ Materializecss.com - They created the material design js and css library.
                     </div>
                 </div>
 
-                <button class="btn waves-effect waves-light tooltipped" data-position="top" data-delay="50" data-tooltip="You CANNOT cancel this pass.  You are required to come. " type="submit" name="submit">Request a pass
+                <button id="finPassSubmitThang" class="btn waves-effect waves-light tooltipped blur-sect" data-position="top" data-delay="50" data-tooltip="You CANNOT cancel this pass.  You are required to come. " type="submit" name="submit">Request a pass
                     <i class="material-icons right">send</i>
                 </button>
             </div>
@@ -784,7 +787,7 @@ Materializecss.com - They created the material design js and css library.
               });
 
               </script>
-
+<script src="/passport/js/passr.js"></script>
 </body>
 
 </html>

@@ -22,6 +22,14 @@ IN AN ACTION OF CONTRACT, TORTOR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
+//declare all variables
+
+var whyLock = 0;
+var whyVar = "";
+var dateLock = 0;
+var shTeacherLock = 0;
+var perProg = 0;
+var perConfirmLock = 0;
 
 /*Overlay function*/
 /*open*/
@@ -37,4 +45,152 @@ function openFullOverlay() {
 /* Close when someone clicks on the "x" symbol inside the overlay */
 function closeFullOverlay() {
     document.getElementById("overlayFull").style.width = "0%";
+}
+
+
+
+//Sequencial Pass Blocker
+function whyChecker(dep, depID) {
+  console.log("Clicked on " + dep);
+  whyVar = $('#' + depID).find(":selected").text();
+
+  if(whyVar === "--Not Required--") {
+    incBlur("why");
+  }
+  }
+
+  //period Shteacher and confirm checker
+  function perTabBundCheck(where) {
+    if((where === "shTeacher") && (shTeacherLock == 0)) {
+      perProg += 1;
+      shTeacherLock = 1;
+      console.log("Clicked on SH");
+    } else if ((where === "confirm") && (perConfirmLock == 0)) {
+      perProg += 1;
+      perConfirmLock = 1;
+      console.log("Clicked on per");
+    }
+    if (perProg == 2) {
+      $("#finPassSubmitThang").removeClass("blur-sect")
+      $("#finPassSubmitThang").addClass("animated bounce")
+    }
+  }
+  function unCheckRadioPer() {
+    $('input[name=perTab]').attr('checked',false);
+
+    $("#shTeacherALLSelect select").prop('selectedIndex',0);
+
+    perProg = 0;
+    perConfirmLock = 0;
+    shTeacherLock = 0;
+    if ($("#finPassSubmitThang").hasClass("blur-sect")) {
+
+    } else {
+      $("#finPassSubmitThang").addClass("blur-sect")
+      $("#finPassSubmitThang").removeClass("animated bounce")
+    }
+  }
+
+//dep tabs
+  //EXECUTIVE function
+  document.getElementById("efTab").addEventListener("click", function(){
+    whyChecker("efTab", "LECID");
+    $("#depCont").removeClass("blur-sect")
+  });
+
+  //MATH
+
+document.getElementById("mathTab").addEventListener("click", function(){
+  whyChecker("mathTab", "MathDepartmentID");
+  $("#depCont").removeClass("blur-sect")
+});
+
+//Library
+document.getElementById("libTab").addEventListener("click", function(){
+  whyChecker("libTab", "LibraryID");
+  $("#depCont").removeClass("blur-sect")
+});
+
+// helpdesk
+document.getElementById("hdTab").addEventListener("click", function(){
+  whyChecker("hdTab", "HelpDeskID");
+  $("#depCont").removeClass("blur-sect")
+});
+
+//writing Lab
+document.getElementById("wlTab").addEventListener("click", function(){
+  whyChecker("wlTab", "WritingLabID");
+  $("#depCont").removeClass("blur-sect")
+});
+
+//forign Language
+document.getElementById("flTab").addEventListener("click", function(){
+  whyChecker("flTab", "ForeignLanguageID");
+  $("#depCont").removeClass("blur-sect")
+});
+
+//Athletic Mentor
+document.getElementById("amTab").addEventListener("click", function(){
+  whyChecker("amTab", "AthleticMentorID");
+  $("#depCont").removeClass("blur-sect")
+});
+
+
+//period
+
+//A
+document.getElementById("aperTab").addEventListener("click", function(){
+  $("#shTeacherALLSelect").removeClass("blur-sect")
+  unCheckRadioPer();
+});
+//b
+document.getElementById("bperTab").addEventListener("click", function(){
+  $("#shTeacherALLSelect").removeClass("blur-sect")
+  unCheckRadioPer();
+});
+//c
+document.getElementById("cperTab").addEventListener("click", function(){
+  $("#shTeacherALLSelect").removeClass("blur-sect")
+  unCheckRadioPer();
+});
+//d
+document.getElementById("dperTab").addEventListener("click", function(){
+  $("#shTeacherALLSelect").removeClass("blur-sect")
+  unCheckRadioPer();
+});
+//e
+document.getElementById("eperTab").addEventListener("click", function(){
+  $("#shTeacherALLSelect").removeClass("blur-sect")
+  unCheckRadioPer();
+});
+//f
+document.getElementById("fperTab").addEventListener("click", function(){
+  $("#shTeacherALLSelect").removeClass("blur-sect")
+  unCheckRadioPer();
+});
+//g
+document.getElementById("gperTab").addEventListener("click", function(){
+  $("#shTeacherALLSelect").removeClass("blur-sect")
+  unCheckRadioPer();
+});
+//h
+document.getElementById("hperTab").addEventListener("click", function(){
+  $("#shTeacherALLSelect").removeClass("blur-sect")
+  unCheckRadioPer();
+});
+
+
+
+function incBlur(whereProg) {
+  if((whereProg === "why") && (whyLock == 0)) {
+
+    whyLock = 1;
+    //document.getElementById("genInfoInput").removeClass( "blur-sect", 1000, "easeInBack" );
+    $("#genInfoInput").removeClass("blur-sect")
+
+  } else if ((whereProg === "day") && (dateLock==0)) {
+    console.log("Next");
+    $("#periodTabs").removeClass("blur-sect", 1000, "easeOutExpo")
+    dateLock = 1;
+  }
 }
