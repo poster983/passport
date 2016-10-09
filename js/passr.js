@@ -72,6 +72,7 @@ function whyChecker(dep, depID) {
     }
     if (perProg == 2) {
       $("#finPassSubmitThang").removeClass("blur-sect")
+      $("#rememberMeCon").removeClass("blur-sect")
       $("#finPassSubmitThang").addClass("animated bounce")
     }
   }
@@ -87,6 +88,7 @@ function whyChecker(dep, depID) {
 
     } else {
       $("#finPassSubmitThang").addClass("blur-sect")
+      $("#rememberMeCon").addClass("blur-sect")
       $("#finPassSubmitThang").removeClass("animated bounce")
     }
   }

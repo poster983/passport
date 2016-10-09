@@ -12,4 +12,7 @@ $devDebugEchoToggle = 1;
 //Default Teacher Password
 $defaultTeacherPassword = "teacher";
 
+//close pass request on weekends
+$closePassRequestOnDaysToggle = 0;
+
 ?>

@@ -3,9 +3,10 @@ include("common.php");
 checklogin();
 $msg = "";
 
-
-
+include "adminconnect.php";
+ob_start();
 ?>
+
 
 <!--
 
@@ -93,7 +94,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   </nav>
     <? date_default_timezone_set('America/Chicago'); ?>
 
-    <? include "../sqlconnect.php"; ?>
+
 
 
     <!--FEEDBACK FAB-->
@@ -110,10 +111,27 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             <li><a class="btn-floating blue tooltipped" data-position="left" data-delay="50" data-tooltip="Version Info and Licence"><i class="material-icons">info</i></a></li>
         </ul>
     </div>
+<?
+  $modalConfirmar = explode("&&%%", $_COOKIE["confirmExcused"]);
+?>
+<!--ConfirmModel-->
 
+<div id="confirmModel" class="modal">
+    <div class="modal-content">
+      <h4><? echo $modalConfirmar[0]; ?></h4>
+      <p><? echo $modalConfirmar[1]; ?></p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
+    </div>
+  </div>
 
-
-
+<?
+if (isset($_COOKIE['confirmExcused'])) {
+  echo "<script>$('#confirmModel').openModal();</script>";
+  setcookie("confirmExcused","byebye",time()-1);
+}
+?>
 
   <!-- Bug Modal -->
   <div id="bugmodal" class="modal bottom-sheet">
@@ -393,51 +411,55 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     });
   });
     </script>
-
-
 <?
-
-if(isset($_POST['updateIsExcused'])){
-
+    if(isset($_POST['updateIsExcused'])){
 
 
-        foreach ($_POST as $key => $value) {
 
-  }
-    $checkID = $_POST[$row["id"]];
-    $sql = "SELECT id, shTeacherExcused FROM passes WHERE day_to_come = '$today' AND teacherEmail = '$teacherEmail' ORDER BY id";
-    $result = $conn->query($sql);
+            foreach ($_POST as $key => $value) {
 
-    if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
-            $$row["id"] = $_POST[$row["id"]];
-            $hereid = $row["id"];
-            echo $hereid;
-            if ($$row["id"] == 1) {
-                $isHere = 1;
-                echo $isHere;
-            } else {
-                $isHere = 0;
-                echo $isHere;
+      }
+        $checkID = $_POST[$row["id"]];
+        $sql = "SELECT id, shTeacherExcused FROM passes WHERE day_to_come = '$today' AND teacherEmail = '$teacherEmail' ORDER BY id";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                $$row["id"] = $_POST[$row["id"]];
+                $hereid = $row["id"];
+                echo $hereid;
+                if ($$row["id"] == 1) {
+                    $isHere = 1;
+                    echo $isHere;
+                } else {
+                    $isHere = 0;
+                    echo $isHere;
+                }
+                $sqlu = "UPDATE passes SET shTeacherExcused='$isHere' WHERE id='$hereid' AND teacherEmail = '$teacherEmail'";
+                if ($conn->query($sqlu) === TRUE) {
+                    $updateResponse = "Successfully excused the students.";
+                    $updateResponseShort = "Success";
+
+                } else {
+                    $updateResponse = "Error updating record: " . $conn->error;
+                    $updateResponseShort = "Error";
+                }
             }
-            $sqlu = "UPDATE passes SET shTeacherExcused='$isHere' WHERE id='$hereid' AND teacherEmail = '$teacherEmail'";
-            if ($conn->query($sqlu) === TRUE) {
-                echo "Record updated successfully";
 
-            } else {
-                echo "Error updating record: " . $conn->error;
-            }
+
+
+        } else {
+            $updateResponse =  "No idea what went wrong... Just submit a bug report saying: <br> \"updateIsExcused\" num_rows == 0 error.";
+            $updateResponseShort = "Error";
         }
-        echo "<script>  setTimeout(function () { window.location.href = '/passport/teacher/index.php?" . $_SERVER["QUERY_STRING"] . "'; }, 500);  </script>";
 
-    } else {
-        echo "nope";
+
+        setcookie("confirmExcused", $updateResponseShort . "&&%%" .  $updateResponse);
+        echo "<script>  setTimeout(function () { window.location.href = '/passport/teacher/index.php?" . $_SERVER["QUERY_STRING"] . "'; }, 500);  </script>";
     }
 
-}
 
-
-?>
+    ?>
 
 
 </body>

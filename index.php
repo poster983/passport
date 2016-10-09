@@ -68,18 +68,20 @@ Materializecss.com - They created the material design js and css library.
 <body>
   <? date_default_timezone_set('America/Chicago'); ?>
     <!-- Request closed overlay -->
-
+    <? include "sqlconnect.php"; ?>
     <?
-
-    if(date("l") == "Sunday" OR date("l") == "Saturday") {
-        $overlayClosedReasonH1 = "Pass Requests are closed on the weekends.";
-        $closedFormAction = "";
-        $blurClass = "blur-g";
-        echo "<script>$(document).ready(function(){openFullOverlay()});</script>";
-    } else {
+    if ($closePassRequestOnDaysToggle == 1) {
+        if(date("l") == "Sunday" OR date("l") == "Saturday") {
+            $overlayClosedReasonH1 = "Pass Requests are closed on the weekends.";
+            $closedFormAction = "";
+            $blurClass = "blur-g";
+            echo "<script>$(document).ready(function(){openFullOverlay()});</script>";
+        } else {
+            $closedFormAction = "/passport/submit.php";
+        }
+      } else {
         $closedFormAction = "/passport/submit.php";
-
-    }
+      }
 
     ?>
 
@@ -122,7 +124,7 @@ Materializecss.com - They created the material design js and css library.
     </div>
 
 
-    <? include "sqlconnect.php"; ?>
+
 
 
   <!-- Bug Modal -->
@@ -742,6 +744,10 @@ Materializecss.com - They created the material design js and css library.
                 <button id="finPassSubmitThang" class="btn waves-effect waves-light tooltipped blur-sect" data-position="top" data-delay="50" data-tooltip="You CANNOT cancel this pass.  You are required to come. " type="submit" name="submit">Request a pass
                     <i class="material-icons right">send</i>
                 </button>
+                <span id="rememberMeCon" class="blur-sect">
+                <input type="checkbox" id="rememberMe" checked="checked" disabled="disabled" />
+                <label for="rememberMe">Remember Me (COMING VERY SOON)</label>
+              </span>
             </div>
         </form>
 
