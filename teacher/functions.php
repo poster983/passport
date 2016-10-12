@@ -72,7 +72,7 @@ function teacherMess(){
   global $conn;
   global $today;
 
-  $sqlmessage = "SELECT day, dep, reason FROM message WHERE day = '$today' AND dep = 'All Students'";
+  $sqlmessage = "SELECT day, dep, reason FROM message WHERE day = '$today' AND dep = 'All Teachers'";
   $resultmessage = $conn->query($sqlmessage);
   echo "<div class='row'>";
 if ($resultmessage->num_rows > 0) {

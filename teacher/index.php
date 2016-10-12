@@ -283,12 +283,13 @@ if (isset($_COOKIE['confirmExcused'])) {
 }
 
     }
-
+   include "functions.php";
+    teacherMess();
     ?>
 
     <div class="container">
 
-<? include "functions.php"; ?>
+
 
     <br>
     <br>

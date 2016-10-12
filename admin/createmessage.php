@@ -63,6 +63,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         &nbsp &nbsp
                         <input type="radio" id="aS" name="dep" value="All Students" />
                         <label for="aS">All Students (All Departments)</label>
+                        &nbsp &nbsp
+                        <input type="radio" id="aT" name="dep" value="All Teachers" />
+                        <label for="aT">All Teachers</label>
                     </p>
                      <div class="input-field col s12">
                         <textarea id="message" name="message" required class="materialize-textarea" length="255"></textarea>
