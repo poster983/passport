@@ -105,7 +105,7 @@ Materializecss.com - They created the material design js and css library.
     </nav>
 
     <!--Body-->
-
+<? include "versionInfo.php"; ?>
 
 
     <!--FEEDBACK FAB-->
@@ -292,6 +292,10 @@ Materializecss.com - They created the material design js and css library.
 
 
 
+    <!-- System Message-->
+      <? include "function.php"; ?>
+
+        <? allStudentMess(); ?>
 
     <!--Tabs-->
     <br>
@@ -312,7 +316,7 @@ Materializecss.com - They created the material design js and css library.
                 </div>
 
                 <div id="depCont" class="container blur-sect">
-                    <? include "function.php"; ?>
+
 
                         <div id="lec" class="col s12">
                             <p>
@@ -501,7 +505,7 @@ Materializecss.com - They created the material design js and css library.
                                         <option selected value="">Choose Your Teacher</option>
 
                                         <?
-                                    include "sqlconnect.php";
+
 
 
                                     $sql="SELECT name_title,firstname,lastname,email FROM teachers WHERE period='a' ORDER BY lastname";
@@ -515,7 +519,7 @@ Materializecss.com - They created the material design js and css library.
                                         }
 
                                     } else {
-                                         $conn->close();
+
                                     }
                                 ?>
                                     </select>
@@ -530,7 +534,7 @@ Materializecss.com - They created the material design js and css library.
                                         <option selected disabled value="">Choose Your Teacher</option>
 
                                         <?
-                                    include "sqlconnect.php";
+
 
 
                                     $sql="SELECT name_title,firstname,lastname,email FROM teachers WHERE period='b' ORDER BY lastname";
@@ -544,7 +548,7 @@ Materializecss.com - They created the material design js and css library.
                                         }
 
                                     } else {
-                                         $conn->close();
+
                                     }
                                 ?>
                                     </select>
@@ -562,7 +566,7 @@ Materializecss.com - They created the material design js and css library.
                                         <option selected disabled value="">Choose Your Teacher</option>
 
                                         <?
-                                    include "sqlconnect.php";
+
 
 
                                     $sql="SELECT name_title,firstname,lastname,email FROM teachers WHERE period='c' ORDER BY lastname";
@@ -576,7 +580,7 @@ Materializecss.com - They created the material design js and css library.
                                         }
 
                                     } else {
-                                         $conn->close();
+
                                     }
                                 ?>
                                     </select>
@@ -592,7 +596,7 @@ Materializecss.com - They created the material design js and css library.
                                         <option selected disabled value="">Choose Your Teacher</option>
 
                                         <?
-                                    include "sqlconnect.php";
+
 
 
                                     $sql="SELECT name_title,firstname,lastname,email FROM teachers WHERE period='d' ORDER BY lastname";
@@ -606,7 +610,7 @@ Materializecss.com - They created the material design js and css library.
                                         }
 
                                     } else {
-                                         $conn->close();
+
                                     }
                                 ?>
                                     </select>
@@ -621,7 +625,7 @@ Materializecss.com - They created the material design js and css library.
                                         <option selected disabled value="">Choose Your Teacher</option>
 
                                         <?
-                                    include "sqlconnect.php";
+
 
 
                                     $sql="SELECT name_title,firstname,lastname,email FROM teachers WHERE period='e' ORDER BY lastname";
@@ -635,7 +639,7 @@ Materializecss.com - They created the material design js and css library.
                                         }
 
                                     } else {
-                                         $conn->close();
+
                                     }
                                 ?>
                                     </select>
@@ -652,7 +656,6 @@ Materializecss.com - They created the material design js and css library.
                                         <option selected disabled value="">Choose Your Teacher</option>
 
                                         <?
-                                    include "sqlconnect.php";
 
 
                                     $sql="SELECT name_title,firstname,lastname,email FROM teachers WHERE period='f' ORDER BY lastname";
@@ -666,7 +669,6 @@ Materializecss.com - They created the material design js and css library.
                                         }
 
                                     } else {
-                                         $conn->close();
                                     }
                                 ?>
                                     </select>
@@ -681,7 +683,6 @@ Materializecss.com - They created the material design js and css library.
                                         <option selected disabled value="">Choose Your Teacher</option>
 
                                         <?
-                                    include "sqlconnect.php";
 
 
                                     $sql="SELECT name_title,firstname,lastname,email FROM teachers WHERE period='g' ORDER BY lastname";
@@ -695,7 +696,6 @@ Materializecss.com - They created the material design js and css library.
                                         }
 
                                     } else {
-                                         $conn->close();
                                     }
                                 ?>
                                     </select>
@@ -710,7 +710,6 @@ Materializecss.com - They created the material design js and css library.
                                         <option selected disabled value="">Choose Your Teacher</option>
 
                                         <?
-                                    include "sqlconnect.php";
 
 
                                     $sql="SELECT name_title,firstname,lastname,email FROM teachers WHERE period='h' ORDER BY lastname";
@@ -724,7 +723,6 @@ Materializecss.com - They created the material design js and css library.
                                         }
 
                                     } else {
-                                         $conn->close();
                                     }
                                 ?>
                                     </select>

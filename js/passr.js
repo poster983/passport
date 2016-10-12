@@ -51,7 +51,7 @@ function closeFullOverlay() {
 
 //Sequencial Pass Blocker
 function whyChecker(dep, depID) {
-  console.log("Clicked on " + dep);
+  //console.log("Clicked on " + dep);
   whyVar = $('#' + depID).find(":selected").text();
 
   if(whyVar === "--Not Required--") {
@@ -64,11 +64,11 @@ function whyChecker(dep, depID) {
     if((where === "shTeacher") && (shTeacherLock == 0)) {
       perProg += 1;
       shTeacherLock = 1;
-      console.log("Clicked on SH");
+      //console.log("Clicked on SH");
     } else if ((where === "confirm") && (perConfirmLock == 0)) {
       perProg += 1;
       perConfirmLock = 1;
-      console.log("Clicked on per");
+      //console.log("Clicked on per");
     }
     if (perProg == 2) {
       $("#finPassSubmitThang").removeClass("blur-sect")
@@ -191,7 +191,7 @@ function incBlur(whereProg) {
     $("#genInfoInput").removeClass("blur-sect")
 
   } else if ((whereProg === "day") && (dateLock==0)) {
-    console.log("Next");
+    //console.log("Next");
     $("#periodTabs").removeClass("blur-sect", 1000, "easeOutExpo")
     dateLock = 1;
   }

@@ -24,7 +24,7 @@ function LECout()
     $resultlecoutfut = $conn->query($sqllecoutfut);
     echo "<div class='row'>";
     if ($resultlecout->num_rows > 0) {
-        echo "<div class='col s12 m6'><div class='hoverable card orange'><div class='card-content white-text'><span class='card-title'>ATTENTION!</span><p> The Executive Functioning Department is closed today during the following periods: &nbsp</p>";
+        echo "<div class='col s12 m6'><div class='hoverable card orange'><div class='card-content white-text'><span class='card-title'>ATTENTION!</span><p> The Executive Functioning Department is not accepting passes today during the following periods: &nbsp</p>";
         // output data of each row
 
         while($rowlecout = $resultlecout->fetch_assoc()) {
@@ -41,7 +41,7 @@ function LECout()
             echo "<div class='center col s12'><div class='hoverable card green'><div class='card-content white-text'><span class='card-title'>The Executive Functioning Department is open today.</span></div></div></div>";
         }
      if ($resultlecoutfut->num_rows > 0) {
-        echo "<div class='col s12 m6'><div class='hoverable card red'><div class='card-content white-text'><span class='card-title'>This Week</span><p> This week, The Executive Functioning Department will be closed on:</p>";
+        echo "<div class='col s12 m6'><div class='hoverable card red'><div class='card-content white-text'><span class='card-title'>This Week</span><p> This week, The Executive Functioning Department is not accepting passes during the following periods:</p>";
 
         while($rowlecoutfut = $resultlecoutfut->fetch_assoc()) {
             $perexpfut = explode(",", $rowlecoutfut["period"]);
@@ -78,7 +78,7 @@ function MATHout()
     $resultlecoutfut = $conn->query($sqllecoutfut);
     echo "<div class='row'>";
     if ($resultlecout->num_rows > 0) {
-        echo "<div class='col s12 m6'><div class='hoverable card orange'><div class='card-content white-text'><span class='card-title'>ATTENTION!</span><p> The Math Department is closed today during the following periods: &nbsp</p>";
+        echo "<div class='col s12 m6'><div class='hoverable card orange'><div class='card-content white-text'><span class='card-title'>ATTENTION!</span><p> The Math Department is not accepting passes today during the following periods: &nbsp</p>";
         // output data of each row
 
         while($rowlecout = $resultlecout->fetch_assoc()) {
@@ -95,7 +95,7 @@ function MATHout()
             echo "<div class='center col s12'><div class='hoverable card green'><div class='card-content white-text'><span class='card-title'>The Math Department is open today.</span></div></div></div>";
         }
      if ($resultlecoutfut->num_rows > 0) {
-        echo "<div class='col s12 m6'><div class='hoverable card red'><div class='card-content white-text'><span class='card-title'>This Week</span><p> This week, the Math Department will be closed on:</p>";
+        echo "<div class='col s12 m6'><div class='hoverable card red'><div class='card-content white-text'><span class='card-title'>This Week</span><p> This week, the Math Department is not accepting passes during the following periods:</p>";
 
         while($rowlecoutfut = $resultlecoutfut->fetch_assoc()) {
             $perexpfut = explode(",", $rowlecoutfut["period"]);
@@ -131,7 +131,7 @@ function LIBout()
     $resultlecoutfut = $conn->query($sqllecoutfut);
     echo "<div class='row'>";
     if ($resultlecout->num_rows > 0) {
-        echo "<div class='col s12 m6'><div class='hoverable card orange'><div class='card-content white-text'><span class='card-title'>ATTENTION!</span><p> The Library is closed today during the following periods: &nbsp</p>";
+        echo "<div class='col s12 m6'><div class='hoverable card orange'><div class='card-content white-text'><span class='card-title'>ATTENTION!</span><p> The Library is not accepting passes today during the following periods: &nbsp</p>";
         // output data of each row
         while($rowlecout = $resultlecout->fetch_assoc()) {
             $perexp = explode(",", $rowlecout["period"]);
@@ -147,7 +147,7 @@ function LIBout()
             echo "<div class='center col s12'><div class='hoverable card green'><div class='card-content white-text'><span class='card-title'>The Library is open today.</span></div></div></div>";
         }
      if ($resultlecoutfut->num_rows > 0) {
-        echo "<div class='col s12 m6'><div class='hoverable card red'><div class='card-content white-text'><span class='card-title'>This Week</span><p> This week, the Library will be closed on:</p>";
+        echo "<div class='col s12 m6'><div class='hoverable card red'><div class='card-content white-text'><span class='card-title'>This Week</span><p> This week, the Library is not accepting passes during the following periods:</p>";
 
         while($rowlecoutfut = $resultlecoutfut->fetch_assoc()) {
             $perexpfut = explode(",", $rowlecoutfut["period"]);
@@ -183,7 +183,7 @@ function HDout()
     $resultlecoutfut = $conn->query($sqllecoutfut);
     echo "<div class='row'>";
     if ($resultlecout->num_rows > 0) {
-        echo "<div class='col s12 m6'><div class='hoverable card orange'><div class='card-content white-text'><span class='card-title'>ATTENTION!</span><p> The Help Desk is closed today during the following periods: &nbsp</p>";
+        echo "<div class='col s12 m6'><div class='hoverable card orange'><div class='card-content white-text'><span class='card-title'>ATTENTION!</span><p> The Help Desk is not accepting passes today during the following periods: &nbsp</p>";
         // output data of each row
         while($rowlecout = $resultlecout->fetch_assoc()) {
             $perexp = explode(",", $rowlecout["period"]);
@@ -199,7 +199,7 @@ function HDout()
             echo "<div class='center col s12'><div class='hoverable card green'><div class='card-content white-text'><span class='card-title'>The Help Desk is open today.</span></div></div></div>";
         }
      if ($resultlecoutfut->num_rows > 0) {
-        echo "<div class='col s12 m6'><div class='hoverable card red'><div class='card-content white-text'><span class='card-title'>This Week</span><p> This week, the Help Desk will be closed on:</p>";
+        echo "<div class='col s12 m6'><div class='hoverable card red'><div class='card-content white-text'><span class='card-title'>This Week</span><p> This week, the Help Desk is not accepting passes during the following periods:</p>";
 
         while($rowlecoutfut = $resultlecoutfut->fetch_assoc()) {
             $perexpfut = explode(",", $rowlecoutfut["period"]);
@@ -235,7 +235,7 @@ function WLout()
     $resultlecoutfut = $conn->query($sqllecoutfut);
     echo "<div class='row'>";
     if ($resultlecout->num_rows > 0) {
-        echo "<div class='col s12 m6'><div class='hoverable card orange'><div class='card-content white-text'><span class='card-title'>ATTENTION!</span><p> The Writing Lab is closed today during the following periods: &nbsp</p>";
+        echo "<div class='col s12 m6'><div class='hoverable card orange'><div class='card-content white-text'><span class='card-title'>ATTENTION!</span><p> The Writing Lab is not accepting passes today during the following periods: &nbsp</p>";
         // output data of each row
         while($rowlecout = $resultlecout->fetch_assoc()) {
             $perexp = explode(",", $rowlecout["period"]);
@@ -251,7 +251,7 @@ function WLout()
             echo "<div class='center col s12'><div class='hoverable card green'><div class='card-content white-text'><span class='card-title'>The Writing Lab is open today.</span></div></div></div>";
         }
      if ($resultlecoutfut->num_rows > 0) {
-        echo "<div class='col s12 m6'><div class='hoverable card red'><div class='card-content white-text'><span class='card-title'>This Week</span><p> This week, the Writing Lab will be closed on:</p>";
+        echo "<div class='col s12 m6'><div class='hoverable card red'><div class='card-content white-text'><span class='card-title'>This Week</span><p> This week, the Writing Lab is not accepting passes during the following periods:</p>";
 
         while($rowlecoutfut = $resultlecoutfut->fetch_assoc()) {
             $perexpfut = explode(",", $rowlecoutfut["period"]);
@@ -288,7 +288,7 @@ function FLout()
     $resultlecoutfut = $conn->query($sqllecoutfut);
     echo "<div class='row'>";
     if ($resultlecout->num_rows > 0) {
-        echo "<div class='col s12 m6'><div class='hoverable card orange'><div class='card-content white-text'><span class='card-title'>ATTENTION!</span><p> Foreign Language tutoring is closed today during the following periods: &nbsp</p>";
+        echo "<div class='col s12 m6'><div class='hoverable card orange'><div class='card-content white-text'><span class='card-title'>ATTENTION!</span><p> Foreign Language tutoring is not accepting passes today during the following periods: &nbsp</p>";
         // output data of each row
         while($rowlecout = $resultlecout->fetch_assoc()) {
             $perexp = explode(",", $rowlecout["period"]);
@@ -304,7 +304,7 @@ function FLout()
             echo "<div class='center col s12'><div class='hoverable card green'><div class='card-content white-text'><span class='card-title'>Foreign Language tutoring is open today.</span></div></div></div>";
         }
      if ($resultlecoutfut->num_rows > 0) {
-        echo "<div class='col s12 m6'><div class='hoverable card red'><div class='card-content white-text'><span class='card-title'>This Week</span><p> This week, Foreign Language tutoring will be closed on:</p>";
+        echo "<div class='col s12 m6'><div class='hoverable card red'><div class='card-content white-text'><span class='card-title'>This Week</span><p> This week, Foreign Language tutoring is not accepting passes during the following periods:</p>";
 
         while($rowlecoutfut = $resultlecoutfut->fetch_assoc()) {
             $perexpfut = explode(",", $rowlecoutfut["period"]);
@@ -341,7 +341,7 @@ function AMout()
     $resultlecoutfut = $conn->query($sqllecoutfut);
     echo "<div class='row'>";
     if ($resultlecout->num_rows > 0) {
-        echo "<div class='col s12 m6'><div class='hoverable card orange'><div class='card-content white-text'><span class='card-title'>ATTENTION!</span><p> The Athletic Mentor is not available today during the following periods: &nbsp</p>";
+        echo "<div class='col s12 m6'><div class='hoverable card orange'><div class='card-content white-text'><span class='card-title'>ATTENTION!</span><p> The Athletic Mentor is not accepting passes today during the following periods: &nbsp</p>";
         // output data of each row
         while($rowlecout = $resultlecout->fetch_assoc()) {
             $perexp = explode(",", $rowlecout["period"]);
@@ -357,7 +357,7 @@ function AMout()
             echo "<div class='center col s12'><div class='hoverable card green'><div class='card-content white-text'><span class='card-title'> The Athletic Mentor is available today.</span></div></div></div>";
         }
      if ($resultlecoutfut->num_rows > 0) {
-        echo "<div class='col s12 m6'><div class='hoverable card red'><div class='card-content white-text'><span class='card-title'>This Week</span><p> This week, The Athletic Mentor will be unavailable during:</p>";
+        echo "<div class='col s12 m6'><div class='hoverable card red'><div class='card-content white-text'><span class='card-title'>This Week</span><p> This week, The Athletic Mentor is not accepting passes during the following periods:</p>";
 
         while($rowlecoutfut = $resultlecoutfut->fetch_assoc()) {
             $perexpfut = explode(",", $rowlecoutfut["period"]);
@@ -557,6 +557,30 @@ function AMmess()
 
 
 
+function allStudentMess() {
+  global $conn;
+  global $today;
+
+  $sqlmessage = "SELECT day, dep, reason FROM message WHERE day = '$today' AND dep = 'All Students'";
+  $resultmessage = $conn->query($sqlmessage);
+  echo "<div class='row'>";
+if ($resultmessage->num_rows > 0) {
+  echo "<div class='col s12'><div class='hoverable card cyan accent-4'><div class='card-content white-text'><span class='card-title'>IMPORTANT PASSPORT SYSTEM MESSAGE</span>";
+  // output data of each row
+  while($rowmessage = $resultmessage->fetch_assoc()) {
+      echo "<p>";
+      echo $rowmessage["reason"];
+      echo "</p>";
+  }
+  echo "</div></div></div>";
+  } else {
+
+}
+  echo "</div>";
+}
+
+
+
 //Reasons
 function reasonSel($reaDep) {
     global $conn;
@@ -579,6 +603,10 @@ function reasonSel($reaDep) {
         }
     echo "</select>";
 }
+
+
+
+
 
 
 

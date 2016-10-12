@@ -40,7 +40,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
                     <p class="center">Choose Department</p>
                     <p class="center">
-                        <input type="radio" id="lec" name="dep" value="LEC" />
+                        <input type="radio" id="lec" required name="dep" value="LEC" />
                         <label for="lec">LEC</label>
                         &nbsp &nbsp
                         <input type="radio" id="math" name="dep" value="Math Department" />
@@ -60,9 +60,12 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         &nbsp &nbsp
                         <input type="radio" id="am" name="dep" value="Athletic Mentor" />
                         <label for="am">Athletic Mentor</label>
+                        &nbsp &nbsp
+                        <input type="radio" id="aS" name="dep" value="All Students" />
+                        <label for="aS">All Students (All Departments)</label>
                     </p>
                      <div class="input-field col s12">
-                        <textarea id="message" name="message" class="materialize-textarea" length="255"></textarea>
+                        <textarea id="message" name="message" required class="materialize-textarea" length="255"></textarea>
                         <label for="message">Your Message</label>
                     </div>
                     <p>
@@ -133,7 +136,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     $sqlmessage = "INSERT INTO message (day, dep, reason)
             VALUES ('$messageday', '$dep', '$message')";
             if ($conn->query($sqlmessage) === TRUE) {
-                echo "Sucsess: " . $sqlmessage . "<br>" . $conn->error;
+              echo "<script> Materialize.toast('Successfully Created Message', 4000) </script>";
             } else {
                 echo "Error: "  . $sqlmessage . "<br>" . $conn->error;
             }
