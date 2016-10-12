@@ -52,7 +52,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
     include "../sqlconnect.php";
 
-    $sql = "SELECT id, name, email, comment, rating, report_type, date, role FROM feedback ORDER BY date DESC";
+    $sql = "SELECT id, name, email, comment, rating, report_type, date, role, forVersion FROM feedback ORDER BY date DESC";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -69,7 +69,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 $ratingstar = "Rating of ";
             }
             echo "<li>";
-            echo "<div class='collapsible-header'><i class='material-icons' " . $iconTitle . ">" . $icon . "</i>" . $row['name'] . " <div class='chip'>" . $ratingstar . $row['rating'] . " </div> &nbsp &nbsp Ticket id: <div class='chip'>" . $row['id'] . " </div> &nbsp &nbsp Date: <div class='chip'>" . $row['date'] . " </div>  &nbsp &nbsp A <div class='chip'>" . $row['role'] . " </div> submitted this</div>";
+            echo "<div class='collapsible-header'><i class='material-icons' " . $iconTitle . ">" . $icon . "</i>" . $row['name'] . " <div class='chip'>" . $ratingstar . $row['rating'] . " </div> &nbsp &nbsp Ticket id: <div class='chip'>" . $row['id'] . " </div> &nbsp &nbsp Date: <div class='chip'>" . $row['date'] . " </div>  &nbsp &nbsp A <div class='chip'>" . $row['role'] . " </div> submitted this. Version at submission: <div class='chip'>" . $row['forVersion'] . "</div></div>";
             echo "<div class='collapsible-body'><p>" . $row['comment'] . "</p> <p><a href='mailto:" . $row['email'] . "?Subject=Passport%20Feedback%20Followup' target='_top'>Send an email</a></p></div>";
             echo "</li>";
         }

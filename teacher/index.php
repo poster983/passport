@@ -38,6 +38,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <title>Teacher Dashboard</title>
 
     <? include "../personalCode.php";
+        include "../versionInfo.php";
 	     trackerGA(); ?>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -190,10 +191,11 @@ if (isset($_COOKIE['confirmExcused'])) {
         $bugtext = htmlspecialchars($_POST['bugtext'],ENT_QUOTES);
         $bugseverity = $_POST['bugseverity'];
         $bugdate = date( 'Y-m-d', strtotime(" today "));
+        $bugVersion = $CurrentVersionOfPassport;
     }
 
-        $sqlbug = "INSERT INTO feedback (name, email, comment, rating, report_type, date, role)
-        VALUES ('$bugname', '$bugemail', '$bugtext', '$bugseverity', 'bug', '$bugdate', 'teacher')";
+        $sqlbug = "INSERT INTO feedback (name, email, comment, rating, report_type, date, role, forVersion)
+        VALUES ('$bugname', '$bugemail', '$bugtext', '$bugseverity', 'bug', '$bugdate', 'teacher', '$bugVersion')";
 
         if ($conn->query($sqlbug) === TRUE) {
         echo "<script> Materialize.toast('Bug report submitted successfully', 4000) </script>";
@@ -266,10 +268,11 @@ if (isset($_COOKIE['confirmExcused'])) {
         $reviewtext = htmlspecialchars($_POST['reviewtext'],ENT_QUOTES);
         $reviewseverity = $_POST['rating'];
         $reviewdate = date( 'Y-m-d', strtotime(" today "));
+        $reviewVersion = $CurrentVersionOfPassport;
     }
 
-        $sqlreview = "INSERT INTO feedback (name, email, comment, rating, report_type, date, role)
-        VALUES ('$reviewname', '$reviewemail', '$reviewtext', '$reviewseverity', 'review', '$reviewdate', 'teacher')";
+        $sqlreview = "INSERT INTO feedback (name, email, comment, rating, report_type, date, role, forVersion)
+        VALUES ('$reviewname', '$reviewemail', '$reviewtext', '$reviewseverity', 'review', '$reviewdate', 'teacher', '$reviewVersion')";
 
         if ($conn->query($sqlreview) === TRUE) {
         echo "<script> Materialize.toast('Review submitted successfully', 4000) </script>";

@@ -82,7 +82,7 @@ Materializecss.com - They created the material design js and css library.
       } else {
         $closedFormAction = "/passport/submit.php";
       }
-
+ include "versionInfo.php";
     ?>
 
 
@@ -100,12 +100,12 @@ Materializecss.com - They created the material design js and css library.
     <nav>
         <div class="nav-wrapper ">
             <a href="#" class="brand-logo center">Passport</a>
-
+            <span class="right"><?echo $CurrentVersionOfPassport;?></span>
         </div>
     </nav>
 
     <!--Body-->
-<? include "versionInfo.php"; ?>
+
 
 
     <!--FEEDBACK FAB-->
@@ -186,12 +186,13 @@ Materializecss.com - They created the material design js and css library.
         $bugtext = htmlspecialchars($_POST['bugtext'],ENT_QUOTES);
         $bugReportType = "bug";
         $bugRole = "student";
+        $bugVersion = $CurrentVersionOfPassport;
     }
 
-        $sqlbug = $conn->prepare("INSERT INTO feedback (name, email, comment, rating, report_type, `date`, role)
-        VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $sqlbug = $conn->prepare("INSERT INTO feedback (name, email, comment, rating, report_type, `date`, role, forVersion)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 
-        $sqlbug->bind_param("sssisss", $bugname, $bugemail, $bugtext, $bugseverity, $bugReportType, $bugdate, $bugRole);
+        $sqlbug->bind_param("sssissss", $bugname, $bugemail, $bugtext, $bugseverity, $bugReportType, $bugdate, $bugRole, $bugVersion);
         if ($sqlbug->execute()) {
           echo "<script> Materialize.toast('Bug report submitted successfully', 4000) </script>";
         } else {
@@ -274,12 +275,13 @@ Materializecss.com - They created the material design js and css library.
         $reviewdate = date( 'Y-m-d', strtotime(" today "));
         $reviewReportType = "review";
         $reviewRole = "student";
+        $reviewVersion = $CurrentVersionOfPassport;
     }
 
-        $sqlbug = $conn->prepare("INSERT INTO feedback (name, email, comment, rating, report_type, `date`, role)
-        VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $sqlbug = $conn->prepare("INSERT INTO feedback (name, email, comment, rating, report_type, `date`, role, forVersion)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 
-        $sqlbug->bind_param("sssisss", $reviewname, $reviewemail, $reviewtext, $reviewseverity, $reviewReportType, $reviewdate, $reviewRole);
+        $sqlbug->bind_param("sssissss", $reviewname, $reviewemail, $reviewtext, $reviewseverity, $reviewReportType, $reviewdate, $reviewRole, $reviewVersion);
         if ($sqlbug->execute()) {
           echo "<script> Materialize.toast('Review submitted successfully', 4000) </script>";
         } else {

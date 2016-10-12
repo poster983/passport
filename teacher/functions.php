@@ -32,7 +32,7 @@ $fridisday = date( 'Y-m-d', strtotime(" friday this week "));
 
 $today = date( 'Y-m-d', strtotime(" today "));
 //WHERE day = '$mondisday' OR day = '$tusdisday' OR day = '$weddisday' OR day = '$thurdisday' OR day = '$fridisday'
-function blackout() 
+function blackout()
 {
     global $mondisday;
     global $tusdisday;
@@ -45,11 +45,11 @@ function blackout()
     $sqllecoutfut = "SELECT day, department, period FROM blackout WHERE day = '$mondisday' OR day = '$tusdisday' OR day = '$weddisday' OR day = '$thurdisday' OR day = '$fridisday' ORDER BY day";
     $resultlecout = $conn->query($sqllecout);
     $resultlecoutfut = $conn->query($sqllecoutfut);
-    
+
     if ($resultlecout->num_rows > 0) {
         echo "<div class='col s12 m6'><div class='hoverable card orange'><div class='card-content white-text'><span class='card-title'>ATTENTION!</span> <p>The following departments WILL NOT BE ACCEPTING STUDENTS";
         // output data of each row
-        
+
         while($rowlecout = $resultlecout->fetch_assoc()) {
             $perexp = explode(",", $rowlecout["period"]);
             $percount = count($perexp);
@@ -65,7 +65,29 @@ function blackout()
         } else {
             echo "<div class='center col s12 m6'><div class='hoverable card green'><div class='card-content white-text'><span class='card-title'>ALL Departments are open today.</span></div></div></div>";
     }
-    
+
+}
+
+function teacherMess(){
+  global $conn;
+  global $today;
+
+  $sqlmessage = "SELECT day, dep, reason FROM message WHERE day = '$today' AND dep = 'All Students'";
+  $resultmessage = $conn->query($sqlmessage);
+  echo "<div class='row'>";
+if ($resultmessage->num_rows > 0) {
+  echo "<div class='col s12'><div class='hoverable card cyan accent-4'><div class='card-content white-text'><span class='card-title'>IMPORTANT PASSPORT SYSTEM MESSAGE</span>";
+  // output data of each row
+  while($rowmessage = $resultmessage->fetch_assoc()) {
+      echo "<p>";
+      echo $rowmessage["reason"];
+      echo "</p>";
+  }
+  echo "</div></div></div>";
+  } else {
+
+}
+  echo "</div>";
 }
 
 ?>
