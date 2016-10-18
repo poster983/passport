@@ -31,6 +31,7 @@ The LC staff at STHS
 IT Department at STHS
 The study halls and teachers who participated in the pilot program in the fall of 2016.
 Materializecss.com - They created the material design js and css library.
+My Sanity :)
 
 -->
 
