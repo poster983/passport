@@ -55,7 +55,7 @@ include "../sqlconnect.php";
 
 echo "<div class= 'container'> <form method = 'post' action = ''>";
 
-           $sql = "SELECT id, firstname, lastname, email, student_id, period, sh_teacher, place, day_to_come, reason_to_come, isHere FROM passes $where_day ORDER BY period, lastname";
+           $sql = "SELECT id, firstname, lastname, email, student_id, period, sh_teacher, place, day_to_come, reason_to_come, isHere FROM passes $where_day AND isHere='0' ORDER BY period, lastname";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -86,6 +86,44 @@ echo "<div class= 'container'> <form method = 'post' action = ''>";
             echo "0 results";
         }
 
+        ?>
+        <div class="divider"></div>
+        <h3 class="center white-text">Signed in</h3>
+        <div class="divider"></div>
+
+
+        <?
+
+        $sql = "SELECT id, firstname, lastname, email, student_id, period, sh_teacher, place, day_to_come, reason_to_come, isHere FROM passes $where_day AND isHere='1' ORDER BY period, lastname";
+ $result = $conn->query($sql);
+
+ if ($result->num_rows > 0) {
+
+
+     echo "<table class='bordered responsive-table'><thead style='color: #ecf0f1'><tr><th>Signed In?</th><th>Name</th><th>Period</th><th>Study Hall Teacher</th><th>Department</th><th>Reason to come</th></tr></thead>";
+     // output data of each row
+     echo "<tbody>";
+     while($row = $result->fetch_assoc()) {
+
+     if($row["isHere"] == 1){
+         $inputAll = ' checked="checked" disabled="disabled"';
+         $inputType = "<input type='checkbox'checked='checked' disabled='disabled' value='1' />";
+     } else {
+         $inputAll = '';
+         $inputType = "<input type='radio' class='with-gap' id='" . $row["id"] . "' name='kioskIsHere' onclick='openNextID()' required value='" . $row["id"] . "' />";
+     }
+
+         echo "<tr style='color: #ecf0f1'><td> <input type='checkbox'checked='checked' id='" . $row["id"] . "' disabled='disabled' value='1' /> <label for='" . $row["id"] . "'>Signed In</label> </td><td>" . $row["lastname"].  ", " . $row["firstname"]. "</td><td>" . $row["period"]. "</td><td>" . $row["sh_teacher"]. "</td><td>" . $row["place"]. "</td><td>" . $row["reason_to_come"]. "</td></tr></tbody>";
+     }
+
+     echo "</tbody></table>";
+     //echo "<a class='waves-effect waves-light btn modal-trigger' href='#nextID'>Next <i class='material-icons right'>trending_flat</i></a>";
+
+     //echo "<button class='btn waves-effect waves-light' type='submit' name='updateIshereKIOSK'>Sign in <i class='material-icons right'>mode_edit</i></button>";
+
+     } else {
+         echo "0 results";
+     }
 
         ?>
 
