@@ -65,6 +65,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                     &nbsp &nbsp
                     <input type="checkbox" id="hper" name="hper" value="H" />
                     <label for="hper">H Period</label>
+                    &nbsp &nbsp
+                    <input type="checkbox" id="AD" name="AD" value="All Day" />
+                    <label for="AD">All Day</label>
                 </p>
                 <p class="center">Choose Department</p>
                 <p class="center">
@@ -101,7 +104,41 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="/passport/js/materialize.js"></script>
         <script src="/passport/js/init.js"></script>
+        <script>
+        $("#AD").change(function() {
+          if(this.checked) {
+            $('#aper').prop('checked', false);
+            $('#aper').prop( 'disabled', true );
+            $('#bper').prop('checked', false);
+            $('#bper').prop( 'disabled', true );
+            $('#cper').prop('checked', false);
+            $('#cper').prop( 'disabled', true );
+            $('#dper').prop('checked', false);
+            $('#dper').prop( 'disabled', true );
+            $('#eperL1').prop('checked', false);
+            $('#eperL1').prop( 'disabled', true );
+            $('#eperL2').prop('checked', false);
+            $('#eperL2').prop( 'disabled', true );
+            $('#fper').prop('checked', false);
+            $('#fper').prop( 'disabled', true );
+            $('#gper').prop('checked', false);
+            $('#gper').prop( 'disabled', true );
+            $('#hper').prop('checked', false);
+            $('#hper').prop( 'disabled', true );
+          } else {
+            $('#aper').prop( 'disabled', false );
+            $('#bper').prop( 'disabled', false );
+            $('#cper').prop( 'disabled', false );
+            $('#dper').prop( 'disabled', false );
+            $('#eperL1').prop( 'disabled', false );
+            $('#eperL2').prop( 'disabled', false );
+            $('#fper').prop( 'disabled', false );
+            $('#gper').prop( 'disabled', false );
+            $('#hper').prop( 'disabled', false );
 
+          }
+        });
+        </script>
 
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
@@ -155,7 +192,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         $fper = $_POST['fper'];
         $gper = $_POST['gper'];
         $hper = $_POST['hper'];
-
+        $aday = $_POST['AD'];
+        if ($aday == "") {
         $per = "$aper,$bper,$cper,$dper,$eperL1,$eperL2,$fper,$gper,$hper";
 
         $perarray = explode(",", $per);
@@ -163,14 +201,17 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         $perarray_null = array_filter($perarray );
 
         $percount = count($perarray_null);
+      } else {
+        $per = $aday;
+      }
 
 
 
-echo "Blacked out period(s):";
 
     $sql = "INSERT INTO blackout (day, department, period)
             VALUES ('$blackoutday', '$dep', '$per')";
             if ($conn->query($sql) === TRUE) {
+              echo "Blacked out period(s):";
                 echo "$per ";
                 echo " on $blackoutday";
             } else {
