@@ -68,7 +68,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         <label for="aT">All Teachers</label>
                     </p>
                      <div class="input-field col s12">
-                        <textarea id="message" name="message" required class="materialize-textarea" length="255"></textarea>
+                        <textarea id="message" name="message" required class="materialize-textarea"></textarea>
                         <label for="message">Your Message</label>
                     </div>
                     <p>

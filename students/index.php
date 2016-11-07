@@ -109,7 +109,7 @@ My Sanity :)
                         <label for="bugemail">Email</label>
                     </div>
                     <div class="input-field col s12"> <i class="material-icons prefix">comment</i>
-                        <textarea id="bugtext" name="bugtext" required class="materialize-textarea" length="255"></textarea>
+                        <textarea id="bugtext" name="bugtext" required class="materialize-textarea"></textarea>
                         <label for="bugtext">Describe the bug or issue</label>
                     </div>
                     <h5 class="center">Bug Severity Slider</h5>
@@ -160,7 +160,7 @@ My Sanity :)
                         <label for="reviewemail">Email</label>
                     </div>
                     <div class="input-field col s12"> <i class="material-icons prefix">comment</i>
-                        <textarea id="reviewtext" name="reviewtext" class="materialize-textarea" length="255"></textarea>
+                        <textarea id="reviewtext" name="reviewtext" class="materialize-textarea"></textarea>
                         <label for="reviewtext">Comment</label>
                     </div>
                     <h5 class="center">Rating Slider</h5>
