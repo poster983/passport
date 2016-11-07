@@ -10,7 +10,7 @@ if (isset($_POST['Submit'])) {
   //echo "username: " . $username . " Password: " . $password . "  ";
   //mysqli_report(MYSQLI_REPORT_ERROR);
   //  #&@% Prepared statements!!!
-	if ($stmt = $conn->prepare("SELECT id, firstname, lastname, email, student_id, sh_period, sh_teacher_ID, student_year, email_Verify_Status, banned_until_date, password, archived FROM studentaccount WHERE email = ?")) {
+	if ($stmt = $conn->prepare("SELECT id, email_Verify_Status, banned_until_date, password, archived FROM studentaccount WHERE email = ?")) {
     //echo "HI";
     /* bind parameters for markers */
    $stmt->bind_param("s", $Uemail);
@@ -18,20 +18,22 @@ if (isset($_POST['Submit'])) {
     $stmt->execute();
     $stmt->store_result();
     /* bind result variables */
-    $stmt->bind_result($accID, $aFirstName, $aLastName, $aEmail, $aStudent_ID, $aSH_Period, $aSH_Teacher_ID, $aStudent_Year, $isEmailVerified, $aBannedDate, $hashedPass, $accountIsArchived);
+    $stmt->bind_result($accID, $isEmailVerified, $aBannedDate, $hashedPass, $accountIsArchived);
 	if($stmt->num_rows > "0") {
     while ($stmt->fetch()) {
-      $hashedPass;
+	$accID;
+	$isEmailVerified;
+	$aBannedDate;
+      	$hashedPass;
+	$accountIsArchived;
     }
 		//echo "Hashed: " . $hashedPass . "_____ Un hashed " . crypt($password, $hashedPass);
 		if(crypt($password, $hashedPass) == $hashedPass) {
 			session_regenerate_id();
 			$_SESSION['studentok'] = "ok";
+			$_SESSION['studentAccID'] = $accID;
 			
-			$_SESSION['adminFirstName'] = $aFN;
-			$_SESSION['adminLastName'] = $aLN;
-			$_SESSION['adminEmail'] = $aEM;
-			$_SESSION['password'] = "password";
+			
 			header("Location: index.php");
       $msg = "Your in!";
 		} else {
