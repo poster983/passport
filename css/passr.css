@@ -25,23 +25,6 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 /*color*/
 
-.theme-primary {
-  background-color: #F44336;
-}
-.theme-status {
-  background-color: #D32F2F;
-}
-.theme-second {
-  background-color: #E57373;
-}
-.theme-accent {
-  background-color: #18FFFF;
-}
-.theme-accent-fallback {
-  background-color: #00E5FF;
-}
-
-
 
 
 .blur-g {
@@ -58,7 +41,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 }
 
 .blur-sect {
-  
+
 
   z-index: -1;
   position: relative;
@@ -98,6 +81,12 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     width: 300px;
     height: 300px;
 }
+.signup-allign{
+    float: none;
+    margin: 100px auto;
+    width: 900px;
+    height: 300px;
+}
 
 .blue-teal{
     background: -webkit-linear-gradient(#03A9F4, #009688); /* For Safari 5.1 to 6.0 */
@@ -117,6 +106,12 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 .red-orange {
   background: linear-gradient(180deg, rgb(231, 76, 60), rgb(230, 126, 34));
   background: -webkit-linear-gradient(180deg, rgb(231, 76, 60), rgb(230, 126, 34));
+}
+.eagleBlood {
+  background: #f85032; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #f85032 , #e73827); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #f85032 , #e73827); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
 

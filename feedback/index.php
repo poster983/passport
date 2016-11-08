@@ -50,8 +50,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
     <?
 
-    include "../sqlconnect.php";
-
+    include "../medooconnect.php";
+    /*
     $sql = "SELECT id, name, email, comment, rating, report_type, date, role, forVersion FROM feedback ORDER BY date DESC";
     $result = $conn->query($sql);
 
@@ -75,6 +75,50 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         }
         echo "</ul>";
     }
+    */
+    $medooCol = array(
+      "id",
+      "name",
+      "email",
+      "comment",
+      "rating",
+      "report_type",
+      "date",
+      "role",
+      "forVersion"
+    );
+    $medooWhere = array(
+      "ORDER" => array(
+        "date" =>"DESC",
+        "id" =>"DESC"
+      )
+    );
+
+
+
+    $medoo = $medooDB->select("feedback", $medooCol, $medooWhere);
+    echo "<ul class='collapsible' data-collapsible='accordion'>";
+    foreach($medoo as $row)
+    {
+
+
+
+      if ($row['report_type'] == "bug") {
+          $icon = "report_problem";
+          $iconTitle = "title='Bug Report'";
+          $ratingstar = "Priority of ";
+      } else {
+          $icon = "thumbs_up_down";
+          $iconTitle = "title='Rating'";
+          $ratingstar = "Rating of ";
+      }
+      echo "<li>";
+      echo "<div class='collapsible-header'><i class='material-icons' " . $iconTitle . ">" . $icon . "</i>" . $row['name'] . " <div class='chip'>" . $ratingstar . $row['rating'] . " </div> &nbsp &nbsp Ticket id: <div class='chip'>" . $row['id'] . " </div> &nbsp &nbsp Date: <div class='chip'>" . $row['date'] . " </div>  &nbsp &nbsp A <div class='chip'>" . $row['role'] . " </div> submitted this. Version at submission: <div class='chip'>" . $row['forVersion'] . "</div></div>";
+      echo "<div class='collapsible-body'><p>" . $row['comment'] . "</p> <p><a href='mailto:" . $row['email'] . "?Subject=Passport%20Feedback%20Followup' target='_top'>Send an email</a></p></div>";
+      echo "</li>";
+
+    }
+    echo "</ul>";
 
     ?>
 

@@ -1,23 +1,21 @@
 <?php
 session_start();
-include "adminconnect.php";
+include "../medooconnect.php";
 $msg = "";
 $failshake = "";
 $fadein = "animated fadeInDown";
 if (isset($_POST['Submit'])) {
 	$Uemail = $_POST['email'];
-	$password = $conn->real_escape_string($_POST['password']);
-  //echo "username: " . $username . " Password: " . $password . "  ";
-  //mysqli_report(MYSQLI_REPORT_ERROR);
-  //  #&@% Prepared statements!!!
+	$password = $_POST['password'];
+  /*
 	if ($stmt = $conn->prepare("SELECT id, email_Verify_Status, banned_until_date, password, archived FROM studentaccount WHERE email = ?")) {
     //echo "HI";
-    /* bind parameters for markers */
+    /* bind parameters for markers
    $stmt->bind_param("s", $Uemail);
-   /* execute query */
+   /* execute query
     $stmt->execute();
     $stmt->store_result();
-    /* bind result variables */
+    /* bind result variables
     $stmt->bind_result($accID, $isEmailVerified, $aBannedDate, $hashedPass, $accountIsArchived);
 	if($stmt->num_rows > "0") {
     while ($stmt->fetch()) {
@@ -27,13 +25,16 @@ if (isset($_POST['Submit'])) {
       	$hashedPass;
 	$accountIsArchived;
     }
+		*/
 		//echo "Hashed: " . $hashedPass . "_____ Un hashed " . crypt($password, $hashedPass);
+		$medoo = $medooDB->select(studentaccount array())
+
 		if(crypt($password, $hashedPass) == $hashedPass) {
 			session_regenerate_id();
 			$_SESSION['studentok'] = "ok";
 			$_SESSION['studentAccID'] = $accID;
-			
-			
+
+
 			header("Location: index.php");
       $msg = "Your in!";
 		} else {
@@ -52,7 +53,7 @@ if (isset($_POST['Submit'])) {
 }
 }
 ?>
-<!-- 
+<!--
 The MIT License (MIT)
 
 Copyright (c) Monday November 7 2016 Joseph Hassell joseph@thehassellfamily.net
@@ -99,7 +100,7 @@ SOFTWARE.
 
         <div class="containerlogin signin-allign">
 
-            <div class="card-panel blue-teal <? echo $fadein; ?>">
+            <div class="card-panel eagleBlood <? echo $fadein; ?>">
             <form name="form1" method="post" action="">
                 <h3 class="center">Welcome To Passport</h3>
                 <div class="card-panel <? echo $failshake; ?>">

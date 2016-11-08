@@ -23,9 +23,13 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
 
 <?php
+//NOTE!!!!!!!!!!!!!
+//THIS PAGE IS deprecated!!!
+//Please use medooconnect.php
+
 include "config.php";
 global $conn;
-// Create connection
+// Create mysqli connection
 $conn = new mysqli($servername, $dbusername, $dbpassword, $database);
 
 // Check connection
@@ -35,4 +39,5 @@ if ($conn->connect_error) {
 if ($devDebugEchoToggle == 1){
   echo "Connected successfully";
 }
+
 ?>

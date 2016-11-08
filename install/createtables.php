@@ -133,10 +133,16 @@ sh_teacher_ID VARCHAR(40) NOT NULL,
 student_year VARCHAR(255) NOT NULL,
 email_Verify_Status int(1) UNSIGNED NOT NULL DEFAULT '0',
 banned_until_date DATE DEFAULT '2000-01-01',
+needsReset int(1) UNSIGNED NOT NULL DEFAULT '0',
 password TEXT NOT NULL,
 archived int(1) UNSIGNED NOT NULL DEFAULT '0'
 )";
 
+$sqlstudentaccountverify = "CREATE TABLE studentaccountverify (
+  id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  key TEXT NOT NULL,
+  studentaccountID INT(10) UNSIGNED NOT NULL
+)";
 
 
 
@@ -212,9 +218,14 @@ if ($conn->query($sqlstudentaccount) === TRUE) {
 } else {
     echo "Error creating table: " . $conn->error;
 }
+if ($conn->query($sqlstudentaccountverify) === TRUE) {
+    $tablesucsess += 1;
+    echo "Table studentaccountverify created successfully";
+} else {
+    echo "Error creating table: " . $conn->error;
+}
 
-
-if ($tablesucsess == 10) {
+if ($tablesucsess == 11) {
     echo "7 tables created";
     $tablenext = "<a href='step3.php'>Next --></a>";
 } else {
