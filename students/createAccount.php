@@ -37,7 +37,6 @@ SOFTWARE.
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="/passport/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    <link href="/passport/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="/passport/css/passr.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="/passport/css/animate.css" type="text/css" rel="stylesheet" media="screen,projection" />
 
@@ -51,12 +50,11 @@ SOFTWARE.
 
     <div class="containerlogin signup-allign">
 
-        <div class="card-panel <? echo $fadein; ?>">
+        <div id="mainCard" class="card-panel <? echo $fadein; ?>">
 
-<body>
     <div class="container">
       <div class="row">
-        <form class="col s12" method="post" action="">
+        <form class="col s12" method="post" id="signUpForm" action="">
             <h4 class="center">Sign Up For Passport</h4>
             <div class="input-field">
                 <p>
@@ -70,18 +68,20 @@ SOFTWARE.
                     <label for="lastname">Last Name</label>
                 </p>
             </div>
-            <div class="row">
-        <div class="col s6">
+
 
             <div class="input-field">
 
                     <input type="email" required id="email" autocomplete="off" class="validate" name="email">
-                    <label data-error="Must be an email" for="email">Email</label>
-                    <span for="email">@gmail.com</span>
+                    <label data-error="Must be a valid email<?php if($signUpDomainEmailEnding != "") { echo " at " . $signUpDomainEmailEnding; }?>" id="email-label" for="email">Email</label>
+                    <?php
+                    if($signUpDomainEmailEnding != "") {
+                      echo "<p>Must Be at " . $signUpDomainEmailEnding . "</p>";
+                    }
+                    ?>
 
 
-            </div>
-          </div>
+
         </div>
 
             <div class="input-field">
@@ -97,12 +97,8 @@ SOFTWARE.
                 </p>
             </div>
 
+            <a class="waves-effect waves-light btn-large disabled " onclick="submitAnimate();" id="next_step"><i class="material-icons left">fast_forward</i>Next Step</a>
 
-            <p>
-                <button class="btn waves-effect waves-light" type="submit" name="submit">Next Step
-                    <i class="material-icons right">fast_forward</i>
-                </button>
-            </p>
             <div class="progress">
               <div class="determinate" style="width: 20%"></div>
             </div>
@@ -124,9 +120,67 @@ SOFTWARE.
           $("#password2").removeClass( "invalid" ).addClass( "valid" );
     } else {
           $("#password").removeClass( "valid" ).addClass( "invalid" );
-          $("#password2").removeClass( "invalid" ).addClass( "valid" );
+          $("#password2").removeClass( "valid" ).addClass( "invalid" );
         }
       });
+      <?php
+      if($signUpDomainEmailEnding != "") {
+        ?>
+      //email Checker
+      $('#email').on('focusout', function () {
+        if($('#email').val() == "") {
+          $("#email").removeClass( "invalid" );
+          $("#email").removeClass( "valid" );
+        } else if ($('#email').val().indexOf("<?php echo $signUpDomainEmailEnding; ?>") >= 0) {
+
+          $("#email").removeClass( "invalid" ).addClass( "valid" );
+        } else {
+
+
+          $("#email").removeClass( "validate valid" ).addClass( "invalid" );
+          setTimeout(function(){
+            $('#email').addClass("validate");
+          }, 100);
+        }
+      });
+      <?php
+    }
+      ?>
+
+      //button disabler
+      var submitOpen = 0;
+      $(":input").on('keyup', function() {
+        console.log($('.valid').length);
+        if($('.valid').length == 5) {
+          $("#next_step").removeClass( "disabled" ).addClass("eagleBlood white-text");
+          submitOpen = 1;
+        } else {
+          submitOpen = 0;
+          $("#next_step").addClass( "disabled" ).removeClass("eagleBlood white-text");;
+        }
+      });
+      //MAGIC!!!!!!!!!!
+      $.fn.extend({
+    animateCss: function (animationName) {
+        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+        this.addClass('animated ' + animationName).one(animationEnd, function() {
+            $(this).removeClass('animated ' + animationName);
+            });
+        }
+    });
+    function submitAnimate() {
+      if(submitOpen == 1){
+        $('#mainCard').animateCss('fadeOutLeft');
+        $('#mainCard').one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
+      function(e) {
+        $('#mainCard').hide();
+        setTimeout(function(){
+            document.getElementById("mainCard").submit();
+        }, 1000);
+
+      });
+      }
+    }
 </script>
 
 </html>
@@ -147,7 +201,7 @@ $usernameadmin = $_POST['usernameadmin'];
 $email = $_POST['email'];
 $passwordadmin = $_POST['passwordadmin'];
 $password2admin = $_POST['password2admin'];
-if(preg_match('/^[a-zA-Z0-9.]+$/', $usernameadmin) == 1) {
+
 
 
 
@@ -181,9 +235,7 @@ if ($passwordadmin != $password2admin) {
   }
     $conn->close();
 }
-} else {
-  echo "you may only use a-z A-Z 0-9 in your username";
-}
+
 }
 
 

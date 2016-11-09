@@ -15,4 +15,7 @@ $defaultTeacherPassword = "teacher";
 //close pass request on weekends
 $closePassRequestOnDaysToggle = 0;
 
+//SIGN UP Required ending.  set it blank if you want to allow any domain email to create an account
+$signUpDomainEmailEnding = "@gmail.com";
+
 ?>
