@@ -1,7 +1,5 @@
 <?php
   include "../medooconnect.php";
-  $failshake = "";
-  $fadein = "animated fadeInDown";
 ?>
 
 <!--
@@ -50,11 +48,11 @@ SOFTWARE.
 
     <div class="containerlogin signup-allign">
 
-        <div id="mainCard" class="card-panel <? echo $fadein; ?>">
+        <div id="mainCard" class="card-panel animated fadeInDown">
 
     <div class="container">
       <div class="row">
-        <form class="col s12" method="post" id="signUpForm" action="">
+        <form class="col s12" method="post" id="signUpForm" action="emailConfirmSend.php">
             <h4 class="center">Sign Up For Passport</h4>
             <div class="input-field">
                 <p>
@@ -86,17 +84,23 @@ SOFTWARE.
 
             <div class="input-field">
                 <p>
-                    <input type="password" required id="password" autocomplete="off" class="validate" name="passwordadmin">
-                    <label data-error="Passwords Must Match" for="password">Password</label>
+                    <input type="password" required id="password" autocomplete="off" pattern=".{5,}" title="5 characters minimum" class="validate" name="passwordadmin">
+                    <label data-error="Passwords Must Match" id="passwordLab" for="password">Password</label>
                 </p>
             </div>
             <div class="input-field">
                 <p>
-                    <input type="password" required id="password2" autocomplete="off" class="validate" name="password2admin">
-                    <label data-error="Passwords Must Match" for="password2">Password(again)</label>
+                    <input type="password" required id="password2" autocomplete="off" pattern=".{5,}" title="5 characters minimum" class="validate" name="password2admin">
+                    <label data-error="Passwords Must Match" id="passwordLab2" for="password2">Password(again)</label>
                 </p>
             </div>
-
+            <div class="divider"></div>
+            <div class="input-field">
+                <p>
+                    <input type="number" required id="studentID" autocomplete="off" class="validate" name="studentID">
+                    <label data-error="Must Be A Number!" for="studentID">Student ID</label>
+                </p>
+            </div>
             <a class="waves-effect waves-light btn-large disabled " onclick="submitAnimate();" id="next_step"><i class="material-icons left">fast_forward</i>Next Step</a>
 
             <div class="progress">
@@ -114,14 +118,24 @@ SOFTWARE.
 <script src="/passport/js/materialize.js"></script>
 <script src="/passport/js/init.js"></script>
 <script>
-      $('#password, #password2').on('keyup', function () {
+      $('#password, #password2').on('focusout', function () {
         if ($('#password').val() == $('#password2').val()) {
           $("#password").removeClass( "invalid" ).addClass( "valid" );
           $("#password2").removeClass( "invalid" ).addClass( "valid" );
+          if ($('#password').length <5 || $('#password2').length <5 ) {
+            $( '#passwordLab' ).attr( "data-error", "Must be at least 5 characters long" );
+            $( '#passwordLab2' ).attr( "data-error", "Must be at least 5 characters long" );
+          } else {
+            $( '#passwordLab' ).attr( "data-error", "Passwords Must Match" );
+            $( '#passwordLab2' ).attr( "data-error", "Passwords Must Match" );
+          }
     } else {
           $("#password").removeClass( "valid" ).addClass( "invalid" );
           $("#password2").removeClass( "valid" ).addClass( "invalid" );
+          $( '#passwordLab' ).attr( "data-error", "Passwords Must Match" );
+          $( '#passwordLab2' ).attr( "data-error", "Passwords Must Match" );
         }
+
       });
       <?php
       if($signUpDomainEmailEnding != "") {
@@ -151,7 +165,7 @@ SOFTWARE.
       var submitOpen = 0;
       $(":input").on('keyup', function() {
         console.log($('.valid').length);
-        if($('.valid').length == 5) {
+        if($('.valid').length == 6) {
           $("#next_step").removeClass( "disabled" ).addClass("eagleBlood white-text");
           submitOpen = 1;
         } else {
@@ -170,7 +184,7 @@ SOFTWARE.
     });
     function submitAnimate() {
       if(submitOpen == 1){
-        $('#mainCard').animateCss('fadeOutLeft');
+        $('#mainCard').animateCss('fadeOutRight');
         $('#mainCard').one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
       function(e) {
         $('#mainCard').hide();
@@ -184,60 +198,3 @@ SOFTWARE.
 </script>
 
 </html>
-
-
-<?
-if(isset($_POST['submit'])){
-
-
-
-foreach ($_POST as $key => $value) {
-
-}
-{
-$first_name = $_POST['firstname'];
-$last_name = $_POST['lastname'];
-$usernameadmin = $_POST['usernameadmin'];
-$email = $_POST['email'];
-$passwordadmin = $_POST['passwordadmin'];
-$password2admin = $_POST['password2admin'];
-
-
-
-
-
-
-if ($passwordadmin != $password2admin) {
-    echo "ERROR: Passwords must match";
-} else {
-    include "../sqlconnect.php";
-
-    $salt = '$2a$10$' . rand() . $usernameadmin . rand() . rand() . '$';
-    echo $salt . "\n";
-    $hashedPass = crypt($passwordadmin, $salt);
-
-    echo $hashedPass;
-    if ($hashedPass == '*0') {
-      echo "Error Encrypting";
-    } else {
-/*
-    $sql = "INSERT INTO admin (username, firstname, lastname, email, password)
-    VALUES ('$usernameadmin', '$first_name', '$last_name', '$email', '$hashedPass')";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "New account created successfully";
-
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-
-    }
-    */
-  }
-    $conn->close();
-}
-
-}
-
-
-}
-?>

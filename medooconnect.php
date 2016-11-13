@@ -22,7 +22,7 @@
   CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   */
   include "config.php";
-  require  'medoo/medoo.php';
+  require  'lib/plugins/medoo/medoo.php';
   global $medooDB;
   $medooDB = new medoo(array(
   	'database_type' => 'mysql',

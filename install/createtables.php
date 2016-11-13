@@ -42,7 +42,7 @@ day_to_come VARCHAR(10) NOT NULL,
 reason_to_come VARCHAR(255) NOT NULL,
 isHere VARCHAR(5) NOT NULL,
 shTeacherExcused VARCHAR(5) NOT NULL,
-teacherEmail VARCHAR(255) NOT NULL,
+teacherAccountID INT(10) UNSIGNED NOT NULL,
 studentAccountID INT(10) UNSIGNED NOT NULL,
 request_date TIMESTAMP
 )";
@@ -57,7 +57,7 @@ firstname VARCHAR(30) NOT NULL,
 lastname VARCHAR(30) NOT NULL,
 email VARCHAR(50),
 room VARCHAR(10) NOT NULL,
-period VARCHAR(10) NOT NULL,
+period VARCHAR(255) NOT NULL,
 password VARCHAR(255) NOT NULL
 )";
 
@@ -140,8 +140,8 @@ archived int(1) UNSIGNED NOT NULL DEFAULT '0'
 
 $sqlstudentaccountverify = "CREATE TABLE studentaccountverify (
   id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  key TEXT NOT NULL,
-  studentaccountID INT(10) UNSIGNED NOT NULL
+  studentaccountID INT(10) UNSIGNED NOT NULL,
+  UniquekeyVal TEXT NOT NULL
 )";
 
 
@@ -149,88 +149,88 @@ $sqlstudentaccountverify = "CREATE TABLE studentaccountverify (
 
 if ($conn->query($sqlpasses) === TRUE) {
     $tablesucsess += 1;
-    echo "Table Passes created successfully";
+    echo "\nTable Passes created successfully";
 } else {
-    echo "Error creating table: " . $conn->error;
+    echo "\nError creating table: " . $conn->error;
 }
 
 if ($conn->query($sqlteachers) === TRUE) {
     $tablesucsess += 1;
-    echo "Table teachers created successfully";
+    echo "\nTable teachers created successfully";
 } else {
-    echo "Error creating table: " . $conn->error;
+    echo "\nError creating table: " . $conn->error;
 }
 
 if ($conn->query($sqladmin) === TRUE) {
     $tablesucsess += 1;
-    echo "Table Admin created successfully";
+    echo "\nTable Admin created successfully";
 } else {
-    echo "Error creating table: " . $conn->error;
+    echo "\nError creating table: " . $conn->error;
 }
 
 if ($conn->query($sqlblackout) === TRUE) {
     $tablesucsess += 1;
-    echo "Table Blackout created successfully";
+    echo "\nTable Blackout created successfully";
 } else {
-    echo "Error creating table: " . $conn->error;
+    echo "\nError creating table: " . $conn->error;
 }
 
 if ($conn->query($sqlmessage) === TRUE) {
     $tablesucsess += 1;
-    echo "Table Message created successfully";
+    echo "\nTable Message created successfully";
 } else {
-    echo "Error creating table: " . $conn->error;
+    echo "\nError creating table: " . $conn->error;
 }
 
 if ($conn->query($sqlwhy) === TRUE) {
     $tablesucsess += 1;
-    echo "Table Why created successfully";
+    echo "\nTable Why created successfully";
 } else {
-    echo "Error creating table: " . $conn->error;
+    echo "\nError creating table: " . $conn->error;
 }
 
 
 if ($conn->query($sqltally) === TRUE) {
     $tablesucsess += 1;
-    echo "Table Tally created successfully";
+    echo "\nTable Tally created successfully";
 } else {
-    echo "Error creating table: " . $conn->error;
+    echo "\nError creating table: " . $conn->error;
 }
 
 
 if ($conn->query($sqlstudentlimit) === TRUE) {
     $tablesucsess += 1;
-    echo "Table Studentlimit created successfully";
+    echo "\nTable Studentlimit created successfully";
 } else {
-    echo "Error creating table: " . $conn->error;
+    echo "\nError creating table: " . $conn->error;
 }
 
 if ($conn->query($sqlfeedback) === TRUE) {
     $tablesucsess += 1;
-    echo "Table Feedback created successfully";
+    echo "\nTable Feedback created successfully";
 } else {
-    echo "Error creating table: " . $conn->error;
+    echo "\nError creating table: " . $conn->error;
 }
 
 if ($conn->query($sqlstudentaccount) === TRUE) {
     $tablesucsess += 1;
-    echo "Table studentaccount created successfully";
+    echo "\nTable studentaccount created successfully";
 } else {
-    echo "Error creating table: " . $conn->error;
+    echo "\nError creating table: " . $conn->error;
 }
 if ($conn->query($sqlstudentaccountverify) === TRUE) {
     $tablesucsess += 1;
-    echo "Table studentaccountverify created successfully";
+    echo "\nTable studentaccountverify created successfully";
 } else {
-    echo "Error creating table: " . $conn->error;
+    echo "\nError creating table: " . $conn->error;
 }
 
 if ($tablesucsess == 11) {
-    echo "7 tables created";
-    $tablenext = "<a href='step3.php'>Next --></a>";
+    echo "\n\n11 tables created";
+    $tablenext = "\n<a href='step3.php'>Next --></a>";
 } else {
-    echo "There was an error creating all of the tables.";
-    $tablenext = "<a href='index.php'>Try Again</a>";
+    echo "\n\nThere was an error creating all of the tables.";
+    $tablenext = "\n<a href='index.php'>Try Again</a>";
 
 }
 

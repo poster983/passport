@@ -12,7 +12,7 @@ if (isset($_POST['Submit'])) {
   //echo "username: " . $username . " Password: " . $password . "  ";
   //mysqli_report(MYSQLI_REPORT_ERROR);
   //  #&@% Prepared statements!!!
-  if ($stmt = $conn->prepare("SELECT password FROM teachers WHERE email = ?")) {
+  if ($stmt = $conn->prepare("SELECT id, password FROM teachers WHERE email = ?")) {
     //echo "HI";
     /* bind parameters for markers */
    $stmt->bind_param("s", $username);
@@ -21,12 +21,13 @@ if (isset($_POST['Submit'])) {
     $stmt->store_result();
 
     /* bind result variables */
-    $stmt->bind_result($hashedPass);
+    $stmt->bind_result($tea1d, $hashedPass);
 
 
 
 	if($stmt->num_rows > "0") {
     while ($stmt->fetch()) {
+			$tea1d;
       $hashedPass;
     }
 		//echo "Hashed: " . $hashedPass . "_____ Un hashed " . crypt($password, $hashedPass);
@@ -34,7 +35,7 @@ if (isset($_POST['Submit'])) {
 		if(crypt($password, $hashedPass) == $hashedPass) {
 			session_regenerate_id();
 			$_SESSION['teacherok'] = "ok";
-			$_SESSION['teacherEmail'] = $username;
+			$_SESSION['teacherID'] = $tea1d;
 			$_SESSION['password'] = "password";
 			header("Location: index.php");
       $msg = "Your in!";

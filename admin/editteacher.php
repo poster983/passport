@@ -33,7 +33,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     ?>
 
         <body>
-            
+
             <div class="container">
                 <form method="post" action="">
                     <h4 class="center">Teacher Manager</h4>
@@ -80,8 +80,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         <input type="checkbox" id="dper" name="dper" value="D" />
                         <label for="dper">D Period</label>
                         &nbsp &nbsp
-                        <input type="checkbox" id="eper" name="eper" value="E" />
-                        <label for="eper">E Period</label>
+                        <input type="checkbox" id="e1per" name="e1per" value="E1" />
+                        <label for="e1per">E Period (You Have First Lunch)</label>
+                        &nbsp; &nbsp;
+                        <input type="checkbox" id="e2per" name="e2per" value="E2" />
+                        <label for="e2per">E Period (You Have Second Lunch)</label>
                         &nbsp &nbsp
                         <input type="checkbox" id="fper" name="fper" value="F" />
                         <label for="fper">F Period</label>
@@ -124,22 +127,17 @@ if(isset($_POST['add_new_entry'])){
         $bper = $_POST['bper'];
         $cper = $_POST['cper'];
         $dper = $_POST['dper'];
-        $eper = $_POST['eper'];
+        $e1per = $_POST['e1per'];
+        $e2per = $_POST['e2per'];
         $fper = $_POST['fper'];
         $gper = $_POST['gper'];
         $hper = $_POST['hper'];
 
-        $per = "$aper $bper $cper $dper $eper $fper $gper $hper";
-
-        $perarray = explode(" ", $per);
-
-        $perarray_null = array_filter($perarray, 'strlen');
-
-        $percount = count($perarray_null);
+        $per = "$aper,$bper,$cper,$dper,$e1per,$e2per,$fper,$gper,$hper";
 
         echo $per;
 
-        echo $percount;
+
 
         $salt = '$2a$10$' . rand() . rand() . rand() . '$';
         echo $salt . "\n";
@@ -155,20 +153,20 @@ if(isset($_POST['add_new_entry'])){
             echo "Last Name: " . $last_name;
             echo "Title: " . $name_title;
             echo "Email: " . $email;
-            echo "Room: " . $room;
+
 
         }
 
-        foreach($perarray_null as $forper) {
+
             $sql = "INSERT INTO teachers (name_title, firstname, lastname, email, period, password)
-            VALUES ('$name_title', '$first_name', '$last_name', '$email', '$forper', '$hashedPass')";
+            VALUES ('$name_title', '$first_name', '$last_name', '$email', '$per', '$hashedPass')";
 
             if ($conn->query($sql) === TRUE) {
                 echo "New record created successfully";
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }
-        }
+
     $conn->close();
     }
 }

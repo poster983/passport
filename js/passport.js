@@ -48,3 +48,17 @@ $("#sao").change(function() {
     });
     }
 });
+
+
+/*Overlay function*/
+/*open*/
+function openFullOverlay(id) {
+    document.getElementById(id).style.width = "100%";
+}
+
+/* Close when someone clicks on the "x" symbol inside the overlay */
+function closeFullOverlay(id, delay) {
+  setTimeout(function(){
+    document.getElementById(id).style.width = "0%";
+  }, delay);
+}

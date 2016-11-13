@@ -52,7 +52,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <!--<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
     <script src="/passport/js/materialize.js"></script>
-    <script src="/passport/js/init.js"></script>
+    <script src="/passport/js/passport.js"></script>
 
 </head>
 
@@ -113,7 +113,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         </ul>
     </div>
 <?
-  $modalConfirmar = explode("&&%%", $_COOKIE["confirmExcused"]);
+if (isset($_COOKIE['errorExcused'])) {
+  $modalConfirmar = explode("&&%%", $_COOKIE["errorExcused"]);
 ?>
 <!--ConfirmModel-->
 
@@ -128,10 +129,35 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   </div>
 
 <?
-if (isset($_COOKIE['confirmExcused'])) {
+
   echo "<script>$('#confirmModel').openModal();</script>";
+  setcookie("errorExcused","byebye",time()-1);
+}
+if (isset($_COOKIE['confirmExcused'])) {
+  ?>
+
+  <div id="confirmOver" class="overlay-full">
+    <div id="checkmarkAnimationfull">
+
+  </div>
+    <h1 class="center white-text">Operation Complete</h1>
+  </div>
+  <script>
+  openFullOverlay("confirmOver");
+  setTimeout(function(){
+    $( "#checkmarkAnimationfull" ).html('<svg class="pause-Ani checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path id="checkMarkAni"  class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>');
+    $('#checkMarkAni').one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
+      function(e) {
+        console.log("done");
+      closeFullOverlay("confirmOver", 1000);
+      });
+  }, 500);
+
+  </script>
+  <?
   setcookie("confirmExcused","byebye",time()-1);
 }
+
 ?>
 
   <!-- Bug Modal -->
@@ -301,31 +327,7 @@ if (isset($_COOKIE['confirmExcused'])) {
 
 
 
-<!--
-    <script>
 
-        var lNameData = [
-    <?
-    /*
-    $sql = "SELECT DISTINCT email FROM teachers ORDER BY email";
-    $result = $conn -> query($sql);
-    if ($result -> num_rows > 0) {
-                while ($row = $result -> fetch_assoc()) {
-                    echo "{ value: '" . $row["email"] . "'}, ";
-                }
-    } else {
-        echo "{ value: 'No Teachers'}, ";
-    }
-        */
-        ?>
-];
-
-
-
-
-        $('#search').data('array', lNameData);
-    </script>
--->
 
 
 
@@ -335,20 +337,20 @@ if (isset($_COOKIE['confirmExcused'])) {
 
 
 
-        if(isset($_GET['search']) || isset($_SESSION['teacherEmail'])){
+        if(isset($_GET['search']) || isset($_SESSION['teacherID'])){
           if(!isset($_GET['search'])) {
-            $teacherName = $_SESSION['teacherEmail'];
+            $teacherName = "id = '" . $_SESSION['teacherID'] . "'";
           } else {
-            $teacherName = $_GET['teacherName'];
+            $teacherName = "email = '" . $_GET['teacherName'] . "'";
           }
 
 
-            $sql = "SELECT DISTINCT name_title, firstname, lastname, email FROM teachers WHERE email = '$teacherName' ORDER BY lastname";
+            $sql = "SELECT id, name_title, firstname, lastname, email FROM teachers WHERE $teacherName ORDER BY lastname";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                  while($row = $result->fetch_assoc()) {
                      $teacherNameComb = $row["name_title"] . " " . $row["firstname"] . " " . $row["lastname"];
-                     $teacherEmail = $row["email"];
+                     $teacherID = $row["id"];
                  }
             }
         echo "Showing passes for: <div class='chip'>" . $teacherNameComb . "</div>";
@@ -357,7 +359,7 @@ if (isset($_COOKIE['confirmExcused'])) {
 
            $today = date( 'Y-m-d', strtotime(" today "));
             echo "<form method = 'post' action = ''>";
-             $sql = "SELECT id, firstname, lastname, period, sh_teacher, place, day_to_come, shTeacherExcused, teacherEmail FROM passes WHERE teacherEmail = '$teacherEmail' AND day_to_come = '$today' ORDER BY period, lastname";
+             $sql = "SELECT id, firstname, lastname, period, sh_teacher, place, day_to_come, shTeacherExcused, teacherAccountID FROM passes WHERE teacherAccountID = '$teacherID' AND day_to_come = '$today' ORDER BY period, lastname";
             $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -424,7 +426,7 @@ if (isset($_COOKIE['confirmExcused'])) {
 
       }
         $checkID = $_POST[$row["id"]];
-        $sql = "SELECT id, shTeacherExcused FROM passes WHERE day_to_come = '$today' AND teacherEmail = '$teacherEmail' ORDER BY id";
+        $sql = "SELECT id, shTeacherExcused FROM passes WHERE day_to_come = '$today' AND teacherAccountID = '$teacherID' ORDER BY id";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
@@ -439,14 +441,15 @@ if (isset($_COOKIE['confirmExcused'])) {
                     $isHere = 0;
                     echo $isHere;
                 }
-                $sqlu = "UPDATE passes SET shTeacherExcused='$isHere' WHERE id='$hereid' AND teacherEmail = '$teacherEmail'";
+                $sqlu = "UPDATE passes SET shTeacherExcused='$isHere' WHERE id='$hereid' AND teacherAccountID = '$teacherID'";
                 if ($conn->query($sqlu) === TRUE) {
-                    $updateResponse = "Successfully excused the students.";
-                    $updateResponseShort = "Success";
+
+                    setcookie("confirmExcused", "Yes");
 
                 } else {
                     $updateResponse = "Error updating record: " . $conn->error;
                     $updateResponseShort = "Error";
+                    setcookie("errorExcused", $updateResponseShort . "&&%%" .  $updateResponse);
                 }
             }
 
@@ -455,10 +458,11 @@ if (isset($_COOKIE['confirmExcused'])) {
         } else {
             $updateResponse =  "No idea what went wrong... Just submit a bug report saying: <br> \"updateIsExcused\" num_rows == 0 error.";
             $updateResponseShort = "Error";
+            setcookie("errorExcused", $updateResponseShort . "&&%%" .  $updateResponse);
         }
 
 
-        setcookie("confirmExcused", $updateResponseShort . "&&%%" .  $updateResponse);
+
         echo "<script>  setTimeout(function () { window.location.href = '/passport/teacher/index.php?" . $_SERVER["QUERY_STRING"] . "'; }, 500);  </script>";
     }
 
