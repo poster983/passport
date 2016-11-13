@@ -39,12 +39,13 @@ SOFTWARE.
     <link href="/passport/css/animate.css" type="text/css" rel="stylesheet" media="screen,projection" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
 </head>
 
 
 <body class="blur-back">
+  <div ></div>
 
     <div class="containerlogin signup-allign">
 
@@ -81,6 +82,12 @@ SOFTWARE.
 
 
         </div>
+        <div class="input-field">
+            <p>
+                <input type="number" required id="studentID" autocomplete="off" class="validate" name="studentID">
+                <label data-error="Must Be A Number!" for="studentID">Student ID</label>
+            </p>
+        </div>
 
             <div class="input-field">
                 <p>
@@ -95,12 +102,45 @@ SOFTWARE.
                 </p>
             </div>
             <div class="divider"></div>
-            <div class="input-field">
-                <p>
-                    <input type="number" required id="studentID" autocomplete="off" class="validate" name="studentID">
-                    <label data-error="Must Be A Number!" for="studentID">Student ID</label>
-                </p>
+
+            <br>
+            <script>
+
+                function periodToTeacher(period) {
+                  $('#shTeacherAJAX').html("<img class='svg-dis' src='/passport/image/rings.svg' /> <h5 class='center'>Loading</h5>");
+                  $.ajax({
+                url: 'ajaxCreateAccountPeriodToTeacher.php',
+                data: {'period': period},
+                type: 'get',
+                success: function(data) {
+                  $('#shTeacherAJAX').html(data);
+                },
+                error: function(xhr, desc, err) {
+                console.log(xhr);
+                console.log("Details: " + desc + "\nError:" + err);
+                $('#shTeacherAJAX').html("There was an error.  Please check the console for more details.");
+                }
+              })};
+
+            </script>
+            <div class="input-field col s12">
+              <select name="shPeriod" required onchange="periodToTeacher(this.value)">
+                <option value="" disabled selected>Choose A Period</option>
+                <option value="A">A Period</option>
+                <option value="B">B Period</option>
+                <option value="C">C Period</option>
+                <option value="D">D Period</option>
+                <option value="E1">E Period (You Have First Lunch)</option>
+                <option value="E2">E Period (You Have Second Lunch)</option>
+                <option value="F">F Period</option>
+                <option value="G">G Period</option>
+                <option value="H">H Period</option>
+              </select>
+              <label>Study Hall Period</label>
             </div>
+
+            <div id="shTeacherAJAX"></div>
+
             <a class="waves-effect waves-light btn-large disabled " onclick="submitAnimate();" id="next_step"><i class="material-icons left">fast_forward</i>Next Step</a>
 
             <div class="progress">
@@ -113,27 +153,36 @@ SOFTWARE.
 </div>
 
 
+
 </body>
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
 <script src="/passport/js/materialize.js"></script>
 <script src="/passport/js/init.js"></script>
 <script>
-      $('#password, #password2').on('focusout', function () {
+      $('#password, #password2').on('keyup', function () {
         if ($('#password').val() == $('#password2').val()) {
           $("#password").removeClass( "invalid" ).addClass( "valid" );
           $("#password2").removeClass( "invalid" ).addClass( "valid" );
-          if ($('#password').length <5 || $('#password2').length <5 ) {
+
+          if ($('#password').val().length <5 || $('#password2').val().length <5 ) {
             $( '#passwordLab' ).attr( "data-error", "Must be at least 5 characters long" );
             $( '#passwordLab2' ).attr( "data-error", "Must be at least 5 characters long" );
+            $("#password2").removeClass( "valid" ).addClass( "invalid" );
+            $("#password").removeClass( "valid" ).addClass( "invalid" );
+
+
           } else {
-            $( '#passwordLab' ).attr( "data-error", "Passwords Must Match" );
-            $( '#passwordLab2' ).attr( "data-error", "Passwords Must Match" );
+            $("#password").removeClass( "invalid" ).addClass( "valid" );
+            $("#password2").removeClass( "invalid" ).addClass( "valid" );
+
           }
+
     } else {
           $("#password").removeClass( "valid" ).addClass( "invalid" );
           $("#password2").removeClass( "valid" ).addClass( "invalid" );
           $( '#passwordLab' ).attr( "data-error", "Passwords Must Match" );
           $( '#passwordLab2' ).attr( "data-error", "Passwords Must Match" );
+
         }
 
       });
@@ -189,12 +238,21 @@ SOFTWARE.
       function(e) {
         $('#mainCard').hide();
         setTimeout(function(){
-            document.getElementById("mainCard").submit();
+            document.getElementById("signUpForm").submit();
         }, 1000);
 
       });
       }
     }
+
+  $(document).ready(function() {
+    $('select').material_select();
+  });
+  $( document ).ajaxComplete(function() {
+    $('select').material_select('destroy');
+    $('select').material_select();
+
+  });
 </script>
 
 </html>

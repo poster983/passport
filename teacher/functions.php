@@ -80,7 +80,9 @@ if ($resultmessage->num_rows > 0) {
   // output data of each row
   while($rowmessage = $resultmessage->fetch_assoc()) {
       echo "<p>";
-      echo $rowmessage["reason"];
+      $url = '@(http)?(s)?(://)?(([a-zA-Z])([-\w]+\.)+([^\s\.]+[^\s]*)+[^,.\s])@';
+      $urlParse = preg_replace($url, '<a class="black-text" href="http$2://$4" target="_blank" title="$0">$0</a>', $rowmessage["reason"]);
+      echo $urlParse;
       echo "</p>";
   }
   echo "</div></div></div>";
