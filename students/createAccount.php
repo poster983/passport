@@ -91,13 +91,13 @@ SOFTWARE.
 
             <div class="input-field">
                 <p>
-                    <input type="password" required id="password" autocomplete="off" pattern=".{5,}" title="5 characters minimum" class="validate" name="passwordadmin">
+                    <input type="password" required id="password" autocomplete="off" pattern=".{5,}" title="5 characters minimum" class="validate" name="password1">
                     <label data-error="Passwords Must Match" id="passwordLab" for="password">Password</label>
                 </p>
             </div>
             <div class="input-field">
                 <p>
-                    <input type="password" required id="password2" autocomplete="off" pattern=".{5,}" title="5 characters minimum" class="validate" name="password2admin">
+                    <input type="password" required id="password2" autocomplete="off" pattern=".{5,}" title="5 characters minimum" class="validate" name="password2">
                     <label data-error="Passwords Must Match" id="passwordLab2" for="password2">Password(again)</label>
                 </p>
             </div>
@@ -105,8 +105,38 @@ SOFTWARE.
 
             <br>
             <script>
+            selVal = 0;
+            yrLock = 0;
+            function stYearTall() {
 
+              $("#stYear input[type=text]").addClass('valid');
+              if(yrLock == 0) {
+                selVal +=1;
+                yrLock = 1;
+              }
+              updateLength();
+            }
+            </script>
+            <div id="stYear" class="input-field col s12">
+              <select name="stYear" required onchange="stYearTall()">
+                <option value="" disabled selected>Choose a Class</option>
+                <option value="9">Freshman</option>
+                <option value="10">Sophomore</option>
+                <option value="11">Junior</option>
+                <option value="12">Senior</option>
+              </select>
+              <label>Your Class</label>
+            </div>
+            <script>
+                perLock = 0;
                 function periodToTeacher(period) {
+                  if(perLock == 0) {
+                    selVal +=2;
+                    perLock = 1;
+
+                  }
+                  $("#shPer input[type=text]").addClass('valid');
+                  updateLength();
                   $('#shTeacherAJAX').html("<img class='svg-dis' src='/passport/image/rings.svg' /> <h5 class='center'>Loading</h5>");
                   $.ajax({
                 url: 'ajaxCreateAccountPeriodToTeacher.php',
@@ -123,9 +153,9 @@ SOFTWARE.
               })};
 
             </script>
-            <div class="input-field col s12">
+            <div id="shPer" class="input-field col s12">
               <select name="shPeriod" required onchange="periodToTeacher(this.value)">
-                <option value="" disabled selected>Choose A Period</option>
+                <option value="" disabled selected>Choose a Period</option>
                 <option value="A">A Period</option>
                 <option value="B">B Period</option>
                 <option value="C">C Period</option>
@@ -144,17 +174,13 @@ SOFTWARE.
             <a class="waves-effect waves-light btn-large disabled " onclick="submitAnimate();" id="next_step"><i class="material-icons left">fast_forward</i>Next Step</a>
 
             <div class="progress">
-              <div class="determinate" style="width: 20%"></div>
+              <div class="determinate" style="width: 100%"></div>
             </div>
         </form>
     </div>
   </div>
 </div>
 </div>
-
-
-
-</body>
 
 <script src="/passport/js/materialize.js"></script>
 <script src="/passport/js/init.js"></script>
@@ -209,19 +235,22 @@ SOFTWARE.
       <?php
     }
       ?>
-
-      //button disabler
-      var submitOpen = 0;
-      $(":input").on('keyup', function() {
-        console.log($('.valid').length);
-        if($('.valid').length == 6) {
+      function updateLength() {
+        if($('.valid').length >8) {
           $("#next_step").removeClass( "disabled" ).addClass("eagleBlood white-text");
           submitOpen = 1;
         } else {
           submitOpen = 0;
           $("#next_step").addClass( "disabled" ).removeClass("eagleBlood white-text");;
         }
+      }
+      //button disabler
+      var submitOpen = 0;
+      $(":input").on('keyup', function() {
+        console.log($('.valid').length);
+        updateLength();
       });
+
       //MAGIC!!!!!!!!!!
       $.fn.extend({
     animateCss: function (animationName) {
@@ -237,6 +266,7 @@ SOFTWARE.
         $('#mainCard').one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
       function(e) {
         $('#mainCard').hide();
+        $('#working').html("<img class='svg-dis' src='/passport/image/rings.svg' /> <h5 class='center'>Working</h5>");
         setTimeout(function(){
             document.getElementById("signUpForm").submit();
         }, 1000);
@@ -249,10 +279,19 @@ SOFTWARE.
     $('select').material_select();
   });
   $( document ).ajaxComplete(function() {
-    $('select').material_select('destroy');
-    $('select').material_select();
 
+    $('select').material_select();
+    if(selVal == 1) {
+      $("#stYear input[type=text]").addClass('valid');
+    } else if(selVal ==2) {
+      $("#shPer input[type=text]").addClass('valid');
+    } else if(selVal == 3) {
+      $("#shPer input[type=text]").addClass('valid');
+      $("#stYear input[type=text]").addClass('valid');
+    }
+    updateLength();
   });
 </script>
-
+<div id="working"></div>
+</body>
 </html>

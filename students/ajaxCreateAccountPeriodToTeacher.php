@@ -37,10 +37,17 @@ $datas = $medooDB->select("teachers", array(
 ));
 
   echo "
-  <div class='input-field col s12'>
+  <script>
+
+  function shTeacherTall() {
+    $('#" . $period . "perTeacher input[type=text]').addClass('valid');
+    updateLength();
+  }
+  </script>
+  <div id='" . $period . "perTeacher' class='input-field col s12'>
   <div>
-    <select name='teacher' required>
-      <option value='' disabled selected>Choose A Teacher</option>";
+    <select name='teacher' required onchange='shTeacherTall();'>
+      <option value='' disabled selected>Choose a Teacher</option>";
 
 
 foreach ($datas as $row) {

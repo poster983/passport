@@ -1,8 +1,19 @@
 <?php
   include "../medooconnect.php";
   date_default_timezone_set('America/Chicago');
+
   require '../lib/plugins/PHPMailer/PHPMailerAutoload.php';
 
+
+function emailConfirm($eemail, $fname, $lname, $verID, $verCrypt) {
+  global $output;
+  global $emailSMTPHostServers;
+  global $emailSMTPUsername;
+  global $emailSuperSecretSpecialPassword;
+  global $emailSMTPEncryption;
+  global $emailSMTPEncryptionPORT;
+  global $emailDefaultSentFromEmail;
+  global $emailDefaultSentFromName;
   $mail = new PHPMailer;
   $mail->SMTPDebug = 0;
   $mail->Debugoutput = 'html';
@@ -18,18 +29,18 @@
   $mail->setFrom($emailDefaultSentFromEmail, $emailDefaultSentFromName);
 
 
-  $mail->addAddress('no-reply@josephhassell.com', 'Joseph');
+  $mail->addAddress($eemail, $fname . $lname);
   //$mail->addReplyTo($emailSMTPReplyEMAIL, $emailSMTPReplyNAME);
 
-  //http://www.emailonacid.com/images/orange_btn_bg.jpg
+
   $mail->isHTML(true);
 
   $mail->Subject = 'Passport Account Confirmation Email';
-  $mail->Body    = '<h1 style="text-align: center;">Hello!</h1>
+  $mail->Body    = '<h1 style="text-align: center;">Hello ' . $fname . '</h1>
 <br>
 <img src="https://github.com/poster983/passport/blob/gh-pages/images/PassportHeader.png?raw=true" alt="Passport header" style="width:100%;height:100%;">
 <br>
-<h3 style="text-align: center;"> Lets activate your new Passport account {firstName} </h3>
+<h3 style="text-align: center;">Lets activate your new Passport account.</h3>
 <center>
 <div style="margin: 0 auto;"><!--[if mso]>
  <v:rect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="#" style="height:50px;v-text-anchor:middle;width:250px;" arcsize="16%" strokecolor="#F44336" fill="t">
@@ -43,7 +54,7 @@
 	<tbody>
 		<tr>
 			<td align="center" bgcolor="#F44336" height="50" style="vertical-align:middle;color: #ffffff; display: block;background-color:#F44336;background-image:url();border:1px solid #ed7014;mso-hide:all;" width="250">
-				<a class="cta_button" href="http://www.josephhassell.com" style="font-size:16px;-webkit-text-size-adjust:none; font-weight: bold; font-family:sans-serif; text-decoration: none; line-height:50px; width:250px; display:inline-block;" title="CLICK THE BUTTON!">
+				<a class="cta_button" href="http://' . $_SERVER['HTTP_HOST'] . '/passport/students/verifyEmail.php?vID=' . $verID . '&verCrypt=' . $verCrypt . '" style="font-size:16px;-webkit-text-size-adjust:none; font-weight: bold; font-family:sans-serif; text-decoration: none; line-height:50px; width:250px; display:inline-block;" title="CLICK THE BUTTON!">
 					<span style="color:#ffffff">Activate Your Account!</span>
 				</a>
 			</td>
@@ -56,11 +67,104 @@
   $mail->AltBody = 'Lets activate your new Passport account {firstName}  Go Here: josephhassell.com';
 
   if(!$mail->send()) {
-      echo 'Message could not be sent.';
-      echo 'Mailer Error: ' . $mail->ErrorInfo;
+      $output = "Message could not be sent. <br> Mailer Error: " . $mail->ErrorInfo . "<br> Please try to login <a href='login.php'>HERE</a> and Passport will try to resend the email";
   } else {
-      echo 'Message has been sent';
+    $output ="<h5 class='center'>Almost done!</h5>
+    <h5 class='center'>We sent you a confirmation email!* Please click on the link in the email.</h5>
+    <p>*Remember to check spam</p>";
   }
+}
+if (isset($_GET['resendYN'])) {
+  $resend = $_GET['resendYN'];
+  $resendEmail = $_GET['resendEmail'];
+  $resendfirst = $_GET['resendFN'];
+  $resendlast = $_GET['resendLN'];
+  $resendAVID = $_GET['resendAVID'];
+  $resendVCRYPT = $_GET['resendVCRYPT'];
+  $resendTime = $_GET['resendTime'];
+}
+  $emptyError = "";
+  $output = "";
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["firstname"])) {
+    $emptyError = $emptyError . " First Name is required <br>";
+  } else {
+    $firstname = $_POST["firstname"];
+  }
+  if (empty($_POST["lastname"])) {
+  $emptyError = $emptyError . " Last Name is required <br>";
+  } else {
+    $lastname = $_POST["lastname"];
+  }
+  if (empty($_POST["email"])) {
+    $emptyError = $emptyError . " Email is required <br>";
+  } else {
+    $email = $_POST["email"];
+  }
+  if (empty($_POST["studentID"])) {
+    $emptyError = $emptyError . " Student ID is required <br>";
+  } else {
+    $studentID = $_POST["studentID"];
+  }
+  if (empty($_POST["password1"])) {
+    $emptyError = $emptyError . " Password is required <br>";
+  } else {
+    if($_POST["password1"] === $_POST['password2']) {
+      $password = $_POST["password1"];
+    } else {
+      $emptyError = $emptyError . " Passwords Must Math <br>";
+    }
+  }
+  if (empty($_POST["stYear"])) {
+    $emptyError = $emptyError . " Class is required <br>";
+  } else {
+    $class = $_POST["stYear"];
+  }
+  if (empty($_POST["shPeriod"])) {
+    $emptyError = $emptyError . " Study Hall Period is required <br>";
+  } else {
+    $period = $_POST["shPeriod"];
+  }
+  if (empty($_POST["teacher"])) {
+    $emptyError = $emptyError . " Teacher is required <br>";
+  } else {
+    $teacher = $_POST["teacher"];
+  }
+
+    if ($emptyError == "") {
+      $salt = '$2a$10$' . rand() . $studentID . rand() . rand() . '$';
+      $hashedPass = crypt($password, $salt);
+      if ($hashedPass == '*0') {
+
+        $output = "<h5 class='center'>There was an error encrypting your password</h5> <h5 class='center'>Please try again.</h5>";
+      } else {
+        //insert account
+      $insertNewAccount = $medooDB->insert("studentaccount", array(
+      	"firstname" => $firstname,
+      	"lastname" => $lastname,
+        "email" => $email,
+        "student_id" => $studentID,
+        "sh_period" => $period,
+        "sh_teacher_ID" => $teacher,
+        "student_year" => $class,
+        "password" => $hashedPass
+      ));
+      echo $insertNewAccount;
+      $verifyCrypt = crypt(rand(), $salt);
+      $accountVerify = $medooDB->insert("studentaccountverify", array(
+      	"studentaccountID" => $insertNewAccount,
+      	"UniquekeyVal" => $verifyCrypt
+      ));
+      emailConfirm($email, $firstname, $lastname, $accountVerify, $verifyCrypt);
+
+
+
+    }
+    } else {
+      $output = "<h5 class='center'>There was an error</h5> <h5 class='center'>Please try again.</h5>
+      <p>" . $emptyError . "</p>";
+    }
+}
 ?>
 
 <!--
@@ -115,9 +219,7 @@ SOFTWARE.
       <div class="row">
         <form class="col s12" method="post" id="signUpForm" action="">
             <h4 class="center">Sign Up For Passport</h4>
-            <h5 class="center">Almost done!</h5>
-            <h5 class="center">We sent you a confirmation email!* Please click on the link in the email.</h5>
-            <p>*Remember to check spam</p>
+            <?php echo $output; ?>
 
 
 
@@ -125,7 +227,6 @@ SOFTWARE.
             <div class="progress">
               <div class="determinate" style="width: 100%"></div>
             </div>
-            <p>You may now close this tab</p>
         </form>
     </div>
   </div>
@@ -137,8 +238,6 @@ SOFTWARE.
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="/passport/js/materialize.js"></script>
 <script src="/passport/js/init.js"></script>
-<script>
 
-</script>
 
 </html>
