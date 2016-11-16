@@ -74,15 +74,7 @@ function emailConfirm($eemail, $fname, $lname, $verID, $verCrypt) {
     <p>*Remember to check spam</p>";
   }
 }
-if (isset($_GET['resendYN'])) {
-  $resend = $_GET['resendYN'];
-  $resendEmail = $_GET['resendEmail'];
-  $resendfirst = $_GET['resendFN'];
-  $resendlast = $_GET['resendLN'];
-  $resendAVID = $_GET['resendAVID'];
-  $resendVCRYPT = $_GET['resendVCRYPT'];
-  $resendTime = $_GET['resendTime'];
-}
+
   $emptyError = "";
   $output = "";
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -99,7 +91,25 @@ if (isset($_GET['resendYN'])) {
   if (empty($_POST["email"])) {
     $emptyError = $emptyError . " Email is required <br>";
   } else {
+    if ($signUpDomainEmailEnding != "") {
+    if(strrpos($_POST["email"], $signUpDomainEmailEnding) === false) {
+      $emptyError = $emptyError . " Email " . $signUpDomainEmailEnding . " domain is required <br>";
+    } else {
+      if ($medooDB->has("studentaccount", array("AND" => array(
+        "email" => $_POST["email"]
+      )))) {
+        $emptyError = $emptyError . "Someone has already created an account with that email.  <br>  Please Contact IT or the appropriate person if this was not you";
+      } else {
+      $email = $_POST["email"];
+    }
+    }
+  } else {
+    if(strrpos($_POST["email"], "@") === false) {
+      $emptyError = $emptyError . " Email is required <br>";
+    } else {
     $email = $_POST["email"];
+  }
+  }
   }
   if (empty($_POST["studentID"])) {
     $emptyError = $emptyError . " Student ID is required <br>";

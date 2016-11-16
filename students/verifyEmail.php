@@ -31,7 +31,10 @@ $dataverify = $medooDB->select("studentaccountverify", array(
   "id" => $_GET['vID'],
   "UniquekeyVal" => $_GET['verCrypt']
 )));
-
+$dataverifyRowNumber = $medooDB->count("studentaccountverify", array("AND" => array(
+  "id" => $_GET['vID'],
+  "UniquekeyVal" => $_GET['verCrypt']
+)));
 foreach($dataverify as $row)
 {
   $studentID = $row['studentaccountID'];
@@ -41,6 +44,31 @@ $medooDB->update("studentaccount", array(
 ), array(
   "id" => $studentID
 ));
+$output = "";
+if ($dataverifyRowNumber == 0) {
+	$output = "<div class='valign-wrapper'><h1 class='valign center-block white-text'>Invalid Url</h1></div>";
+} else {
+	$medooDB->delete("studentaccountverify", array("AND" => array(
+	  "id" => $_GET['vID'],
+	  "UniquekeyVal" => $_GET['verCrypt']
+	)));
+
+	$output = "<div id='checkmarkAnimationfull'></div>
+  <h1 id='textVeri' class='center white-text'></h1>
+  <p id='more' class='center white-text'></p>
+  <script>
+setTimeout(function(){
+  $( '#checkmarkAnimationfull' ).html(\"<svg class='pause-Ani checkmark' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 52'><circle class='checkmark__circle' cx='26' cy='26' r='25' fill='none'/><path id='checkMarkAni'  class='checkmark__check' fill='none' d='M14.1 27.2l7.1 7.2 16.7-16.8'/></svg>\");
+  $('#textVeri').html('Verified Email');
+  $('#more').html(\"You may now login <br> <a class='waves-effect waves-light btn-large' href='http://" . $_SERVER['HTTP_HOST'] . "/passport'><i class='material-icons right'>lock_open</i>Login</a>\");
+  $('#checkMarkAni').one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
+    function(e) {
+      console.log('done');
+
+    });
+}, 500);
+  </script>";
+}
 ?>
 <html>
 <head>
@@ -48,25 +76,11 @@ $medooDB->update("studentaccount", array(
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="/passport/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
   <link href="/passport/css/passr.css" type="text/css" rel="stylesheet" media="screen,projection" />
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 <body class="grey darken-4">
-  <div id="checkmarkAnimationfull"></div>
-  <h1 id="textVeri" class="center white-text"></h1>
-  <p id="more" class="center white-text"></p>
-  <script>
-setTimeout(function(){
-  $( "#checkmarkAnimationfull" ).html('<svg class="pause-Ani checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path id="checkMarkAni"  class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>');
-  $('#textVeri').html("Verified Email");
-  $('#more').html("You may now login <br> <a class='waves-effect waves-light btn-large' href='http://<?php echo $_SERVER['HTTP_HOST']; ?>/passport'><i class='material-icons right'>lock_open</i>Login</a>");
-  $('#checkMarkAni').one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
-    function(e) {
-      console.log("done");
+	<<?php echo $output; ?>
 
-    });
-}, 500);
-  </script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="/passport/js/materialize.js"></script>
 </body>
 </html>
