@@ -48,20 +48,20 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 </div>
 
                 <div id="lec" class="col s12">
-                    <? barChartTally('lec');
+                    <? barChartTally('LEC');
                     //lineChartMonth('lec');
                     ?>
 
 
                 </div>
                 <div id="math" class="col s12">
-                    <? barChartTally('math') ?>
+                    <? barChartTally('Math') ?>
                 </div>
                 <div id="lib" class="col s12">
-                    <? barChartTally('library') ?>
+                    <? barChartTally('Library') ?>
                 </div>
                 <div id="HD" class="col s12">
-                    <? barChartTally('hd') ?>
+                    <? barChartTally('Help Desk') ?>
                 </div>
                 <div id="WL" class="col s12">
                     <? barChartTally('Writing Lab') ?>

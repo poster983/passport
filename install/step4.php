@@ -70,7 +70,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         //To add new departments into this array, remove the departments already added and then add the new ones.
         //The names must mach the values of the departments in index.php
 
-        $deparray = array("lec", "math", "library", "hd", "Writing Lab", "Foreign Language", "Athletic Mentor");
+        $deparray = array("LEC", "Math", "Library", "Help Desk", "Writing Lab", "Foreign Language", "Athletic Mentor");
            //also change "x" to the total of the array
            for ($x = 6; $x >= 0; $x--) {
                 $depfinal = $deparray[$x];

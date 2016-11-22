@@ -43,7 +43,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         <input type="radio" id="lec" required name="dep" value="LEC" />
                         <label for="lec">LEC</label>
                         &nbsp &nbsp
-                        <input type="radio" id="math" name="dep" value="Math Department" />
+                        <input type="radio" id="math" name="dep" value="Math" />
                         <label for="math">Math</label>
                         &nbsp &nbsp
                         <input type="radio" id="lib" name="dep" value="Library" />

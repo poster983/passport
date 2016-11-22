@@ -194,25 +194,27 @@ My Sanity :)
           <div class="section">
             <div class="row">
               <div class="col s12">
-                <div class="card grey darken-3">
+                <div id="PassCard" class="card grey darken-3">
                   <div class="card-content white-text">
                     <span class="card-title">Passes</span>
 
                       <form method="post">
 
-                          <div class="input-field col s12">
-                            <select required class="white-text">
+                          <div id="depDiv" class="input-field col s12">
+                            <select name="department" required class="white-text validate" onchange="depToReasonAJAX(this.value);">
                               <option value="" disabled selected>Choose A Department</option>
-                              <option value="lec">Executive Functioning</option>
-                              <option value="math">Math Tutoring</option>
-                              <option value="library">Library</option>
-                              <option value="hd">Help Desk</option>
+                              <option value="LEC">Executive Functioning (LEC)</option>
+                              <option value="Math">Math Tutoring</option>
+                              <option value="Library">Library</option>
+                              <option value="Help Desk">Help Desk</option>
                               <option value="Writing Lab">Writing Lab</option>
                               <option value="Foreign Language">Foreign Language Tutoring</option>
                               <option value="Athletic Mentor">Athletic Mentor</option>
                             </select>
                             <label>Department</label>
+
                           </div>
+                          <div id="ReasonAJAX"></div>
                         <!--Advanced-->
                       <p>
                         <input type="checkbox" id="sao" />
@@ -250,6 +252,14 @@ My Sanity :)
         <!-- Compiled and minified JavaScript -->
         <script src="/passport/js/materialize.js"></script>
         <script>
+        depLock = 0;
+        selVal = 0;
+        function carsonRau(){
+          $(document.body).css('background-image', 'url(/passport/image/cork-board.jpg)');
+          $('#PassCard').addClass("animated infinite jello");
+          console.log("There You Go Carson");
+        }
+
               $(document).ready(function(){
                 // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
                 $('.modal-trigger').leanModal();
@@ -261,6 +271,44 @@ My Sanity :)
               $(document).ready(function() {
                 $('select').material_select();
               });
+
+
+                  function depToReasonAJAX(depart) {
+
+                    if(depLock == 0) {
+                      selVal +=1;
+                      depLock = 1;
+
+                    }
+
+                    $('#ReasonAJAX').html("<img class='svg-dis' src='/passport/image/rings.svg' /> <h5 class='center'>Loading</h5>");
+                    $.ajax({
+                  url: 'ajaxGetReasonsAndBlackout.php',
+                  data: {'dep': depart},
+                  type: 'get',
+                  success: function(data) {
+                    $('#ReasonAJAX').html(data);
+                  },
+                  error: function(xhr, desc, err) {
+                  console.log(xhr);
+                  console.log("Details: " + desc + "\nError:" + err);
+                  $('#ReasonAJAX').html("There was an error.  Please check the console for more details.");
+                  }
+                })};
+                $( document ).ajaxComplete(function() {
+
+                  $('select').material_select();
+                  if(selVal == 1) {
+                    $("#depDiv input[type=text]").addClass('valid');
+                  } else if(selVal ==2) {
+                    $("#shPer input[type=text]").addClass('valid');
+                  } else if(selVal == 3) {
+                    $("#shPer input[type=text]").addClass('valid');
+                    $("#stYear input[type=text]").addClass('valid');
+                  }
+
+                });
+
 
               </script>
         <script src="/passport/js/passport.js"></script>

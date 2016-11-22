@@ -32,7 +32,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
     include "../sqlconnect.php";
                                                             //change sql limit to match the current nuumber of departments.
-            $sqlslimit = "SELECT studentlimit, dep FROM studentlimit LIMIT 6";
+            $sqlslimit = "SELECT studentlimit, dep FROM studentlimit";
         $resultslimit = $conn->query($sqlslimit);
 
         if ($resultslimit->num_rows > 0) {
@@ -43,7 +43,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             $placenospace = str_replace(' ', '', $rowslimit["dep"]);
                 $deplimit = $placenospace . 'limit';
             $$deplimit = $rowslimit["studentlimit"];
-
+            
 
             }
         }
@@ -60,17 +60,17 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 <p class="center">Choose Department</p>
                 <p class="center">Hover for current limit</p>
                 <p class="center">
-                    <input type="radio" id="lec" required name="dep" value="lec" />
-                    <label for="lec" title="<? echo $leclimit; ?>">LEC</label>
+                    <input type="radio" id="lec" required name="dep" value="LEC" />
+                    <label for="lec" title="<? echo $LEClimit; ?>">LEC</label>
                     &nbsp &nbsp
-                    <input type="radio" id="math" name="dep" value="math" />
-                    <label for="math" title="<? echo $mathlimit; ?>">Math</label>
+                    <input type="radio" id="math" name="dep" value="Math" />
+                    <label for="math" title="<? echo $Mathlimit; ?>">Math</label>
                     &nbsp &nbsp
-                    <input type="radio" id="lib" name="dep" value="library" />
-                    <label for="lib" title="<? echo $librarylimit; ?>">Library</label>
+                    <input type="radio" id="lib" name="dep" value="Library" />
+                    <label for="lib" title="<? echo $Librarylimit; ?>">Library</label>
                     &nbsp &nbsp
-                    <input type="radio" id="hd" name="dep" value="hd" />
-                    <label for="hd" title="<? echo $hdlimit; ?>">Help Desk</label>
+                    <input type="radio" id="hd" name="dep" value="Help Desk" />
+                    <label for="hd" title="<? echo $HelpDesklimit; ?>">Help Desk</label>
                     &nbsp &nbsp
                     <input type="radio" id="wl" name="dep" value="Writing Lab" />
                     <label for="wl" title="<? echo $WritingLablimit; ?>">Writing Lab</label>
