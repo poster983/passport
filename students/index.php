@@ -66,10 +66,11 @@ My Sanity :)
   <? date_default_timezone_set('America/Chicago'); ?>
 
     <? include "../sqlconnect.php";
+        include "../medooconnect.php";
         include "../versionInfo.php";?>
     <!--Navbar-->
-    <nav>
-        <div class="nav-wrapper ">
+    <nav id="navBar">
+        <div class="nav-wrapper">
             <a href="#" class="brand-logo center">Passport</a>
             <span class="right"><?echo $CurrentVersionOfPassport;?></span>
         </div>
@@ -194,14 +195,15 @@ My Sanity :)
           <div class="section">
             <div class="row">
               <div class="col s12">
+                <div id="behindCard"></div>
                 <div id="PassCard" class="card grey darken-3">
                   <div class="card-content white-text">
                     <span class="card-title">Passes</span>
 
-                      <form method="post">
+                      <form id="passForm" method="post">
 
                           <div id="depDiv" class="input-field col s12">
-                            <select name="department" required class="white-text validate" onchange="depToReasonAJAX(this.value);">
+                            <select id="department" name="department" required class="white-text validate" onchange="depToReasonAJAX(this.value);">
                               <option value="" disabled selected>Choose A Department</option>
                               <option value="LEC">Executive Functioning (LEC)</option>
                               <option value="Math">Math Tutoring</option>
@@ -215,18 +217,37 @@ My Sanity :)
 
                           </div>
                           <div id="ReasonAJAX"></div>
+
+                          <div id="datePicker" class="center" style="display: none;" >
+                              <input type="radio" class="with-gap" id="monday" onclick="dateVal();" name="day" on required value="<? echo date( 'Y-m-d', strtotime("monday this week")); ?>">
+                              <label for="monday">Monday</label>
+                              &nbsp; &nbsp;
+                              <input type="radio" class="with-gap" id="tuesday" onclick="dateVal();" name="day" value="<? echo date( 'Y-m-d', strtotime(" tuesday this week ")); ?>">
+                              <label for="tuesday">Tuesday</label>
+                              &nbsp;&nbsp;
+                              <input type="radio" class="with-gap" id="wednesday" onclick="dateVal();" name="day" value="<? echo date( 'Y-m-d', strtotime(" wednesday this week ")); ?>">
+                              <label for="wednesday">Wednesday</label>
+                              &nbsp;&nbsp;
+                              <input type="radio" class="with-gap" id="thursday" onclick="dateVal();" name="day" value="<? echo date( 'Y-m-d', strtotime(" thursday this week ")); ?>">
+                              <label for="thursday">Thursday</label>
+                              &nbsp;&nbsp;
+                              <input type="radio" class="with-gap" id="friday" onclick="dateVal();" name="day" value="<? echo date( 'Y-m-d', strtotime(" friday this week ")); ?>">
+                              <label for="friday">Friday</label>
+
+                          </div>
+                          <br>
                         <!--Advanced-->
-                      <p>
+                      <div>
                         <input type="checkbox" id="sao" />
                         <label for="sao">Show Advanced Options</label>
-                      </p>
+                      </div>
                       <div class="divider"></div>
                       <div id="passrequestAdvanced" style="display: none;">
                         <h5 class="center white-text">Advanced Options</h5>
                         <div class="divider"></div>
                       </div>
                       <div class="section">
-                        <button class="btn waves-effect waves-light" type="submit" name="passSubmit">Request Pass<span id="submitAdvantext"><i class="material-icons right">send</i></span></button>
+                        <a class="waves-effect waves-light btn-large" id="submitPass" onclick="submitPass(1);">Submit Pass<span id="subPassAdv"><i class='material-icons right'>send</i></span></a>
                       </div>
                     </form>
                     </div>
@@ -251,14 +272,9 @@ My Sanity :)
 
         <!-- Compiled and minified JavaScript -->
         <script src="/passport/js/materialize.js"></script>
+        <script src="/passport/js/passport.js"></script>
         <script>
-        depLock = 0;
-        selVal = 0;
-        function carsonRau(){
-          $(document.body).css('background-image', 'url(/passport/image/cork-board.jpg)');
-          $('#PassCard').addClass("animated infinite jello");
-          console.log("There You Go Carson");
-        }
+
 
               $(document).ready(function(){
                 // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
@@ -272,7 +288,27 @@ My Sanity :)
                 $('select').material_select();
               });
 
+              depLock = 0;
+              dateshowLock = 0;
+              selVal = 0;
+              dateLock = 0;
+              passSubmitReady = 0;
+              function carsonRau(){
+                $(document.body).css('background-image', 'url(/passport/image/cork-board.jpg)');
+                $('#PassCard').addClass("animated infinite jello");
+                $('#navBar').addClass("animated infinite rubberBand");
+                console.log("There You Go Carson");
+              }
+              function showDatePicker() {
+                if(dateshowLock == 0) {
+                $('#datePicker').show();
+                  $('#datePicker').animateCss('fadeInDown');
+                  dateshowLock = 1;
+                }
+              }
+              function dateVal() {
 
+              }
                   function depToReasonAJAX(depart) {
 
                     if(depLock == 0) {
@@ -309,9 +345,49 @@ My Sanity :)
 
                 });
 
+                function submitPassToAjax(id, depart, reason, day) {
+
+
+
+                  $('#behindCard').html("<img class='svg-dis' src='/passport/image/rings.svg' /> <h5 class='center'>Loading</h5>");
+                  $.ajax({
+                url: 'ajaxSubmit.php',
+                data: {'sAccID': id, 'dep': depart, 'reason': reason, 'day': day},
+                type: 'get',
+                success: function(data) {
+                  $('#behindCard').html(data);
+
+                  $('#ReasonAJAX').html("");
+                  $('#datePicker').hide();
+                  $('#passForm').formClear();
+                  $('#PassCard').animateCss('fadeInLeft');
+                  $('#PassCard').one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
+                function(e) {
+                $('select').material_select();
+                });
+
+                },
+                error: function(xhr, desc, err) {
+                console.log(xhr);
+                console.log("Details: " + desc + "\nError:" + err);
+                $('#behindCard').html("There was an error.  Please check the console for more details.");
+                }
+              })};
+
+                function submitPass(id) {
+                  if (passSubmitReady == 0){
+                    $('#PassCard').animateCss('fadeOutRight');
+                    $('#PassCard').one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
+                  function(e) {
+                  submitPassToAjax(id,$('#department').val(),$('#ajaxReason').val(),$("input[name='day']").val());
+                  });
+
+                  }
+                }
+
 
               </script>
-        <script src="/passport/js/passport.js"></script>
+
   </body>
   </html>
 
@@ -338,6 +414,29 @@ My Sanity :)
       $bugRole = "student";
       $bugVersion = $CurrentVersionOfPassport;
   }
+  /*
+      $medooDB->action(function($database) {
+      $bugLAstID = $database->insert("feedback", array(
+        "name" => $bugname,
+        "email" => $bugemail,
+        "comment" => $bugtext,
+        "rating" => $bugseverity,
+        "report_type" => "bug",
+        "date" => $bugdate,
+        "role" => "student",
+        "forVersion" => $bugVersion
+      ));/*
+      if ($medooDB->has("feedback", array("id" => $bugLAstID))) {
+        echo "<script> Materialize.toast('Bug report submitted successfully', 4000) </script>";
+      } else {
+        echo "<script> Materialize.toast('There was an error. contact IT and send them the error code at the bottom of the page', 14000) </script>";
+        var_dump($medooDB->error());
+        //return false;
+
+      }
+    };
+    */
+
 
       $sqlbug = $conn->prepare("INSERT INTO feedback (name, email, comment, rating, report_type, `date`, role, forVersion)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?)");

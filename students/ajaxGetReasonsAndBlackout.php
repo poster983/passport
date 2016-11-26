@@ -38,11 +38,12 @@ $datas = $medooDB->select("why", array(
 
   function shTeacherTall() {
     $('#" . $dep . "department input[type=text]').addClass('valid');
+    showDatePicker();
   }
   </script>
   <div id='" . $dep . "department' class='input-field col s12'>
   <div>
-    <select name='teacher' required onchange='shTeacherTall();'>
+    <select id='ajaxReason' name='reasonToCome' required onchange='shTeacherTall()'>
       <option value='' disabled selected>Reason To Come</option>";
 
 

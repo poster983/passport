@@ -22,7 +22,25 @@ IN AN ACTION OF CONTRACT, TORTOR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 /*VARS*/
-var submitAdvanText = document.getElementById("submitAdvantext");
+
+
+$.fn.formClear = function() {
+  return this.each(function() {
+    var formtype = this.type, formtag = this.tagName.toLowerCase();
+    if (formtag == 'form') {
+      return $(':input',this).formClear();
+    }
+    if (formtype == 'text' || formtag == 'textarea') {
+      this.value = '';
+    }
+    else if (formtype == 'checkbox' || formtype == 'radio') {
+      this.checked = false;
+    }
+    else if (formtag == 'select') {
+      this.selectedIndex = -1;
+    }
+  });
+};
 
 
 $.fn.extend({
@@ -38,13 +56,13 @@ $("#sao").change(function() {
     if(this.checked) {
       $('#passrequestAdvanced').show();
         $('#passrequestAdvanced').animateCss('bounceIn');
-        submitAdvanText.innerHTML = " (Using Advanced Options) <i class='material-icons right'>error_outline</i>"
+        $('#subPassAdv').html(" (Using Advanced Options) <i class='material-icons right'>error_outline</i>");
     } else {
       $('#passrequestAdvanced').animateCss('bounceOut');
       $('#passrequestAdvanced').one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
     function(e) {
       $('#passrequestAdvanced').hide();
-      submitAdvanText.innerHTML = "<i class='material-icons right'>send</i>"
+      $('#subPassAdv').html("<i class='material-icons right'>send</i>");
     });
     }
 });

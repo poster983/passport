@@ -7,28 +7,35 @@ $fadein = "animated fadeInDown";
 if (isset($_POST['Submit'])) {
 	$Uemail = $_POST['email'];
 	$password = $_POST['password'];
-  /*
-	if ($stmt = $conn->prepare("SELECT id, email_Verify_Status, banned_until_date, password, archived FROM studentaccount WHERE email = ?")) {
-    //echo "HI";
-    /* bind parameters for markers
-   $stmt->bind_param("s", $Uemail);
-   /* execute query
-    $stmt->execute();
-    $stmt->store_result();
-    /* bind result variables
-    $stmt->bind_result($accID, $isEmailVerified, $aBannedDate, $hashedPass, $accountIsArchived);
-	if($stmt->num_rows > "0") {
-    while ($stmt->fetch()) {
-	$accID;
-	$isEmailVerified;
-	$aBannedDate;
-      	$hashedPass;
-	$accountIsArchived;
-    }
-		*/
-		//echo "Hashed: " . $hashedPass . "_____ Un hashed " . crypt($password, $hashedPass);
-		$medoo = $medooDB->select(studentaccount array())
 
+
+
+		if ($medooDB->has("studentaccount", array(
+			"AND" => array(
+				"email" => $Uemail,
+				"archived" => 0
+			)
+
+		)))
+		{
+			$medoo = $medooDB->select("studentaccount", array(
+				"id",
+				"email_Verify_Status",
+				"banned_until_date",
+				"password"
+			), array(
+				"AND" => array(
+					"email" => $Uemail,
+					"archived" => 0
+				)
+			));
+
+			
+			foreach ($medoo as $row) {
+				$accID = $row['id'];
+			}
+			echo $accID;
+			/*
 		if(crypt($password, $hashedPass) == $hashedPass) {
 			session_regenerate_id();
 			$_SESSION['studentok'] = "ok";
@@ -38,19 +45,18 @@ if (isset($_POST['Submit'])) {
 			header("Location: index.php");
       $msg = "Your in!";
 		} else {
-			$msg = "Username or Password incorrect";
+			$msg = "Email or Password incorrect";
             $failshake = "animated wobble";
             $fadein = "";
 		}
+		*/
 	} else {
-		$msg = "Username or Password incorrect";
+		$msg = "Email or Password incorrect";
         $failshake = "animated wobble";
         $fadein = "";
     }
-    $stmt->close();
-} else {
-	echo "NOPE";
-}
+
+
 }
 ?>
 <!--
