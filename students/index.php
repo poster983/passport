@@ -1,3 +1,8 @@
+<?php
+  session_start();
+  if(!isset($_SESSION['studentok']))
+  header("location: login.php");
+?>
 <!--
 
 The MIT License (MIT)
@@ -68,9 +73,33 @@ My Sanity :)
     <? include "../sqlconnect.php";
         include "../medooconnect.php";
         include "../versionInfo.php";?>
+
+
+
+
+
     <!--Navbar-->
     <nav id="navBar">
         <div class="nav-wrapper">
+          <!--SideNav-->
+          <ul id="slide-out" class="side-nav">
+           <li><div class="userView">
+             <div class="background">
+               <img src="/passport/image/stunav.jpg">
+             </div>
+             <!--<a href="#!user"><img class="circle" src="images/yuna.jpg"></a>-->
+             <a href="#!name"><span class="white-text name"><?php echo $_SESSION['sFN'] . " " . $_SESSION['sLN']; ?></span></a>
+             <a href="#!email"><span class="white-text email"><?php echo $_SESSION['email']; ?></span></a>
+           </div></li>
+           <!--
+           <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+           <li><a href="#!">Second Link</a></li>
+           <li><div class="divider"></div></li>
+           <li><a class="subheader">Subheader</a></li>
+           <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+         -->
+         </ul>
+          <a href="#" data-activates="slide-out" class="button-collapse left-allign show-on-large"><i class="material-icons">menu</i></a>
             <a href="#" class="brand-logo center">Passport</a>
             <span class="right"><?echo $CurrentVersionOfPassport;?></span>
         </div>
@@ -247,7 +276,7 @@ My Sanity :)
                         <div class="divider"></div>
                       </div>
                       <div class="section">
-                        <a class="waves-effect waves-light btn-large" id="submitPass" onclick="submitPass(1);">Submit Pass<span id="subPassAdv"><i class='material-icons right'>send</i></span></a>
+                        <a class="waves-effect waves-light btn-large" id="submitPass" onclick="submitPass(<?php echo $_SESSION['studentAccID'] ?>);">Submit Pass<span id="subPassAdv"><i class='material-icons right'>send</i></span></a>
                       </div>
                     </form>
                     </div>
@@ -279,12 +308,8 @@ My Sanity :)
               $(document).ready(function(){
                 // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
                 $('.modal-trigger').leanModal();
-              });
-              $(document).ready(function(){
-                  $('.tooltipped').tooltip({delay: 50});
-                });
-
-              $(document).ready(function() {
+                $(".button-collapse").sideNav();
+                $('.tooltipped').tooltip({delay: 50});
                 $('select').material_select();
               });
 
@@ -310,12 +335,20 @@ My Sanity :)
 
               }
                   function depToReasonAJAX(depart) {
+                    $('#wednesday').prop("disabled",false);
+                    if(depart == "LEC" || depart == "Library") {
+                      $('#wednesday').prop('checked', false);
+                      $('#wednesday').prop("disabled",true);
+                      $('#wednesday').prop("title","The " + depart + " is closed on wednesday");
+                      $('#wednesday').prop("alt","The " + depart + " is closed on wednesday");
 
+                    }
                     if(depLock == 0) {
                       selVal +=1;
                       depLock = 1;
 
                     }
+
 
                     $('#ReasonAJAX').html("<img class='svg-dis' src='/passport/image/rings.svg' /> <h5 class='center'>Loading</h5>");
                     $.ajax({
@@ -356,7 +389,7 @@ My Sanity :)
                 type: 'get',
                 success: function(data) {
                   $('#behindCard').html(data);
-
+                  dateshowLock = 0;
                   $('#ReasonAJAX').html("");
                   $('#datePicker').hide();
                   $('#passForm').formClear();
@@ -375,11 +408,15 @@ My Sanity :)
               })};
 
                 function submitPass(id) {
-                  if (passSubmitReady == 0){
+                  if (passSubmitReady == 0 && dateshowLock == 1){
                     $('#PassCard').animateCss('fadeOutRight');
                     $('#PassCard').one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
                   function(e) {
-                  submitPassToAjax(id,$('#department').val(),$('#ajaxReason').val(),$("input[name='day']").val());
+                    console.log($("input[name=day]:checked").val());
+                    if($("input[name=day]:checked").val() != undefined) {
+
+                  submitPassToAjax(id,$('#department').val(),$('#ajaxReason').val(),$("input[name=day]:checked").val());
+                }
                   });
 
                   }

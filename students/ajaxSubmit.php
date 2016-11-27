@@ -22,9 +22,54 @@ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORTOR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-echo $_GET["sAccID"];
-echo $_GET["dep"];
-echo $_GET["reason"];
-echo $_GET["day"];
+include "../medooconnect.php";
+
+
+//
+$medooSAccount = $medooDB->select("studentaccount", array(
+  "firstname",
+  "lastname",
+  "email",
+  "student_id",
+  "sh_period",
+  "sh_teacher_ID"
+), array(
+  "id" => $_GET["sAccID"]
+));
+foreach($medooSAccount as $row) {
+  $stuAccFirstname = $row['firstname'];
+  $stuAccLastname = $row['lastname'];
+  $stuAccEmail = $row['email'];
+	$stuID = $row['student_id'];
+  $period = $row['sh_period'];
+  $teacher = $row['sh_teacher_ID'];
+}
+
+$medooTeacher = $medooDB->select("teachers", array(
+  "name_title",
+  "firstname",
+  "lastname"
+), array(
+  "id" => $teacher
+));
+foreach($medooTeacher as $row) {
+	$teacherTitle = $row['name_title'];
+  $teacherFirstName = $row['firstname'];
+  $teacherLastName = $row['lastname'];
+}
+
+$medooDB->insert("passes", array(
+	"firstname" => $stuAccFirstname,
+	"lastname" => $stuAccLastname,
+	"email" => $stuAccEmail,
+  "student_id" => $stuID,
+  "period" => $period,
+  "sh_teacher" => $teacherTitle . " " . $teacherFirstName . " " . $teacherLastName,
+  "place" => $_GET["dep"],
+  "day_to_come" => $_GET["day"],
+  "reason_to_come" => $_GET["reason"],
+  "teacherAccountID" => $teacher,
+  "studentAccountID" => $_GET["sAccID"]
+));
 
 ?>

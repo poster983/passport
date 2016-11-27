@@ -20,6 +20,9 @@ if (isset($_POST['Submit'])) {
 		{
 			$medoo = $medooDB->select("studentaccount", array(
 				"id",
+				"firstname",
+				"lastname",
+				"sh_period",
 				"email_Verify_Status",
 				"banned_until_date",
 				"password"
@@ -30,17 +33,32 @@ if (isset($_POST['Submit'])) {
 				)
 			));
 
-			
+
 			foreach ($medoo as $row) {
 				$accID = $row['id'];
+				$firstName = $row['firstname'];
+				$lastName = $row['lastname'];
+				$shPeriod = $row['sh_period'];
+				$emailVerStat = $row['email_Verify_Status'];
+				$bannedUntilDate = $row['banned_until_date'];
+				$hashedPass = $row['password'];
 			}
-			echo $accID;
-			/*
+			//echo $accID;
+			//echo $emailVerStat;
+			//echo $bannedUntilDate;
+			//echo $hashedPass;
+
 		if(crypt($password, $hashedPass) == $hashedPass) {
 			session_regenerate_id();
 			$_SESSION['studentok'] = "ok";
+			$_SESSION['sFN'] = $firstName;
+			$_SESSION['sLN'] = $lastName;
+			$_SESSION['email'] = $Uemail;
+			$_SESSION['period'] = $shPeriod;
 			$_SESSION['studentAccID'] = $accID;
-
+			if($emailVerStat == 0) {
+				$msg = "Please check your email for the confirmation email";
+			}
 
 			header("Location: index.php");
       $msg = "Your in!";
@@ -49,7 +67,7 @@ if (isset($_POST['Submit'])) {
             $failshake = "animated wobble";
             $fadein = "";
 		}
-		*/
+
 	} else {
 		$msg = "Email or Password incorrect";
         $failshake = "animated wobble";
