@@ -52,11 +52,15 @@ if($medooDB->has("message", array(
       echo "</div></div></div></div>";
   }
 
-$datas = $medooDB->select("why", array(
-  "why"
-),array(
+
+if($medooDB->has("why", array(
   "dep" => $dep
-));
+))) {
+  $datas = $medooDB->select("why", array(
+    "why"
+  ),array(
+    "dep" => $dep
+  ));
 
   echo "
   <script>
@@ -84,7 +88,16 @@ echo "
 <label>Reason To Come</label>
 </div>
 </div>";
-
+} else {
+  echo"
+  <script>
+    reasonReady = true;
+    showDatePicker();
+    checkPassSubmit();
+  </script>
+  <div id='ajaxReason' style='display: none;'>No Reason</div>
+  ";
+}
 /*
   I need to get
   "period"

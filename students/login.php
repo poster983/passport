@@ -144,7 +144,9 @@ SOFTWARE.
                     <i class="material-icons right">lock_open</i>
                 </button>
 								<br>
+								<div class="section">
 								<a class="waves-effect waves-light btn" href="createAccount.php">Create An Account</a>
+							</div>
             </form>
 						<h6> <? echo $msg; ?> </h6>
             </div>
