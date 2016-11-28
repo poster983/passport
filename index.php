@@ -1,8 +1,13 @@
+<?php
+  session_start();
+  if(!isset($_SESSION['studentok']))
+  header("location: students/login.php");
+?>
 <!--
 
 The MIT License (MIT)
 
-Copyright (c) Mon May 23 2016 Joseph Hassell joseph@thehassellfamily.net
+Copyright (c) Tue Nov 1 2016 Joseph Hassell joseph@thehassellfamily.net
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
@@ -38,7 +43,7 @@ My Sanity :)
 <html>
 
 <head>
-    <title>Passport</title>
+    <title>Passport-Student</title>
     <? include "personalCode.php";
 	     trackerGA(); ?>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -57,58 +62,55 @@ My Sanity :)
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
 
 
 
 </head>
-
-<body>
+<body class="grey darken-4">
   <? date_default_timezone_set('America/Chicago'); ?>
-    <!-- Request closed overlay -->
-    <? include "sqlconnect.php"; ?>
-    <?
-    if ($closePassRequestOnDaysToggle == 1) {
-        if(date("l") == "Sunday" OR date("l") == "Saturday") {
-            $overlayClosedReasonH1 = "Pass Requests are closed on the weekends.";
-            $closedFormAction = "";
-            $blurClass = "blur-g";
-            echo "<script>$(document).ready(function(){openFullOverlay()});</script>";
-        } else {
-            $closedFormAction = "/passport/submit.php";
-        }
-      } else {
-        $closedFormAction = "/passport/submit.php";
-      }
- include "versionInfo.php";
-    ?>
+
+    <? include "sqlconnect.php";
+        include "medooconnect.php";
+        include "versionInfo.php";?>
 
 
-    <div id="overlayFull" class="overlay-full">
 
-        <div class="overlay-full-content">
-            <h1 class="black-text"><? echo $overlayClosedReasonH1; ?></h1>
-        </div>
 
-    </div>
-
-    <div id="blurg" class="<? echo $blurClass; ?>">
 
     <!--Navbar-->
-    <nav>
-        <div class="nav-wrapper ">
+    <nav id="navBar">
+        <div class="nav-wrapper">
+          <!--SideNav-->
+          <ul id="slide-out" class="side-nav">
+           <li><div class="userView">
+             <div class="background">
+               <img src="/passport/image/stunav.jpg">
+             </div>
+             <a href="#!user"><i class="material-icons md-48 md-light">account_circle</i></a>
+             <a href="#!name"><span class="white-text name"><?php echo $_SESSION['sFN'] . " " . $_SESSION['sLN']; ?></span></a>
+             <a href="#!email"><span class="white-text email"><?php echo $_SESSION['email']; ?></span></a>
+           </div></li>
+           <!--
+           <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+           <li><a href="#!">Second Link</a></li>
+           <li><div class="divider"></div></li>
+           <li><a class="subheader">Subheader</a></li>
+           <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+         -->
+         </ul>
+          <a href="#" data-activates="slide-out" class="button-collapse left-allign show-on-large"><i class="material-icons">menu</i></a>
             <a href="#" class="brand-logo center">Passport</a>
             <span class="right"><?echo $CurrentVersionOfPassport;?></span>
         </div>
     </nav>
 
-    <!--Body-->
+    <div id="confirmOver" class="overlay-full">
+      <div id="checkmarkAnimationfull">
 
-
-
+    </div>
+      <h1 class="center white-text">Pass Requested</h1>
+    </div>
     <!--FEEDBACK FAB-->
 
 
@@ -144,7 +146,7 @@ My Sanity :)
                         <label for="bugemail">Email</label>
                     </div>
                     <div class="input-field col s12"> <i class="material-icons prefix">comment</i>
-                        <textarea id="bugtext" name="bugtext" required class="materialize-textarea" length="255"></textarea>
+                        <textarea id="bugtext" name="bugtext" required class="materialize-textarea"></textarea>
                         <label for="bugtext">Describe the bug or issue</label>
                     </div>
                     <h5 class="center">Bug Severity Slider</h5>
@@ -166,45 +168,7 @@ My Sanity :)
 
   </div>
 
-    <?
 
-    //bug report submit code
-
-
-    if(isset($_POST['submitbug'])){
-
-
-        foreach ($_POST as $key => $value) {
-
-    }
-    {
-
-
-        $bugname = $_POST['bugname'];
-        $bugemail = $_POST['bugemail'];
-        $bugseverity = $_POST['bugseverity'];
-        $bugdate = date( 'Y-m-d', strtotime(" today "));
-        $bugtext = htmlspecialchars($_POST['bugtext'],ENT_QUOTES);
-        $bugReportType = "bug";
-        $bugRole = "student";
-        $bugVersion = $CurrentVersionOfPassport;
-    }
-
-        $sqlbug = $conn->prepare("INSERT INTO feedback (name, email, comment, rating, report_type, `date`, role, forVersion)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-
-        $sqlbug->bind_param("sssissss", $bugname, $bugemail, $bugtext, $bugseverity, $bugReportType, $bugdate, $bugRole, $bugVersion);
-        if ($sqlbug->execute()) {
-          echo "<script> Materialize.toast('Bug report submitted successfully', 4000) </script>";
-        } else {
-          echo "<script> Materialize.toast('There was an error. contact IT', 14000) </script>";
-        }
-        $sqlbug->close();
-
-
-    }
-
-    ?>
 
       <!--Review Modal disclaimer -->
   <div id="reviewmodaldis" class="modal">
@@ -233,7 +197,7 @@ My Sanity :)
                         <label for="reviewemail">Email</label>
                     </div>
                     <div class="input-field col s12"> <i class="material-icons prefix">comment</i>
-                        <textarea id="reviewtext" name="reviewtext" class="materialize-textarea" length="255"></textarea>
+                        <textarea id="reviewtext" name="reviewtext" class="materialize-textarea"></textarea>
                         <label for="reviewtext">Comment</label>
                     </div>
                     <h5 class="center">Rating Slider</h5>
@@ -255,526 +219,74 @@ My Sanity :)
 
   </div>
 
-    <?
 
-    //bug report submit code
-
-
-    if(isset($_POST['submitreview'])){
-
-
-        foreach ($_POST as $key => $value) {
-
-    }
-    {
-
-
-        $reviewname = $_POST['reviewname'];
-        $reviewemail = $_POST['reviewemail'];
-        $reviewtext = htmlspecialchars($_POST['reviewtext'],ENT_QUOTES);
-        $reviewseverity = $_POST['rating'];
-        $reviewdate = date( 'Y-m-d', strtotime(" today "));
-        $reviewReportType = "review";
-        $reviewRole = "student";
-        $reviewVersion = $CurrentVersionOfPassport;
-    }
-
-        $sqlbug = $conn->prepare("INSERT INTO feedback (name, email, comment, rating, report_type, `date`, role, forVersion)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-
-        $sqlbug->bind_param("sssissss", $reviewname, $reviewemail, $reviewtext, $reviewseverity, $reviewReportType, $reviewdate, $reviewRole, $reviewVersion);
-        if ($sqlbug->execute()) {
-          echo "<script> Materialize.toast('Review submitted successfully', 4000) </script>";
-        } else {
-          echo "<script> Materialize.toast('There was an error. contact IT', 14000) </script>";
-        }
-        $sqlbug->close();
-    }
-
-    ?>
 
 
 
     <!-- System Message-->
-      <? include "function.php"; ?>
+        <div id="ajaxAllStudentMess"></div>
+        <!--login Message-->
+        <?php
+        if (isset($_SESSION['messageFromLogin'])) {
+          echo "<div class='row'>
+            <div class='col s12'>
+              <div class='card-panel teal'>
+                <h1>NOTE FROM LAST LOGIN!</h1>
+                <h3>" . $_SESSION['messageFromLogin'] . "</h3>
+              </div>
+            </div>
+          </div>";
+        }
+        ?>
 
-        <? allStudentMess(); ?>
-
-    <!--Tabs-->
-    <br>
-
-        <form method="post" action=" <? echo $closedFormAction; ?> ">
+        <div class="container">
+          <div class="section">
             <div class="row">
-                <div class="col s12">
-                    <ul class="tabs">
+              <div class="col s12">
+                <div id="behindCard"></div>
+                <div id="PassCard" class="card grey darken-3">
+                  <div class="card-content white-text">
+                    <span class="card-title">Passes</span>
+
+                      <form id="passForm" method="post">
+
+                          <div id="depDiv" class="input-field col s12">
+                            <select id="department" name="department" required class="white-text validate" onchange="depToReasonAJAX(this.value, '<?php echo $_SESSION['period'] ?>');">
+                              <option value="" disabled selected>Choose A Department</option>
+                              <option value="LEC">Executive Functioning (LEC)</option>
+                              <option value="Math">Math Tutoring</option>
+                              <option value="Library">Library</option>
+                              <option value="Help Desk">Help Desk</option>
+                              <option value="Writing Lab">Writing Lab</option>
+                              <option value="Foreign Language">Foreign Language Tutoring</option>
+                              <option value="Athletic Mentor">Athletic Mentor</option>
+                            </select>
+                            <label>Department</label>
 
-                        <li class="tab col s3"><a id="efTab" href="#lec">Executive Functioning</a></li>
-                        <li class="tab col s3"><a id="mathTab" href="#math">Math</a></li>
-                        <li class="tab col s3"><a id="libTab" href="#library">Library</a></li>
-                        <li class="tab col s3"><a id="hdTab" href="#helpDesktab">Help Desk</a></li>
-                        <li class="tab col s3"><a id="wlTab" href="#writingLabtab">Writing Lab</a></li>
-                        <li class="tab col s3"><a id="flTab" href="#FLtab">Foreign Language</a></li>
-                        <li class="tab col s3"><a id="amTab" href="#AMtab">Athletic Mentor</a></li>
-                    </ul>
-                </div>
-
-                <div id="depCont" class="container blur-sect">
-
-
-                        <div id="lec" class="col s12">
-                            <p>
-                                <!-- Blackout Function -->
-                                <? LECout(); ?>
-                                <!-- Message Function -->
-                                    <? LECmess(); ?>
-                                <!-- Confirm Radio -->
-                                        <input class="with-gap" type="radio" name="place" value="lec" required id="lecConfirm" />
-                                        <label for="lecConfirm">Confirm Executive Functioning</label>
-                                        <br>
-                                        <br>
-                                        <br>
-                                        <? reasonSel('LEC'); ?>
-                            </p>
-                        </div>
-                        <div id="math" class="col s12">
-                            <p>
-                                <!-- Blackout Function -->
-                                <? MATHout(); ?>
-                                <!-- Message Function -->
-                                    <? MATHmess(); ?>
-                                <!-- Confirm Radio -->
-                                        <input class="with-gap" type="radio" name="place" value="math" id="mathConfirm" />
-                                        <label for="mathConfirm">Confirm Math</label>
-                                        <br>
-                                        <br>
-                                        <br>
-                                        <? reasonSel('Math Department'); ?>
-
-                            </p>
-                        </div>
-                        <div id="library" class="col s12">
-                            <p>
-                                <!-- Blackout Function -->
-                                <? LIBout(); ?>
-                                <!-- Message Function -->
-                                    <? LIBmess(); ?>
-                                <!-- Confirm Radio -->
-
-                                        <input class="with-gap" type="radio" name="place" value="library" id="libConfirm" />
-                                        <label for="libConfirm">Confirm Library</label>
-                                        <br>
-                                        <br>
-                                        <br>
-                                        <? reasonSel('Library'); ?>
-
-                            </p>
-                        </div>
-                        <div id="helpDesktab" class="col s12">
-                            <p>
-                                <!-- Blackout Function -->
-                                <? HDout(); ?>
-                                <!-- Message Function -->
-                                    <? HDmess(); ?>
-                                <!-- Confirm Radio -->
-                                        <input class="with-gap" type="radio" name="place" value="hd" id="HDConfirm" />
-                                        <label for="HDConfirm">Confirm Help Desk</label>
-                                        <br>
-                                        <br>
-                                        <br>
-                                        <? reasonSel('Help Desk'); ?>
-
-                            </p>
-                        </div>
-                        <div id="writingLabtab" class="col s12">
-                            <p>
-                                <!-- Blackout Function -->
-                                <? WLout(); ?>
-                                <!-- Message Function -->
-                                    <? WLmess(); ?>
-                                <!-- Confirm Radio -->
-                                        <input class="with-gap" type="radio" name="place" value="Writing Lab" id="WLConfirm" />
-                                        <label for="WLConfirm">Confirm Writing Lab</label>
-                                        <br>
-                                        <br>
-                                        <br>
-                                        <? reasonSel('Writing Lab'); ?>
-
-                            </p>
-                        </div>
-                        <div id="FLtab" class="col s12">
-                            <p>
-                                <!-- Blackout Function -->
-                                <? FLout(); ?>
-                                <!-- Message Function -->
-                                    <? FLmess(); ?>
-                                <!-- Confirm Radio -->
-                                        <input class="with-gap" type="radio" name="place" value="Foreign Language" id="FLConfirm" />
-                                        <label for="FLConfirm">Confirm Foreign Language</label>
-                                        <br>
-                                        <br>
-                                        <br>
-                                        <? reasonSel('Foreign Language'); ?>
-
-                            </p>
-                        </div>
-                        <div id="AMtab" class="col s12">
-                            <p>
-                                <!-- Blackout Function -->
-                                <? AMout(); ?>
-                                <!-- Message Function -->
-                                    <? AMmess(); ?>
-                                <!-- Confirm Radio -->
-                                        <input class="with-gap" type="radio" name="place" value="Athletic Mentor" id="AMConfirm" />
-                                        <label for="AMConfirm">Confirm Athletic Mentor</label>
-                                        <br>
-                                        <br>
-                                        <br>
-                                        <? reasonSel('Athletic Mentor'); ?>
-
-                            </p>
-                        </div>
-                </div>
-            </div>
-            <!-- general info inputs -->
-            <div class="container">
-                <div class="row">
-                    <div class="col s12">
-
-
-
-                        <div id="genInfoInput" class="row blur-sect">
-                            <div class="input-field col s6">
-                                <input id="first_name" name="first_name" type="text" required class="validate">
-                                <label for="first_name">First Name</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input id="last_name" name="last_name" type="text" required class="validate">
-                                <label for="last_name">Last Name</label>
-                            </div>
-                            <div class="input-field col s8">
-                                <input id="email" name="email" type="email" required class="validate">
-                                <label for="email">Email</label>
-                            </div>
-                            <div class="input-field col s4">
-                                <input id="student_id" name="student_id" type="text" required class="validate">
-                                <label for="student_id">Student ID</label>
-                            </div>
-                            <div class="section">
-                                <!-- Date radios -->
-                                <h5 class="center">Pick the day that you are coming.</h5>
-
-                                <div>
-                                    <p class="center">
-                                        <input type="radio" id="monday" onclick="incBlur('day')" name="day" on required value="<? echo date( 'Y-m-d', strtotime("monday this week")); ?>">
-                                        <label for="monday">Monday</label>
-                                        &nbsp &nbsp
-                                        <input type="radio" id="tuesday" onclick="incBlur('day')" name="day" value="<? echo date( 'Y-m-d', strtotime(" tuesday this week ")); ?>">
-                                        <label for="tuesday">Tuesday</label>
-                                        &nbsp &nbsp
-                                        <input type="radio" id="wednesday" onclick="incBlur('day')" name="day" value="<? echo date( 'Y-m-d', strtotime(" wednesday this week ")); ?>">
-                                        <label for="wednesday">Wednesday</label>
-                                        &nbsp &nbsp
-                                        <input type="radio" id="thursday" onclick="incBlur('day')" name="day" value="<? echo date( 'Y-m-d', strtotime(" thursday this week ")); ?>">
-                                        <label for="thursday">Thursday</label>
-                                        &nbsp &nbsp
-                                        <input type="radio" id="friday" onclick="incBlur('day')" name="day" value="<? echo date( 'Y-m-d', strtotime(" friday this week ")); ?>">
-                                        <label for="friday">Friday</label>
-
-                                    </p>
-
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Period Tabs -->
-                        <div class="row">
-                            <div class="col s12">
-                                <ul id="periodTabs" class="tabs blur-sect">
-                                    <li class="tab col s3"><a id="aperTab" href="#aper">A Period</a></li>
-                                    <li class="tab col s3"><a id="bperTab" href="#bper">B Period</a></li>
-                                    <li class="tab col s3"><a id="cperTab" href="#cper">C Period</a></li>
-                                    <li class="tab col s3"><a id="dperTab" href="#dper">D Period</a></li>
-                                    <li class="tab col s3"><a id="eperTab" href="#eper">E Period</a></li>
-                                    <li class="tab col s3"><a id="fperTab" href="#fper">F Period</a></li>
-                                    <li class="tab col s3"><a id="gperTab" href="#gper">G Period</a></li>
-                                    <li class="tab col s3"><a id="hperTab" href="#hper">H Period</a></li>
-                                </ul>
-                            </div>
-                            <div id="shTeacherALLSelect" class="blur-sect">
-                            <!--AAAAAAAAAAAAAAAAAAA-->
-
-                            <div id="aper" class="col s12">
-                                <p>
-                                    <select name="shTeacherA" class="browser-default" onchange="perTabBundCheck('shTeacher')">
-                                        <option selected value="">Choose Your Teacher</option>
-
-                                        <?
-
-
-
-                                    $sql="SELECT name_title,firstname,lastname,email FROM teachers WHERE period='a' ORDER BY lastname";
-                                    $result = $conn->query($sql);
-
-                                    if ($result->num_rows > 0) {
-                                        // output data of each row
-                                        while($row = $result->fetch_assoc()) {
-
-                                            echo '<option value="'. $row['email'] . '">' .$row['name_title'] . ' ' . $row['firstname'] . ' ' . $row['lastname'] . "</option>";
-                                        }
-
-                                    } else {
-
-                                    }
-                                ?>
-                                    </select>
-                                    <input class="with-gap" type="radio" onclick="perTabBundCheck('confirm')" name="perTab" value="a" required id="aConfirm" />
-                                    <label for="aConfirm">Confirm Study Hall and Period</label>
-                                </p>
-                            </div>
-                            <!--BBBBBBBBBBBBBBBBBBB-->
-                            <div id="bper" class="col s12">
-                                <p>
-                                    <select name="shTeacherB" class="browser-default" onchange="perTabBundCheck('shTeacher')">
-                                        <option selected disabled value="">Choose Your Teacher</option>
-
-                                        <?
-
-
-
-                                    $sql="SELECT name_title,firstname,lastname,email FROM teachers WHERE period='b' ORDER BY lastname";
-                                    $result = $conn->query($sql);
-
-                                    if ($result->num_rows > 0) {
-                                        // output data of each row
-                                        while($row = $result->fetch_assoc()) {
-
-                                            echo '<option value="'. $row['email'] . '">' .$row['name_title'] . ' ' . $row['firstname'] . ' ' . $row['lastname'] . "</option>";
-                                        }
-
-                                    } else {
-
-                                    }
-                                ?>
-                                    </select>
-
-
-                                    <input class="with-gap" type="radio" onclick="perTabBundCheck('confirm')" name="perTab" value="b" id="bConfirm" />
-                                    <label for="bConfirm">Confirm Study Hall and Period</label>
-                                </p>
-                            </div>
-                            <!--CCCCCCCCCCCCCCCCCCCC-->
-                            <div id="cper" class="col s12">
-                                <p>
-
-                                    <select name="shTeacherC" class="browser-default" onchange="perTabBundCheck('shTeacher')">
-                                        <option selected disabled value="">Choose Your Teacher</option>
-
-                                        <?
-
-
-
-                                    $sql="SELECT name_title,firstname,lastname,email FROM teachers WHERE period='c' ORDER BY lastname";
-                                    $result = $conn->query($sql);
-
-                                    if ($result->num_rows > 0) {
-                                        // output data of each row
-                                        while($row = $result->fetch_assoc()) {
-
-                                            echo '<option value="'. $row['email'] . '">' .$row['name_title'] . ' ' . $row['firstname'] . ' ' . $row['lastname'] . "</option>";
-                                        }
-
-                                    } else {
-
-                                    }
-                                ?>
-                                    </select>
-
-                                    <input class="with-gap" type="radio" onclick="perTabBundCheck('confirm')" name="perTab" value="c" id="cConfirm" />
-                                    <label for="cConfirm">Confirm Study Hall and Period</label>
-                                </p>
-                            </div>
-                            <!--DDDDDDDDDDDDDDDDDDDD-->
-                            <div id="dper" class="col s12">
-                                <p>
-                                    <select name="shTeacherD" class="browser-default" onchange="perTabBundCheck('shTeacher')">
-                                        <option selected disabled value="">Choose Your Teacher</option>
-
-                                        <?
-
-
-
-                                    $sql="SELECT name_title,firstname,lastname,email FROM teachers WHERE period='d' ORDER BY lastname";
-                                    $result = $conn->query($sql);
-
-                                    if ($result->num_rows > 0) {
-                                        // output data of each row
-                                        while($row = $result->fetch_assoc()) {
-
-                                            echo '<option value="'. $row['email'] . '">' .$row['name_title'] . ' ' . $row['firstname'] . ' ' . $row['lastname'] . "</option>";
-                                        }
-
-                                    } else {
-
-                                    }
-                                ?>
-                                    </select>
-                                    <input class="with-gap" type="radio" onclick="perTabBundCheck('confirm')" name="perTab" value="d" id="dConfirm" />
-                                    <label for="dConfirm">Confirm Study Hall and Period</label>
-                                </p>
-                            </div>
-                            <!--EEEEEEEEEEEEEEEEEEEE-->
-                            <div id="eper" class="col s12">
-                                <p>
-                                    <select name="shTeacherE" class="browser-default" onchange="perTabBundCheck('shTeacher')">
-                                        <option selected disabled value="">Choose Your Teacher</option>
-
-                                        <?
-
-
-
-                                    $sql="SELECT name_title,firstname,lastname,email FROM teachers WHERE period='e' ORDER BY lastname";
-                                    $result = $conn->query($sql);
-
-                                    if ($result->num_rows > 0) {
-                                        // output data of each row
-                                        while($row = $result->fetch_assoc()) {
-
-                                            echo '<option value="'. $row['email'] . '">' .$row['name_title'] . ' ' . $row['firstname'] . ' ' . $row['lastname'] . "</option>";
-                                        }
-
-                                    } else {
-
-                                    }
-                                ?>
-                                    </select>
-                                    <input class="with-gap" type="radio" onclick="perTabBundCheck('confirm')" name="perTab" value="eL1" id="eL1Confirm" />
-                                    <label for="eL1Confirm">Confirm E Period (First Lunch)</label>
-                                    <input class="with-gap" type="radio" onclick="perTabBundCheck('confirm')" name="perTab" value="eL2" id="eL2Confirm" />
-                                    <label for="eL2Confirm">Confirm E Period (Second Lunch)</label>
-                                </p>
-                            </div>
-                            <!--FFFFFFFFFFFFFFFFFFFF-->
-                            <div id="fper" class="col s12">
-                                <p>
-                                    <select name="shTeacherF" class="browser-default" onchange="perTabBundCheck('shTeacher')">
-                                        <option selected disabled value="">Choose Your Teacher</option>
-
-                                        <?
-
-
-                                    $sql="SELECT name_title,firstname,lastname,email FROM teachers WHERE period='f' ORDER BY lastname";
-                                    $result = $conn->query($sql);
-
-                                    if ($result->num_rows > 0) {
-                                        // output data of each row
-                                        while($row = $result->fetch_assoc()) {
-
-                                            echo '<option value="'. $row['email'] . '">' .$row['name_title'] . ' ' . $row['firstname'] . ' ' . $row['lastname'] . "</option>";
-                                        }
-
-                                    } else {
-                                    }
-                                ?>
-                                    </select>
-                                    <input class="with-gap" type="radio" onclick="perTabBundCheck('confirm')" name="perTab" value="f" id="fConfirm" />
-                                    <label for="fConfirm">Confirm Study Hall and Period</label>
-                                </p>
-                            </div>
-                            <!--GGGGGGGGGGGGGGGGGGGG-->
-                            <div id="gper" class="col s12">
-                                <p>
-                                    <select name="shTeacherG" class="browser-default" onchange="perTabBundCheck('shTeacher')">
-                                        <option selected disabled value="">Choose Your Teacher</option>
-
-                                        <?
-
-
-                                    $sql="SELECT name_title,firstname,lastname,email FROM teachers WHERE period='g' ORDER BY lastname";
-                                    $result = $conn->query($sql);
-
-                                    if ($result->num_rows > 0) {
-                                        // output data of each row
-                                        while($row = $result->fetch_assoc()) {
-
-                                            echo '<option value="'. $row['email'] . '">' .$row['name_title'] . ' ' . $row['firstname'] . ' ' . $row['lastname'] . "</option>";
-                                        }
-
-                                    } else {
-                                    }
-                                ?>
-                                    </select>
-                                    <input class="with-gap" type="radio" onclick="perTabBundCheck('confirm')" name="perTab" value="g" id="gConfirm" />
-                                    <label for="gConfirm">Confirm Study Hall and Period</label>
-                                </p>
-                            </div>
-                            <!--HHHHHHHHHHHHHHHHHHHH-->
-                            <div id="hper" class="col s12">
-                                <p>
-                                    <select name="shTeacherH" class="browser-default" onchange="perTabBundCheck('shTeacher')">
-                                        <option selected disabled value="">Choose Your Teacher</option>
-
-                                        <?
-
-
-                                    $sql="SELECT name_title,firstname,lastname,email FROM teachers WHERE period='h' ORDER BY lastname";
-                                    $result = $conn->query($sql);
-
-                                    if ($result->num_rows > 0) {
-                                        // output data of each row
-                                        while($row = $result->fetch_assoc()) {
-
-                                            echo '<option value="'. $row['email'] . '">' .$row['name_title'] . ' ' . $row['firstname'] . ' ' . $row['lastname'] . "</option>";
-                                        }
-
-                                    } else {
-                                    }
-                                ?>
-                                    </select>
-                                    <input class="with-gap" type="radio" onclick="perTabBundCheck('confirm')" name="perTab" value="h" id="hConfirm" />
-                                    <label for="hConfirm">Confirm Study Hall and Period</label>
-                                </p>
-                            </div>
                           </div>
-                            <!--END-->
-                            <!--SH Select-->
+                          <div id="ReasonAJAX"></div>
 
-                        </div>
-
+                          <br>
+                        <!--Advanced-->
+                      <div>
+                        <input type="checkbox" id="sao" />
+                        <label for="sao">Show Advanced Options</label>
+                      </div>
+                      <div class="divider"></div>
+                      <div id="passrequestAdvanced" style="display: none;">
+                        <h5 class="center white-text">Advanced Options</h5>
+                        <div class="divider"></div>
+                      </div>
+                      <div class="section">
+                        <a class="waves-effect waves-light btn-large red" id="submitPass" disabled onclick="submitPass(<?php echo $_SESSION['studentAccID'] ?>);">Submit Pass<span id="subPassAdv"><i class='material-icons right'>send</i></span></a>
+                      </div>
+                    </form>
                     </div>
+                  </div>
                 </div>
-
-                <button id="finPassSubmitThang" class="btn waves-effect waves-light tooltipped blur-sect" data-position="top" data-delay="50" data-tooltip="You CANNOT cancel this pass.  You are required to come. " type="submit" name="submit">Request a pass
-                    <i class="material-icons right">send</i>
-                </button>
-                <span id="rememberMeCon" class="blur-sect">
-                <input type="checkbox" id="rememberMe" checked="checked" disabled="disabled" />
-                <label for="rememberMe">Remember Me (COMING VERY SOON)</label>
-              </span>
+              </div>
             </div>
-        </form>
-
-
-
-
-        <!-- Footer -->
-
-
-        <footer class="page-footer white">
-            <div class="footer-copyright">
-                <div class="container">
-                    <a class="black-text left" href="https://www.josephhassell.com/">Copyright © 2016 Joseph Hassell</a> &nbsp &nbsp
-                    <a class="black-text right" href="https://github.com/poster983/passport/blob/master/LICENSE">License </a> &nbsp &nbsp
-                    <a class="black-text right" href="https://poster983.github.io/passport/">Project Page &nbsp &nbsp</a>&nbsp &nbsp
-                </div>
-            </div>
-        </footer>
-    </div>
-
-
-
-        <!--js-->
-
-
-
+          </div>
 
 
         <!-- Scripts -->
@@ -787,16 +299,290 @@ My Sanity :)
                 document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
             }
         </script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+        <!-- Compiled and minified JavaScript -->
+        <script src="js/materialize.js"></script>
+        <script src="js/passport.js"></script>
         <script>
+
+
               $(document).ready(function(){
                 // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
                 $('.modal-trigger').leanModal();
+                $(".button-collapse").sideNav();
+                $('.tooltipped').tooltip({delay: 50});
+                $('select').material_select();
+                AllStudentmessageAjaxAfterPageLoad();
               });
+              /*
+              depLock = 0;
+              dateshowLock = 0;
+              selVal = 0;
+
+              passSubmitReady = 0;
+              depReady = false;
+              reasonReady = false;
+              dateReady = false;
+              function carsonRau(){
+                $(document.body).css('background-image', 'url(/passport/image/cork-board.jpg)');
+                $('#PassCard').addClass("animated infinite jello");
+                $('#navBar').addClass("animated infinite rubberBand");
+                console.log("There You Go Carson");
+              }
+              function showDatePicker() {
+                if(dateshowLock == 0) {
+                $('#datePicker').show();
+
+                  dateshowLock = 1;
+                }
+              }
+              function dateVal() {
+
+                    dateReady = true;
+
+                checkPassSubmit();
+
+              }
+                  function depToReasonAJAX(depart, perd) {
 
 
+
+                    if(depLock == 0) {
+                      selVal +=1;
+                      depLock = 1;
+                      depReady = true;
+                    }
+                    dateshowLock = 0;
+                    reasonReady = false;
+                    dateReady = false;
+                    checkPassSubmit();
+
+                    $('#ReasonAJAX').html("<img class='svg-dis' src='/passport/image/rings.svg' /> <h5 class='center'>Loading</h5>");
+                    $.ajax({
+                  url: 'ajaxGetReasonsAndBlackout.php',
+                  data: {'dep': depart, 'per': perd},
+                  type: 'get',
+                  success: function(data) {
+                    $('#ReasonAJAX').html(data);
+                  },
+                  error: function(xhr, desc, err) {
+                  console.log(xhr);
+                  console.log("Details: " + desc + "\nError:" + err);
+                  $('#ReasonAJAX').html("There was an error.  Please check the console for more details.");
+                  }
+                })
+                $( document ).ajaxComplete(function() {
+
+                  $('select').material_select();
+                  if(selVal == 1) {
+                    $("#depDiv input[type=text]").addClass('valid');
+                  } else if(selVal ==2) {
+                    $("#shPer input[type=text]").addClass('valid');
+                  } else if(selVal == 3) {
+                    $("#shPer input[type=text]").addClass('valid');
+                    $("#stYear input[type=text]").addClass('valid');
+                  }
+
+                });
+                };
+
+                function submitPassToAjax(id, depart, reason, day) {
+                  $('#behindCard').html("<img class='svg-dis' src='/passport/image/rings.svg' /> <h5 class='center'>Loading</h5>");
+                  $.ajax({
+                url: 'ajaxSubmit.php',
+                data: {'sAccID': id, 'dep': depart, 'reason': reason, 'day': day},
+                type: 'get',
+                success: function(data) {
+
+                  $('#behindCard').html(data);
+                  depLock = 0;
+                  dateshowLock = 0;
+                  selVal = 0;
+
+                  dateshowLock = 0;
+                  depReady = false;
+                  reasonReady = false;
+                  dateReady = false;
+                  console.log("AJAX");
+                  $('#ReasonAJAX').html("");
+                  $('#submitPass').attr("disabled",true);
+                  $('#datePicker').hide();
+                  $('#passForm').formClear();
+                  $('#PassCard').show();
+                  $('#PassCard').animateCss('fadeInLeft');
+                  $('#PassCard').one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
+                function(e) {
+                $('select').material_select();
+                if(!depReady || !reasonReady || !dateReady){
+                openFullOverlay("confirmOver");
+                setTimeout(function(){
+                  $( "#checkmarkAnimationfull" ).html('<svg class="pause-Ani checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path id="checkMarkAni"  class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>');
+                  $('#checkMarkAni').one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
+                    function(e) {
+                      console.log("done");
+                    closeFullOverlay("confirmOver", 1000);
+                    });
+                }, 500);
+              }
+                });
+
+                },
+                error: function(xhr, desc, err) {
+                console.log(xhr);
+                console.log("Details: " + desc + "\nError:" + err);
+                $('#behindCard').html("There was an error.  Please check the console for more details.");
+                }
+              })};
+
+                function submitPass(id) {
+                  if (passSubmitReady == 1 && dateshowLock == 1){
+                    passSubmitReady = 0;
+                    console.log("hi");
+                    $('#PassCard').animateCss('fadeOutRight');
+                    $('#PassCard').one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
+                  function(e) {
+
+                    console.log($("input[name=day]:checked").val());
+                    if($("input[name=day]:checked").val() != undefined) {
+                      $('#PassCard').hide();
+                  submitPassToAjax(id,$('#department').val(),$('#ajaxReason').val(),$("input[name=day]:checked").val());
+                  console.log("byeee");
+                } else {
+                  console.log("aaaaaaaaaaaaa");
+                }
+                console.log("bysdfsdeee");
+                  });
+                  console.log("bye");
+                  }
+                };
+
+                function checkPassSubmit(){
+                  if(depReady && reasonReady && dateReady){
+                    $('#submitPass').attr("disabled",false);
+                    passSubmitReady = 1;
+                  } else {
+                    $('#submitPass').attr("disabled",true);
+                    passSubmitReady = 0;
+                  }
+                };
+
+                function AllStudentmessageAjaxAfterPageLoad() {
+                  $('#ajaxAllStudentMess').html("<img class='svg-dis' src='/passport/image/rings.svg' /> <h5 class='center'>Checking for Messages</h5>");
+                  $.ajax({
+                url: 'ajaxMessage.php',
+                success: function(data) {
+                  $('#ajaxAllStudentMess').html(data);
+                },
+                error: function(xhr, desc, err) {
+                console.log(xhr);
+                console.log("Details: " + desc + "\nError:" + err);
+                $('#ajaxAllStudentMess').html("There was an error.  Please check the console for more details.");
+                }
+              })};
+
+              */
 
               </script>
-<script src="/passport/js/passr.js"></script>
-</body>
 
-</html>
+  </body>
+  </html>
+
+  <?
+
+  //bug report submit code
+
+
+  if(isset($_POST['submitbug'])){
+
+
+      foreach ($_POST as $key => $value) {
+
+  }
+  {
+
+
+      $bugname = $_POST['bugname'];
+      $bugemail = $_POST['bugemail'];
+      $bugseverity = $_POST['bugseverity'];
+      $bugdate = date( 'Y-m-d', strtotime(" today "));
+      $bugtext = htmlspecialchars($_POST['bugtext'],ENT_QUOTES);
+      $bugReportType = "bug";
+      $bugRole = "student";
+      $bugVersion = $CurrentVersionOfPassport;
+  }
+  /*
+      $medooDB->action(function($database) {
+      $bugLAstID = $database->insert("feedback", array(
+        "name" => $bugname,
+        "email" => $bugemail,
+        "comment" => $bugtext,
+        "rating" => $bugseverity,
+        "report_type" => "bug",
+        "date" => $bugdate,
+        "role" => "student",
+        "forVersion" => $bugVersion
+      ));/*
+      if ($medooDB->has("feedback", array("id" => $bugLAstID))) {
+        echo "<script> Materialize.toast('Bug report submitted successfully', 4000) </script>";
+      } else {
+        echo "<script> Materialize.toast('There was an error. contact IT and send them the error code at the bottom of the page', 14000) </script>";
+        var_dump($medooDB->error());
+        //return false;
+
+      }
+    };
+    */
+
+
+      $sqlbug = $conn->prepare("INSERT INTO feedback (name, email, comment, rating, report_type, `date`, role, forVersion)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+
+      $sqlbug->bind_param("sssissss", $bugname, $bugemail, $bugtext, $bugseverity, $bugReportType, $bugdate, $bugRole, $bugVersion);
+      if ($sqlbug->execute()) {
+        echo "<script> Materialize.toast('Bug report submitted successfully', 4000) </script>";
+      } else {
+        echo "<script> Materialize.toast('There was an error. contact IT', 14000) </script>";
+      }
+      $sqlbug->close();
+
+
+  }
+
+
+
+  //bug report submit code
+
+
+  if(isset($_POST['submitreview'])){
+
+
+      foreach ($_POST as $key => $value) {
+
+  }
+  {
+
+
+      $reviewname = $_POST['reviewname'];
+      $reviewemail = $_POST['reviewemail'];
+      $reviewtext = htmlspecialchars($_POST['reviewtext'],ENT_QUOTES);
+      $reviewseverity = $_POST['rating'];
+      $reviewdate = date( 'Y-m-d', strtotime(" today "));
+      $reviewReportType = "review";
+      $reviewRole = "student";
+      $reviewVersion = $CurrentVersionOfPassport;
+  }
+
+      $sqlbug = $conn->prepare("INSERT INTO feedback (name, email, comment, rating, report_type, `date`, role, forVersion)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+
+      $sqlbug->bind_param("sssissss", $reviewname, $reviewemail, $reviewtext, $reviewseverity, $reviewReportType, $reviewdate, $reviewRole, $reviewVersion);
+      if ($sqlbug->execute()) {
+        echo "<script> Materialize.toast('Review submitted successfully', 4000) </script>";
+      } else {
+        echo "<script> Materialize.toast('There was an error. contact IT', 14000) </script>";
+      }
+      $sqlbug->close();
+  }
+
+  ?>

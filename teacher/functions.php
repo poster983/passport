@@ -30,7 +30,7 @@ $weddisday = date( 'Y-m-d', strtotime(" wednesday this week "));
 $thurdisday = date( 'Y-m-d', strtotime(" thursday this week "));
 $fridisday = date( 'Y-m-d', strtotime(" friday this week "));
 
-$today = date( 'Y-m-d', strtotime(" today "));
+$today = date( 'Y-m-d', strtotime(" monday this week "));
 //WHERE day = '$mondisday' OR day = '$tusdisday' OR day = '$weddisday' OR day = '$thurdisday' OR day = '$fridisday'
 function blackout()
 {

@@ -87,7 +87,7 @@ My Sanity :)
              <div class="background">
                <img src="/passport/image/stunav.jpg">
              </div>
-             <!--<a href="#!user"><img class="circle" src="images/yuna.jpg"></a>-->
+             <a href="#!user"><i class="material-icons md-48 md-light">account_circle</i></a>
              <a href="#!name"><span class="white-text name"><?php echo $_SESSION['sFN'] . " " . $_SESSION['sLN']; ?></span></a>
              <a href="#!email"><span class="white-text email"><?php echo $_SESSION['email']; ?></span></a>
            </div></li>
@@ -225,6 +225,20 @@ My Sanity :)
 
     <!-- System Message-->
         <div id="ajaxAllStudentMess"></div>
+        <!--login Message-->
+        <?php
+        if (isset($_SESSION['messageFromLogin'])) {
+          echo "<div class='row'>
+            <div class='col s12'>
+              <div class='card-panel teal'>
+                <h1>NOTE FROM LAST LOGIN!</h1>
+                <h3>" . $_SESSION['messageFromLogin'] . "</h3>
+              </div>
+            </div>
+          </div>";
+        }
+        ?>
+
         <div class="container">
           <div class="section">
             <div class="row">
@@ -237,7 +251,7 @@ My Sanity :)
                       <form id="passForm" method="post">
 
                           <div id="depDiv" class="input-field col s12">
-                            <select id="department" name="department" required class="white-text validate" onchange="depToReasonAJAX(this.value);">
+                            <select id="department" name="department" required class="white-text validate" onchange="depToReasonAJAX(this.value, '<?php echo $_SESSION['period'] ?>');">
                               <option value="" disabled selected>Choose A Department</option>
                               <option value="LEC">Executive Functioning (LEC)</option>
                               <option value="Math">Math Tutoring</option>
@@ -251,7 +265,7 @@ My Sanity :)
 
                           </div>
                           <div id="ReasonAJAX"></div>
-                          
+
                           <br>
                         <!--Advanced-->
                       <div>
@@ -301,11 +315,11 @@ My Sanity :)
                 $('select').material_select();
                 AllStudentmessageAjaxAfterPageLoad();
               });
-
+              /*
               depLock = 0;
               dateshowLock = 0;
               selVal = 0;
-              dateLock = 0;
+
               passSubmitReady = 0;
               depReady = false;
               reasonReady = false;
@@ -324,14 +338,13 @@ My Sanity :)
                 }
               }
               function dateVal() {
-                if (dateLock == 0) {
+
                     dateReady = true;
-                  dateLock = 1;
-                }
+
                 checkPassSubmit();
 
               }
-                  function depToReasonAJAX(depart) {
+                  function depToReasonAJAX(depart, perd) {
 
 
 
@@ -342,12 +355,13 @@ My Sanity :)
                     }
                     dateshowLock = 0;
                     reasonReady = false;
+                    dateReady = false;
                     checkPassSubmit();
 
                     $('#ReasonAJAX').html("<img class='svg-dis' src='/passport/image/rings.svg' /> <h5 class='center'>Loading</h5>");
                     $.ajax({
                   url: 'ajaxGetReasonsAndBlackout.php',
-                  data: {'dep': depart},
+                  data: {'dep': depart, 'per': perd},
                   type: 'get',
                   success: function(data) {
                     $('#ReasonAJAX').html(data);
@@ -385,7 +399,7 @@ My Sanity :)
                   depLock = 0;
                   dateshowLock = 0;
                   selVal = 0;
-                  dateLock = 0;
+
                   dateshowLock = 0;
                   depReady = false;
                   reasonReady = false;
@@ -467,7 +481,7 @@ My Sanity :)
                 }
               })};
 
-
+              */
 
               </script>
 

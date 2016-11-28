@@ -100,50 +100,69 @@ $blackout = $medooDB->select("blackout", array(
     "department" => $dep,
     "day[<>]" => array(
       date( 'Y-m-d', strtotime(' monday this week ')),
-      //date( 'Y-m-d', strtotime(' friday this week '))
-      date("Y-m-d")
+      date( 'Y-m-d', strtotime(' friday this week '))
+      //date("Y-m-d")
     )
   )
 
 ));
 foreach($blackout as $row)
 {
-	echo "day:" . $row["day"] . " - periods:" . $row["period"] . "<br/>";
-  $perarray = explode(",", $row["period"]);
-  for ($i=0; $i < count($perarray); $i++) {
+	//echo "day:" . $row["day"] . " - periods:" . $row["period"] . "<br/>";
+  $currPeriod = $row["period"];
+  $perarray = explode(",", $currPeriod);
+
+  //echo $perarray_null[1];
+
+  $length = count($perarray);
+  /*
+  for ($i=0; $i < $length; $i++) {
+    echo $perarray[i];
     if($perarray[i] == "G") {
       echo "yes";
       echo date("l", $row["day"]);
-      break;
+      //break;
     }
   }
+  */
+  foreach ($perarray as $perInd => $pervalue) {
+    if($pervalue == $_GET['per'] || $pervalue == "All Day") {
+
+      $_dayOfWeek = date("l", strtotime($row["day"]));
+      //echo $_dayOfWeek;
+      $_dayOfWeekOverlay = date("l", strtotime($row["day"])) . "overlay";
+      $$_dayOfWeek = "disabled title = 'Not Accepting Passes On " . $_dayOfWeek . "'";
+      $$_dayOfWeekOverlay = "<span class='closed'>Closed</span>";
+    }
+  }
+  echo "<br>";
 
 }
 
 echo"<div id='datePicker' class='center' style='display: none;' >
-    <input type='radio' class='with-gap' id='monday' onclick='dateVal();' name='day' on required value='" . date( 'Y-m-d', strtotime(' monday this week ')) . "'>
-    <label for='monday'>Monday</label>
+    <input type='radio' class='with-gap' id='monday' onclick='dateVal();' " . $Monday . "name='day' on required value='" . date( 'Y-m-d', strtotime(' monday this week ')) . "'>
+    <label for='monday'>Monday" . $Mondayoverlay . "</label>
     &nbsp; &nbsp;
-    <input type='radio' class='with-gap' id='tuesday' onclick='dateVal();' name='day' value='" . date( 'Y-m-d', strtotime(' tuesday this week ')) . "'>
-    <label for='tuesday'>Tuesday</label>
+    <input type='radio' class='with-gap' id='tuesday' onclick='dateVal();' " . $Tuesday . " name='day' value='" . date( 'Y-m-d', strtotime(' tuesday this week ')) . "'>
+    <label for='tuesday'>Tuesday " . $Tuesdayoverlay . "</label>
     &nbsp;&nbsp;";
     if($dep == "LEC" || $dep == "Library"){
       echo"<input type='radio' class='with-gap' id='wednesday' disabled onclick='dateVal();' name='day' value='" . date( 'Y-m-d', strtotime(' wednesday this week ')) . "'>
-      <label for='wednesday'>Wednesday</label>
+      <label for='wednesday'>Wednesday <span class='closed'>Closed</span></label>
       &nbsp;&nbsp;";
     } else {
-      echo"<input type='radio' class='with-gap' id='wednesday' onclick='dateVal();' name='day' value='" . date( 'Y-m-d', strtotime(' wednesday this week ')) . "'>
-      <label for='wednesday'>Wednesday</label>
+      echo"<input type='radio' class='with-gap' id='wednesday' onclick='dateVal();' " . $Wednesday . " name='day' value='" . date( 'Y-m-d', strtotime(' wednesday this week ')) . "'>
+      <label for='wednesday'>Wednesday " . $Wednesdayoverlay . "</label>
       &nbsp;&nbsp;";
     }
 
 
 echo "
-    <input type='radio' class='with-gap' id='thursday' onclick='dateVal();' name='day' value='" . date( 'Y-m-d', strtotime(' thursday this week ')) . "'>
-    <label for='thursday'>Thursday</label>
+    <input type='radio' class='with-gap' id='thursday' onclick='dateVal();' " . $Thursday . " name='day' value='" . date( 'Y-m-d', strtotime(' thursday this week ')) . "'>
+    <label for='thursday'>Thursday " . $Thursdayoverlay . "</label>
     &nbsp;&nbsp;
-    <input type='radio' class='with-gap' id='friday' onclick='dateVal();' name='day' value='" . date( 'Y-m-d', strtotime(' friday this week ')) . "'>
-    <label for='friday'>Friday</label>
+    <input type='radio' class='with-gap' id='friday' onclick='dateVal();' " . $Friday . " name='day' value='" . date( 'Y-m-d', strtotime(' friday this week ')) . "'>
+    <label for='friday'>Friday " . $Fridayoverlay . "</label>
 
 </div>
 ";

@@ -57,10 +57,10 @@ if (isset($_POST['Submit'])) {
 			$_SESSION['period'] = $shPeriod;
 			$_SESSION['studentAccID'] = $accID;
 			if($emailVerStat == 0) {
-				$msg = "Please check your email for the confirmation email<br>If you did not get it, please contact your teacher.";
+				$_SESSION['messageFromLogin'] = "Please check your email for the confirmation email<br>If you did not get it, please contact your teacher.";
 			}
 
-			header("Location: index.php");
+			header("Location: ../index.php");
       $msg = "Your in!";
 		} else {
 			$msg = "Email or Password incorrect";
@@ -143,6 +143,8 @@ SOFTWARE.
                 <button class="btn waves-effect waves-light red darken-4" type="submit" name="Submit">Login
                     <i class="material-icons right">lock_open</i>
                 </button>
+								<br>
+								<a class="waves-effect waves-light btn" href="createAccount.php">Create An Account</a>
             </form>
 						<h6> <? echo $msg; ?> </h6>
             </div>
