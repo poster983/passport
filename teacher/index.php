@@ -69,7 +69,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       <a href="#" class="brand-logo left">Teachers</a>
       <ul id="nav-mobile" class="right">
         <!--<li class="right"><a href="logout.php">Logout<i class="material-icons right">lock</i></a></li>-->
-        <li><a href="index.php"><i class="material-icons">refresh</i></a></li>
+        <li><a href="<?php echo 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>"><i class="material-icons">refresh</i></a></li>
         <li><a class="dropdown-button" href="#!" data-activates="threeDot">	&nbsp; &nbsp; &nbsp;	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<i class="material-icons left">more_vert</i> </a></li>
         <li><a href=""></a></li>
       </ul>
