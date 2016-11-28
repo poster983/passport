@@ -122,8 +122,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
 <?
-    $email = $_SESSION['teacherEmail'];
-    echo "the email is " . $email;
+    $teaID = $_SESSION['teacherID'];
+    echo "the ID is " . $teaID;
     if(isset($_POST['submit'])) {
       include "../sqlconnect.php";
       //Vars
@@ -134,10 +134,10 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
       //Check if old pass is right
       mysqli_report(MYSQLI_REPORT_ERROR);
-      if ($stmt = $conn->prepare("SELECT password FROM teachers WHERE email = ?")) {
+      if ($stmt = $conn->prepare("SELECT password FROM teachers WHERE id = ?")) {
         /* bind parameters for markers */
     //    echo "1";
-       $stmt->bind_param("s", $email);
+       $stmt->bind_param("i", $teaID);
        /* execute query */
         $stmt->execute();
         $stmt->store_result();
@@ -183,7 +183,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
               echo "<script> Materialize.toast('Error, Encryption Failed', 10000) </script>";
             } else {
               echo "it all works";
-              $sql = "UPDATE teachers SET password='$newHhashedPass' WHERE email='$email'";
+              $sql = "UPDATE teachers SET password='$newHhashedPass' WHERE id='$teaID'";
 
               if ($conn->query($sql) === TRUE) {
                 echo "<script> Materialize.toast('Your Password has now been updated.', 10000) </script>";
