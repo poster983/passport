@@ -51,10 +51,10 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                     <input type="checkbox" id="dper" name="dper" value="D" />
                     <label for="dper">D Period</label>
                     &nbsp &nbsp
-                    <input type="checkbox" id="eperL1" name="eperL1" value="E(First Lunch)" />
+                    <input type="checkbox" id="eperL1" name="eperL1" value="E1" />
                     <label for="eperL1">E Period (1st Lunch)</label>
                     &nbsp &nbsp
-                    <input type="checkbox" id="eperL2" name="eperL2" value="E(Second Lunch)" />
+                    <input type="checkbox" id="eperL2" name="eperL2" value="E2" />
                     <label for="eperL2">E Period (2nd Lunch)</label>
                     &nbsp &nbsp
                     <input type="checkbox" id="fper" name="fper" value="F" />
@@ -74,7 +74,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                     <input type="radio" id="lec" name="dep" value="LEC" />
                     <label for="lec">LEC</label>
                     &nbsp &nbsp
-                    <input type="radio" id="math" name="dep" value="Math Department" />
+                    <input type="radio" id="math" name="dep" value="Math" />
                     <label for="math">Math</label>
                     &nbsp &nbsp
                     <input type="radio" id="lib" name="dep" value="Library" />

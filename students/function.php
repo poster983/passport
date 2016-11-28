@@ -56,29 +56,6 @@ if ($resultmessage->num_rows > 0) {
 
 
 
-//Reasons
-function reasonSel($reaDep) {
-    global $conn;
-    $reaDepNoSpace = preg_replace('/\s+/', '', $reaDep);
-    echo "<select id='" . $reaDepNoSpace . "ID' name='why" . $reaDepNoSpace . "' class='browser-default' onchange=\"incBlur('why')\">";
-
-
-
-        $sql="SELECT dep, why FROM why WHERE dep='$reaDep' ORDER BY why";
-        $result = $conn->query($sql);
-
-        if ($result->num_rows == 0) {
-          echo "<option selected value='No Choices'>--Not Required--</option>";
-        } else {
-          echo "<option selected disabled value=''>--Choose A Topic--</option>";
-        // output data of each row
-            while($row = $result->fetch_assoc()) {
-                echo '<option value="'.$row['why'].'">' . $row['why']. "</option>";
-            }
-        }
-    echo "</select>";
-}
-
 
 
 

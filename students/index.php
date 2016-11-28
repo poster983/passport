@@ -104,6 +104,13 @@ My Sanity :)
             <span class="right"><?echo $CurrentVersionOfPassport;?></span>
         </div>
     </nav>
+
+    <div id="confirmOver" class="overlay-full">
+      <div id="checkmarkAnimationfull">
+
+    </div>
+      <h1 class="center white-text">Pass Requested</h1>
+    </div>
     <!--FEEDBACK FAB-->
 
 
@@ -217,9 +224,7 @@ My Sanity :)
 
 
     <!-- System Message-->
-      <? include "function.php"; ?>
-
-        <? allStudentMess(); ?>
+        <div id="ajaxAllStudentMess"></div>
         <div class="container">
           <div class="section">
             <div class="row">
@@ -246,24 +251,7 @@ My Sanity :)
 
                           </div>
                           <div id="ReasonAJAX"></div>
-
-                          <div id="datePicker" class="center" style="display: none;" >
-                              <input type="radio" class="with-gap" id="monday" onclick="dateVal();" name="day" on required value="<? echo date( 'Y-m-d', strtotime("monday this week")); ?>">
-                              <label for="monday">Monday</label>
-                              &nbsp; &nbsp;
-                              <input type="radio" class="with-gap" id="tuesday" onclick="dateVal();" name="day" value="<? echo date( 'Y-m-d', strtotime(" tuesday this week ")); ?>">
-                              <label for="tuesday">Tuesday</label>
-                              &nbsp;&nbsp;
-                              <input type="radio" class="with-gap" id="wednesday" onclick="dateVal();" name="day" value="<? echo date( 'Y-m-d', strtotime(" wednesday this week ")); ?>">
-                              <label for="wednesday">Wednesday</label>
-                              &nbsp;&nbsp;
-                              <input type="radio" class="with-gap" id="thursday" onclick="dateVal();" name="day" value="<? echo date( 'Y-m-d', strtotime(" thursday this week ")); ?>">
-                              <label for="thursday">Thursday</label>
-                              &nbsp;&nbsp;
-                              <input type="radio" class="with-gap" id="friday" onclick="dateVal();" name="day" value="<? echo date( 'Y-m-d', strtotime(" friday this week ")); ?>">
-                              <label for="friday">Friday</label>
-
-                          </div>
+                          
                           <br>
                         <!--Advanced-->
                       <div>
@@ -276,7 +264,7 @@ My Sanity :)
                         <div class="divider"></div>
                       </div>
                       <div class="section">
-                        <a class="waves-effect waves-light btn-large" id="submitPass" onclick="submitPass(<?php echo $_SESSION['studentAccID'] ?>);">Submit Pass<span id="subPassAdv"><i class='material-icons right'>send</i></span></a>
+                        <a class="waves-effect waves-light btn-large red" id="submitPass" disabled onclick="submitPass(<?php echo $_SESSION['studentAccID'] ?>);">Submit Pass<span id="subPassAdv"><i class='material-icons right'>send</i></span></a>
                       </div>
                     </form>
                     </div>
@@ -311,6 +299,7 @@ My Sanity :)
                 $(".button-collapse").sideNav();
                 $('.tooltipped').tooltip({delay: 50});
                 $('select').material_select();
+                AllStudentmessageAjaxAfterPageLoad();
               });
 
               depLock = 0;
@@ -318,6 +307,9 @@ My Sanity :)
               selVal = 0;
               dateLock = 0;
               passSubmitReady = 0;
+              depReady = false;
+              reasonReady = false;
+              dateReady = false;
               function carsonRau(){
                 $(document.body).css('background-image', 'url(/passport/image/cork-board.jpg)');
                 $('#PassCard').addClass("animated infinite jello");
@@ -327,28 +319,30 @@ My Sanity :)
               function showDatePicker() {
                 if(dateshowLock == 0) {
                 $('#datePicker').show();
-                  $('#datePicker').animateCss('fadeInDown');
+
                   dateshowLock = 1;
                 }
               }
               function dateVal() {
+                if (dateLock == 0) {
+                    dateReady = true;
+                  dateLock = 1;
+                }
+                checkPassSubmit();
 
               }
                   function depToReasonAJAX(depart) {
-                    $('#wednesday').prop("disabled",false);
-                    if(depart == "LEC" || depart == "Library") {
-                      $('#wednesday').prop('checked', false);
-                      $('#wednesday').prop("disabled",true);
-                      $('#wednesday').prop("title","The " + depart + " is closed on wednesday");
-                      $('#wednesday').prop("alt","The " + depart + " is closed on wednesday");
 
-                    }
+
+
                     if(depLock == 0) {
                       selVal +=1;
                       depLock = 1;
-
+                      depReady = true;
                     }
-
+                    dateshowLock = 0;
+                    reasonReady = false;
+                    checkPassSubmit();
 
                     $('#ReasonAJAX').html("<img class='svg-dis' src='/passport/image/rings.svg' /> <h5 class='center'>Loading</h5>");
                     $.ajax({
@@ -363,7 +357,7 @@ My Sanity :)
                   console.log("Details: " + desc + "\nError:" + err);
                   $('#ReasonAJAX').html("There was an error.  Please check the console for more details.");
                   }
-                })};
+                })
                 $( document ).ajaxComplete(function() {
 
                   $('select').material_select();
@@ -377,26 +371,46 @@ My Sanity :)
                   }
 
                 });
+                };
 
                 function submitPassToAjax(id, depart, reason, day) {
-
-
-
                   $('#behindCard').html("<img class='svg-dis' src='/passport/image/rings.svg' /> <h5 class='center'>Loading</h5>");
                   $.ajax({
                 url: 'ajaxSubmit.php',
                 data: {'sAccID': id, 'dep': depart, 'reason': reason, 'day': day},
                 type: 'get',
                 success: function(data) {
+
                   $('#behindCard').html(data);
+                  depLock = 0;
                   dateshowLock = 0;
+                  selVal = 0;
+                  dateLock = 0;
+                  dateshowLock = 0;
+                  depReady = false;
+                  reasonReady = false;
+                  dateReady = false;
+                  console.log("AJAX");
                   $('#ReasonAJAX').html("");
+                  $('#submitPass').attr("disabled",true);
                   $('#datePicker').hide();
                   $('#passForm').formClear();
+                  $('#PassCard').show();
                   $('#PassCard').animateCss('fadeInLeft');
                   $('#PassCard').one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
                 function(e) {
                 $('select').material_select();
+                if(!depReady || !reasonReady || !dateReady){
+                openFullOverlay("confirmOver");
+                setTimeout(function(){
+                  $( "#checkmarkAnimationfull" ).html('<svg class="pause-Ani checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path id="checkMarkAni"  class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>');
+                  $('#checkMarkAni').one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
+                    function(e) {
+                      console.log("done");
+                    closeFullOverlay("confirmOver", 1000);
+                    });
+                }, 500);
+              }
                 });
 
                 },
@@ -408,19 +422,51 @@ My Sanity :)
               })};
 
                 function submitPass(id) {
-                  if (passSubmitReady == 0 && dateshowLock == 1){
+                  if (passSubmitReady == 1 && dateshowLock == 1){
+                    passSubmitReady = 0;
+                    console.log("hi");
                     $('#PassCard').animateCss('fadeOutRight');
                     $('#PassCard').one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
                   function(e) {
+
                     console.log($("input[name=day]:checked").val());
                     if($("input[name=day]:checked").val() != undefined) {
-
+                      $('#PassCard').hide();
                   submitPassToAjax(id,$('#department').val(),$('#ajaxReason').val(),$("input[name=day]:checked").val());
+                  console.log("byeee");
+                } else {
+                  console.log("aaaaaaaaaaaaa");
                 }
+                console.log("bysdfsdeee");
                   });
-
+                  console.log("bye");
                   }
+                };
+
+                function checkPassSubmit(){
+                  if(depReady && reasonReady && dateReady){
+                    $('#submitPass').attr("disabled",false);
+                    passSubmitReady = 1;
+                  } else {
+                    $('#submitPass').attr("disabled",true);
+                    passSubmitReady = 0;
+                  }
+                };
+
+                function AllStudentmessageAjaxAfterPageLoad() {
+                  $('#ajaxAllStudentMess').html("<img class='svg-dis' src='/passport/image/rings.svg' /> <h5 class='center'>Checking for Messages</h5>");
+                  $.ajax({
+                url: 'ajaxMessage.php',
+                success: function(data) {
+                  $('#ajaxAllStudentMess').html(data);
+                },
+                error: function(xhr, desc, err) {
+                console.log(xhr);
+                console.log("Details: " + desc + "\nError:" + err);
+                $('#ajaxAllStudentMess').html("There was an error.  Please check the console for more details.");
                 }
+              })};
+
 
 
               </script>

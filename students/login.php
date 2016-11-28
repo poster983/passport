@@ -57,7 +57,7 @@ if (isset($_POST['Submit'])) {
 			$_SESSION['period'] = $shPeriod;
 			$_SESSION['studentAccID'] = $accID;
 			if($emailVerStat == 0) {
-				$msg = "Please check your email for the confirmation email";
+				$msg = "Please check your email for the confirmation email<br>If you did not get it, please contact your teacher.";
 			}
 
 			header("Location: index.php");
