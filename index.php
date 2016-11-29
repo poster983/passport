@@ -91,13 +91,11 @@ My Sanity :)
              <a href="#!name"><span class="white-text name"><?php echo $_SESSION['sFN'] . " " . $_SESSION['sLN']; ?></span></a>
              <a href="#!email"><span class="white-text email"><?php echo $_SESSION['email']; ?></span></a>
            </div></li>
-           <!--
-           <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-           <li><a href="#!">Second Link</a></li>
+           <li><a class="waves-effect" href="#!">Your Account</a></li>
            <li><div class="divider"></div></li>
-           <li><a class="subheader">Subheader</a></li>
-           <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
-         -->
+           <!--<li><a class="subheader">Subheader</a></li>-->
+           <li><a class="waves-effect" href="students/logout.php">Logout<i class="material-icons right">lock_outline</i></a></li>
+
          </ul>
           <a href="#" data-activates="slide-out" class="button-collapse left-allign show-on-large"><i class="material-icons">menu</i></a>
             <a href="#" class="brand-logo center">Passport</a>
