@@ -223,7 +223,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 .closebtn-overlay {
     position: absolute;
     top: 20px;
-    right: 45px;
+    right: 5%;
     font-size: 60px !important; /* Override the font-size specified earlier (36px) for all navigation links */
 }
 

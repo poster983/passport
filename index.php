@@ -104,11 +104,14 @@ My Sanity :)
     </nav>
 
     <div id="confirmOver" class="overlay-full">
+      <div class="overlay-content">
       <div id="checkmarkAnimationfull">
 
     </div>
       <h1 class="center white-text">Pass Requested</h1>
+      <a href="javascript:void(0)" class="closebtn-overlay" onclick="closeFullOverlay('confirmOver', 0)">&times;</a>
     </div>
+  </div>
     <!--FEEDBACK FAB-->
 
 
