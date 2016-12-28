@@ -3,7 +3,7 @@ include("common.php");
 checklogin();
 $msg = "";
 date_default_timezone_set('America/Chicago');
-include "../medooconnect.php";
+//include "../medooconnect.php";
 ?>
 <!--
 
@@ -50,23 +50,61 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     main {
       flex: 1 0 auto;
     }
+    .stuIDForm {
+      transition-timing-function: ease-in;
+      transition: opacity 1s;
+      opacity: 1;
+    }
+    @keyframes grow {
+      from {transform: scale(0);}
+      to {transform: scale(3);}
+    }
+    .circleThing {
+      position: absolute;
+      display: inline-block;
+      top: 0%;
+      left: 0%;
+      width: 100vw;
+      height: 100vw;
+    	border-radius: 50%;
+      background-color: #7ac142;
+      z-index: -2;
+    }
+    .circleThingContainer{
+      position: absolute;
+      display: inline-block;
+      top: 0%;
+      left: 0%;
+      width:100vw;
+      height: 100%;
+      overflow: hidden
+    }
+    .circleThing .circleGrow {
+      animation-name: grow;
+      animation-duration: 1s;
+      animation-timing-function: ease-in;
+      animation-fill-mode: forwards;
+    }
     </style>
 
     </head>
     <body>
+      <div class="circleThingContainer"><div class="circleThing"></div></div>
+      <main>
         <h1 class="center" style='color: #ecf0f1'>Student Sign In</h1>
-        <form>
+        <form class="stuIDForm" id="stuIDForm">
           <div class="row">
               <div class="input-field col s4 offset-s4 white-text">
                 <input  id="stu_ID" type="number" class="validate">
                 <label for="stu_ID">Your Student ID</label>
               </div>
               <div class="col s1">
-                <a onclick="changeColor('success');" class="btn-floating waves-effect waves-light red"><i class="material-icons">trending_flat</i></a>
+                  <a onclick="visResponse('success');" class="btn-floating waves-effect waves-light red"><i class="material-icons">trending_flat</i></a>
               </div>
           </div>
         </form>
-
+        <div id="response"></div>
+ <!--
         <footer class="page-footer grey darken-3">
             <div class="footer-copyright">
                 <div class="container">
@@ -76,18 +114,22 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 </div>
             </div>
         </footer>
-
+      -->
+      </main>
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
         <!-- Compiled and minified JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
 
         <script>
-        function changeColor(action) {
+        function visResponse(action) {
           if (action == "success") {
-            $('body').css('background-color', '#00C853');
+            //$('body').css('background-color', '#7ac142');
+            $('#stuIDForm').css('opacity', '0');
+            $('.circleThing').addClass('circleGrow');
             setTimeout(function(){
               $('body').css('background-color', '#212121');
+              $('#stuIDForm').css('opacity', '1');
             }, 2000);
           } else if (action == "error") {
             $('body').css('background-color', '#d50000');
@@ -97,7 +139,39 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
           } else {
             $('body').css('background-color', '#FF9800');
           }
+          console.log($('#stu_ID').val());
         };
+        function submitStuIDToAJAX() {
+          $('#ReasonAJAX').html("<img class='svg-dis' src='/passport/image/rings.svg' /> <h5 class='center'>Loading</h5>");
+          $.ajax({
+            url: 'ajaxStuIDSignin.php',
+            data: {'id': $('#stu_ID').val()},
+            type: 'get',
+            success: function(data) {
+              $('#ReasonAJAX').html(data);
+            },
+            error: function(xhr, desc, err) {
+            console.log(xhr);
+            console.log("Details: " + desc + "\nError:" + err);
+            $('#ReasonAJAX').html("There was an error.  Please check the console for more details.");
+            }
+          })
+          /*
+          $( document ).ajaxComplete(function() {
+
+            $('select').material_select();
+            if(selVal == 1) {
+              $("#depDiv input[type=text]").addClass('valid');
+            } else if(selVal ==2) {
+              $("#shPer input[type=text]").addClass('valid');
+            } else if(selVal == 3) {
+              $("#shPer input[type=text]").addClass('valid');
+              $("#stYear input[type=text]").addClass('valid');
+            }
+
+          });
+          */
+        }
         </script>
       </body>
 </html>
