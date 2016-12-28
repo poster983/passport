@@ -42,6 +42,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       display: flex;
       min-height: 100vh;
       flex-direction: column;
+      transition-timing-function: ease-in;
+      transition: background-color 1s;
+      background-color: #212121;
     }
 
     main {
@@ -50,13 +53,18 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     </style>
 
     </head>
-    <body style='background-color: #212121'>
+    <body>
         <h1 class="center" style='color: #ecf0f1'>Student Sign In</h1>
         <form>
-          <div class="input-field">
-          <input  id="stu_ID" type="number" class="validate">
-          <label for="stu_ID">Your Student ID</label>
-        </div>
+          <div class="row">
+              <div class="input-field col s4 offset-s4 white-text">
+                <input  id="stu_ID" type="number" class="validate">
+                <label for="stu_ID">Your Student ID</label>
+              </div>
+              <div class="col s1">
+                <a onclick="changeColor('success');" class="btn-floating waves-effect waves-light red"><i class="material-icons">trending_flat</i></a>
+              </div>
+          </div>
         </form>
 
         <footer class="page-footer grey darken-3">
@@ -73,5 +81,23 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
         <!-- Compiled and minified JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+
+        <script>
+        function changeColor(action) {
+          if (action == "success") {
+            $('body').css('background-color', '#00C853');
+            setTimeout(function(){
+              $('body').css('background-color', '#212121');
+            }, 2000);
+          } else if (action == "error") {
+            $('body').css('background-color', '#d50000');
+            setTimeout(function(){
+              $('body').css('background-color', '#212121');
+            }, 3000);
+          } else {
+            $('body').css('background-color', '#FF9800');
+          }
+        };
+        </script>
       </body>
 </html>
