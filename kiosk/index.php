@@ -85,18 +85,21 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       animation-timing-function: ease-in;
 
     }
-    @keyframes Xleft {
+    /*fail "x" animation */
+    @keyframes XleftIn {
       0% {
         top: 40%;
         opacity: 0;
         transform: rotate(20deg);
       }
-      30% {
+      100% {
         top: 30%;
         opacity: 1;
         transform: rotate(45deg);
       }
-      70% {
+    }
+    @keyframes XleftOut {
+      0% {
         top: 30%;
         opacity: 1;
         transform: rotate(45deg);
@@ -107,18 +110,22 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         transform: rotate(75deg);
       }
     }
-    @keyframes Xright {
+
+
+    @keyframes XrightIn {
       0% {
         top: 40%;
         opacity: 0;
         transform: rotate(-20deg);
       }
-      30% {
+      100% {
         top: 30%;
         opacity: 1;
         transform: rotate(-45deg);
       }
-      70% {
+    }
+    @keyframes XrightOut {
+      0% {
         top: 30%;
         opacity: 1;
         transform: rotate(-45deg);
@@ -140,9 +147,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       height: 250px;
       transform: rotate(45deg);
       background-color: white;
-      animation-name: Xleft;
-      animation-duration: 4s;
-      animation-timing-function: ease-in-out;;
+      animation-duration: 1s;
+      animation-fill-mode: forwards;
     }
     .Xright {
       position: absolute;
@@ -154,10 +160,166 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       height: 250px;
       transform: rotate(-45deg);
       background-color: white;
-      animation-name: Xright;
-      animation-duration: 4s;
-      animation-timing-function: ease-in-out;
+      animation-duration: 1s;
+      animation-fill-mode: forwards;
 
+
+    }
+    .Xleft.XleftIn {
+      animation-name: XleftIn;
+      animation-timing-function: ease-out;
+    }
+    .Xright.XrightIn {
+      animation-name: XrightIn;
+      animation-timing-function: ease-out;
+    }
+    .Xleft.XleftOut {
+      animation-name: XleftOut;
+      animation-timing-function: ease-out;
+    }
+    .Xright.XrightOut {
+      animation-name: XrightOut;
+      animation-timing-function: ease-out;
+    }
+
+    /*success animation*/
+    @keyframes CleftIn {
+      0% {
+        transform: rotate(15deg);
+        left: 15px;
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: rotate(20deg);
+        left: 30px;
+      }
+    }
+    @keyframes CleftOut {
+      0% {
+        transform: rotate(20deg);
+        left: 30px;
+
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: rotate(70deg);
+        left: 90px;
+        opacity: 0;
+      }
+    }
+
+    @keyframes CrightIn {
+      0% {
+        transform: rotate(15deg);
+        left: 0px;
+        top: 95px;
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: rotate(-50deg);
+        left: -65px;
+        top: 115px;
+      }
+    }
+    @keyframes CrightOut {
+      0% {
+        transform: rotate(-50deg);
+        left: -65px;
+        top: 115px;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: rotate(-70deg);
+        opacity: 0;
+        left: -80px;
+        top: 65px;
+      }
+    }
+ @keyframes checkMarkUpIn {
+   0% {
+     top: 35%;
+   }
+   100% {
+     top: 30%;
+   }
+ }
+ @keyframes checkMarkUpOut {
+   0% {
+     top: 30%;
+   }
+   100% {
+     top: 25%;
+   }
+ }
+      .checkmarkContainer{
+        position: relative;
+        top: 30%;
+        left: 50%;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+      }
+    .Cleft {
+      position: absolute;
+      display: inline-block;
+      top: 30%;
+      left: 30px;
+      opacity: 1;
+      width: 20px;
+      height: 250px;
+      transform: rotate(20deg);
+      background-color: white;
+      border-bottom-right-radius: 1em;
+      animation-duration: 1s;
+      animation-fill-mode: forwards;
+    }
+    .Cright {
+      position: absolute;
+      display: inline-block;
+      top: 115px;
+      left: -65px;
+      opacity: 1;
+      width: 20px;
+      height: 150px;
+      transform: rotate(-50deg);
+      background-color: white;
+      border-bottom-left-radius: 1em;
+      border-bottom-right-radius: 1em;
+      animation-duration: 1s;
+      animation-fill-mode: forwards;
+    }
+    .Cleft.CleftIn {
+      animation-name: CleftIn;
+      animation-timing-function: ease-in-out;
+    }
+    .Cleft.CleftOut {
+      animation-name: CleftOut;
+      animation-timing-function: ease-in-out;
+    }
+    .Cright.CrightIn {
+      animation-name: CrightIn;
+      animation-timing-function: ease-in-out;
+    }
+    .Cright.CrightOut {
+      animation-name: CrightOut;
+      animation-timing-function: ease-in-out;
+    }
+    .checkmarkContainer.checkmarkContainerIn {
+      animation-name: checkMarkUpIn;
+      animation-timing-function: ease-in-out;
+    }
+    .checkmarkContainer.checkmarkContainerOut {
+      animation-name: checkMarkUpOut;
+      animation-timing-function: ease-in-out;
     }
     </style>
 
@@ -166,6 +328,10 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       <div class="circleThingContainer"><div id="circleThing" class="circleThing"></div></div>
       <span id="Xleft"></span>
       <span id="Xright"></span>
+      <div id="checkmarkContainer" class="checkmarkContainer checkmarkContainerOut">
+      <span id="Cleft" class="Cleft CleftOut"></span>
+      <span id="Cright" class="Cright CrightOut"></span>
+    </div>
       <main>
         <h1 class="center" style='color: #ecf0f1'>Student Sign In</h1>
         <form class="stuIDForm" id="stuIDForm">
@@ -203,7 +369,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         function visResponse(action) {
           if (action == "success") {
             $('#stuIDForm').css('opacity', '0');
-
+            $('#checkmarkContainer').addClass('checkmarkContainer checkmarkContainerIn');
+            $('#Cleft').addClass('Cleft CleftIn');
+            $('#Cright').addClass('Cright CrightIn');
             $('#circleThing').removeClass().addClass('circleThing circleGrow green accent-3');
             $('#circleThing').one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
               function(e) {
@@ -224,20 +392,31 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
           } else if (action == "error") {
             $('#stuIDForm').css('opacity', '0');
-            $('#Xleft').addClass('Xleft');
-            $('#Xright').addClass('Xright');
+            $('#Xleft').addClass('Xleft XleftIn');
+            $('#Xright').addClass('Xright XrightIn');
             $('#circleThing').removeClass().addClass('circleThing circleGrow red accent-4');
             $('#circleThing').one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
               function(e) {
                 $('body').addClass('red accent-4');
                 $('#circleThing').removeClass().addClass('circleThing');
+
                 setTimeout(function() {
+                  $('#Xleft').removeClass('XleftIn');
+                  $('#Xright').removeClass('XrightIn');
+
+                  $('#Xleft').addClass('XleftOut');
+                  $('#Xright').addClass('XrightOut');
+
                   $('#circleThing').removeClass().addClass('circleThing circleGrow grey darken-4');
 
                   $('#circleThing').one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
                     function(e) {
                       $('body').removeClass('red accent-4');
                       $('#circleThing').removeClass().addClass('circleThing');
+                        setTimeout(function() {
+                          $('#Xleft').removeClass();
+                          $('#Xright').removeClass();
+                        }, 500);
                   });
 
                   $('#stuIDForm').css('opacity', '1');
