@@ -42,8 +42,6 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       display: flex;
       min-height: 100vh;
       flex-direction: column;
-      transition-timing-function: ease-in;
-      transition: background-color 1s;
       background-color: #212121;
     }
 
@@ -62,13 +60,15 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     .circleThing {
       position: absolute;
       display: inline-block;
+      opacity: 0;
       top: 0%;
       left: 0%;
       width: 100vw;
       height: 100vw;
     	border-radius: 50%;
-      background-color: #7ac142;
-      z-index: -2;
+      z-index: -5;
+      animation-duration: 0.5s;
+      animation-fill-mode: forwards;
     }
     .circleThingContainer{
       position: absolute;
@@ -77,19 +77,95 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       left: 0%;
       width:100vw;
       height: 100%;
-      overflow: hidden
+      overflow: hidden;
     }
-    .circleThing .circleGrow {
+    .circleGrow {
       animation-name: grow;
-      animation-duration: 1s;
+      opacity: 1;
       animation-timing-function: ease-in;
-      animation-fill-mode: forwards;
+
+    }
+    @keyframes Xleft {
+      0% {
+        top: 40%;
+        opacity: 0;
+        transform: rotate(20deg);
+      }
+      30% {
+        top: 30%;
+        opacity: 1;
+        transform: rotate(45deg);
+      }
+      70% {
+        top: 30%;
+        opacity: 1;
+        transform: rotate(45deg);
+      }
+      100% {
+        top: 15%;
+        opacity: 0;
+        transform: rotate(75deg);
+      }
+    }
+    @keyframes Xright {
+      0% {
+        top: 40%;
+        opacity: 0;
+        transform: rotate(-20deg);
+      }
+      30% {
+        top: 30%;
+        opacity: 1;
+        transform: rotate(-45deg);
+      }
+      70% {
+        top: 30%;
+        opacity: 1;
+        transform: rotate(-45deg);
+      }
+      100% {
+        top: 15%;
+        opacity: 0;
+        transform: rotate(-75deg);
+      }
+    }
+
+    .Xleft {
+      position: absolute;
+      display: inline-block;
+      top: 30%;
+      left: 50%;
+      opacity: 1;
+      width: 20px;
+      height: 250px;
+      transform: rotate(45deg);
+      background-color: white;
+      animation-name: Xleft;
+      animation-duration: 4s;
+      animation-timing-function: ease-in-out;;
+    }
+    .Xright {
+      position: absolute;
+      display: inline-block;
+      top: 30%;
+      left: 50%;
+      opacity: 1;
+      width: 20px;
+      height: 250px;
+      transform: rotate(-45deg);
+      background-color: white;
+      animation-name: Xright;
+      animation-duration: 4s;
+      animation-timing-function: ease-in-out;
+
     }
     </style>
 
     </head>
     <body>
-      <div class="circleThingContainer"><div class="circleThing"></div></div>
+      <div class="circleThingContainer"><div id="circleThing" class="circleThing"></div></div>
+      <span id="Xleft"></span>
+      <span id="Xright"></span>
       <main>
         <h1 class="center" style='color: #ecf0f1'>Student Sign In</h1>
         <form class="stuIDForm" id="stuIDForm">
@@ -99,7 +175,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 <label for="stu_ID">Your Student ID</label>
               </div>
               <div class="col s1">
-                  <a onclick="visResponse('success');" class="btn-floating waves-effect waves-light red"><i class="material-icons">trending_flat</i></a>
+                  <a onclick="visResponse('success');" class="btn-floating waves-effect waves-light green"><i class="material-icons">trending_flat</i></a>
+                  <a onclick="visResponse('error');" class="btn-floating waves-effect waves-light red"><i class="material-icons">report_problem</i></a>
+                  <a onclick="visResponse('unknownError');" class="btn-floating waves-effect waves-light orange"><i class="material-icons">info</i></a>
               </div>
           </div>
         </form>
@@ -124,23 +202,72 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <script>
         function visResponse(action) {
           if (action == "success") {
-            //$('body').css('background-color', '#7ac142');
             $('#stuIDForm').css('opacity', '0');
-            $('.circleThing').addClass('circleGrow');
-            setTimeout(function(){
-              $('body').css('background-color', '#212121');
-              $('#stuIDForm').css('opacity', '1');
-            }, 2000);
+
+            $('#circleThing').removeClass().addClass('circleThing circleGrow green accent-3');
+            $('#circleThing').one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
+              function(e) {
+                $('body').addClass('green accent-3');
+                $('#circleThing').removeClass().addClass('circleThing');
+                setTimeout(function() {
+                  $('#circleThing').removeClass().addClass('circleThing circleGrow grey darken-4');
+
+                  $('#circleThing').one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
+                    function(e) {
+                      $('body').removeClass('green accent-3');
+                      $('#circleThing').removeClass().addClass('circleThing');
+                  });
+
+                  $('#stuIDForm').css('opacity', '1');
+                }, 1000);
+            });
+
           } else if (action == "error") {
-            $('body').css('background-color', '#d50000');
-            setTimeout(function(){
-              $('body').css('background-color', '#212121');
-            }, 3000);
+            $('#stuIDForm').css('opacity', '0');
+            $('#Xleft').addClass('Xleft');
+            $('#Xright').addClass('Xright');
+            $('#circleThing').removeClass().addClass('circleThing circleGrow red accent-4');
+            $('#circleThing').one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
+              function(e) {
+                $('body').addClass('red accent-4');
+                $('#circleThing').removeClass().addClass('circleThing');
+                setTimeout(function() {
+                  $('#circleThing').removeClass().addClass('circleThing circleGrow grey darken-4');
+
+                  $('#circleThing').one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
+                    function(e) {
+                      $('body').removeClass('red accent-4');
+                      $('#circleThing').removeClass().addClass('circleThing');
+                  });
+
+                  $('#stuIDForm').css('opacity', '1');
+                }, 1000);
+            });
           } else {
-            $('body').css('background-color', '#FF9800');
+
+            $('#stuIDForm').css('opacity', '0');
+
+            $('#circleThing').removeClass().addClass('circleThing circleGrow orange accent-4');
+            $('#circleThing').one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
+              function(e) {
+                $('body').addClass('orange accent-4');
+                $('#circleThing').removeClass().addClass('circleThing');
+                setTimeout(function() {
+                  $('#circleThing').removeClass().addClass('circleThing circleGrow grey darken-4');
+
+                  $('#circleThing').one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
+                    function(e) {
+                      $('body').removeClass('orange accent-4');
+                      $('#circleThing').removeClass().addClass('circleThing');
+                  });
+
+                  $('#stuIDForm').css('opacity', '1');
+                }, 1000);
+            });
           }
-          console.log($('#stu_ID').val());
         };
+
+
         function submitStuIDToAJAX() {
           $('#ReasonAJAX').html("<img class='svg-dis' src='/passport/image/rings.svg' /> <h5 class='center'>Loading</h5>");
           $.ajax({
