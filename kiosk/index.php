@@ -263,14 +263,16 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  }
       .checkmarkContainer{
         position: relative;
+        display: run-in;
         top: 30%;
         left: 50%;
         animation-duration: 1s;
         animation-fill-mode: forwards;
+        z-index: 10;
       }
     .Cleft {
       position: absolute;
-      display: inline-block;
+      display: inline-block !important;
       top: 30%;
       left: 30px;
       opacity: 1;
@@ -284,7 +286,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     }
     .Cright {
       position: absolute;
-      display: inline-block;
+      display: inline-block !important
       top: 115px;
       left: -65px;
       opacity: 1;
@@ -328,9 +330,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       <div class="circleThingContainer"><div id="circleThing" class="circleThing"></div></div>
       <span id="Xleft"></span>
       <span id="Xright"></span>
-      <div id="checkmarkContainer" class="checkmarkContainer checkmarkContainerOut">
-      <span id="Cleft" class="Cleft CleftOut"></span>
-      <span id="Cright" class="Cright CrightOut"></span>
+      <div id="checkmarkContainer" class="">
+      <span id="Cleft" class=""></span>
+      <span id="Cright" class=""></span>
     </div>
       <main>
         <h1 class="center" style='color: #ecf0f1'>Student Sign In</h1>
@@ -378,12 +380,25 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 $('body').addClass('green accent-3');
                 $('#circleThing').removeClass().addClass('circleThing');
                 setTimeout(function() {
+                  $('#Cleft').removeClass('CleftIn');
+                  $('#Cright').removeClass('CrightIn');
+                  $('#checkmarkContainer').removeClass('checkmarkContainerIn');
+
                   $('#circleThing').removeClass().addClass('circleThing circleGrow grey darken-4');
+
+                  $('#checkmarkContainer').addClass('checkmarkContainerOut');
+                  $('#Cleft').addClass('CleftOut');
+                  $('#Cright').addClass('CrightOut');
 
                   $('#circleThing').one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
                     function(e) {
                       $('body').removeClass('green accent-3');
                       $('#circleThing').removeClass().addClass('circleThing');
+                      setTimeout(function() {
+                        $('#Cleft').removeClass();
+                        $('#Cright').removeClass();
+                        $('#checkmarkContainer').removeClass();
+                      }, 500);
                   });
 
                   $('#stuIDForm').css('opacity', '1');
