@@ -343,13 +343,13 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 <label for="stu_ID">Your Student ID</label>
               </div>
               <div class="col s1">
-                  <a onclick="visResponse('success');" class="btn-floating waves-effect waves-light green"><i class="material-icons">trending_flat</i></a>
-                  <a onclick="visResponse('error');" class="btn-floating waves-effect waves-light red"><i class="material-icons">report_problem</i></a>
-                  <a onclick="visResponse('unknownError');" class="btn-floating waves-effect waves-light orange"><i class="material-icons">info</i></a>
+                  <a onclick="validateContent();" class="btn-floating waves-effect waves-light green"><i class="material-icons">trending_flat</i></a>
+                  <!--<a onclick="visResponse('error');" class="btn-floating waves-effect waves-light red"><i class="material-icons">report_problem</i></a>
+                  <a onclick="visResponse('unknownError');" class="btn-floating waves-effect waves-light orange"><i class="material-icons">info</i></a>-->
               </div>
           </div>
         </form>
-        <div id="response"></div>
+        <div class="center white-text" id="response"></div>
  <!--
         <footer class="page-footer grey darken-3">
             <div class="footer-copyright">
@@ -463,36 +463,111 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
         function submitStuIDToAJAX() {
-          $('#ReasonAJAX').html("<img class='svg-dis' src='/passport/image/rings.svg' /> <h5 class='center'>Loading</h5>");
+          $('#response').html("<img class='svg-dis' src='/passport/image/rings.svg' /> <h5 class='center'>Loading</h5>");
           $.ajax({
             url: 'ajaxStuIDSignin.php',
             data: {'id': $('#stu_ID').val()},
             type: 'get',
+            //dataType: "json",
             success: function(data) {
-              $('#ReasonAJAX').html(data);
+              if(data.status == "success") {
+                visResponse("success");
+                console.log("Passport Info Code System: Returned with code \"" + data.code + "\"-Successful Transaction");
+
+                $('#stu_ID').val('');
+                $('#response').html(" ");
+              } else if (data.status == "error"){
+                visResponse("error");
+                if(data.code == "2401") {
+                  visResponse("error");
+                  console.warn("Passport Info Code System: Returned with code \"" + data.code + "\"-Incorect Creds");
+                  $('#stu_ID').joseValidate("error", true, "Incorect Student ID");
+                  $('#response').html("Passport does not have an entry for this ID. Please try again or ask a faculty member.");
+                } else if (data.code == "5001"){
+                  console.warn("Passport Info Code System: Returned with code \"" + data.code + "\"-Already Authed");
+                  visResponse("warn");
+                  $('#stu_ID').joseValidate("error", true, "You have already signed in");
+                  $('#response').html("You have already signed in, if not contact a faculty member");
+                } else {
+                  console.error("Passport Info Code System: Returned with code \"1111\"-unknown error");
+                  console.error("Something Went Wrong. No error data returned.");
+                  visResponse("error");
+                  $('#response').html("There was an error.  Please check the console for more details and try again.");
+                }
+
+              } else {
+                console.error("Passport Info Code System: Returned with code \"1111\"-unknown error");
+                console.warn("Something Went Wrong. No useful data returned.");
+                visResponse("warn");
+                $('#response').html("There was an error.  Please check the console for more details and try again.");
+              }
+              //console.log(data.content);
             },
             error: function(xhr, desc, err) {
+            console.warn("Passport Info Code System: Returned with code \"1001\"-AJAX Error");
             console.log(xhr);
-            console.log("Details: " + desc + "\nError:" + err);
-            $('#ReasonAJAX').html("There was an error.  Please check the console for more details.");
+            console.error("Details: " + desc + "\nError:" + err);
+            console.warn(xhr.responseText)
+            visResponse("error");
+
+            $('#response').html("There was an error.  Please check the console for more details.");
             }
+
           })
-          /*
+
           $( document ).ajaxComplete(function() {
-
-            $('select').material_select();
-            if(selVal == 1) {
-              $("#depDiv input[type=text]").addClass('valid');
-            } else if(selVal ==2) {
-              $("#shPer input[type=text]").addClass('valid');
-            } else if(selVal == 3) {
-              $("#shPer input[type=text]").addClass('valid');
-              $("#stYear input[type=text]").addClass('valid');
-            }
-
+            $('#stu_ID').focus();
           });
-          */
+
         }
+
+        $("#stu_ID").keyup(function(event){
+            if(event.keyCode == 13){
+                validateContent();
+            }
+        });
+        function validateContent() {
+          if($('#stu_ID').val() != '') {
+            submitStuIDToAJAX();
+          } else {
+            $('#stu_ID').focus();
+            $('#stu_ID').joseValidate("error", true, "Must Type In Your Student ID");
+
+          }
+        }
+        $('#stuIDForm').submit(function() {
+          return false;
+        });
+
+        (function ( $ ) {
+          $.fn.joseValidate = function(state, setIt, message) {
+              this.each(function(){
+                if(state === "success") {
+                  $("label[for='" + $(this).attr('id') + "']").attr( "data-success", message );
+                  if(setIt == true) {
+                    if($(this).hasClass('validate')) {
+                      $(this).removeClass('invalid').addClass('valid');
+                    } else {
+                      $(this).removeClass('invalid').addClass('validate valid');
+                    }
+                  }
+                } else if (state === "error") {
+                  $("label[for='" + $(this).attr('id') + "']").attr( "data-error", message );
+                  if(setIt == true) {
+                    if($(this).hasClass('validate')) {
+                      $(this).removeClass('valid').addClass('invalid');
+                    } else {
+                      $(this).removeClass('valid').addClass('validate invalid');
+                    }
+                  }
+                } else if (state === "remove"){
+                  $(this).removeClass('validate invalid valid');
+                } else {
+                  console.error("joseValidate: Invalid prams");
+                }
+              });
+          };
+        }( jQuery ));
         </script>
       </body>
 </html>
