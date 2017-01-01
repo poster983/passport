@@ -156,15 +156,15 @@ function dateVal() {
   });
   };
 
-  function submitPassToAjax(id, depart, reason, day) {
+  function submitPassToAjax(id, depart, reason, day, isDebug) {
     $('#behindCard').html("<img class='svg-dis' src='/passport/image/rings.svg' /> <h5 class='center'>Loading</h5>");
     $.ajax({
   url: '/passport/students/ajaxSubmit.php',
-  data: {'sAccID': id, 'dep': depart, 'reason': reason, 'day': day},
+  data: {'sAccID': id, 'dep': depart, 'reason': reason, 'day': day, 'isDebug': isDebug},
   type: 'get',
   success: function(data) {
+    $('#behindCard').html("");
 
-    $('#behindCard').html(data);
     depLock = 0;
     dateshowLock = 0;
     selVal = 0;
@@ -184,27 +184,54 @@ function dateVal() {
   function(e) {
   $('select').material_select();
   if(!depReady || !reasonReady || !dateReady){
-  openFullOverlay("confirmOver");
-  setTimeout(function(){
-    $( "#checkmarkAnimationfull" ).html('<svg class="pause-Ani checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path id="checkMarkAni"  class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>');
-    $('#checkMarkAni').one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
-      function(e) {
-        console.log("done");
-      closeFullOverlay("confirmOver", 1000);
-      });
-  }, 500);
-}
+    console.log("json_encode");
+    console.log(data);
+  if (data.status == "error") {
+    if(data.code == "8001") {
+      openFullOverlay("confirmOver");
+
+          console.warn("Limit Reached");
+          $( "#checkmarkAnimationfull" ).html("<span class='Xleft'></span><span class='Xright'></span>")
+          $('#ConfirmOverlayWords').html("Limit Reached");
+          closeFullOverlay("confirmOver", 4000);
+
+    }
+    if(data.code == "5002") {
+      openFullOverlay("confirmOver");
+
+          console.warn("You Have Already Requested A Pass");
+          $( "#checkmarkAnimationfull" ).html("<span class='Xleft'></span><span class='Xright'></span>")
+          $('#ConfirmOverlayWords').html("You Have Already Requested A Pass");
+          closeFullOverlay("confirmOver", 3000);
+    }
+  }
+  if (data.status == "success") {
+    openFullOverlay("confirmOver");
+    $('#ConfirmOverlayWords').html("Pass Requested");
+    setTimeout(function(){
+      $( "#checkmarkAnimationfull" ).html('<svg class="pause-Ani checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path id="checkMarkAni"  class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>');
+      $('#checkMarkAni').one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
+        function(e) {
+          console.log("done");
+        closeFullOverlay("confirmOver", 1000);
+        });
+    }, 500);
+  }
+
+  }
   });
 
   },
   error: function(xhr, desc, err) {
   console.log(xhr);
-  console.log("Details: " + desc + "\nError:" + err);
+  console.error("Details: " + desc + "\nError:" + err);
+  console.warn(xhr.responseText)
   $('#behindCard').html("There was an error.  Please check the console for more details.");
   }
+
 })};
 
-  function submitPass(id) {
+  function submitPass(id, isDebug) {
     if (passSubmitReady == 1 && dateshowLock == 1){
       passSubmitReady = 0;
       console.log("hi");
@@ -215,7 +242,7 @@ function dateVal() {
       console.log($("input[name=day]:checked").val());
       if($("input[name=day]:checked").val() != undefined) {
         $('#PassCard').hide();
-    submitPassToAjax(id,$('#department').val(),$('#ajaxReason').val(),$("input[name=day]:checked").val());
+    submitPassToAjax(id,$('#department').val(),$('#ajaxReason').val(),$("input[name=day]:checked").val(), isDebug);
     console.log("byeee");
   } else {
     console.log("aaaaaaaaaaaaa");
@@ -249,3 +276,26 @@ function dateVal() {
   $('#ajaxAllStudentMess').html("There was an error.  Please check the console for more details.");
   }
 })};
+
+
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}

@@ -32,7 +32,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 /* internal error/info codes:
 1xxx: Generic errors
 2xxx: cred errors
-3xxx: prosessing errors
+3xxx: processing errors
 5xxx: user error codes
 6xxx: generic info codes
 7xxx: success info codes

@@ -62,7 +62,32 @@ My Sanity :)
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <style>
+    .Xleft {
+      position: absolute;
+      display: inline-block;
+      top: 30%;
+      left: 50%;
+      opacity: 1;
+      width: 20px;
+      height: 250px;
+      transform: rotate(45deg);
+      background-color: white;
 
+    }
+    .Xright {
+      position: absolute;
+      display: inline-block;
+      top: 30%;
+      left: 50%;
+      opacity: 1;
+      width: 20px;
+      height: 250px;
+      transform: rotate(-45deg);
+      background-color: white;
+
+    }
+    </style>
 
 
 
@@ -108,7 +133,8 @@ My Sanity :)
       <div id="checkmarkAnimationfull">
 
     </div>
-      <h1 class="center white-text">Pass Requested</h1>
+      <h1>
+      <h1 id="ConfirmOverlayWords" class="center white-text">Pass Requested</h1>
       <a href="javascript:void(0)" class="closebtn-overlay" onclick="closeFullOverlay('confirmOver', 0)">&times;</a>
     </div>
   </div>
@@ -277,9 +303,11 @@ My Sanity :)
                       <div id="passrequestAdvanced" style="display: none;">
                         <h5 class="center white-text">Advanced Options</h5>
                         <div class="divider"></div>
+                        <p class="center white-text">Nothing Here Yet.</p>
                       </div>
                       <div class="section">
-                        <a class="waves-effect waves-light btn-large red" id="submitPass" disabled onclick="submitPass(<?php echo $_SESSION['studentAccID'] ?>);">Submit Pass<span id="subPassAdv"><i class='material-icons right'>send</i></span></a>
+                        <a class="waves-effect waves-light btn-large red" id="submitPass" disabled onclick="submitPass(<?php echo $_SESSION['studentAccID'] ?>, 0);">Submit Pass<span id="subPassAdv"><i class='material-icons right'>send</i></span></a>
+                        <span id="debugSubmit"></span>
                       </div>
                     </form>
                     </div>
@@ -315,7 +343,34 @@ My Sanity :)
                 $('.tooltipped').tooltip({delay: 50});
                 $('select').material_select();
                 AllStudentmessageAjaxAfterPageLoad();
+                checkDebugModeCookies();
               });
+
+              function debugMode() {
+
+                if (getCookie("debugMode") == "") {
+                  document.cookie = "debugMode=1";
+                  toggleDebugModeDOMElements(true);
+                } else if (getCookie("debugMode") == 1){
+                  document.cookie = "debugMode=0";
+                  toggleDebugModeDOMElements(false);
+                } else if (getCookie("debugMode") == 0){
+                  document.cookie = "debugMode=1";
+                  toggleDebugModeDOMElements(true);
+                }
+              }
+              function checkDebugModeCookies() {
+                if (getCookie("debugMode") == 1){
+                  toggleDebugModeDOMElements(true);
+                }
+              }
+              function toggleDebugModeDOMElements(state) {
+                if (state) {
+                  $('#debugSubmit').html("<a class='waves-effect waves-light btn-large red' id='debugSubmitPass' onclick=\"submitPass(<?php echo $_SESSION['studentAccID'] ?>, 1);\">Debug Submit Pass<span id='subPassAdv'><i class='material-icons right'>send</i></span></a>");
+                } else {
+                  $('#debugSubmit').html("");
+                }
+              }
               /*
               depLock = 0;
               dateshowLock = 0;
