@@ -139,22 +139,34 @@ foreach($blackout as $row)
   //echo $perarray_null[1];
 
   $length = count($perarray);
-  /*
+/*
+  echo $length . "<br>";
+
   for ($i=0; $i < $length; $i++) {
     echo $perarray[i];
+    /*
     if($perarray[i] == "G") {
       echo "yes";
       echo date("l", $row["day"]);
       //break;
     }
+    */
   }
-  */
+
+  //echo "1";
   foreach ($perarray as $perInd => $pervalue) {
     if($pervalue == $_GET['per'] || $pervalue == "All Day") {
-
+      if ($row["day"] == "MONDAY" || $row["day"] == "TUESDAY" || $row["day"] == "WEDNESDAY" || $row["day"] == "THURSDAY" || $row["day"] == "FRIDAY") {
+        $_dayOfWeek = substr($row['day'], 0, 1) . strtolower(substr($row['day'], 1));
+        $_dayOfWeekOverlay = $_dayOfWeek . "overlay";
+        //echo "2";
+      } else {
       $_dayOfWeek = date("l", strtotime($row["day"]));
+      //echo "3";
       //echo $_dayOfWeek;
       $_dayOfWeekOverlay = date("l", strtotime($row["day"])) . "overlay";
+      }
+      //echo "4";
       $$_dayOfWeek = "disabled title = 'Not Accepting Passes On " . $_dayOfWeek . "'";
       $$_dayOfWeekOverlay = "<span class='closed'>Closed</span>";
     }
