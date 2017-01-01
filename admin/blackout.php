@@ -31,12 +31,48 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <div class="container">
             <form method="post" action="">
                 <h4 class="center">Blackout Manager</h4>
+                <div class="row">
+                <input type="hidden" id="BO-type" name="BO-type" value="one-time">
+                <div class="col s12">
+               <ul class="tabs" id="viewType">
+                   <li class="tab col s6" name="view-option" id="onetimeview" value="one-time"><a href="#one-time">One Time Blackout</a></li>
+                   <li class="tab col s6"name="view-option" id="recurringview" value="recurring"><a href="#recurring">Recurring Blackout</a></li>
 
-                <div class="input-field col s3">
+               </ul>
+             </div>
+              <div id="one-time" class="col s12">
+                  <div class="input-field col s12">
                   <input type="date" class="datepicker" name="blackoutday" id="datepicker" required readonly>
                   <label for="datepicker">Blackout Date</label>
 
                 </div>
+              </div>
+              <div id="recurring" class="col s12">
+                <br><br>
+                <input type="radio" id="monday" name="recurrdate" value="MONDAY" />
+                <label for="monday">Every Monday</label>
+                &nbsp &nbsp
+                <input type="radio" id="tuesday" name="recurrdate" value="TUESDAY" />
+                <label for="tuesday">Every Tuesday</label>
+                &nbsp &nbsp
+                <input type="radio" id="wednesday" name="recurrdate" value="WEDNESDAY" />
+                <label for="wednesday">Every Wednesday</label>
+                &nbsp &nbsp
+                <input type="radio" id="thursday" name="recurrdate" value="THURSDAY" />
+                <label for="thursday">Every Thursday</label>
+                &nbsp &nbsp
+                <input type="radio" id="friday" name="recurrdate" value="FRIDAY" />
+                <label for="friday">Every Friday</label>
+
+              </div>
+              <br>
+
+            </div>
+            <div class="row">
+              <div class="section">
+              <div class="divider"></div>
+
+
                 <p class="center">Select Blackout Periods</p>
                 <p class="center">
                     <input type="checkbox" id="aper" name="aper" value="A" />
@@ -93,6 +129,10 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                     <label for="am">Athletic Mentor</label>
                 </p>
                 <p>
+                  <br>
+
+
+
                     <button class="btn waves-effect waves-light" type="submit" name="blackout">Blackout
                         <i class="material-icons right">visibility_off</i>
                     </button>
@@ -101,9 +141,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             </form>
             <a class="waves-effect waves-light btn red" href="blackoutcal.php"><i class="material-icons left">today</i>Blackout Calender</a>
         </div>
+      </div>
+      </div>
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="/passport/js/materialize.js"></script>
-        <script src="/passport/js/init.js"></script>
+
         <script>
         $("#AD").change(function() {
           if(this.checked) {
@@ -140,8 +182,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         });
         </script>
 
-        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
 
 
         <!-- Scripts -->
@@ -152,6 +193,15 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
           formatSubmit: 'yyyy-mm-dd',
           hiddenName: true
         });
+        $(document).ready(function(){
+          $('ul.tabs').tabs();
+
+          $("#viewType li").click(function(){
+              $("#BO-type").val($(this).attr("value"));
+              });
+          });
+
+
         </script>
         <!--[if lte IE 8]><script src="assets/js/respond.min.js"></script><![endif]-->
         <script>
@@ -181,6 +231,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     foreach ($_POST as $key => $value) {
 
   }
+        $BoType = $_POST['BO-type'];
+        $recurrBlackoutDay = $_POST['recurrdate'];
         $blackoutday = $_POST['blackoutday'];
         $dep = $_POST['dep'];
         $aper = $_POST['aper'];
@@ -205,15 +257,19 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         $per = $aday;
       }
 
-
+      if ($BoType == "one-time") {
+        $boDay = $blackoutday;
+      } elseif ($BoType == "recurring") {
+        $boDay = $recurrBlackoutDay;
+      }
 
 
     $sql = "INSERT INTO blackout (day, department, period)
-            VALUES ('$blackoutday', '$dep', '$per')";
+            VALUES ('$boDay', '$dep', '$per')";
             if ($conn->query($sql) === TRUE) {
               echo "Blacked out period(s):";
                 echo "$per ";
-                echo " on $blackoutday";
+                echo " on $boDay";
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }

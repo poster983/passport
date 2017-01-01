@@ -105,17 +105,28 @@ echo "
   AND
   ehere dep = $dep
 */
+
+
 $blackout = $medooDB->select("blackout", array(
   "day",
   "period"
 ),array(
   "AND" => array(
     "department" => $dep,
-    "day[<>]" => array(
-      date( 'Y-m-d', strtotime(' monday this week ')),
-      date( 'Y-m-d', strtotime(' friday this week '))
-      //date("Y-m-d")
+    "OR" => array(
+      "day[<>]" => array(
+        date( 'Y-m-d', strtotime(' monday this week ')),
+        date( 'Y-m-d', strtotime(' friday this week '))
+        //date("Y-m-d")
+      ),
+      //i dont know why this works
+      "day" => "MONDAY",
+      "day" => "TUESDAY",
+      "day" => "WEDNESDAY",
+      "day" => "THURSDAY",
+      "day" => "FRIDAY"
     )
+
   )
 
 ));
@@ -158,19 +169,10 @@ echo"<div id='datePicker' class='center' style='display: none;' >
     &nbsp; &nbsp;
     <input type='radio' class='with-gap' id='tuesday' onclick='dateVal();' " . $Tuesday . " name='day' value='" . date( 'Y-m-d', strtotime(' tuesday this week ')) . "'>
     <label for='tuesday'>Tuesday " . $Tuesdayoverlay . "</label>
-    &nbsp;&nbsp;";
-    if($dep == "LEC" || $dep == "Library"){
-      echo"<input type='radio' class='with-gap' id='wednesday' disabled onclick='dateVal();' name='day' value='" . date( 'Y-m-d', strtotime(' wednesday this week ')) . "'>
-      <label for='wednesday'>Wednesday <span class='closed'>Closed</span></label>
-      &nbsp;&nbsp;";
-    } else {
-      echo"<input type='radio' class='with-gap' id='wednesday' onclick='dateVal();' " . $Wednesday . " name='day' value='" . date( 'Y-m-d', strtotime(' wednesday this week ')) . "'>
-      <label for='wednesday'>Wednesday " . $Wednesdayoverlay . "</label>
-      &nbsp;&nbsp;";
-    }
-
-
-echo "
+    &nbsp;&nbsp;
+    <input type='radio' class='with-gap' id='wednesday' onclick='dateVal();' " . $Wednesday . " name='day' value='" . date( 'Y-m-d', strtotime(' wednesday this week ')) . "'>
+    <label for='wednesday'>Wednesday " . $Wednesdayoverlay . "</label>
+    &nbsp;&nbsp;
     <input type='radio' class='with-gap' id='thursday' onclick='dateVal();' " . $Thursday . " name='day' value='" . date( 'Y-m-d', strtotime(' thursday this week ')) . "'>
     <label for='thursday'>Thursday " . $Thursdayoverlay . "</label>
     &nbsp;&nbsp;
