@@ -150,9 +150,9 @@ foreach($blackout as $row)
       echo date("l", $row["day"]);
       //break;
     }
-    */
-  }
 
+  }
+*/
   //echo "1";
   foreach ($perarray as $perInd => $pervalue) {
     if($pervalue == $_GET['per'] || $pervalue == "All Day") {
