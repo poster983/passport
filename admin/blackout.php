@@ -145,6 +145,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </div>
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="/passport/js/materialize.js"></script>
+        <script src="/passport/js/init.js"></script>
 
         <script>
         $("#AD").change(function() {
