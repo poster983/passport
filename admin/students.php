@@ -72,9 +72,12 @@ include "nav.php"; ?>
                            <div class="col l12 s12">
                              <div class="valign-wrapper">
                                <h4 class="valign grey-text lighten-1 center">Student Name</h4>
+
                              </div>
                            </div>
-
+                           <div class="col l12 s12">
+                           <p class="grey-text lighten-1">Passport UUID: ######</p>
+                         </div>
                          </div>
 
                          <div class="col l9 m7 s12">
@@ -116,15 +119,15 @@ include "nav.php"; ?>
                                     </tr>
                                     <tr class="tableLinkArrow">
                                       <td><i class="small material-icons">gavel</i></td>
-                                      <td>Not Banned/Banned until yy/mm/dd <i class='contentLinkArrow waves-effect right small material-icons'></i></td>
+                                      <td>Not Banned/Banned until yy/mm/dd <i onclick="modelActOpen('moreBanned')" class='contentLinkArrow waves-effect right small material-icons'></i></td>
                                     </tr>
                                     <tr class="tableLinkArrow">
                                       <td><i class="small material-icons">restore</i></td>
-                                      <td>Reset Account <i class='contentLinkArrow waves-effect right small material-icons'></i></td>
+                                      <td>Reset Account <i onclick="modelActOpen('moreReset')" class='contentLinkArrow waves-effect right small material-icons'></i></td>
                                     </tr>
                                     <tr class="tableLinkArrow">
                                       <td><i class="small material-icons">update</i></td>
-                                      <td>Update Account <i class='contentLinkArrow waves-effect right small material-icons'></i></td>
+                                      <td>Update Account <i onclick="modelActOpen('moreUpdate')" class='contentLinkArrow waves-effect right small material-icons'></i></td>
                                     </tr>
                                     <tr>
                                       <td><i class="small material-icons">verified_user</i></td>
@@ -132,7 +135,7 @@ include "nav.php"; ?>
                                     </tr>
                                     <tr class="tableLinkArrow">
                                       <td><i class="small material-icons">archive</i> <!--or use unarchive --></td>
-                                      <td>User Is Archived/ User Is Not Archived <i class='contentLinkArrow waves-effect right small material-icons'></i></td>
+                                      <td>User Is Archived/ User Is Not Archived <i onclick="modelActOpen('moreArchive')" class='contentLinkArrow waves-effect right small material-icons'></i></td>
                                     </tr>
                                   </tbody>
                                 </table>
@@ -144,19 +147,68 @@ include "nav.php"; ?>
                      </div>
                    </span>
 
-                   <!--
-                     <div class="card-action">
-                       <a href="#">This is a link</a>
-                       <a href="#">This is a link</a>
 
-                   </div>
-                 -->
                  </div>
                </div>
              </div>
 
             <!--End main student info card-->
           </div>
+          <!--Main Student info card Model-->
+          <!--Ban Hammer-->
+          <div id="moreBanned" class="modal">
+            <form id="theBanHammerModel">
+            <div class="modal-content">
+              <h4>The Ban Hammer</h4>
+              <div class="input-field col s12">
+                <input type="date" id="datepickerBanHammer" class="datepicker">
+                <label for="datepickerBanHammer">Ban Until..</label>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <a href="#!" onclick="modelActClose('moreBanned')" class="waves-effect waves-cyan accent-4 btn-flat">Ban/Unban <i class="material-icons right">gavel</i></a>
+            </div>
+            </form>
+          </div>
+          <!--Reset Account-->
+          <div id="moreReset" class="modal">
+            <form id="theResetSenInfoModel">
+            <div class="modal-content">
+              <h4>Reset Sensitive Information </h4>
+            </div>
+            <div class="modal-footer">
+              <a href="#!" onclick="modelActClose('moreReset')" class="waves-effect waves-cyan accent-4 btn-flat">Reset Password<i class="material-icons right">vpn_key</i></a>
+            </div>
+            </form>
+          </div>
+          <!--Update Account-->
+          <div id="moreUpdate" class="modal">
+            <form id="theUpadteAccModel">
+            <div class="modal-content">
+              <h4>Update Account</h4>
+              <p>This will forse the student, the next time they log on, to update their Study-Hall Teacher, Study-Hall Period, and even their grade level.</p>
+              <!-- if needsReset == 1 then the "Forse update" button will become an "Un-Forse Update Button"-->
+            </div>
+            <div class="modal-footer">
+              <a href="#!" onclick="modelActClose('moreUpdate')" class="waves-effect waves-cyan accent-4 btn-flat">Forse Update<i class="material-icons right">update</i></a>
+            </div>
+            </form>
+          </div>
+          <!--Archive Account-->
+          <div id="moreArchive" class="modal">
+            <form id="theArchiveAccModel">
+            <div class="modal-content">
+              <h4>Archive Account</h4>
+              <p>By Archiving an account, you are in essence delting it. The account is still in the database, however, it will no longer be able to login.</p><p>  It is recommended that you don't unarchive an already archived account to avoid conflicts with new accounts as the student id and email have opened up.</p>
+              <!-- if archived == 1 then the "Archive" button will become an "Unarchive Button WITH conflict checker"-->
+            </div>
+            <div class="modal-footer">
+              <a href="#!" onclick="modelActClose('moreArchive')" class="waves-effect waves-cyan accent-4 btn-flat">Archive<i class="material-icons right">archive unarchive</i></a>
+            </div>
+            </form>
+          </div>
+          <!--Main student info card scripts-->
+
         </div>
       </div>
     </div>
@@ -165,4 +217,47 @@ include "nav.php"; ?>
         <!-- Compiled and minified JavaScript -->
         <script src="/passport/js/materialize.js"></script>
         <script src="/passport/js/init.js"></script>
+        <script>
+          $(document).ready(function(){
+            // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+            $('.modal-trigger').leanModal({
+                dismissible: true,
+                opacity: 0.5,
+                in_duration: 300,
+                out_duration: 200,
+                ready: function() {
+                    if($(".lean-overlay").length > 1) {
+                        $(".lean-overlay:not(:first)").each(function() {
+                            $(this).remove();
+                        });
+                    }
+                },
+                complete: function() {
+                    $(".lean-overlay").each(function() {
+                        $(this).remove();
+                    });
+                }
+            });
+
+          });
+          function modelActOpen(id) {
+            $('#' + id).openModal();
+          }
+          function modelActClose(id) {
+            $('#' + id).closeModal();
+          }
+          $('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 2, // Creates a dropdown of 2 years to control year
+            formatSubmit: 'yyyy-mm-dd',
+            hiddenName: true,
+            onOpen: function() {
+              $('.modal').addClass('modal-fixed-footer');
+            },
+            onClose: function() {
+              $('.modal').removeClass('modal-fixed-footer');
+            }
+          });
+        </script>
 </body>
+</html>
