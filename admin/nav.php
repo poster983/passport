@@ -31,7 +31,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="/passport/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    
+
     <link href="/passport/css/hamburgers.css" rel="stylesheet">
 
     <script>
@@ -72,6 +72,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             <ul id="slide-out" class="side-nav">
                 <p class="center-align black-text"></p>
                 <li><a class="waves-effect" href="passsearch.php">Passes</a></li>
+                <!--Students -->
+                <li><a class="waves-effect" href="students.php">Students</a></li>
                 <!--Blackout Dropdown-->
                 <li><a class="dropdown-button waves-effect" href="#!" data-activates="dropdownBO">Blackout<i class="material-icons right">arrow_drop_down</i></a></li>
                  <ul id='dropdownBO' class='dropdown-content'>
