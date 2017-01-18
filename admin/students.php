@@ -45,13 +45,13 @@ include "nav.php"; ?>
 </style>
 <nav>
     <div class="nav-wrapper">
-      <form>
+      <!--<form>-->
         <div class="input-field red lighten-2">
           <input id="searchStudents" placeholder="Search by Name, Student ID, or Email" type="search" required>
           <label for="searchStudents"><i class="material-icons">search</i></label>
           <i class="material-icons">close</i>
         </div>
-      </form>
+      <!--</form>-->
     </div>
   </nav>
         <div class="container">
@@ -212,6 +212,7 @@ include "nav.php"; ?>
         </div>
       </div>
     </div>
+
         <!--Scripts-->
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <!-- Compiled and minified JavaScript -->
@@ -220,6 +221,7 @@ include "nav.php"; ?>
         <script>
           $(document).ready(function(){
             // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+
             $('.modal-trigger').leanModal({
                 dismissible: true,
                 opacity: 0.5,
@@ -258,6 +260,73 @@ include "nav.php"; ?>
               $('.modal').removeClass('modal-fixed-footer');
             }
           });
+
+          //listen for enter
+
+          $("#searchStudents").keyup(function(event){
+              if(event.keyCode == 13){
+                  searchStudent($('#searchStudents').val());
+              }
+          });
+
+          $('#searchStudents').submit(function() {
+            //searchStudent($('#searchStudents').val());
+            return false;
+          });
+          //Search Ajax Request
+          function searchStudent(value) {
+            if(value == ""){
+              console.warn("No Value in search");
+            } else {
+
+            $('#ajaxReturnDom').html("    <div class=\"preloader-wrapper big active\">\r\n      <div class=\"spinner-layer spinner-blue\">\r\n        <div class=\"circle-clipper left\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"gap-patch\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"circle-clipper right\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div>\r\n      <\/div>\r\n\r\n      <div class=\"spinner-layer spinner-red\">\r\n        <div class=\"circle-clipper left\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"gap-patch\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"circle-clipper right\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div>\r\n      <\/div>\r\n\r\n      <div class=\"spinner-layer spinner-yellow\">\r\n        <div class=\"circle-clipper left\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"gap-patch\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"circle-clipper right\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div>\r\n      <\/div>\r\n\r\n      <div class=\"spinner-layer spinner-green\">\r\n        <div class=\"circle-clipper left\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"gap-patch\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"circle-clipper right\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div>\r\n      <\/div>\r\n    <\/div> <h5 class='center'>Loading</h5>");
+            $.ajax({
+          url: 'studentAJAX/search.php',
+          data: {'value': value},
+          type: 'get',
+          success: function(data) {
+            $('#ajaxReturnDom').html(data);
+
+            $('.modal-trigger').leanModal({
+                dismissible: true,
+                opacity: 0.5,
+                in_duration: 300,
+                out_duration: 200,
+                ready: function() {
+                    if($(".lean-overlay").length > 1) {
+                        $(".lean-overlay:not(:first)").each(function() {
+                            $(this).remove();
+                        });
+                    }
+                },
+                complete: function() {
+                    $(".lean-overlay").each(function() {
+                        $(this).remove();
+                    });
+                }
+            });
+
+            $('.datepicker').pickadate({
+              selectMonths: true, // Creates a dropdown to control month
+              selectYears: 2, // Creates a dropdown of 2 years to control year
+              formatSubmit: 'yyyy-mm-dd',
+              hiddenName: true,
+              onOpen: function() {
+                $('.modal').addClass('modal-fixed-footer');
+              },
+              onClose: function() {
+                $('.modal').removeClass('modal-fixed-footer');
+              }
+            });
+
+          },
+          error: function(xhr, desc, err) {
+          console.log(xhr);
+          console.log("Details: " + desc + "\nError:" + err);
+          $('#ajaxReturnDom').html("There was an error.  Please check the console for more details.");
+          }
+        })}
+      };
         </script>
 </body>
 </html>
