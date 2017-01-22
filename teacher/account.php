@@ -75,35 +75,83 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   <div style='color: #ecf0f1'>
   <div class="container">
     <h1 class="center">Your Account</h1>
-    <div class="section" id="changePassword">
-      <div class="divider"></div>
-      <h2 class="center">Password</h2>
-      <div>
-        <form method="post" action="">
-            <div class="input-field">
-                <p>
-                    <input type="password" required name="oldPassword" autocomplete="off" id="oldPass" />
-                    <label for="oldPass">Old Password</label>
-                </p>
-            </div>
-            <div class="input-field">
-              <p>
-                  <input type="password" required name="newPassword" autocomplete="off" id="newPass" />
-                  <label for="newPass">New Password</label>
-              </p>
-            </div>
-            <div class="input-field">
-              <p>
-                  <input type="password" required name="newPassword2" autocomplete="off" id="newPass2" />
-                  <label for="newPass2">New Password (again)</label>
-              </p>
-            </div>
-            <button class="btn waves-effect waves-light" type="submit" name="submit">Change Password
-                <i class="material-icons right">lock_outline</i>
-            </button>
+    <div class="divider"></div>
+
+    <ul class="collapsible white black-text" data-collapsible="accordion">
+      <li>
+        <div class="collapsible-header black-text"><i class="material-icons">access_time</i>Change Period</div>
+        <div class="collapsible-body">
+          <div class="container">
+          <form method="post" action="">
+            <h4 class="center">Change Your Period</h4>
+            <div id="periodChecks">
+            <input type="checkbox" id="aper" name="aper" value="A" />
+            <label for="aper">A Period</label>
+            &nbsp &nbsp
+            <input type="checkbox" id="bper" name="bper" value="B" />
+            <label for="bper">B Period</label>
+            &nbsp &nbsp
+            <input type="checkbox" id="cper" name="cper" value="C" />
+            <label for="cper">C Period</label>
+            &nbsp &nbsp
+            <input type="checkbox" id="dper" name="dper" value="D" />
+            <label for="dper">D Period</label>
+            &nbsp &nbsp
+            <input type="checkbox" id="e1per" name="e1per" value="E1" />
+            <label for="e1per">E Period (You Have First Lunch)</label>
+            &nbsp; &nbsp;
+            <input type="checkbox" id="e2per" name="e2per" value="E2" />
+            <label for="e2per">E Period (You Have Second Lunch)</label>
+            &nbsp &nbsp
+            <input type="checkbox" id="fper" name="fper" value="F" />
+            <label for="fper">F Period</label>
+            &nbsp &nbsp
+            <input type="checkbox" id="gper" name="gper" value="G" />
+            <label for="gper">G Period</label>
+            &nbsp &nbsp
+            <input type="checkbox" id="hper" name="hper" value="H" />
+            <label for="hper">H Period</label>
+          </div>
+            <br>
+            <a class="waves-effect waves-light btn" onclick="sendNewPeriodsToAjax();">Change Periods</a>
           </form>
-      </div>
-    </div>
+        </div>
+        </div>
+      </li>
+      <li>
+        <div class="collapsible-header"><i class="material-icons">lock</i>Change Password</div>
+        <div class="collapsible-body">
+          <h4 class="center">Change Your Password</h4>
+          <div>
+            <form method="post" action="">
+                <div class="input-field">
+                    <p>
+                        <input type="password" required name="oldPassword" autocomplete="off" id="oldPass" />
+                        <label for="oldPass">Old Password</label>
+                    </p>
+                </div>
+                <div class="input-field">
+                  <p>
+                      <input type="password" required name="newPassword" autocomplete="off" id="newPass" />
+                      <label for="newPass">New Password</label>
+                  </p>
+                </div>
+                <div class="input-field">
+                  <p>
+                      <input type="password" required name="newPassword2" autocomplete="off" id="newPass2" />
+                      <label for="newPass2">New Password (again)</label>
+                  </p>
+                </div>
+                <button class="btn waves-effect waves-light" type="submit" name="submitPass">Change Password
+                    <i class="material-icons right">lock_outline</i>
+                </button>
+              </form>
+          </div>
+        </div>
+      </li>
+    </ul>
+
+    <div id="ajaxReturnDom"></div>
   </div>
 </div>
 
@@ -120,11 +168,64 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 </div>
 </footer>
 
+<script>
+$(document).ready(function(){
+    $('.collapsible').collapsible();
+  });
+
+  //Search Ajax Request
+  function sendNewPeriodsToAjax() {
+
+
+    var checked = [];
+    $("#periodChecks input:checkbox").each(function ()
+    {
+      if($(this).is(":checked")) {
+        checked.push($(this).val());
+      } else {
+        checked.push("");
+      }
+    });
+      console.log(checked);
+      console.log(checked.join(','));
+      var checkStr = checked.join(',')
+    $('#ajaxReturnDom').html("    <div class=\"preloader-wrapper big active\">\r\n      <div class=\"spinner-layer spinner-blue\">\r\n        <div class=\"circle-clipper left\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"gap-patch\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"circle-clipper right\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div>\r\n      <\/div>\r\n\r\n      <div class=\"spinner-layer spinner-red\">\r\n        <div class=\"circle-clipper left\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"gap-patch\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"circle-clipper right\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div>\r\n      <\/div>\r\n\r\n      <div class=\"spinner-layer spinner-yellow\">\r\n        <div class=\"circle-clipper left\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"gap-patch\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"circle-clipper right\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div>\r\n      <\/div>\r\n\r\n      <div class=\"spinner-layer spinner-green\">\r\n        <div class=\"circle-clipper left\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"gap-patch\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"circle-clipper right\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div>\r\n      <\/div>\r\n    <\/div> <h5>Loading</h5>");
+    $.ajax({
+  url: 'teacherAJAX/account.php',
+  data: {'whatToDo':'period','checked':checkStr},
+  type: 'post',
+  success: function(data) {
+    $('#ajaxReturnDom').html(data.code);
+    //console.log(data.code);
+    if(data.status == "success") {
+      Materialize.toast('Changed Period Successfully', 5000);
+      console.log(data.code);
+    } else if (data.status == "error") {
+      if (data.code == "3001") {
+        Materialize.toast('Error Code: 3001, See Console For More Details', 15000);
+        console.error("Passport Info Code System: Returned with code \"" + data.code + "\"-Database Error");
+      } else {
+        Materialize.toast('Error Code: 1111, See Console For More Details', 15000);
+        console.error("Passport Info Code System: Returned with code 1111 - Unknown Error");
+      }
+    }
+
+  },
+  error: function(xhr, desc, err) {
+    console.warn("Passport Info Code System: Returned with code \"1001\"-AJAX Error");
+    console.log(xhr);
+    console.error("Details: " + desc + "\nError:" + err);
+    console.warn(xhr.responseText)
+    $('#ajaxReturnDom').html("There was an error.  Please check the console for more details.");
+  }
+})
+};
+</script>
 
 <?
     $teaID = $_SESSION['teacherID'];
     echo "the ID is " . $teaID;
-    if(isset($_POST['submit'])) {
+    if(isset($_POST['submitPass'])) {
       include "../sqlconnect.php";
       //Vars
       $oldPass = $_POST['oldPassword'];

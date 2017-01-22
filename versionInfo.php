@@ -1,5 +1,5 @@
 <?php
   //Version Number
-  $CurrentVersionOfPassport = "v2.1.0";
-  $CurrentVersionCodeOfPassport = 210;
+  $CurrentVersionOfPassport = "v2.2.1";
+  $CurrentVersionCodeOfPassport = 221;
 ?>
