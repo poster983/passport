@@ -116,7 +116,8 @@ My Sanity :)
              <a href="#!name"><span class="white-text name"><?php echo $_SESSION['sFN'] . " " . $_SESSION['sLN']; ?></span></a>
              <a href="#!email"><span class="white-text email"><?php echo $_SESSION['email']; ?></span></a>
            </div></li>
-           <li><a class="waves-effect" href="#!">Your Account</a></li>
+           <li><a class="waves-effect" href="#!">Home</a></li>
+           <li><a class="waves-effect" href="students/account.php">Your Account</a></li>
            <li><div class="divider"></div></li>
            <!--<li><a class="subheader">Subheader</a></li>-->
            <li><a class="waves-effect" href="students/logout.php">Logout<i class="material-icons right">lock_outline</i></a></li>
