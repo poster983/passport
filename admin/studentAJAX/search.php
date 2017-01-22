@@ -32,7 +32,12 @@ $rawValue = $_GET['value'];
 
 //check for dupes
 $rowCount = $medooDB->count("studentaccount", array(
-	"student_id" => $rawValue
+	"OR" => array(
+		"student_id" => $rawValue,
+		"firstname" => $rawValue,
+		"lastname" => $rawValue,
+		"email" => $rawValue
+	)
 ));
 echo $rowCount;
 
@@ -254,8 +259,8 @@ echo "<div class=\"section\">
   <form id=\"theUpadteAccModel\">
   <div class=\"modal-content\">
     <h4>Update Account</h4>
-    <p>This will forse the student, the next time they log on, to update their Study-Hall Teacher, Study-Hall Period, and even their grade level.</p>
-    <!-- if needsReset == 1 then the \"Forse update\" button will become an \"Un-Forse Update Button\"-->
+    <p>This will force the student, the next time they log on, to update their Study-Hall Teacher, Study-Hall Period, and even their grade level.</p>
+    <!-- if needsReset == 1 then the \"Force update\" button will become an \"Un-Force Update Button\"-->
   </div>
   <div class=\"modal-footer\">
     <a href=\"#!\" onclick=\"modelActClose('moreUpdate')\" class=\"waves-effect waves-cyan accent-4 btn-flat\">Forse Update<i class=\"material-icons right\">update</i></a>
@@ -280,7 +285,7 @@ echo "<div class=\"section\">
   <form id=\"theVerifyAccModel\">
   <div class=\"modal-content\">
     <h4>Verify Account</h4>
-    <p>If the student never recieved the verification email, you can resend it here.</p>
+    <p>If the student never received the verification email, you can resend it here.</p>
   </div>
   <div class=\"modal-footer\">
     <a href=\"#!\" onclick=\"modelActClose('moreVeri')\" class=\"waves-effect waves-cyan accent-4 btn-flat\">Send<i class=\"material-icons right\">send</i></a>

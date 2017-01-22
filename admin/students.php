@@ -56,162 +56,54 @@ include "nav.php"; ?>
   </nav>
         <div class="container">
           <div id="ajaxReturnDom">
-            <div class="section">
-            <!--Main Student Info Card-->
-            <div class="row">
-               <div class="col s12">
-                 <div class="card-panel grey lighten-4">
 
-                     <span>
-                       <div class="row">
-                         <div class="col l3 m5 s6">
-                           <div class="col l12 s2">
-                             <img src="badMe.jpg" class="circle">
-                           </div>
-
-                           <div class="col l12 s12">
-                             <div class="valign-wrapper">
-                               <h4 class="valign grey-text lighten-1 center">Student Name</h4>
-
-                             </div>
-                           </div>
-                           <div class="col l12 s12">
-                           <p class="grey-text lighten-1">Passport UUID: ######</p>
-                         </div>
-                         </div>
-
-                         <div class="col l9 m7 s12">
-                           <div class="row">
-                            <div class="col s12">
-                              <div class="card-panel white">
-                                <div>
-                                  <span>
-                                    <h5 style="display:inline;">Account Info</h5>
-                                    <i class="right material-icons waves-effect">edit</i>
-                                  </span>
-                                  <br>
-                                </div>
-                                <table class="highlight">
-
-
-                                  <tbody>
-                                    <tr>
-                                      <td><i class="small material-icons">email</i></td>
-                                      <td>Josephh2018@gmail.com</td>
-                                    </tr>
-                                    <tr>
-                                      <td><i class="small material-icons">perm_identity</i></td>
-                                      <td>05339</td>
-
-                                    </tr>
-                                    <tr>
-                                      <td><i class="small material-icons">access_time</i></td>
-                                      <td>E2</td>
-
-                                    </tr>
-                                    <tr>
-                                      <td><i class="small material-icons">assignment_ind</i></td>
-                                      <td>Ms. Youngblood</td>
-                                    </tr>
-                                    <tr>
-                                      <td><i class="small material-icons">today</i></td>
-                                      <td>Junior</td>
-                                    </tr>
-                                    <tr class="tableLinkArrow">
-                                      <td><i class="small material-icons">gavel</i></td>
-                                      <td>Not Banned/Banned until yy/mm/dd <i onclick="modelActOpen('moreBanned')" class='contentLinkArrow waves-effect right small material-icons'></i></td>
-                                    </tr>
-                                    <tr class="tableLinkArrow">
-                                      <td><i class="small material-icons">restore</i></td>
-                                      <td>Reset Account <i onclick="modelActOpen('moreReset')" class='contentLinkArrow waves-effect right small material-icons'></i></td>
-                                    </tr>
-                                    <tr class="tableLinkArrow">
-                                      <td><i class="small material-icons">update</i></td>
-                                      <td>Update Account <i onclick="modelActOpen('moreUpdate')" class='contentLinkArrow waves-effect right small material-icons'></i></td>
-                                    </tr>
-                                    <tr>
-                                      <td><i class="small material-icons">verified_user</i></td>
-                                      <td>Email NOT Verified/Email Verified</td>
-                                    </tr>
-                                    <tr class="tableLinkArrow">
-                                      <td><i class="small material-icons">archive</i> <!--or use unarchive --></td>
-                                      <td>User Is Archived/ User Is Not Archived <i onclick="modelActOpen('moreArchive')" class='contentLinkArrow waves-effect right small material-icons'></i></td>
-                                    </tr>
-                                  </tbody>
-                                </table>
-                              </div>
-                            </div>
-                          </div>
-
-                        </div>
-                     </div>
-                   </span>
-
-
-                 </div>
-               </div>
-             </div>
-
-            <!--End main student info card-->
-          </div>
-          <!--Main Student info card Model-->
-          <!--Ban Hammer-->
-          <div id="moreBanned" class="modal">
-            <form id="theBanHammerModel">
-            <div class="modal-content">
-              <h4>The Ban Hammer</h4>
-              <div class="input-field col s12">
-                <input type="date" id="datepickerBanHammer" class="datepicker">
-                <label for="datepickerBanHammer">Ban Until..</label>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <a href="#!" onclick="modelActClose('moreBanned')" class="waves-effect waves-cyan accent-4 btn-flat">Ban/Unban <i class="material-icons right">gavel</i></a>
-            </div>
-            </form>
-          </div>
-          <!--Reset Account-->
-          <div id="moreReset" class="modal">
-            <form id="theResetSenInfoModel">
-            <div class="modal-content">
-              <h4>Reset Sensitive Information </h4>
-            </div>
-            <div class="modal-footer">
-              <a href="#!" onclick="modelActClose('moreReset')" class="waves-effect waves-cyan accent-4 btn-flat">Reset Password<i class="material-icons right">vpn_key</i></a>
-            </div>
-            </form>
-          </div>
-          <!--Update Account-->
-          <div id="moreUpdate" class="modal">
-            <form id="theUpadteAccModel">
-            <div class="modal-content">
-              <h4>Update Account</h4>
-              <p>This will forse the student, the next time they log on, to update their Study-Hall Teacher, Study-Hall Period, and even their grade level.</p>
-              <!-- if needsReset == 1 then the "Forse update" button will become an "Un-Forse Update Button"-->
-            </div>
-            <div class="modal-footer">
-              <a href="#!" onclick="modelActClose('moreUpdate')" class="waves-effect waves-cyan accent-4 btn-flat">Forse Update<i class="material-icons right">update</i></a>
-            </div>
-            </form>
-          </div>
-          <!--Archive Account-->
-          <div id="moreArchive" class="modal">
-            <form id="theArchiveAccModel">
-            <div class="modal-content">
-              <h4>Archive Account</h4>
-              <p>By Archiving an account, you are in essence delting it. The account is still in the database, however, it will no longer be able to login.</p><p>  It is recommended that you don't unarchive an already archived account to avoid conflicts with new accounts as the student id and email have opened up.</p>
-              <!-- if archived == 1 then the "Archive" button will become an "Unarchive Button WITH conflict checker"-->
-            </div>
-            <div class="modal-footer">
-              <a href="#!" onclick="modelActClose('moreArchive')" class="waves-effect waves-cyan accent-4 btn-flat">Archive<i class="material-icons right">archive unarchive</i></a>
-            </div>
-            </form>
-          </div>
-          <!--Main student info card scripts-->
 
         </div>
+        <div id="ajaxMultiReturnDom"></div>
+        <div class="section" id="allStudentSettings">
+          <div class="row">
+            <div class="col s12">
+              <div class="card-panel grey lighten-4">
+                <div class="row">
+                  <div class="col s12">
+                    <span class="card-title">Multi-Student Actions</span>
+                    <div class="input-field col s12">
+                      <br>
+                      <select id="selector">
+                        <option value="" disabled>Choose your Selector</option>
+                        <option value="1" selected>All Students</option>
+                        <option value="2">Freshmen</option>
+                        <option value="3">Sophomores</option>
+                        <option value="4">Juniors</option>
+                        <option value="5">Seniors</option>
+                      </select>
+                      <label>Refine Your Action</label>
+                      <div class="divider"></div>
+                      <br>
+                      <a class="waves-effect waves-light btn" onclick="multiaccountUpdateModel();">Force Account Updates</a>
+                      <a class="waves-effect waves-light btn disabled">Archive Accounts</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+
+      <!--Modal-->
+      <div id="MultiAccUpdate" class="modal">
+        <div class="modal-content">
+          <h4>Are You Sure?</h4>
+          <p>This will make <b><span id="selConf"></span></b> update their Study-Hall Teacher and Period the next time they login.</p>
+          <p>If you made a mistake, please click "Restore" to cancel the forced update</p>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" onclick="multiaccountUpdateSend('go');">Yes</a>
+          <a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
+          <a href="#!" class=" modal-action modal-close waves-effect waves-blue btn-flat" onclick="multiaccountUpdateSend('restore');">Restore</a>
+        </div>
+      </div>
 
         <!--Scripts-->
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -240,7 +132,7 @@ include "nav.php"; ?>
                     });
                 }
             });
-
+             $('select').material_select();
           });
           function modelActOpen(id) {
             $('#' + id).openModal();
@@ -327,6 +219,199 @@ include "nav.php"; ?>
           }
         })}
       };
+      function multiaccountUpdateModel() {
+        modelActOpen("MultiAccUpdate");
+
+        if($('#selector').val() == 1) {
+          $('#selConf').html('every student')
+        } else if($('#selector').val() == 2) {
+          $('#selConf').html('every Freshmen')
+        } else if($('#selector').val() == 3) {
+          $('#selConf').html('every Sophomore')
+        } else if($('#selector').val() == 4) {
+          $('#selConf').html('every Junior')
+        } else if($('#selector').val() == 5) {
+          $('#selConf').html('every Senior')
+        }
+      }
+
+      function multiaccountUpdateSend(action) {
+
+
+        $('#ajaxMultiReturnDom').html("    <div class=\"preloader-wrapper big active\">\r\n      <div class=\"spinner-layer spinner-blue\">\r\n        <div class=\"circle-clipper left\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"gap-patch\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"circle-clipper right\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div>\r\n      <\/div>\r\n\r\n      <div class=\"spinner-layer spinner-red\">\r\n        <div class=\"circle-clipper left\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"gap-patch\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"circle-clipper right\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div>\r\n      <\/div>\r\n\r\n      <div class=\"spinner-layer spinner-yellow\">\r\n        <div class=\"circle-clipper left\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"gap-patch\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"circle-clipper right\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div>\r\n      <\/div>\r\n\r\n      <div class=\"spinner-layer spinner-green\">\r\n        <div class=\"circle-clipper left\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"gap-patch\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"circle-clipper right\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div>\r\n      <\/div>\r\n    <\/div> <h5 class='center'>Loading</h5>");
+        $.ajax({
+      url: 'studentAJAX/multiStudentActions.php',
+      data: {'whatToDo':"update",'action':action,'selector':$('#selector').val()},
+      type: 'post',
+      success: function(data) {
+        $('#ajaxMultiReturnDom').html(data);
+      },
+      error: function(xhr, desc, err) {
+        console.warn("Passport Info Code System: Returned with code \"1001\"-AJAX Error");
+        console.log(xhr);
+        console.error("Details: " + desc + "\nError:" + err);
+        console.warn(xhr.responseText)
+      $('#ajaxMultiReturnDom').html("There was an error.  Please check the console for more details.");
+      }
+    })};
+
         </script>
 </body>
 </html>
+
+<?
+/*
+<div class="section">
+<!--Main Student Info Card-->
+<div class="row">
+   <div class="col s12">
+     <div class="card-panel grey lighten-4">
+
+         <span>
+           <div class="row">
+             <div class="col l3 m5 s6">
+               <div class="col l12 s2">
+                 <img src="badMe.jpg" class="circle">
+               </div>
+
+               <div class="col l12 s12">
+                 <div class="valign-wrapper">
+                   <h4 class="valign grey-text lighten-1 center">Student Name</h4>
+
+                 </div>
+               </div>
+               <div class="col l12 s12">
+               <p class="grey-text lighten-1">Passport UUID: ######</p>
+             </div>
+             </div>
+
+             <div class="col l9 m7 s12">
+               <div class="row">
+                <div class="col s12">
+                  <div class="card-panel white">
+                    <div>
+                      <span>
+                        <h5 style="display:inline;">Account Info</h5>
+                        <i class="right material-icons waves-effect">edit</i>
+                      </span>
+                      <br>
+                    </div>
+                    <table class="highlight">
+
+
+                      <tbody>
+                        <tr>
+                          <td><i class="small material-icons">email</i></td>
+                          <td>Josephh2018@gmail.com</td>
+                        </tr>
+                        <tr>
+                          <td><i class="small material-icons">perm_identity</i></td>
+                          <td>05339</td>
+
+                        </tr>
+                        <tr>
+                          <td><i class="small material-icons">access_time</i></td>
+                          <td>E2</td>
+
+                        </tr>
+                        <tr>
+                          <td><i class="small material-icons">assignment_ind</i></td>
+                          <td>Ms. Youngblood</td>
+                        </tr>
+                        <tr>
+                          <td><i class="small material-icons">today</i></td>
+                          <td>Junior</td>
+                        </tr>
+                        <tr class="tableLinkArrow">
+                          <td><i class="small material-icons">gavel</i></td>
+                          <td>Not Banned/Banned until yy/mm/dd <i onclick="modelActOpen('moreBanned')" class='contentLinkArrow waves-effect right small material-icons'></i></td>
+                        </tr>
+                        <tr class="tableLinkArrow">
+                          <td><i class="small material-icons">restore</i></td>
+                          <td>Reset Account <i onclick="modelActOpen('moreReset')" class='contentLinkArrow waves-effect right small material-icons'></i></td>
+                        </tr>
+                        <tr class="tableLinkArrow">
+                          <td><i class="small material-icons">update</i></td>
+                          <td>Update Account <i onclick="modelActOpen('moreUpdate')" class='contentLinkArrow waves-effect right small material-icons'></i></td>
+                        </tr>
+                        <tr>
+                          <td><i class="small material-icons">verified_user</i></td>
+                          <td>Email NOT Verified/Email Verified</td>
+                        </tr>
+                        <tr class="tableLinkArrow">
+                          <td><i class="small material-icons">archive</i> <!--or use unarchive --></td>
+                          <td>User Is Archived/ User Is Not Archived <i onclick="modelActOpen('moreArchive')" class='contentLinkArrow waves-effect right small material-icons'></i></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+         </div>
+       </span>
+
+
+     </div>
+   </div>
+ </div>
+
+<!--End main student info card-->
+</div>
+<!--Main Student info card Model-->
+<!--Ban Hammer-->
+<div id="moreBanned" class="modal">
+<form id="theBanHammerModel">
+<div class="modal-content">
+  <h4>The Ban Hammer</h4>
+  <div class="input-field col s12">
+    <input type="date" id="datepickerBanHammer" class="datepicker">
+    <label for="datepickerBanHammer">Ban Until..</label>
+  </div>
+</div>
+<div class="modal-footer">
+  <a href="#!" onclick="modelActClose('moreBanned')" class="waves-effect waves-cyan accent-4 btn-flat">Ban/Unban <i class="material-icons right">gavel</i></a>
+</div>
+</form>
+</div>
+<!--Reset Account-->
+<div id="moreReset" class="modal">
+<form id="theResetSenInfoModel">
+<div class="modal-content">
+  <h4>Reset Sensitive Information </h4>
+</div>
+<div class="modal-footer">
+  <a href="#!" onclick="modelActClose('moreReset')" class="waves-effect waves-cyan accent-4 btn-flat">Reset Password<i class="material-icons right">vpn_key</i></a>
+</div>
+</form>
+</div>
+<!--Update Account-->
+<div id="moreUpdate" class="modal">
+<form id="theUpadteAccModel">
+<div class="modal-content">
+  <h4>Update Account</h4>
+  <p>This will forse the student, the next time they log on, to update their Study-Hall Teacher, Study-Hall Period, and even their grade level.</p>
+  <!-- if needsReset == 1 then the "Forse update" button will become an "Un-Forse Update Button"-->
+</div>
+<div class="modal-footer">
+  <a href="#!" onclick="modelActClose('moreUpdate')" class="waves-effect waves-cyan accent-4 btn-flat">Forse Update<i class="material-icons right">update</i></a>
+</div>
+</form>
+</div>
+<!--Archive Account-->
+<div id="moreArchive" class="modal">
+<form id="theArchiveAccModel">
+<div class="modal-content">
+  <h4>Archive Account</h4>
+  <p>By Archiving an account, you are in essence delting it. The account is still in the database, however, it will no longer be able to login.</p><p>  It is recommended that you don't unarchive an already archived account to avoid conflicts with new accounts as the student id and email have opened up.</p>
+  <!-- if archived == 1 then the "Archive" button will become an "Unarchive Button WITH conflict checker"-->
+</div>
+<div class="modal-footer">
+  <a href="#!" onclick="modelActClose('moreArchive')" class="waves-effect waves-cyan accent-4 btn-flat">Archive<i class="material-icons right">archive unarchive</i></a>
+</div>
+</form>
+</div>
+<!--Main student info card scripts-->
+*/
+?>

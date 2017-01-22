@@ -260,7 +260,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     success: function(data) {
       //$('#behindCard').html(data.return);
 
-      $('#behindCard').html(data.code);
+      $('#behindCard').html("");
       //console.log(data.code);
 
       if(data.status == "success") {
