@@ -25,6 +25,7 @@ if (isset($_POST['Submit'])) {
 				"sh_period",
 				"email_Verify_Status",
 				"banned_until_date",
+				"needsReset",
 				"password"
 			), array(
 				"AND" => array(
@@ -41,6 +42,7 @@ if (isset($_POST['Submit'])) {
 				$shPeriod = $row['sh_period'];
 				$emailVerStat = $row['email_Verify_Status'];
 				$bannedUntilDate = $row['banned_until_date'];
+				$needsReset = $row['needsReset'];
 				$hashedPass = $row['password'];
 			}
 			//echo $accID;
@@ -59,9 +61,14 @@ if (isset($_POST['Submit'])) {
 			if($emailVerStat == 0) {
 				$_SESSION['messageFromLogin'] = "Please check your email for the confirmation email<br>If you did not get it, please contact your teacher.";
 			}
+			if($needsReset == 1) {
+				$_SESSION['needsReset'] = 1;
+				header("Location: account.php");
+			} else {
 
-			header("Location: ../index.php");
-      $msg = "Your in!";
+				header("Location: ../index.php");
+	      $msg = "Your in!";
+			}
 		} else {
 			$msg = "Email or Password incorrect";
             $failshake = "animated wobble";

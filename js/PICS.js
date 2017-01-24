@@ -76,6 +76,11 @@ function PICS(infoCodeunpar) {
       result = false;
       visOutput = "Error! \"PICS\" Code: " + infoCode.code + " See Console";
       break;
+    case "3003":
+      console.error("PICS ~ Error Code: " + infoCode.code + " - Unknown Values");
+      result = false;
+      visOutput = "Error! \"PICS\" Code: " + infoCode.code + " See Console";
+      break;
     case "5001":
       console.error("PICS ~ Error Code: " + infoCode.code + " - Already Authenticated");
       result = false;
@@ -94,7 +99,7 @@ function PICS(infoCodeunpar) {
     case "7001":
       console.log("PICS ~ Success Code: " + infoCode.code + " - Successful Transaction");
       result = true;
-      visOutput = "Success! \"PICS\" Code: " + infoCode.code + " See Console";
+      visOutput = "Successful Transaction!";
       break;
     case "8001":
       console.warn("PICS ~ Warning Code: " + infoCode.code + " - Limit Reached");
@@ -104,7 +109,7 @@ function PICS(infoCodeunpar) {
     case "8002":
       console.warn("PICS ~ Warning Code: " + infoCode.code + " - Nothing Changed");
       result = false;
-      visOutput = "Warning! \"PICS\" Code: " + infoCode.code + " See Console";
+      visOutput = "Warning! \"PICS\" Code: " + infoCode.code + " - Nothing Changed";
       break;
     default:
       console.warn("PICS ~ The Code: " + infoCode.code + " is not recognised by PICS.");

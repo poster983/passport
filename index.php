@@ -2,6 +2,7 @@
   session_start();
   if(!isset($_SESSION['studentok']))
   header("location: students/login.php");
+  
 ?>
 <!--
 

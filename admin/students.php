@@ -72,12 +72,14 @@ include "nav.php"; ?>
                       <select id="selector">
                         <option value="" disabled>Choose your Selector</option>
                         <option value="1" selected>All Students</option>
-                        <option value="2">Freshmen</option>
-                        <option value="3">Sophomores</option>
-                        <option value="4">Juniors</option>
-                        <option value="5">Seniors</option>
+                        <option value="9">Freshmen</option>
+                        <option value="10">Sophomores</option>
+                        <option value="11">Juniors</option>
+                        <option value="12">Seniors</option>
+
                       </select>
                       <label>Refine Your Action</label>
+
                       <div class="divider"></div>
                       <br>
                       <a class="waves-effect waves-light btn" onclick="multiaccountUpdateModel();">Force Account Updates</a>
@@ -225,13 +227,13 @@ include "nav.php"; ?>
 
         if($('#selector').val() == 1) {
           $('#selConf').html('every student')
-        } else if($('#selector').val() == 2) {
+        } else if($('#selector').val() == 9) {
           $('#selConf').html('every Freshmen')
-        } else if($('#selector').val() == 3) {
+        } else if($('#selector').val() == 10) {
           $('#selConf').html('every Sophomore')
-        } else if($('#selector').val() == 4) {
+        } else if($('#selector').val() == 11) {
           $('#selConf').html('every Junior')
-        } else if($('#selector').val() == 5) {
+        } else if($('#selector').val() == 12) {
           $('#selConf').html('every Senior')
         }
       }
@@ -239,14 +241,14 @@ include "nav.php"; ?>
       function multiaccountUpdateSend(action) {
 
 
-        $('#ajaxMultiReturnDom').html("    <div class=\"preloader-wrapper big active\">\r\n      <div class=\"spinner-layer spinner-blue\">\r\n        <div class=\"circle-clipper left\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"gap-patch\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"circle-clipper right\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div>\r\n      <\/div>\r\n\r\n      <div class=\"spinner-layer spinner-red\">\r\n        <div class=\"circle-clipper left\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"gap-patch\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"circle-clipper right\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div>\r\n      <\/div>\r\n\r\n      <div class=\"spinner-layer spinner-yellow\">\r\n        <div class=\"circle-clipper left\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"gap-patch\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"circle-clipper right\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div>\r\n      <\/div>\r\n\r\n      <div class=\"spinner-layer spinner-green\">\r\n        <div class=\"circle-clipper left\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"gap-patch\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"circle-clipper right\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div>\r\n      <\/div>\r\n    <\/div> <h5 class='center'>Loading</h5>");
+        $('#ajaxMultiReturnDom').html("    <div class=\"preloader-wrapper big active\">\r\n      <div class=\"spinner-layer spinner-blue\">\r\n        <div class=\"circle-clipper left\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"gap-patch\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"circle-clipper right\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div>\r\n      <\/div>\r\n\r\n      <div class=\"spinner-layer spinner-red\">\r\n        <div class=\"circle-clipper left\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"gap-patch\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"circle-clipper right\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div>\r\n      <\/div>\r\n\r\n      <div class=\"spinner-layer spinner-yellow\">\r\n        <div class=\"circle-clipper left\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"gap-patch\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"circle-clipper right\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div>\r\n      <\/div>\r\n\r\n      <div class=\"spinner-layer spinner-green\">\r\n        <div class=\"circle-clipper left\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"gap-patch\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"circle-clipper right\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div>\r\n      <\/div>\r\n    <\/div> <h5>Loading</h5>");
         $.ajax({
       url: 'studentAJAX/multiStudentActions.php',
       data: {'whatToDo':"update",'action':action,'selector':$('#selector').val()},
       type: 'post',
       success: function(data) {
-        //$('#ajaxMultiReturnDom').html(data);
-        
+        $('#ajaxMultiReturnDom').html(" ");
+        //console.log("Students Affected: " + data.rowsAff);
         var returnPICS = PICS(data);
         var resultReturn = returnPICS.result;
 
