@@ -1,6 +1,7 @@
 <?
-include("../common.php");
-checklogin();
+session_start();
+if(!isset($_SESSION['adminok']))
+header("location: ../login.php");
 $msg = "";
 date_default_timezone_set('America/Chicago');
 include "../../medooconnect.php";
@@ -39,7 +40,7 @@ $rowCount = $medooDB->count("studentaccount", array(
 		"email" => $rawValue
 	)
 ));
-echo $rowCount;
+//echo $rowCount;
 
 if ($rowCount == 0) {
   echo "<div class=\"row\">
@@ -75,7 +76,7 @@ if ($rowCount == 0) {
 
   foreach($studentRawData as $data)
   {
-  	echo "Name :" . $data["firstname"] . " - email:" . $data["email"] . "<br/>";
+  	//echo "Name :" . $data["firstname"] . " - email:" . $data["email"] . "<br/>";
     $passportId = $data["id"];
     $firstname = $data["firstname"];
     $lastname = $data["lastname"];
@@ -96,7 +97,7 @@ if ($rowCount == 0) {
   ), array(
     "id" => $sh_teacher_ID
   ));
-  echo $teacherRawData;
+  //echo $teacherRawData;
   foreach($teacherRawData as $data)
   {
     $tename_title = $data["name_title"];

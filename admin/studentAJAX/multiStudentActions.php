@@ -1,6 +1,7 @@
 <?
-include("../common.php");
-checklogin();
+session_start();
+if(!isset($_SESSION['adminok']))
+header("location: ../login.php");
 $msg = "";
 date_default_timezone_set('America/Chicago');
 include "../../medooconnect.php";
