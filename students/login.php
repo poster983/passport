@@ -62,8 +62,8 @@ if (isset($_POST['Submit'])) {
 				$_SESSION['messageFromLogin'] = "Please check your email for the confirmation email<br>If you did not get it, please contact your teacher.";
 			}
 			if($needsReset == 1) {
-				$_SESSION['needsReset'] = 1;
-				header("Location: account.php");
+				$_SESSION['needsUpdate'] = 1;
+				header("Location: account.php?updateWelcome=");
 			} else {
 
 				header("Location: ../index.php");

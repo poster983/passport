@@ -2,7 +2,11 @@
   session_start();
   if(!isset($_SESSION['studentok']))
   header("location: students/login.php");
-  
+  if(isset($_SESSION['needsUpdate'])){
+    if ($_SESSION['needsUpdate'] == 1) {
+      header("location: students/account.php");
+    }
+  }
 ?>
 <!--
 

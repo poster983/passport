@@ -5,11 +5,7 @@
   date_default_timezone_set('America/Chicago');
   include "../medooconnect.php";
   include "../versionInfo.php";
-  if (isset($_GET['reset'])) {
-    if($_GET['reset'] == 1) {
 
-    }
-  }
 
 
 ?>
@@ -115,11 +111,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
            <li><a class="waves-effect" href="#!">Your Account</a></li>
            <li><div class="divider"></div></li>
            <!--<li><a class="subheader">Subheader</a></li>-->
-           <li><a class="waves-effect" href="students/logout.php">Logout<i class="material-icons right">lock_outline</i></a></li>
+           <li><a class="waves-effect" href="logout.php">Logout<i class="material-icons right">lock_outline</i></a></li>
 
          </ul>
           <a href="#" data-activates="slide-out" class="button-collapse left-allign show-on-large"><i class="material-icons">menu</i></a>
-            <a href="#" class="brand-logo center">Passport</a>
+            <a href="index.php" class="brand-logo center">Passport</a>
             <span class="right"><?echo $CurrentVersionOfPassport;?></span>
         </div>
     </nav>
@@ -164,6 +160,17 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             </div>
           </div>
         </div>
+      </div>
+    </div>
+
+    <div id="updateWelcomeMod" class="modal">
+      <div class="modal-content">
+        <h4>Update Your Account</h4>
+        <p>You must update your Study Hall before you can continue.</p>
+        <p>This won't take long</p>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Got It!</a>
       </div>
     </div>
 
@@ -266,6 +273,13 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       if(data.status == "success") {
         Materialize.toast('Changed Default Study Hall Successfully', 15000);
         console.log(data.code);
+        <?php
+          if(isset($_SESSION['needsUpdate'])){
+            if ($_SESSION['needsUpdate'] == 1) {
+              echo "Materialize.toast('You May Now Request Passes', 15000);";
+            }
+          }
+        ?>
       } else if (data.status == "error") {
         if (data.code == "3001") {
           Materialize.toast('Error Code: 3001, See Console For More Details', 15000);
@@ -297,6 +311,19 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     }
   })
   }};
+
+  function modelActOpen(id) {
+    $('#' + id).openModal();
+  }
+  function modelActClose(id) {
+    $('#' + id).closeModal();
+  }
     </script>
   </body>
   </html>
+
+  <?php
+  if (isset($_GET['updateWelcome'])) {
+    echo "<script>modelActOpen('updateWelcomeMod');</script>";
+  }
+   ?>

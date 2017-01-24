@@ -55,6 +55,16 @@ if (!isset($_SESSION['studentAccID'])) {
       ));
       if($shChange > 0) {
         $_SESSION['period'] = $period;
+        if(isset($_SESSION['needsUpdate'])){
+          if ($_SESSION['needsUpdate'] == 1) {
+            $_SESSION['needsUpdate'] = 0;
+            $medooDB->update("studentaccount", array(
+              "needsReset" => 0
+            ), array(
+            	"id" => $accID
+            ));
+          }
+        }
         echo json_encode(array('status' => 'success', 'code' => '7001'));
 
       } else {
