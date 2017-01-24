@@ -8,7 +8,7 @@ include "../../medooconnect.php";
 
 The MIT License (MIT)
 
-Copyright (c) Thu May 26 2016 Joseph Hassell joseph@thehassellfamily.net
+Copyright (c) Sat January 22 2017 Joseph Hassell josephh2018@gmail.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in

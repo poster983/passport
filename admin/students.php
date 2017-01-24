@@ -110,6 +110,7 @@ include "nav.php"; ?>
         <!-- Compiled and minified JavaScript -->
         <script src="/passport/js/materialize.js"></script>
         <script src="/passport/js/init.js"></script>
+        <script src="/passport/js/PICS.js"></script>
         <script>
           $(document).ready(function(){
             // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
@@ -244,7 +245,12 @@ include "nav.php"; ?>
       data: {'whatToDo':"update",'action':action,'selector':$('#selector').val()},
       type: 'post',
       success: function(data) {
-        $('#ajaxMultiReturnDom').html(data);
+        //$('#ajaxMultiReturnDom').html(data);
+        
+        var returnPICS = PICS(data);
+        var resultReturn = returnPICS.result;
+
+        Materialize.toast(returnPICS.text, 15000);
       },
       error: function(xhr, desc, err) {
         console.warn("Passport Info Code System: Returned with code \"1001\"-AJAX Error");
