@@ -1,4 +1,5 @@
 <?
+header('Content-Type: application/json');
 session_start();
 if(!isset($_SESSION['adminok']))
 header("location: ../login.php");

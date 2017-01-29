@@ -47,7 +47,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 console.log("Passport Info Code System (PICS) Is Initialized");
 function PICS(infoCodeunpar) {
-  var infoCode = JSON.parse(infoCodeunpar);
+  //var infoCode = JSON.parse(infoCodeunpar);
+  var infoCode = infoCodeunpar;
   var visOutput = "PICS ~ Nothing Specified";
   var result = false;
   switch (infoCode.code) {
@@ -95,6 +96,7 @@ function PICS(infoCodeunpar) {
       console.log("PICS ~ Info Code: " + infoCode.code + " - Debug Code");
       result = true;
       visOutput = "\"PICS\" Code: " + infoCode.code + " See Console";
+      console.log("Raw JSON Data: " + JSON.stringify(infoCode));
       break;
     case "7001":
       console.log("PICS ~ Success Code: " + infoCode.code + " - Successful Transaction");
@@ -113,7 +115,7 @@ function PICS(infoCodeunpar) {
       break;
     default:
       console.warn("PICS ~ The Code: " + infoCode.code + " is not recognised by PICS.");
-      console.log("Raw JSON Data: " + infoCode);
+      console.log("Raw JSON Data: " + JSON.stringify(infoCode));
       console.log("Raw Code: " + infoCode.code);
       result = false;
       visOutput = "Warning! \"PICS\" Code: " + infoCode.code + " See Console";

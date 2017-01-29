@@ -263,6 +263,34 @@ include "nav.php"; ?>
       }
     })};
 
+    function singleAccountBan(action) {
+      if($("input[name='datepickerBanHammer']").val() != "" || action == "unban") {
+      modelActClose('moreBanned');
+      $('#banHamIcon').html("    <div class=\"preloader-wrapper small active\">\r\n      <div class=\"spinner-layer spinner-blue\">\r\n        <div class=\"circle-clipper left\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"gap-patch\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"circle-clipper right\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div>\r\n      <\/div>\r\n\r\n      <div class=\"spinner-layer spinner-red\">\r\n        <div class=\"circle-clipper left\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"gap-patch\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"circle-clipper right\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div>\r\n      <\/div>\r\n\r\n      <div class=\"spinner-layer spinner-yellow\">\r\n        <div class=\"circle-clipper left\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"gap-patch\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"circle-clipper right\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div>\r\n      <\/div>\r\n\r\n      <div class=\"spinner-layer spinner-green\">\r\n        <div class=\"circle-clipper left\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"gap-patch\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div><div class=\"circle-clipper right\">\r\n          <div class=\"circle\"><\/div>\r\n        <\/div>\r\n      <\/div>\r\n    <\/div>");
+      $.ajax({
+    url: 'studentAJAX/studentActionAJAX.php',
+    data: {'whatToDo':"ban",'action':action,'banUntil':$("input[name='datepickerBanHammer']").val(),'sendEmail':$("#SendEmailBanHam").is(':checked'),'emailMessage':$("#BanHamReason").val()},
+    type: 'post',
+    success: function(data) {
+      $('#banHamIcon').html("<i class=\"small material-icons\">gavel</i>");
+      //console.log("Students Affected: " + data.rowsAff);
+      var returnPICS = PICS(data);
+      var resultReturn = returnPICS.result;
+
+      Materialize.toast(returnPICS.text, 15000);
+    },
+    error: function(xhr, desc, err) {
+      console.warn("Passport Info Code System: Returned with code \"1001\"-AJAX Error");
+      console.log(xhr);
+      console.error("Details: " + desc + "\nError:" + err);
+      console.warn(xhr.responseText)
+    $('#ajaxReturnDom').html("There was an error.  Please check the console for more details.");
+    $('#banHamIcon').html("<i class=\"small material-icons\">error_outline</i>");
+    }
+  })} else {
+    Materialize.toast('Please Pick A Date', 5000);
+  }};
+
         </script>
 </body>
 </html>

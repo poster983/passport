@@ -86,6 +86,9 @@ if ($rowCount == 0) {
     $sh_teacher_ID = $data["sh_teacher_ID"];
     $student_year = $data["student_year"];
     $email_Verify_Status = $data["email_Verify_Status"];
+		$banned_until_date = $data["banned_until_date"];
+		$needsReset = $data["needsReset"];
+		$archived = $data["archived"];
   }
 
 
@@ -127,8 +130,36 @@ if ($rowCount == 0) {
   } else {
     $email_Verify_Status_txt = "Email Verified";
   }
+	if($archived == 1) {
+		$archived_txt = "User IS Archived";
+		$archived_icon = "archive";
+	} else {
+		$archived_txt = "User Is NOT Archived";
+		$archived_icon = "unarchive";
+	}
 
+	echo $banned_until_date;
+	echo "<br>";
+	echo date( 'Y-m-d', strtotime(" today "));
+	echo "<br>";
+	$bdateTempArr = explode('-', $banned_until_date);
+	$banned_until_date_compare = date('Y-m-d', mktime(0, 0, 0, $bdateTempArr[1], $bdateTempArr[2], $bdateTempArr[0]));
+	echo "<br>";
+	echo $banned_until_date_compare;
+	echo "<br>";
+	var_dump ($banned_until_date_compare > date( 'Y-m-d', strtotime(" today ")));
+	if ($banned_until_date_compare > date( 'Y-m-d', strtotime(" today "))) {
 
+		$bannedText = "Banned Until " . date("l", strtotime($banned_until_date_compare)) . " " . date("F j", strtotime($banned_until_date_compare)) . "<sup>" . date("S", strtotime($banned_until_date_compare)) . "</sup>, " . date("Y", strtotime($banned_until_date_compare));
+
+		$banHamContent = "<p>This student is banned until " . date("l", strtotime($banned_until_date_compare)) . " " . date("F j", strtotime($banned_until_date_compare)) . "<sup>" . date("S", strtotime($banned_until_date_compare)) . "</sup>, " . date("Y", strtotime($banned_until_date_compare)) . ".</p> <p> If you want, you can extend his probation, or cancel it.";
+	} else {
+		$bannedText = "Not Banned";
+
+		$banHamContent="<p>Last ban ended on " . date("l", strtotime($banned_until_date_compare)) . " " . date("F j", strtotime($banned_until_date_compare)) . "<sup>" . date("S", strtotime($banned_until_date_compare)) . "</sup>, " . date("Y", strtotime($banned_until_date_compare)) . "</p>";
+	}
+
+	echo "<br> Banned Until " . date("l", strtotime($banned_until_date_compare)) . " " . date("F j", strtotime($banned_until_date_compare)) . "<sup>" . date("S", strtotime($banned_until_date_compare)) . "</sup>, " . date("Y", strtotime($banned_until_date_compare));
 
 echo "<div class=\"section\">
 <!--Main Student Info Card-->
@@ -192,8 +223,8 @@ echo "<div class=\"section\">
                           <td>" . $student_year . "</td>
                         </tr>
                         <tr class=\"tableLinkArrow\">
-                          <td><i class=\"small material-icons\">gavel</i></td>
-                          <td>Not Banned/Banned until yy/mm/dd <i onclick=\"modelActOpen('moreBanned')\" class='contentLinkArrow waves-effect right small material-icons'></i></td>
+                          <td id=\"banHamIcon\"><i class=\"small material-icons\">gavel</i></td>
+                          <td>" . $bannedText . " <i onclick=\"modelActOpen('moreBanned')\" class='contentLinkArrow waves-effect right small material-icons'></i></td>
                         </tr>
                         <tr class=\"tableLinkArrow\">
                           <td><i class=\"small material-icons\">restore</i></td>
@@ -208,8 +239,8 @@ echo "<div class=\"section\">
                           <td>" . $email_Verify_Status_txt . "<i onclick=\"modelActOpen('moreVeri')\" class='contentLinkArrow waves-effect right small material-icons'></i></td>
                         </tr>
                         <tr class=\"tableLinkArrow\">
-                          <td><i class=\"small material-icons\">archive</i>
-                          <td>User Is Archived/ User Is Not Archived <i onclick=\"modelActOpen('moreArchive')\" class='contentLinkArrow waves-effect right small material-icons'></i></td>
+                          <td><i class=\"small material-icons\">" . $archived_icon . "</i>
+                          <td>" . $archived_txt . " <i onclick=\"modelActOpen('moreArchive')\" class='contentLinkArrow waves-effect right small material-icons'></i></td>
                         </tr>
                       </tbody>
                     </table>
@@ -234,13 +265,23 @@ echo "<div class=\"section\">
   <form id=\"theBanHammerModel\">
   <div class=\"modal-content\">
     <h4>The Ban Hammer</h4>
-    <div class=\"input-field col s12\">
-      <input type=\"date\" id=\"datepickerBanHammer\" class=\"datepicker\">
+		<div class=\"input-field col s12\">
+      <input type=\"date\" id=\"datepickerBanHammer\" name=\"datepickerBanHammer\" class=\"datepicker\">
       <label for=\"datepickerBanHammer\">Ban Until..</label>
+		</div>
+			<div class=\"input-field col s12\">
+				<input type=\"checkbox\" id=\"SendEmailBanHam\" value=\"1\"/>
+	      <label for=\"SendEmailBanHam\">Send an email?</label>
+			</div>
+			<div class=\"input-field col s12\" id = \"banReasonDiv\" style=\"display: none;\" >
+				<textarea id=\"BanHamReason\" class=\"materialize-textarea\"></textarea>
+	      <label for=\"BanHamReason\">Banishment Reason (Optional)</label>
     </div>
+		" . $banHamContent . "
   </div>
   <div class=\"modal-footer\">
-    <a href=\"#!\" onclick=\"modelActClose('moreBanned')\" class=\"waves-effect waves-cyan accent-4 btn-flat\">Ban/Unban <i class=\"material-icons right\">gavel</i></a>
+    <a href=\"#!\" onclick=\"singleAccountBan('ban');\" class=\"waves-effect waves-green accent-4 btn-flat\">BAN <i class=\"material-icons right\">gavel</i></a>
+		<a href=\"#!\" onclick=\"singleAccountBan('unban');\" class=\"waves-effect waves-red accent-4 btn-flat\">UNBAN <i class=\"material-icons right\">remove</i></a>
   </div>
   </form>
 </div>
@@ -293,6 +334,16 @@ echo "<div class=\"section\">
   </div>
   </form>
 </div>
+<script>
+$(\"#SendEmailBanHam\").change(function() {
+		if(this.checked) {
+			$('#banReasonDiv').show();
+		} else {
+			$('#banReasonDiv').hide();
+		}
+		}
+);
+</script>
 ";
 } else {
   echo "<div class=\"row\">
