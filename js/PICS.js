@@ -35,6 +35,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 "wrong credentials": 2401
 "Database Error": 3001
 "Required Values not Satisfied": 3002
+"Unknown Values": 3003
 "Already Authenticated": 5001
 "Duplicate Passes": 5002
 "Debug Code": 6001

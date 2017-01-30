@@ -138,16 +138,16 @@ if ($rowCount == 0) {
 		$archived_icon = "unarchive";
 	}
 
-	echo $banned_until_date;
-	echo "<br>";
-	echo date( 'Y-m-d', strtotime(" today "));
-	echo "<br>";
+	//echo $banned_until_date;
+	//echo "<br>";
+	//echo date( 'Y-m-d', strtotime(" today "));
+	//echo "<br>";
 	$bdateTempArr = explode('-', $banned_until_date);
 	$banned_until_date_compare = date('Y-m-d', mktime(0, 0, 0, $bdateTempArr[1], $bdateTempArr[2], $bdateTempArr[0]));
-	echo "<br>";
-	echo $banned_until_date_compare;
-	echo "<br>";
-	var_dump ($banned_until_date_compare > date( 'Y-m-d', strtotime(" today ")));
+	//echo "<br>";
+	//echo $banned_until_date_compare;
+	//echo "<br>";
+	//var_dump ($banned_until_date_compare > date( 'Y-m-d', strtotime(" today ")));
 	if ($banned_until_date_compare > date( 'Y-m-d', strtotime(" today "))) {
 
 		$bannedText = "Banned Until " . date("l", strtotime($banned_until_date_compare)) . " " . date("F j", strtotime($banned_until_date_compare)) . "<sup>" . date("S", strtotime($banned_until_date_compare)) . "</sup>, " . date("Y", strtotime($banned_until_date_compare));
@@ -159,7 +159,7 @@ if ($rowCount == 0) {
 		$banHamContent="<p>Last ban ended on " . date("l", strtotime($banned_until_date_compare)) . " " . date("F j", strtotime($banned_until_date_compare)) . "<sup>" . date("S", strtotime($banned_until_date_compare)) . "</sup>, " . date("Y", strtotime($banned_until_date_compare)) . "</p>";
 	}
 
-	echo "<br> Banned Until " . date("l", strtotime($banned_until_date_compare)) . " " . date("F j", strtotime($banned_until_date_compare)) . "<sup>" . date("S", strtotime($banned_until_date_compare)) . "</sup>, " . date("Y", strtotime($banned_until_date_compare));
+	//echo "<br> Banned Until " . date("l", strtotime($banned_until_date_compare)) . " " . date("F j", strtotime($banned_until_date_compare)) . "<sup>" . date("S", strtotime($banned_until_date_compare)) . "</sup>, " . date("Y", strtotime($banned_until_date_compare));
 
 echo "<div class=\"section\">
 <!--Main Student Info Card-->
@@ -224,7 +224,7 @@ echo "<div class=\"section\">
                         </tr>
                         <tr class=\"tableLinkArrow\">
                           <td id=\"banHamIcon\"><i class=\"small material-icons\">gavel</i></td>
-                          <td>" . $bannedText . " <i onclick=\"modelActOpen('moreBanned')\" class='contentLinkArrow waves-effect right small material-icons'></i></td>
+                          <td id=\"banHamTxt\">" . $bannedText . " <i onclick=\"modelActOpen('moreBanned')\" class='contentLinkArrow waves-effect right small material-icons'></i></td>
                         </tr>
                         <tr class=\"tableLinkArrow\">
                           <td><i class=\"small material-icons\">restore</i></td>
@@ -271,7 +271,7 @@ echo "<div class=\"section\">
 		</div>
 			<div class=\"input-field col s12\">
 				<input type=\"checkbox\" id=\"SendEmailBanHam\" value=\"1\"/>
-	      <label for=\"SendEmailBanHam\">Send an email?</label>
+	      <label for=\"SendEmailBanHam\">Send an email? (Not Working Yet...)</label>
 			</div>
 			<div class=\"input-field col s12\" id = \"banReasonDiv\" style=\"display: none;\" >
 				<textarea id=\"BanHamReason\" class=\"materialize-textarea\"></textarea>
@@ -280,8 +280,8 @@ echo "<div class=\"section\">
 		" . $banHamContent . "
   </div>
   <div class=\"modal-footer\">
-    <a href=\"#!\" onclick=\"singleAccountBan('ban');\" class=\"waves-effect waves-green accent-4 btn-flat\">BAN <i class=\"material-icons right\">gavel</i></a>
-		<a href=\"#!\" onclick=\"singleAccountBan('unban');\" class=\"waves-effect waves-red accent-4 btn-flat\">UNBAN <i class=\"material-icons right\">remove</i></a>
+    <a href=\"#!\" onclick=\"singleAccountBan('ban', '" . $passportId . "');\" class=\"waves-effect waves-green accent-4 btn-flat\">BAN <i class=\"material-icons right\">gavel</i></a>
+		<a href=\"#!\" onclick=\"singleAccountBan('unban', '" . $passportId . "');\" class=\"waves-effect waves-red accent-4 btn-flat\">UNBAN <i class=\"material-icons right\">remove</i></a>
   </div>
   </form>
 </div>

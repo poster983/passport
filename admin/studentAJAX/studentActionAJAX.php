@@ -29,5 +29,37 @@ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORTOR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-echo json_encode(array('status' => 'success', 'code' => '6001', 'banUntil' => $_POST['banUntil'], 'SendEmail' => $_POST['sendEmail'], 'EmailMessage' => $_POST['emailMessage']));
+if($_POST['whatToDo'] == "ban") {
+  if($_POST['action'] == "ban") {
+    if(isset($_POST['banUntil'])) {
+      //echo json_encode(array('status' => 'error', 'code' => '6001', 'stu1d' => $_POST['stuID']));
+      $rowAff = $medooDB->update("studentaccount", array(
+        "banned_until_date" => $_POST['banUntil']
+      ), array(
+        "id" => $_POST['stuID']
+      ));
+      if($rowAff > 0) {
+        echo json_encode(array('status' => 'success', 'code' => '7001'));
+      } else {
+        echo json_encode(array('status' => 'warning', 'code' => '8002'));
+      }
+    } else {
+      echo json_encode(array('status' => 'error', 'code' => '3002'));
+    }
+  } else if ($_POST['action'] == "unban") {
+    $rowAff = $medooDB->update("studentaccount", array(
+      "banned_until_date" => date( 'Y-m-d', strtotime(" today "))
+    ), array(
+      "id" => $_POST['stuID']
+    ));
+    if($rowAff > 0) {
+      echo json_encode(array('status' => 'success', 'code' => '7001'));
+    } else {
+      echo json_encode(array('status' => 'warning', 'code' => '8002'));
+    }
+  } else {
+    echo json_encode(array('status' => 'error', 'code' => '3003'));
+  }
+}
+//echo json_encode(array('status' => 'success', 'code' => '601', 'banUntil' => $_POST['banUntil'], 'SendEmail' => $_POST['sendEmail'], 'EmailMessage' => $_POST['emailMessage']));
 ?>

@@ -51,23 +51,31 @@ if (isset($_POST['Submit'])) {
 			//echo $hashedPass;
 
 		if(crypt($password, $hashedPass) == $hashedPass) {
-			session_regenerate_id();
-			$_SESSION['studentok'] = "ok";
-			$_SESSION['sFN'] = $firstName;
-			$_SESSION['sLN'] = $lastName;
-			$_SESSION['email'] = $Uemail;
-			$_SESSION['period'] = $shPeriod;
-			$_SESSION['studentAccID'] = $accID;
-			if($emailVerStat == 0) {
-				$_SESSION['messageFromLogin'] = "Please check your email for the confirmation email<br>If you did not get it, please contact your teacher.";
-			}
-			if($needsReset == 1) {
-				$_SESSION['needsUpdate'] = 1;
-				header("Location: account.php?updateWelcome=");
+			$bdateTempArr = explode('-', $bannedUntilDate);
+			$banned_until_date_compare = date('Y-m-d', mktime(0, 0, 0, $bdateTempArr[1], $bdateTempArr[2], $bdateTempArr[0]));
+			if ($banned_until_date_compare > date( 'Y-m-d', strtotime(" today "))) {
+				$_SESSION['sFN'] = $firstName;
+				$_SESSION['btD'] = $banned_until_date_compare;
+				header("Location: banHammer.php");
 			} else {
+				session_regenerate_id();
+				$_SESSION['studentok'] = "ok";
+				$_SESSION['sFN'] = $firstName;
+				$_SESSION['sLN'] = $lastName;
+				$_SESSION['email'] = $Uemail;
+				$_SESSION['period'] = $shPeriod;
+				$_SESSION['studentAccID'] = $accID;
+				if($emailVerStat == 0) {
+					$_SESSION['messageFromLogin'] = "Please check your email for the confirmation email<br>If you did not get it, please contact your teacher.";
+				}
+				if($needsReset == 1) {
+					$_SESSION['needsUpdate'] = 1;
+					header("Location: account.php?updateWelcome=");
+				} else {
 
-				header("Location: ../index.php");
-	      $msg = "Your in!";
+					header("Location: ../index.php");
+		      $msg = "Your in!";
+				}
 			}
 		} else {
 			$msg = "Email or Password incorrect";
