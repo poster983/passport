@@ -4,15 +4,12 @@
 
 
 # Passport
-A web script to electronically distribute passes to students.
+A Web app that helps to distribute Library Passes, Hall Passes, ect,  to students.
 
 # Demo
-http://lijo.pw/passrdemo  
-
-The Admin Dashboard login:  
-
-u: admin  
-p: admin 
+Comeing soon.  
+For now, you can test it out  on any computer that has LAMP.    
+Check the wiki for install instructions.
 
 # Download and install  
 [see wiki] (https://github.com/poster983/passr/wiki/Install)
