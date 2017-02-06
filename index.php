@@ -54,12 +54,19 @@ My Sanity :)
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="/passport/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="/passport/css/passr.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="/passport/css/passport.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="/passport/css/animate.css" type="text/css" rel="stylesheet" media="screen,projection" />
+
+    <!--FavIcon-->
+
+    <link rel="shortcut icon" type="image/png" href="image/favicon.png"/>
+
+
     <!--Browser Colors-->
     <!-- Chrome, Firefox OS and Opera -->
-    <meta name="theme-color" content="#D32F2F">
+    <meta name="theme-color" content="#F44336">
     <!-- Windows Phone -->
-    <meta name="msapplication-navbutton-color" content="#D32F2F">
+    <meta name="msapplication-navbutton-color" content="#F44336">
     <!-- iOS Safari -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -92,6 +99,22 @@ My Sanity :)
       background-color: white;
 
     }
+
+    .passportLoader.box{
+      position: relative;
+      width: 342px;
+    height: 470px;
+    background-color: #00b8d4;
+    border-radius: 25px;
+    box-shadow: 3px 3px 5px #00b8d4;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    }
+    .passportLoader.box > .logo{
+
+    }
     </style>
 
 
@@ -104,8 +127,24 @@ My Sanity :)
         include "medooconnect.php";
         include "versionInfo.php";?>
 
+        <!--Loading Screen-->
+        <!--
+        <section class="loadingScreen loading">
 
 
+            <div class="vCenter">
+              <!--<img class="hCenter" height="42" width="42" src="image/passportLogo/web_hi_res_512.png">--
+              <div class="passportLoader box"></div>
+              <h5 class="center white-text">Loading</h5>
+            </div>
+
+<!--342x470--
+        </section>
+-->
+
+
+
+      <!-- Normal Page -->
 
 
     <!--Navbar-->
@@ -128,9 +167,9 @@ My Sanity :)
            <li><a class="waves-effect" href="students/logout.php">Logout<i class="material-icons right">lock_outline</i></a></li>
 
          </ul>
-          <a href="#" data-activates="slide-out" class="button-collapse left-allign show-on-large"><i class="material-icons">menu</i></a>
+          <a href="#" data-activates="slide-out" class="nav-sandwich button-collapse left-allign show-on-large"><i class="material-icons">menu</i></a>
             <a href="#" class="brand-logo center">Passport</a>
-            <span class="right"><?echo $CurrentVersionOfPassport;?></span>
+            <span class="nav-right"><?echo $CurrentVersionOfPassport;?></span>
         </div>
     </nav>
 
