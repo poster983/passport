@@ -100,21 +100,7 @@ My Sanity :)
 
     }
 
-    .passportLoader.box{
-      position: relative;
-      width: 342px;
-    height: 470px;
-    background-color: #00b8d4;
-    border-radius: 25px;
-    box-shadow: 3px 3px 5px #00b8d4;
-    left: 50%;
-    -webkit-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    transform: translateX(-50%);
-    }
-    .passportLoader.box > .logo{
 
-    }
     </style>
 
 
@@ -128,19 +114,66 @@ My Sanity :)
         include "versionInfo.php";?>
 
         <!--Loading Screen-->
-        <!--
-        <section class="loadingScreen loading">
+        <section id="fullAjaxLoadingScreen" class="loadingScreen loading">
 
 
             <div class="vCenter">
-              <!--<img class="hCenter" height="42" width="42" src="image/passportLogo/web_hi_res_512.png">--
-              <div class="passportLoader box"></div>
+
+              <div class="passportLoader box">
+                <div class="dark-half"></div>
+               <img class="logo" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDIxLjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCA4Ny42IDEwMCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgODcuNiAxMDA7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPHN0eWxlIHR5cGU9InRleHQvY3NzIj4KCS5zdDB7ZmlsbDojRUQyMTI0O30KPC9zdHlsZT4KPGc+Cgk8cGF0aCBjbGFzcz0ic3QwIiBkPSJNMzguMiw0OS42bDAsMTkuNWMwLDAuOSwwLDkuNS0xMS45LDMuNWMtMTEuOS02LTUuMi0xMi44LTQuNC0xM2MtNy0yLjItMTMuNC04LjItMTguNS0xNC4zCgkJYy01LDExLDQsMjIuNyw0LjQsMjQuNGMxLjEtMS4yLDIuNy0xLDMuNy0wLjhjMTIuMSwxOC41LDI4LDE2LjMsMzIuMywyMS41YzQuMy01LjIsMjAuMi0zLDMyLjMtMjEuNWMxLTAuMiwyLjYtMC4zLDMuNywwLjgKCQljMC40LTEuNyw5LjQtMTMuNCw0LjQtMjQuNGMtNS4xLDYuMi0xMS41LDEyLjItMTguNSwxNC4zYzAuOCwwLjIsNy41LDctNC40LDEzYy0xMS45LDYtMTAuOS0yLjctMTAuOS0zLjVsMC0xOS41Ii8+Cgk8Zz4KCQk8cGF0aCBjbGFzcz0ic3QwIiBkPSJNMzguMiwxMC44YzMuNC0wLjUsOC4yLTEsMTUuMi0xYzYuNywwLDExLjUsMS4yLDE0LjcsMy43YzMuMiwyLjMsNS4zLDYuNCw1LjMsMTEuMWMwLDQuNy0xLjYsOC43LTQuNSwxMS40CgkJCWMtMy43LDMuMy05LjEsNC44LTE1LjQsNC44Yy0xLjIsMC0yLjMtMC4xLTMtMC4xdjE1LjZIMzguMlYxMC44eiBNNTAuNCwzMS4yYzAuNywwLjEsMS41LDAuMSwyLjgsMC4xYzQuOCwwLDcuOC0yLjUsNy44LTYuNAoJCQljMC0zLjQtMi4zLTUuOC03LTUuOGMtMS44LDAtMywwLjEtMy42LDAuM1YzMS4yeiIvPgoJPC9nPgo8L2c+Cjwvc3ZnPgo=">
+              </div>
+
               <h5 class="center white-text">Loading</h5>
+              <div class="hCenter">
+                <div class="preloader-wrapper big active">
+                 <div class="spinner-layer spinner-blue">
+                   <div class="circle-clipper left">
+                     <div class="circle"></div>
+                   </div><div class="gap-patch">
+                     <div class="circle"></div>
+                   </div><div class="circle-clipper right">
+                     <div class="circle"></div>
+                   </div>
+                 </div>
+
+                 <div class="spinner-layer spinner-red">
+                   <div class="circle-clipper left">
+                     <div class="circle"></div>
+                   </div><div class="gap-patch">
+                     <div class="circle"></div>
+                   </div><div class="circle-clipper right">
+                     <div class="circle"></div>
+                   </div>
+                 </div>
+
+                 <div class="spinner-layer spinner-yellow">
+                   <div class="circle-clipper left">
+                     <div class="circle"></div>
+                   </div><div class="gap-patch">
+                     <div class="circle"></div>
+                   </div><div class="circle-clipper right">
+                     <div class="circle"></div>
+                   </div>
+                 </div>
+
+                 <div class="spinner-layer spinner-green">
+                   <div class="circle-clipper left">
+                     <div class="circle"></div>
+                   </div><div class="gap-patch">
+                     <div class="circle"></div>
+                   </div><div class="circle-clipper right">
+                     <div class="circle"></div>
+                   </div>
+                 </div>
+               </div>
+              </div>
+
             </div>
 
-<!--342x470--
+<!--342x470-->
         </section>
--->
+
 
 
 
@@ -209,14 +242,6 @@ My Sanity :)
         <div class="row">
             <form class="col s12" method="post" action="">
                 <div class="row">
-                    <div class="input-field col s6"> <i class="material-icons prefix">account_circle</i>
-                        <input id="bugname" name="bugname" required type="text" class="validate">
-                        <label for="bugname">Name</label>
-                    </div>
-                    <div class="input-field col s6"> <i class="material-icons prefix">email</i>
-                        <input id="bugemail" name="bugemail" required type="email" class="validate">
-                        <label for="bugemail">Email</label>
-                    </div>
                     <div class="input-field col s12"> <i class="material-icons prefix">comment</i>
                         <textarea id="bugtext" name="bugtext" required class="materialize-textarea"></textarea>
                         <label for="bugtext">Describe the bug or issue</label>
@@ -260,14 +285,7 @@ My Sanity :)
         <div class="row">
             <form class="col s12" method="post" action="">
                 <div class="row">
-                    <div class="input-field col s6"> <i class="material-icons prefix">account_circle</i>
-                        <input id="reviewname" name="reviewname" required type="text" class="validate">
-                        <label for="reviewname">Name</label>
-                    </div>
-                    <div class="input-field col s6"> <i class="material-icons prefix">email</i>
-                        <input id="reviewemail" name="reviewemail" required type="email" class="validate">
-                        <label for="reviewemail">Email</label>
-                    </div>
+
                     <div class="input-field col s12"> <i class="material-icons prefix">comment</i>
                         <textarea id="reviewtext" name="reviewtext" class="materialize-textarea"></textarea>
                         <label for="reviewtext">Comment</label>
@@ -316,9 +334,9 @@ My Sanity :)
             <div class="row">
               <div class="col s12">
                 <div id="behindCard"></div>
-                <div id="PassCard" class="card grey darken-3">
+                <div id="PassCard" class="card grey darken-3 hoverable">
                   <div class="card-content white-text">
-                    <span class="card-title">Passes</span>
+                    <span class="card-title">Get A Pass</span>
 
                       <form id="passForm" method="post">
 
@@ -331,7 +349,7 @@ My Sanity :)
                               <option value="Help Desk">Help Desk</option>
                               <option value="Writing Lab">Writing Lab</option>
                               <option value="Foreign Language">Foreign Language Tutoring</option>
-                              <option value="Athletic Mentor">Athletic Mentor</option>
+                              <!-- NO LONGER USED <option value="Athletic Mentor">Athletic Mentor</option>-->
                             </select>
                             <label>Department</label>
 
@@ -360,7 +378,21 @@ My Sanity :)
                 </div>
               </div>
             </div>
+            <!-- MyPasses-->
+            <div class="section">
+              <div class="row">
+                <div class="col s12">
+                  <div id="MyPassesCard" class="card grey darken-3 hoverable">
+                    <div class="card-content white-text">
+                      <span class="card-title">My Passes<sup>Beta</sup></span>
+                      <div id="myPassesReturn"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+
 
 
         <!-- Scripts -->
@@ -378,6 +410,7 @@ My Sanity :)
         <!-- Compiled and minified JavaScript -->
         <script src="js/materialize.js"></script>
         <script src="js/passport.js"></script>
+        <!--<script src="js/PICS.js"></script>-->
         <script>
 
 
@@ -387,8 +420,9 @@ My Sanity :)
                 $(".button-collapse").sideNav();
                 $('.tooltipped').tooltip({delay: 50});
                 $('select').material_select();
-                AllStudentmessageAjaxAfterPageLoad();
-                checkDebugModeCookies();
+                $.when(AllStudentmessageAjaxAfterPageLoad(), checkDebugModeCookies(), getMyPasses()).done(function(a1, a2, a3){
+                  $('#fullAjaxLoadingScreen').removeClass("loading");
+                });
               });
 
               function debugMode() {
@@ -416,7 +450,24 @@ My Sanity :)
                   $('#debugSubmit').html("");
                 }
               }
-              /*
+
+
+              $("#sao").change(function() {
+                  if(this.checked) {
+                    $('#passrequestAdvanced').show();
+                      $('#passrequestAdvanced').animateCss('bounceIn');
+                      $('#subPassAdv').html(" (Using Advanced Options) <i class='material-icons right'>error_outline</i>");
+                  } else {
+                    $('#passrequestAdvanced').animateCss('bounceOut');
+                    $('#passrequestAdvanced').one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
+                  function(e) {
+                    $('#passrequestAdvanced').hide();
+                    $('#subPassAdv').html("<i class='material-icons right'>send</i>");
+                  });
+                  }
+              });
+
+
               depLock = 0;
               dateshowLock = 0;
               selVal = 0;
@@ -461,7 +512,7 @@ My Sanity :)
 
                     $('#ReasonAJAX').html("<img class='svg-dis' src='/passport/image/rings.svg' /> <h5 class='center'>Loading</h5>");
                     $.ajax({
-                  url: 'ajaxGetReasonsAndBlackout.php',
+                  url: '/passport/students/ajaxGetReasonsAndBlackout.php',
                   data: {'dep': depart, 'per': perd},
                   type: 'get',
                   success: function(data) {
@@ -488,15 +539,15 @@ My Sanity :)
                 });
                 };
 
-                function submitPassToAjax(id, depart, reason, day) {
+                function submitPassToAjax(id, depart, reason, day, isDebug) {
                   $('#behindCard').html("<img class='svg-dis' src='/passport/image/rings.svg' /> <h5 class='center'>Loading</h5>");
                   $.ajax({
-                url: 'ajaxSubmit.php',
-                data: {'sAccID': id, 'dep': depart, 'reason': reason, 'day': day},
+                url: '/passport/students/ajaxSubmit.php',
+                data: {'sAccID': id, 'dep': depart, 'reason': reason, 'day': day, 'isDebug': isDebug},
                 type: 'get',
                 success: function(data) {
+                  $('#behindCard').html("");
 
-                  $('#behindCard').html(data);
                   depLock = 0;
                   dateshowLock = 0;
                   selVal = 0;
@@ -516,27 +567,54 @@ My Sanity :)
                 function(e) {
                 $('select').material_select();
                 if(!depReady || !reasonReady || !dateReady){
-                openFullOverlay("confirmOver");
-                setTimeout(function(){
-                  $( "#checkmarkAnimationfull" ).html('<svg class="pause-Ani checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path id="checkMarkAni"  class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>');
-                  $('#checkMarkAni').one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
-                    function(e) {
-                      console.log("done");
-                    closeFullOverlay("confirmOver", 1000);
-                    });
-                }, 500);
-              }
+                  console.log("json_encode");
+                  console.log(data);
+                if (data.status == "error") {
+                  if(data.code == "8001") {
+                    openFullOverlay("confirmOver");
+
+                        console.warn("Limit Reached");
+                        $( "#checkmarkAnimationfull" ).html("<span class='Xleft'></span><span class='Xright'></span>")
+                        $('#ConfirmOverlayWords').html("Limit Reached");
+                        closeFullOverlay("confirmOver", 4000);
+
+                  }
+                  if(data.code == "5002") {
+                    openFullOverlay("confirmOver");
+
+                        console.warn("You Have Already Requested A Pass");
+                        $( "#checkmarkAnimationfull" ).html("<span class='Xleft'></span><span class='Xright'></span>")
+                        $('#ConfirmOverlayWords').html("You Have Already Requested A Pass");
+                        closeFullOverlay("confirmOver", 3000);
+                  }
+                }
+                if (data.status == "success") {
+                  openFullOverlay("confirmOver");
+                  $('#ConfirmOverlayWords').html("Pass Requested");
+                  setTimeout(function(){
+                    $( "#checkmarkAnimationfull" ).html('<svg class="pause-Ani checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path id="checkMarkAni"  class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>');
+                    $('#checkMarkAni').one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
+                      function(e) {
+                        console.log("done");
+                      closeFullOverlay("confirmOver", 1000);
+                      });
+                  }, 500);
+                }
+
+                }
                 });
 
                 },
                 error: function(xhr, desc, err) {
                 console.log(xhr);
-                console.log("Details: " + desc + "\nError:" + err);
+                console.error("Details: " + desc + "\nError:" + err);
+                console.warn(xhr.responseText)
                 $('#behindCard').html("There was an error.  Please check the console for more details.");
                 }
+
               })};
 
-                function submitPass(id) {
+                function submitPass(id, isDebug) {
                   if (passSubmitReady == 1 && dateshowLock == 1){
                     passSubmitReady = 0;
                     console.log("hi");
@@ -547,7 +625,7 @@ My Sanity :)
                     console.log($("input[name=day]:checked").val());
                     if($("input[name=day]:checked").val() != undefined) {
                       $('#PassCard').hide();
-                  submitPassToAjax(id,$('#department').val(),$('#ajaxReason').val(),$("input[name=day]:checked").val());
+                  submitPassToAjax(id,$('#department').val(),$('#ajaxReason').val(),$("input[name=day]:checked").val(), isDebug);
                   console.log("byeee");
                 } else {
                   console.log("aaaaaaaaaaaaa");
@@ -571,7 +649,7 @@ My Sanity :)
                 function AllStudentmessageAjaxAfterPageLoad() {
                   $('#ajaxAllStudentMess').html("<img class='svg-dis' src='/passport/image/rings.svg' /> <h5 class='center'>Checking for Messages</h5>");
                   $.ajax({
-                url: 'ajaxMessage.php',
+                url: '/passport/students/ajaxMessage.php',
                 success: function(data) {
                   $('#ajaxAllStudentMess').html(data);
                 },
@@ -582,7 +660,20 @@ My Sanity :)
                 }
               })};
 
-              */
+              function getMyPasses(){
+                $('#myPassesReturn').html("<img class='svg-dis' src='/passport/image/rings.svg' /> <h5 class='center'>Getting Your Passes</h5>");
+                $.ajax({
+              url: '/passport/students/studentAJAX/getMyPasses.php',
+              success: function(data) {
+                $('#myPassesReturn').html(data);
+
+              },
+              error: function(xhr, desc, err) {
+              console.log(xhr);
+              console.log("Details: " + desc + "\nError:" + err);
+              $('#myPassesReturn').html("There was an error.  Please check the console for more details.");
+              }
+            })};
 
               </script>
 
@@ -603,8 +694,8 @@ My Sanity :)
   {
 
 
-      $bugname = $_POST['bugname'];
-      $bugemail = $_POST['bugemail'];
+      $bugname = $_SESSION['sFN'] . " " . $_SESSION['sLN'];
+      $bugemail = $_SESSION['email'];
       $bugseverity = $_POST['bugseverity'];
       $bugdate = date( 'Y-m-d', strtotime(" today "));
       $bugtext = htmlspecialchars($_POST['bugtext'],ENT_QUOTES);
@@ -664,8 +755,8 @@ My Sanity :)
   {
 
 
-      $reviewname = $_POST['reviewname'];
-      $reviewemail = $_POST['reviewemail'];
+      $reviewname = $_SESSION['sFN'] . " " . $_SESSION['sLN'];
+      $reviewemail = $_SESSION['email'];
       $reviewtext = htmlspecialchars($_POST['reviewtext'],ENT_QUOTES);
       $reviewseverity = $_POST['rating'];
       $reviewdate = date( 'Y-m-d', strtotime(" today "));

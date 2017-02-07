@@ -366,7 +366,7 @@ if (isset($_COOKIE['confirmExcused'])) {
             $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        echo "<table class='bordered responsive-table'><thead style='color: #ecf0f1'><tr><th>Excused?</th><th>Name</th><th>Period</th><th>Study Hall Teacher</th><th>Department</th><th>Day</th></tr></thead>";
+        echo "<table class='bordered'><thead style='color: #ecf0f1'><tr><th>Excused?</th><th>Name</th><th>Period</th><th>Study Hall Teacher</th><th>Department</th><th>Day</th></tr></thead>";
         // output data of each row
         echo "<tbody>";
         while($row = $result->fetch_assoc()) {
