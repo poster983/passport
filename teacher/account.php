@@ -43,7 +43,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <link href="/passport/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="/passport/css/passr.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="/passport/css/kiosk.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <!--FavIcon-->
 
+    <link rel="shortcut icon" type="image/png" href="/passport/image/favicon.png"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

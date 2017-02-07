@@ -33,7 +33,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <link href="/passport/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
 
     <link href="/passport/css/hamburgers.css" rel="stylesheet">
+    <!--FavIcon-->
 
+    <link rel="shortcut icon" type="image/png" href="/passport/image/favicon.png"/>
     <script>
     /*
     $('.button-collapse').sideNav({

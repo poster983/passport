@@ -48,7 +48,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <link href="/passport/css/kiosk.css" type="text/css" rel="stylesheet" media="screen,projection" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--FavIcon-->
 
+    <link rel="shortcut icon" type="image/png" href="/passport/image/favicon.png"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <!--<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
     <script src="/passport/js/materialize.js"></script>

@@ -23,6 +23,7 @@ echo "<META HTTP-EQUIV=\"refresh\" content=\"2; URL=index.php\"> ";
 }
 
         </style>
+        
     </head>
     <body style="background-color:#212121;">
         <div>

@@ -34,7 +34,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <title>Sign in Kiosk</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="/passport/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <!--FavIcon-->
 
+    <link rel="shortcut icon" type="image/png" href="/passport/image/favicon.png"/>
     <link href="/passport/css/passr.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="/passport/css/kiosk.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <style>

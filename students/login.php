@@ -132,7 +132,9 @@ SOFTWARE.
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+				<!--FavIcon-->
 
+		    <link rel="shortcut icon" type="image/png" href="/passport/image/favicon.png"/>
     </head>
 
 
