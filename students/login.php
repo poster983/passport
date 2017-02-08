@@ -132,9 +132,10 @@ SOFTWARE.
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-				<!--FavIcon-->
+				<link rel="manifest" href="/passport/manifest.json">
+		    <!--FavIcon-->
 
-		    <link rel="shortcut icon" type="image/png" href="/passport/image/favicon.png"/>
+		    <link rel="shortcut icon" type="image/png" href="image/favicon.png"/>
     </head>
 
 
@@ -174,6 +175,7 @@ SOFTWARE.
     </body>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="/passport/js/materialize.js"></script>
+		<script src="/passport/js/passport.js"></script>
     <script src="/passport/js/init.js"></script>
 
     </html>

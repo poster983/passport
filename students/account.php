@@ -43,8 +43,13 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 	     trackerGA(); ?>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="/passport/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="/passport/css/passport.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="/passport/css/passr.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="/passport/css/animate.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link rel="manifest" href="/passport/manifest.json">
+    <!--FavIcon-->
+
+    <link rel="shortcut icon" type="image/png" href="image/favicon.png"/>
     <!--Browser Colors-->
     <!-- Chrome, Firefox OS and Opera -->
     <meta name="theme-color" content="#D32F2F">
@@ -116,9 +121,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
            <li><a class="waves-effect" href="logout.php">Logout<i class="material-icons right">lock_outline</i></a></li>
 
          </ul>
-          <a href="#" data-activates="slide-out" class="button-collapse left-allign show-on-large"><i class="material-icons">menu</i></a>
+          <a href="#" data-activates="slide-out" class="nav-sandwich button-collapse left-allign show-on-large"><i class="material-icons">menu</i></a>
             <a href="index.php" class="brand-logo center">Passport</a>
-            <span class="right"><?echo $CurrentVersionOfPassport;?></span>
+            <span class="nav-right"><?echo $CurrentVersionOfPassport;?></span>
         </div>
     </nav>
     <div class="container">
@@ -180,6 +185,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <!--Scripts-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="/passport/js/materialize.js"></script>
+    <script src="/passport/js/passport.js"></script>
     <script>
       $(document).ready(function(){
         // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered

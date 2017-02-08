@@ -56,7 +56,7 @@ My Sanity :)
     <link href="/passport/css/passr.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="/passport/css/passport.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="/passport/css/animate.css" type="text/css" rel="stylesheet" media="screen,projection" />
-
+    <link rel="manifest" href="manifest.json">
     <!--FavIcon-->
 
     <link rel="shortcut icon" type="image/png" href="image/favicon.png"/>
@@ -121,7 +121,7 @@ My Sanity :)
 
               <div class="passportLoader box">
                 <div class="dark-half"></div>
-               <img class="logo" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDIxLjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCA4Ny42IDEwMCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgODcuNiAxMDA7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPHN0eWxlIHR5cGU9InRleHQvY3NzIj4KCS5zdDB7ZmlsbDojRUQyMTI0O30KPC9zdHlsZT4KPGc+Cgk8cGF0aCBjbGFzcz0ic3QwIiBkPSJNMzguMiw0OS42bDAsMTkuNWMwLDAuOSwwLDkuNS0xMS45LDMuNWMtMTEuOS02LTUuMi0xMi44LTQuNC0xM2MtNy0yLjItMTMuNC04LjItMTguNS0xNC4zCgkJYy01LDExLDQsMjIuNyw0LjQsMjQuNGMxLjEtMS4yLDIuNy0xLDMuNy0wLjhjMTIuMSwxOC41LDI4LDE2LjMsMzIuMywyMS41YzQuMy01LjIsMjAuMi0zLDMyLjMtMjEuNWMxLTAuMiwyLjYtMC4zLDMuNywwLjgKCQljMC40LTEuNyw5LjQtMTMuNCw0LjQtMjQuNGMtNS4xLDYuMi0xMS41LDEyLjItMTguNSwxNC4zYzAuOCwwLjIsNy41LDctNC40LDEzYy0xMS45LDYtMTAuOS0yLjctMTAuOS0zLjVsMC0xOS41Ii8+Cgk8Zz4KCQk8cGF0aCBjbGFzcz0ic3QwIiBkPSJNMzguMiwxMC44YzMuNC0wLjUsOC4yLTEsMTUuMi0xYzYuNywwLDExLjUsMS4yLDE0LjcsMy43YzMuMiwyLjMsNS4zLDYuNCw1LjMsMTEuMWMwLDQuNy0xLjYsOC43LTQuNSwxMS40CgkJCWMtMy43LDMuMy05LjEsNC44LTE1LjQsNC44Yy0xLjIsMC0yLjMtMC4xLTMtMC4xdjE1LjZIMzguMlYxMC44eiBNNTAuNCwzMS4yYzAuNywwLjEsMS41LDAuMSwyLjgsMC4xYzQuOCwwLDcuOC0yLjUsNy44LTYuNAoJCQljMC0zLjQtMi4zLTUuOC03LTUuOGMtMS44LDAtMywwLjEtMy42LDAuM1YzMS4yeiIvPgoJPC9nPgo8L2c+Cjwvc3ZnPgo=">
+               <img class="logo" alt="Passport Is Loading" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDIxLjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCA4Ny42IDEwMCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgODcuNiAxMDA7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPHN0eWxlIHR5cGU9InRleHQvY3NzIj4KCS5zdDB7ZmlsbDojRUQyMTI0O30KPC9zdHlsZT4KPGc+Cgk8cGF0aCBjbGFzcz0ic3QwIiBkPSJNMzguMiw0OS42bDAsMTkuNWMwLDAuOSwwLDkuNS0xMS45LDMuNWMtMTEuOS02LTUuMi0xMi44LTQuNC0xM2MtNy0yLjItMTMuNC04LjItMTguNS0xNC4zCgkJYy01LDExLDQsMjIuNyw0LjQsMjQuNGMxLjEtMS4yLDIuNy0xLDMuNy0wLjhjMTIuMSwxOC41LDI4LDE2LjMsMzIuMywyMS41YzQuMy01LjIsMjAuMi0zLDMyLjMtMjEuNWMxLTAuMiwyLjYtMC4zLDMuNywwLjgKCQljMC40LTEuNyw5LjQtMTMuNCw0LjQtMjQuNGMtNS4xLDYuMi0xMS41LDEyLjItMTguNSwxNC4zYzAuOCwwLjIsNy41LDctNC40LDEzYy0xMS45LDYtMTAuOS0yLjctMTAuOS0zLjVsMC0xOS41Ii8+Cgk8Zz4KCQk8cGF0aCBjbGFzcz0ic3QwIiBkPSJNMzguMiwxMC44YzMuNC0wLjUsOC4yLTEsMTUuMi0xYzYuNywwLDExLjUsMS4yLDE0LjcsMy43YzMuMiwyLjMsNS4zLDYuNCw1LjMsMTEuMWMwLDQuNy0xLjYsOC43LTQuNSwxMS40CgkJCWMtMy43LDMuMy05LjEsNC44LTE1LjQsNC44Yy0xLjIsMC0yLjMtMC4xLTMtMC4xdjE1LjZIMzguMlYxMC44eiBNNTAuNCwzMS4yYzAuNywwLjEsMS41LDAuMSwyLjgsMC4xYzQuOCwwLDcuOC0yLjUsNy44LTYuNAoJCQljMC0zLjQtMi4zLTUuOC03LTUuOGMtMS44LDAtMywwLjEtMy42LDAuM1YzMS4yeiIvPgoJPC9nPgo8L2c+Cjwvc3ZnPgo=">
               </div>
 
               <h5 class="center white-text">Loading</h5>
@@ -187,7 +187,7 @@ My Sanity :)
           <ul id="slide-out" class="side-nav">
            <li><div class="userView">
              <div class="background">
-               <img src="/passport/image/stunav.jpg">
+               <img alt="Side-Nav Background" src="/passport/image/stunav.jpg">
              </div>
              <a href="#!user"><i class="material-icons md-48 md-light">account_circle</i></a>
              <a href="#!name"><span class="white-text name"><?php echo $_SESSION['sFN'] . " " . $_SESSION['sLN']; ?></span></a>

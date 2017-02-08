@@ -37,7 +37,10 @@ SOFTWARE.
     <link href="/passport/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="/passport/css/passr.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="/passport/css/animate.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link rel="manifest" href="/passport/manifest.json">
+    <!--FavIcon-->
 
+    <link rel="shortcut icon" type="image/png" href="image/favicon.png"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 

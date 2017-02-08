@@ -31,6 +31,10 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <link href="/passport/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="/passport/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /> </head>
+    <link rel="manifest" href="/passport/manifest.json">
+    <!--FavIcon-->
+
+    <link rel="shortcut icon" type="image/png" href="image/favicon.png"/>
 
 <body>
     <nav>
