@@ -5,7 +5,7 @@
   "background_color": "#212121",
   "display": "standalone",
   "orientation": "portrait",
-  "start_url": "/passport/index.php",
+  "start_url": "/passport/index.php?pwa=1",
   "icons": [
     {
       "src": "image/passportLogo/icon-72x72.png",

@@ -32,7 +32,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="/passport/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
 
-    <link href="/passport/css/hamburgers.css" rel="stylesheet">
+    
     <link rel="manifest" href="/passport/manifest.json">
     <!--FavIcon-->
 

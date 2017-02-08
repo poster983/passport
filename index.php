@@ -1,7 +1,12 @@
 <?php
   session_start();
-  if(!isset($_SESSION['studentok']))
-  header("location: students/login.php");
+  if(!isset($_SESSION['studentok'])) {
+    if(isset($_GET['pwa'])) {
+      header("location: students/login.php?pwa=1");
+    } else {
+      header("location: students/login.php");
+    }
+  }
   if(isset($_SESSION['needsUpdate'])){
     if ($_SESSION['needsUpdate'] == 1) {
       header("location: students/account.php");

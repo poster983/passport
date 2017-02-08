@@ -5,6 +5,9 @@ $msg = "";
 $failshake = "";
 $fadein = "animated fadeInDown";
 date_default_timezone_set('America/Chicago');
+if(isset($_GET['pwa'])) {
+	echo "hi";
+}
 if (isset($_POST['Submit'])) {
 	$Uemail = $_POST['email'];
 	$password = $_POST['password'];
