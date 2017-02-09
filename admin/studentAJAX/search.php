@@ -227,7 +227,7 @@ echo "<div class=\"section\">
                           <td id=\"banHamTxt\">" . $bannedText . " <i onclick=\"modelActOpen('moreBanned')\" class='contentLinkArrow waves-effect right small material-icons'></i></td>
                         </tr>
                         <tr class=\"tableLinkArrow\">
-                          <td><i class=\"small material-icons\">restore</i></td>
+                          <td id=\"resetIcon\"><i class=\"small material-icons\">restore</i></td>
                           <td>Reset Account <i onclick=\"modelActOpen('moreReset')\" class='contentLinkArrow waves-effect right small material-icons'></i></td>
                         </tr>
                         <tr class=\"tableLinkArrow\">
@@ -292,7 +292,7 @@ echo "<div class=\"section\">
     <h4>Reset Sensitive Information </h4>
   </div>
   <div class=\"modal-footer\">
-    <a href=\"#!\" onclick=\"modelActClose('moreReset')\" class=\"waves-effect waves-cyan accent-4 btn-flat\">Reset Password<i class=\"material-icons right\">vpn_key</i></a>
+    <a href=\"#!\" onclick=\"modelActClose('moreReset'); modelActOpen('updatePasswordConfirm');\" class=\"waves-effect waves-cyan accent-4 btn-flat\">Reset Password<i class=\"material-icons right\">vpn_key</i></a>
   </div>
   </form>
 </div>
@@ -331,6 +331,23 @@ echo "<div class=\"section\">
   </div>
   <div class=\"modal-footer\">
     <a href=\"#!\" onclick=\"modelActClose('moreVeri')\" class=\"waves-effect waves-cyan accent-4 btn-flat\">Send<i class=\"material-icons right\">send</i></a>
+  </div>
+  </form>
+</div>
+<!--Password Confirm-->
+<div id=\"updatePasswordConfirm\" class=\"modal\">
+  <form id=\"updatePasswordConfirmModal\">
+  <div class=\"modal-content\">
+    <h4>Confirm This Action</h4>
+    <p>You are about to reset <b>" . $firstname . " " . $lastname . "'s</b> password to: <b>" . strtolower($lastname) . $student_id . "</b></p>
+		<b>THIS ACTION CANNOT BE UNDONE BY THE ADMIN</b>
+		<div class=\"input-field col s6\">
+          <input id=\"resetStPassAdminPass\" type=\"password\">
+          <label for=\"resetStPassAdminPass\">YOUR Admin Password</label>
+        </div>
+  </div>
+  <div class=\"modal-footer\">
+    <a href=\"#!\" onclick=\"singleResetPassword('" . $passportId . "', '" . strtolower($lastname) . $student_id . "');\" class=\"waves-effect waves-cyan accent-4 btn-flat\">Reset Password<i class=\"material-icons right\">fingerprint</i></a>
   </div>
   </form>
 </div>

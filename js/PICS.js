@@ -31,6 +31,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
 "AJAX Error": 1001
+"Encryption Error": 1002
 "unknown error": 1111
 "wrong credentials": 2401
 "Database Error": 3001
@@ -42,7 +43,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 "Successful Transaction": 7001
 "Limit Reached": 8001
 "Nothing Changed": 8002
-
+"Possibly Fatal Transaction": 8003
 */
 
 
@@ -58,6 +59,11 @@ function PICS(infoCodeunpar) {
       result = false;
       visOutput = "Error! \"PICS\" Code: " + infoCode.code + " See Console";
       break;
+    case "1002":
+      console.error("PICS ~ Error Code: " + infoCode.code + " - Encryption Error");
+      result = false;
+      visOutput = "Error! \"PICS\" Code: " + infoCode.code + " See Console";
+      break;
     case "1111":
       console.error("PICS ~ Error Code: " + infoCode.code + " - Unknown Error");
       result = false;
@@ -66,7 +72,7 @@ function PICS(infoCodeunpar) {
     case "2401":
       console.error("PICS ~ Error Code: " + infoCode.code + " - Wrong Credentials");
       result = false;
-      visOutput = "Error! \"PICS\" Code: " + infoCode.code + " See Console";
+      visOutput = "Error! Wrong Credentials";
       break;
     case "3001":
       console.error("PICS ~ Error Code: " + infoCode.code + " - Database Error");
@@ -113,6 +119,11 @@ function PICS(infoCodeunpar) {
       console.warn("PICS ~ Warning Code: " + infoCode.code + " - Nothing Changed");
       result = false;
       visOutput = "Warning! \"PICS\" Code: " + infoCode.code + " - Nothing Changed";
+      break;
+    case "8003":
+      console.warn("PICS ~ FATAL Warning Code: " + infoCode.code + " - Possibly Fatal Transaction.  GET IT TO CHECK DATABASE");
+      result = false;
+      visOutput = "URGENT!! Warning! \"PICS\" Code: " + infoCode.code + " - Possibly Fatal Transaction";
       break;
     default:
       console.warn("PICS ~ The Code: " + infoCode.code + " is not recognised by PICS.");

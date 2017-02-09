@@ -60,6 +60,35 @@ if($_POST['whatToDo'] == "ban") {
   } else {
     echo json_encode(array('status' => 'error', 'code' => '3003'));
   }
+} elseif ($_POST['whatToDo'] == "resetPassword") {
+  $adPassHash = $medooDB->get("admin", "password", array(
+    "id" => $_SESSION['adminID']
+  ));
+  if(crypt($_POST['adminPassword'], $adPassHash) == $adPassHash) {
+    $salt = '$2a$10$' . rand() . $_POST['stuID'] . rand() . rand() . '$';
+    $password = $_POST['resetTo'];
+    $hashedPass = crypt($password, $salt);
+    if ($hashedPass == '*0') {
+
+      echo json_encode(array('code' => '1002'));
+    } else {
+    $rowAff = $medooDB->update("studentaccount", array(
+      "password" => $hashedPass
+    ), array(
+      "id" => $_POST['stuID']
+    ));
+    if ($rowAff == 1) {
+      echo json_encode(array('code' => '7001'));
+    } elseif ($rowAff > 1) {
+      echo json_encode(array('code' => '8003'));
+    } else {
+      echo json_encode(array('code' => '8002'));
+    }
+  }
+  } else {
+    echo json_encode(array('code' => '2401'));
+  }
+
 }
 //echo json_encode(array('status' => 'success', 'code' => '601', 'banUntil' => $_POST['banUntil'], 'SendEmail' => $_POST['sendEmail'], 'EmailMessage' => $_POST['emailMessage']));
 ?>

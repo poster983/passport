@@ -12,7 +12,7 @@ if (isset($_POST['Submit'])) {
   //echo "username: " . $username . " Password: " . $password . "  ";
   //mysqli_report(MYSQLI_REPORT_ERROR);
   //  #&@% Prepared statements!!!
-	if ($stmt = $conn->prepare("SELECT firstname, lastname, email, password FROM admin WHERE username = ?")) {
+	if ($stmt = $conn->prepare("SELECT id, firstname, lastname, email, password FROM admin WHERE username = ?")) {
     //echo "HI";
     /* bind parameters for markers */
    $stmt->bind_param("s", $Uusername);
@@ -21,7 +21,7 @@ if (isset($_POST['Submit'])) {
     $stmt->store_result();
 
     /* bind result variables */
-    $stmt->bind_result($aFN, $aLN, $aEM, $hashedPass);
+    $stmt->bind_result($aID, $aFN, $aLN, $aEM, $hashedPass);
 
 
 
@@ -34,7 +34,7 @@ if (isset($_POST['Submit'])) {
 		if(crypt($password, $hashedPass) == $hashedPass) {
 			session_regenerate_id();
 			$_SESSION['adminok'] = "ok";
-			$_SESSION['adminUsername'] = $Uusername;
+			$_SESSION['adminID'] = $aID;
 			$_SESSION['adminFirstName'] = $aFN;
 			$_SESSION['adminLastName'] = $aLN;
 			$_SESSION['adminEmail'] = $aEM;
