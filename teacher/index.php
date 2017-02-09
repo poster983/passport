@@ -6,7 +6,7 @@ $msg = "";
 include "adminconnect.php";
 ob_start();
 ?>
-
+<!DOCTYPE html>
 
 <!--
 
@@ -51,7 +51,18 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <link rel="manifest" href="/passport/manifest.json">
     <!--FavIcon-->
 
-    <link rel="shortcut icon" type="image/png" href="image/favicon.png"/>
+    <link rel="shortcut icon" type="image/png" href="/passport/image/favicon.png"/>
+    <!--Browser Colors-->
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#F44336">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#F44336">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <!--<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
     <script src="/passport/js/materialize.js"></script>
@@ -84,7 +95,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
       <form method="get" action="">
         <div class="input-field">
-          <input autocomplete="off" id="autocomplete-input" name="teacherName" type="search" required class="autocomplete">
+          <input autocomplete="off" id="autocomplete-input" name="teacherName" type="search" placeholder="Search by Email" required class="autocomplete">
           <label for="autocomplete-input"><i class="material-icons">search</i></label>
           <i class="material-icons">close</i>
 
@@ -369,7 +380,7 @@ if (isset($_COOKIE['confirmExcused'])) {
             $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        echo "<table class='bordered'><thead style='color: #ecf0f1'><tr><th>Excused?</th><th>Name</th><th>Period</th><th>Study Hall Teacher</th><th>Department</th><th>Day</th></tr></thead>";
+        echo "<table class='bordered responsive-table'><thead style='color: #ecf0f1'><tr><th>Excused?</th><th>Name</th><th>Period</th><th>Study Hall Teacher</th><th>Department</th><th>Day</th></tr></thead>";
         // output data of each row
         echo "<tbody>";
         while($row = $result->fetch_assoc()) {

@@ -347,7 +347,7 @@ echo "<div class=\"section\">
         </div>
   </div>
   <div class=\"modal-footer\">
-    <a href=\"#!\" onclick=\"singleResetPassword('" . $passportId . "', '" . strtolower($lastname) . $student_id . "');\" class=\"waves-effect waves-cyan accent-4 btn-flat\">Reset Password<i class=\"material-icons right\">fingerprint</i></a>
+    <a href=\"#!\" onclick=\"modelActClose('updatePasswordConfirm'); singleResetPassword('" . $passportId . "', '" . strtolower($lastname) . $student_id . "');\" class=\"waves-effect waves-cyan accent-4 btn-flat\">Reset Password<i class=\"material-icons right\">fingerprint</i></a>
   </div>
   </form>
 </div>

@@ -94,9 +94,19 @@ if (isset($_POST['Submit'])) {
 		    <!--FavIcon-->
 
 		    <link rel="shortcut icon" type="image/png" href="image/favicon.png"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
 
+				<!--Browser Colors-->
+		    <!-- Chrome, Firefox OS and Opera -->
+		    <meta name="theme-color" content="#F44336">
+		    <!-- Windows Phone -->
+		    <meta name="msapplication-navbutton-color" content="#F44336">
+		    <!-- iOS Safari -->
+		    <meta name="apple-mobile-web-app-capable" content="yes">
+		    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
+		    <!--Let browser know website is optimized for mobile-->
+		    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </head>
 
 

@@ -32,11 +32,21 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="/passport/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
 
-    
+
     <link rel="manifest" href="/passport/manifest.json">
     <!--FavIcon-->
 
     <link rel="shortcut icon" type="image/png" href="image/favicon.png"/>
+    <!--Browser Colors-->
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#F44336">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#F44336">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    
     <script>
     /*
     $('.button-collapse').sideNav({
