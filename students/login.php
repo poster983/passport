@@ -5,9 +5,7 @@ $msg = "";
 $failshake = "";
 $fadein = "animated fadeInDown";
 date_default_timezone_set('America/Chicago');
-if(isset($_GET['pwa'])) {
-	echo "hi";
-}
+
 if (isset($_POST['Submit'])) {
 	$Uemail = $_POST['email'];
 	$password = $_POST['password'];
@@ -129,21 +127,44 @@ SOFTWARE.
 
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="/passport/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
-        <link href="/passport/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
         <link href="/passport/css/passr.css" type="text/css" rel="stylesheet" media="screen,projection" />
         <link href="/passport/css/animate.css" type="text/css" rel="stylesheet" media="screen,projection" />
-
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
 				<link rel="manifest" href="/passport/manifest.json">
-		    <!--FavIcon-->
-
-		    <link rel="shortcut icon" type="image/png" href="image/favicon.png"/>
+				<!--FavIcon-->
+				<link rel="shortcut icon" type="image/png" href="/passport/image/favicon.png"/>
+				<!--Browser Colors-->
+				<!-- Chrome, Firefox OS and Opera -->
+				<meta name="theme-color" content="#F44336">
+				<!-- Windows Phone -->
+				<meta name="msapplication-navbutton-color" content="#F44336">
+				<!-- iOS Safari -->
+				<meta name="apple-mobile-web-app-capable" content="yes">
+				<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+				<!--Let browser know website is optimized for mobile-->
+				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </head>
 
 
     <body class="blur-back">
+			<?
+			if(isset($_GET['pwa'])) {
+				echo "<div class=\"fixed-action-btn\">
+			    <a class=\"btn-floating btn-large waves-effect waves-light red tooltipped\" data-position=\"left\" data-delay=\"50\" data-tooltip=\"Change Default Login\">
+			      <i class=\"large material-icons\">settings_applications</i>
+			    </a>
+					<ul>
+						<li><a onclick=\"switchLogin('1');\" class=\"btn-floating red tooltipped\" data-position=\"left\" data-delay=\"50\" data-tooltip=\"Student\"><i class=\"material-icons\">face</i></a></li>
+						<li><a onclick=\"switchLogin('2');\" class=\"btn-floating yellow darken-3 tooltipped\" data-position=\"left\" data-delay=\"50\" data-tooltip=\"Teacher\"><i class=\"material-icons\">work</i></a></li>
+						<li><a onclick=\"switchLogin('3');\" class=\"btn-floating blue tooltipped\" data-position=\"left\" data-delay=\"50\" data-tooltip=\"Admin\"><i class=\"material-icons\">build</i></a></li>
+						<li><a onclick=\"switchLogin('4');\" class=\"btn-floating green tooltipped\" data-position=\"left\" data-delay=\"50\" data-tooltip=\"Developer\"><i class=\"material-icons\">code</i></a></li>
+			    </ul>
+					</div>";
 
+
+
+			}
+
+							?>
         <div class="containerlogin signin-allign">
 
             <div class="card-panel eagleBlood <? echo $fadein; ?>">
@@ -174,11 +195,44 @@ SOFTWARE.
             </div>
         </div>
 
-
     </body>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="/passport/js/materialize.js"></script>
 		<script src="/passport/js/passport.js"></script>
     <script src="/passport/js/init.js"></script>
+		<?
+			if(isset($_GET['pwa'])) {
 
+				?>
+
+				<script>
+				function switchLogin(whereTo) {
+					switch (whereTo) {
+		        case "1":
+		          localStorage.setItem("pwaPref", whereTo);
+							window.location="http://<? echo $_SERVER['HTTP_HOST'] ?>/passport/index.php?pwa=1"
+		          break;
+		        case "2":
+						localStorage.setItem("pwaPref", whereTo);
+						window.location="http://<? echo $_SERVER['HTTP_HOST'] ?>/passport/teacher/index.php?pwa=1"
+		          break;
+		        case "3":
+						localStorage.setItem("pwaPref", whereTo);
+						window.location="http://<? echo $_SERVER['HTTP_HOST'] ?>/passport/admin/index.php?pwa=1"
+		          break;
+		        case "4":
+						localStorage.setItem("pwaPref", whereTo);
+						window.location="http://<? echo $_SERVER['HTTP_HOST'] ?>/passport/locationLand.php"
+		          break;
+		        default:
+		        console.log("Nothing Selected");
+		      }
+				}
+				</script>
+
+				<?
+
+			}
+
+		?>
     </html>

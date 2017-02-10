@@ -113,6 +113,7 @@ if (isset($_POST['Submit'])) {
     </body>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="/passport/js/materialize.js"></script>
+		<script src="/passport/js/passport.js"></script>
     <script src="/passport/js/init.js"></script>
 
     </html>
