@@ -82,7 +82,19 @@ if (isset($_POST['Submit'])) {
 
 
     <body class="blur-back">
-
+			<div id="pwaSettings" style="display: none;">
+				<div class="fixed-action-btn">
+			    <a class="btn-floating btn-large waves-effect waves-light red tooltipped" data-position="left" data-delay="50" data-tooltip="Change Default Login">
+			      <i class="large material-icons">settings_applications</i>
+			    </a>
+					<ul>
+						<li><a onclick="switchLogin('1');" class="btn-floating red tooltipped" data-position="left" data-delay="50" data-tooltip="Student"><i class="material-icons">face</i></a></li>
+						<li><a onclick="switchLogin('2');" class="btn-floating yellow darken-3 tooltipped" data-position="left" data-delay="50" data-tooltip="Teacher"><i class="material-icons">work</i></a></li>
+						<li><a onclick="switchLogin('3');" class="btn-floating blue tooltipped" data-position="left" data-delay="50" data-tooltip="Admin"><i class="material-icons">build</i></a></li>
+						<li><a onclick="switchLogin('4');" class="btn-floating green tooltipped" data-position="left" data-delay="50" data-tooltip="Developer"><i class="material-icons">code</i></a></li>
+			    </ul>
+					</div>
+				</div>
         <div class="containerlogin signin-allign">
 
             <div class="card-panel blue-teal <? echo $fadein; ?>">
@@ -115,5 +127,31 @@ if (isset($_POST['Submit'])) {
     <script src="/passport/js/materialize.js"></script>
 		<script src="/passport/js/passport.js"></script>
     <script src="/passport/js/init.js"></script>
-
+		<script>
+		if(localStorage.getItem("pwaShowSetting") == "1") {
+			$('#pwaSettings').show();
+		}
+		function switchLogin(whereTo) {
+			switch (whereTo) {
+				case "1":
+					localStorage.setItem("pwaPref", whereTo);
+					window.location="http://<? echo $_SERVER['HTTP_HOST'] ?>/passport/index.php?pwa=1"
+					break;
+				case "2":
+				localStorage.setItem("pwaPref", whereTo);
+				window.location="http://<? echo $_SERVER['HTTP_HOST'] ?>/passport/teacher/index.php?pwa=1"
+					break;
+				case "3":
+				localStorage.setItem("pwaPref", whereTo);
+				window.location="http://<? echo $_SERVER['HTTP_HOST'] ?>/passport/admin/index.php?pwa=1"
+					break;
+				case "4":
+				localStorage.setItem("pwaPref", whereTo);
+				window.location="http://<? echo $_SERVER['HTTP_HOST'] ?>/passport/locationLand.php"
+					break;
+				default:
+				console.log("Nothing Selected");
+			}
+		}
+		</script>
     </html>

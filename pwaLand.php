@@ -149,6 +149,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
     function setPref(){
       localStorage.setItem("pwaPref", $('#prefSel').val());
+      localStorage.setItem("pwaShowSetting", "1");
       location.reload();
     }
     </script>
