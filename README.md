@@ -11,10 +11,12 @@ Coming soon.
 For now, you can test it out  on any computer that has LAMP.    
 Check the wiki for install instructions.
 
+# Documentation: 
+[Knowledge Base] (https://poster983.gitbooks.io/passport-help/content/)  
+[Developer Documentation] (https://poster983.gitbooks.io/passport-developer/content/)
+
 # Download and install  
 [see wiki] (https://github.com/poster983/passr/wiki/Install)
 
 # Features  
 [see wiki] (https://github.com/poster983/passr/wiki/Features)
-
-
