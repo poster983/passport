@@ -46,7 +46,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-    
+
     <script>
     /*
     $('.button-collapse').sideNav({
@@ -68,7 +68,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
     <nav>
         <div class="nav-wrapper">
-            <a href="index.php" class="brand-logo right">Passport Admin Dashboard</a>
+            <a href="index.php" class="brand-logo right">Admin Dashboard</a>
             <!--
             <ul id="nav-desktop" class="left hide-on-med-and-down">
                 <li><a href="passsearch.php">Passes</a></li>

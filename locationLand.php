@@ -48,6 +48,10 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       <li><a onclick="switchLogin('4');" class="btn-floating green tooltipped" data-position="left" data-delay="50" data-tooltip="Developer"><i class="material-icons">code</i></a></li>
     </ul>
     </div>
+
+  <div class="hCenter">
+    <img src="image/passportLogo/icon-144x144.png" alt="Passport Logo">
+  </div>
   <div class="welcome">
 
     <h1 class="center white-text">Welcome to Passport!</h1>
@@ -55,11 +59,12 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <div class="container">
         <div class="input-field col s12">
           <select id="prefSel" onchange="go(this.value);">
-            <option value="" disabled selected>Who Are You?</option>
-            <option value="1">I Am A Student</option>
-            <option value="2">I Am A Teacher</option>
-            <option value="3">I Am An Admin</option>
-            <option value="4">I Am A Developer</option>
+            <option value="" disabled selected>Where do you want to go?</option>
+            <option value="1">Students</option>
+            <option value="2">Teachers</option>
+            <option value="3">The Admin Panel</option>
+            <option value="4">The Kiosk</option>
+            <option value="5">Feedback</option>
           </select>
           <label>Login Chooser</label>
         </div>
@@ -67,6 +72,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     </div>
     <? include "commonScripts.php"; ?>
     <script>
+    $(document).ready(function() {
+      $('select').material_select();
+    });
     function go(loc) {
     switch (loc) {
       case "1":
@@ -79,7 +87,10 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         window.location="http://<? echo $_SERVER['HTTP_HOST'] ?>/passport/admin/index.php?pwa=1"
         break;
       case "4":
-        window.location="http://<? echo $_SERVER['HTTP_HOST'] ?>/passport/locationLand.php"
+        window.location="http://<? echo $_SERVER['HTTP_HOST'] ?>/passport/kiosk/index.php"
+        break;
+      case "5":
+        window.location="http://<? echo $_SERVER['HTTP_HOST'] ?>/passport/feedback/index.php"
         break;
       default:
       console.log("No Redirect");
