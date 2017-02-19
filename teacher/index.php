@@ -12,7 +12,7 @@ ob_start();
 
 The MIT License (MIT)
 
-Copyright (c) Sat Jul 02 2016 Joseph Hassell joseph@thehassellfamily.net
+Copyright (c) Sun Feb 18 2017 Joseph Hassell josephh2018@gmail.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
@@ -43,9 +43,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="/passport/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    <link href="/passport/css/passr.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    <link href="/passport/css/kiosk.css" type="text/css" rel="stylesheet" media="screen,projection" />
-
+    <link href="/passport/css/passport.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="manifest" href="/passport/manifest.json">
     <!--FavIcon-->
@@ -62,10 +60,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <!--<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
-    <script src="/passport/js/materialize.js"></script>
-    <script src="/passport/js/passport.js"></script>
+
 
 </head>
 
@@ -79,7 +74,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   <!-- Nav Bar-->
   <nav>
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo left">Teachers</a>
+      <a href="#" class="nav-left brand-logo">Teachers</a>
       <ul id="nav-mobile" class="right">
         <!--<li class="right"><a href="logout.php">Logout<i class="material-icons right">lock</i></a></li>-->
         <li><a href="<?php echo 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>"><i class="material-icons">refresh</i></a></li>
@@ -121,60 +116,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <ul>
             <li><a class="btn-floating red modal-trigger tooltipped" data-position="left" data-delay="50" data-tooltip="Bug Report" href="#bugmodal"><i class="material-icons">report_problem</i></a></li>
             <li><a class="btn-floating yellow darken-1 modal-trigger tooltipped" data-position="left" data-delay="50" data-tooltip="Leave A Review" href="#reviewmodal"><i class="material-icons">thumbs_up_down</i></a></li>
-            <li><a class="btn-floating green tooltipped" data-position="left" data-delay="50" data-tooltip="Wiki" href="https://github.com/poster983/passport/wiki"><i class="material-icons">live_help</i></a></li>
+            <li><a class="btn-floating green tooltipped" data-position="left" data-delay="50" data-tooltip="Help" href="https://poster983.gitbooks.io/passport-help/content/"><i class="material-icons">live_help</i></a></li>
             <li><a class="btn-floating blue tooltipped" data-position="left" data-delay="50" data-tooltip="Version Info and Licence"><i class="material-icons">info</i></a></li>
         </ul>
     </div>
-<?
-if (isset($_COOKIE['errorExcused'])) {
-  $modalConfirmar = explode("&&%%", $_COOKIE["errorExcused"]);
-?>
-<!--ConfirmModel-->
 
-<div id="confirmModel" class="modal">
-    <div class="modal-content">
-      <h4><? echo $modalConfirmar[0]; ?></h4>
-      <p><? echo $modalConfirmar[1]; ?></p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
-    </div>
-  </div>
-
-<?
-
-  echo "<script>$('#confirmModel').openModal();</script>";
-  setcookie("errorExcused","byebye",time()-1);
-}
-if (isset($_COOKIE['confirmExcused'])) {
-  ?>
-
-  <div id="confirmOver" class="overlay-full">
-    <div class="overlay-content">
-    <div id="checkmarkAnimationfull">
-
-  </div>
-    <h1 class="center white-text">Operation Complete</h1>
-    <a href="javascript:void(0)" class="closebtn-overlay" onclick="closeFullOverlay('confirmOver', 0)">&times;</a>
-  </div>
-</div>
-  <script>
-  openFullOverlay("confirmOver");
-  setTimeout(function(){
-    $( "#checkmarkAnimationfull" ).html('<svg class="pause-Ani checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path id="checkMarkAni"  class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>');
-    $('#checkMarkAni').one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
-      function(e) {
-        console.log("done");
-      closeFullOverlay("confirmOver", 1000);
-      });
-  }, 500);
-
-  </script>
-  <?
-  setcookie("confirmExcused","byebye",time()-1);
-}
-
-?>
 
   <!-- Bug Modal -->
   <div id="bugmodal" class="modal bottom-sheet">
@@ -214,278 +160,162 @@ if (isset($_COOKIE['confirmExcused'])) {
 
   </div>
 
-    <?
-
-    //bug report submit code
-
-
-    if(isset($_POST['submitbug'])){
-
-
-        foreach ($_POST as $key => $value) {
-
-    }
-    {
-
-
-        $bugname = $_POST['bugname'];
-        $bugemail = $_POST['bugemail'];
-        $bugtext = htmlspecialchars($_POST['bugtext'],ENT_QUOTES);
-        $bugseverity = $_POST['bugseverity'];
-        $bugdate = date( 'Y-m-d', strtotime(" today "));
-        $bugVersion = $CurrentVersionOfPassport;
-    }
-
-        $sqlbug = "INSERT INTO feedback (name, email, comment, rating, report_type, date, role, forVersion)
-        VALUES ('$bugname', '$bugemail', '$bugtext', '$bugseverity', 'bug', '$bugdate', 'teacher', '$bugVersion')";
-
-        if ($conn->query($sqlbug) === TRUE) {
-        echo "<script> Materialize.toast('Bug report submitted successfully', 4000) </script>";
-        //echo "Bug report submitted successfully";
-        } else {
-        echo "Error: " . $sqlbug . "<br>" . $conn->error;
-
-}
-
-    }
-
-    ?>
-
-
-
-    <!-- Review Modal -->
+  <!-- Review Modal -->
   <div id="reviewmodal" class="modal bottom-sheet">
-    <div class="modal-content">
-        <h4>Leave a review</h4>
-        <div class="row">
-            <form class="col s12" method="post" action="">
-                <div class="row">
-                    <div class="input-field col s6"> <i class="material-icons prefix">account_circle</i>
-                        <input id="reviewname" name="reviewname" required type="text" class="validate">
-                        <label for="reviewname">Name</label>
-                    </div>
-                    <div class="input-field col s6"> <i class="material-icons prefix">email</i>
-                        <input id="reviewemail" name="reviewemail" required type="email" class="validate">
-                        <label for="reviewemail">Email</label>
-                    </div>
-                    <div class="input-field col s12"> <i class="material-icons prefix">comment</i>
-                        <textarea id="reviewtext" name="reviewtext" class="materialize-textarea" length="255"></textarea>
-                        <label for="reviewtext">Comment</label>
-                    </div>
-                    <h5 class="center">Rating Slider</h5>
+  <div class="modal-content">
+      <h4>Leave a review</h4>
+      <div class="row">
+          <form class="col s12" method="post" action="">
+              <div class="row">
+                  <div class="input-field col s6"> <i class="material-icons prefix">account_circle</i>
+                      <input id="reviewname" name="reviewname" required type="text" class="validate">
+                      <label for="reviewname">Name</label>
+                  </div>
+                  <div class="input-field col s6"> <i class="material-icons prefix">email</i>
+                      <input id="reviewemail" name="reviewemail" required type="email" class="validate">
+                      <label for="reviewemail">Email</label>
+                  </div>
+                  <div class="input-field col s12"> <i class="material-icons prefix">comment</i>
+                      <textarea id="reviewtext" name="reviewtext" class="materialize-textarea" length="255"></textarea>
+                      <label for="reviewtext">Comment</label>
+                  </div>
+                  <h5 class="center">Rating Slider</h5>
 
-                        <p class="range-field">
-                            <input type="range" id="rating" name="rating" min="1" max="10" value="5" />
-                        </p>
-                </div>
-                <div class="modal-footer">
+                      <p class="range-field">
+                          <input type="range" id="rating" name="rating" min="1" max="10" value="5" />
+                      </p>
+              </div>
+              <div class="modal-footer">
 
-                    <button class="btn waves-effect waves-light modal-action modal-close" type="submit" name="submitreview">Submit Review
-                        <i class="material-icons right">send</i>
-                    </button>
-                </div>
-            </form>
-        </div>
-
-    </div>
+                  <button class="btn waves-effect waves-light modal-action modal-close" type="submit" name="submitreview">Submit Review
+                      <i class="material-icons right">send</i>
+                  </button>
+              </div>
+          </form>
+      </div>
 
   </div>
 
-    <?
-
-    //bug report submit code
-
-
-    if(isset($_POST['submitreview'])){
-
-
-        foreach ($_POST as $key => $value) {
-
-    }
-    {
-
-
-        $reviewname = $_POST['reviewname'];
-        $reviewemail = $_POST['reviewemail'];
-        $reviewtext = htmlspecialchars($_POST['reviewtext'],ENT_QUOTES);
-        $reviewseverity = $_POST['rating'];
-        $reviewdate = date( 'Y-m-d', strtotime(" today "));
-        $reviewVersion = $CurrentVersionOfPassport;
-    }
-
-        $sqlreview = "INSERT INTO feedback (name, email, comment, rating, report_type, date, role, forVersion)
-        VALUES ('$reviewname', '$reviewemail', '$reviewtext', '$reviewseverity', 'review', '$reviewdate', 'teacher', '$reviewVersion')";
-
-        if ($conn->query($sqlreview) === TRUE) {
-        echo "<script> Materialize.toast('Review submitted successfully', 4000) </script>";
-        //echo "Review submitted successfully";
-        } else {
-        echo "Error: " . $sqlreview . "<br>" . $conn->error;
-
-}
-
-    }
-   include "functions.php";
-    teacherMess();
-    ?>
-
-    <div class="container">
+  </div>
+  <!--Content-->
+  <div class="container">
+    <!-- Request a pass for students -->
+    <!--Students Leaving-->
+    <div class="section">
+            <div class="row">
+              <div class="col s12">
+                <div id="MyPassesCard" class="card grey darken-3 hoverable">
+                  <div class="card-content white-text">
+                    <span class="card-title">Students Leaving<sup>Beta</sup></span>
+                    <div id="myPassesReturn">
+                      <ul class="collection" style="border: 1px solid #424242 !important;">
+                        <li class="collection-item avatar grey darken-2 hoverable" style="border-bottom: 1px solid #424242">
+                          <div class="hover-color">
+                            <img src="/passport/image/favicon.png" alt="Joseph Hassell" class="circle">
+                          </div>
+                          <span class="title">Joseph Hassell</span>
+                          <p>LEC</p>
+                          <p>A Period</p>
+                          <!--<a href="#!" class="secondary-content"><i class="material-icons">delete_forever</i></a>-->
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
 
-
-    <br>
-    <br>
-
-
-<div style='color: #ecf0f1'>
-  <? echo blackout(); ?>
-
-
-
-
-
-
-
-
-
-<?
-
-
-
-
-        if(isset($_GET['search']) || isset($_SESSION['teacherID'])){
-          if(!isset($_GET['search'])) {
-            $teacherName = "id = '" . $_SESSION['teacherID'] . "'";
-          } else {
-            $teacherName = "email = '" . $_GET['teacherName'] . "'";
-          }
-
-
-            $sql = "SELECT id, name_title, firstname, lastname, email FROM teachers WHERE $teacherName ORDER BY lastname";
-            $result = $conn->query($sql);
-            if ($result->num_rows > 0) {
-                 while($row = $result->fetch_assoc()) {
-                     $teacherNameComb = $row["name_title"] . " " . $row["firstname"] . " " . $row["lastname"];
-                     $teacherID = $row["id"];
-                 }
-            }
-        echo "Showing passes for: <div class='chip'>" . $teacherNameComb . "</div>";
-
-        //echo $teacherEmail;
-
-           $today = date( 'Y-m-d', strtotime(" today "));
-            echo "<form method = 'post' action = ''>";
-             $sql = "SELECT id, firstname, lastname, period, sh_teacher, place, day_to_come, shTeacherExcused, teacherAccountID FROM passes WHERE teacherAccountID = '$teacherID' AND day_to_come = '$today' ORDER BY period, lastname";
-            $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        echo "<table class='bordered responsive-table'><thead style='color: #ecf0f1'><tr><th>Excused?</th><th>Name</th><th>Period</th><th>Study Hall Teacher</th><th>Department</th><th>Day</th></tr></thead>";
-        // output data of each row
-        echo "<tbody>";
-        while($row = $result->fetch_assoc()) {
-            if($row["shTeacherExcused"] == 1){
-            $inputChecked = ' checked="checked"';
-        } else {
-            $inputChecked = '';
-        }
-            echo "<tr style='color: #ecf0f1'><td><input type='checkbox' id='" . $row["id"] . "' name='" . $row["id"] . "'" . $inputChecked . "' value='1' /> <label for='" . $row["id"] . "'>Student Excused</label> </td><td>" . $row["lastname"] . ", " . $row["firstname"]. "</td><td>" . $row["period"]. "</td><td>" . $row["sh_teacher"]. "</td><td>" . $row["place"]. "</td><td>" . $row["day_to_come"]. "</td></tr></tbody>";
-        }
-
-        echo "</tbody></table>";
-        echo "<button class='btn waves-effect waves-light' type='submit' name='updateIsExcused'>Submit <i class='material-icons right'>mode_edit</i></button>";
-        echo "</form>";
-        } else {
-            echo "0 results";
-        }
-
-        }
-    ?>
+  </div>
+  <footer class="page-footer grey darken-3">
+<div class="footer-copyright">
+  <div class="container">
+      <a class="black-text left" href="https://www.josephhassell.com/">Copyright © 2016 Joseph Hassell</a> &nbsp &nbsp
+      <a class="black-text right" href="https://github.com/poster983/passport/blob/master/LICENSE">License </a> &nbsp &nbsp
+      <a class="black-text right" href="https://poster983.github.io/passport/">Project Page &nbsp &nbsp</a>&nbsp &nbsp
   </div>
 </div>
-            <footer class="page-footer grey darken-3">
-        <div class="footer-copyright">
-            <div class="container">
-                <a class="black-text left" href="https://www.josephhassell.com/">Copyright © 2016 Joseph Hassell</a> &nbsp &nbsp
-                <a class="black-text right" href="https://github.com/poster983/passport/blob/master/LICENSE">License </a> &nbsp &nbsp
-                <a class="black-text right" href="https://poster983.github.io/passport/">Project Page &nbsp &nbsp</a>&nbsp &nbsp
-            </div>
-        </div>
-    </footer>
+</footer>
 
+<!-- Scripts -->
 
-    <script>
-    $('.modal-trigger').leanModal();
-    $(document).ready(function(){
-    $('input.autocomplete').autocomplete({
-        data: {
-        <?
-        $sql = "SELECT DISTINCT email FROM teachers ORDER BY email";
-        $result = $conn -> query($sql);
-        if ($result -> num_rows > 0) {
-                    while ($row = $result -> fetch_assoc()) {
-                        echo '"' . $row['email']. '"'. ": null, ";
-                    }
-        } else {
-            echo "{ value: 'No Teachers'}, ";
-        }
-        ?>
-      }
-    });
-  });
-    </script>
-<?
-    if(isset($_POST['updateIsExcused'])){
-
-
-
-            foreach ($_POST as $key => $value) {
-
-      }
-        $checkID = $_POST[$row["id"]];
-        $sql = "SELECT id, shTeacherExcused FROM passes WHERE day_to_come = '$today' AND teacherAccountID = '$teacherID' ORDER BY id";
-        $result = $conn->query($sql);
-
-        if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
-                $$row["id"] = $_POST[$row["id"]];
-                $hereid = $row["id"];
-                echo $hereid;
-                if ($$row["id"] == 1) {
-                    $isHere = 1;
-                    echo $isHere;
-                } else {
-                    $isHere = 0;
-                    echo $isHere;
-                }
-                $sqlu = "UPDATE passes SET shTeacherExcused='$isHere' WHERE id='$hereid' AND teacherAccountID = '$teacherID'";
-                if ($conn->query($sqlu) === TRUE) {
-
-                    setcookie("confirmExcused", "Yes");
-
-                } else {
-                    $updateResponse = "Error updating record: " . $conn->error;
-                    $updateResponseShort = "Error";
-                    setcookie("errorExcused", $updateResponseShort . "&&%%" .  $updateResponse);
-                }
-            }
-
-
-
-        } else {
-            $updateResponse =  "No idea what went wrong... Just submit a bug report saying: <br> \"updateIsExcused\" num_rows == 0 error.";
-            $updateResponseShort = "Error";
-            setcookie("errorExcused", $updateResponseShort . "&&%%" .  $updateResponse);
-        }
-
-
-
-        echo "<script>  setTimeout(function () { window.location.href = '/passport/teacher/index.php?" . $_SERVER["QUERY_STRING"] . "'; }, 500);  </script>";
-    }
-
-
-    ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!--<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
+<script src="/passport/js/materialize.js"></script>
 <script src="/passport/js/passport.js"></script>
-
 </body>
 
 </html>
+
+
+
+
+<?php
+
+//bug report submit code
+
+
+if(isset($_POST['submitbug'])){
+
+
+    foreach ($_POST as $key => $value) {
+
+}
+{
+
+
+    $bugname = $_POST['bugname'];
+    $bugemail = $_POST['bugemail'];
+    $bugtext = htmlspecialchars($_POST['bugtext'],ENT_QUOTES);
+    $bugseverity = $_POST['bugseverity'];
+    $bugdate = date( 'Y-m-d', strtotime(" today "));
+    $bugVersion = $CurrentVersionOfPassport;
+}
+
+    $sqlbug = "INSERT INTO feedback (name, email, comment, rating, report_type, date, role, forVersion)
+    VALUES ('$bugname', '$bugemail', '$bugtext', '$bugseverity', 'bug', '$bugdate', 'teacher', '$bugVersion')";
+
+    if ($conn->query($sqlbug) === TRUE) {
+    echo "<script> Materialize.toast('Bug report submitted successfully', 4000) </script>";
+    //echo "Bug report submitted successfully";
+    } else {
+    echo "Error: " . $sqlbug . "<br>" . $conn->error;
+
+}
+
+}
+
+//bug report submit code
+
+
+if(isset($_POST['submitreview'])){
+
+
+    foreach ($_POST as $key => $value) {
+
+}
+{
+
+
+    $reviewname = $_POST['reviewname'];
+    $reviewemail = $_POST['reviewemail'];
+    $reviewtext = htmlspecialchars($_POST['reviewtext'],ENT_QUOTES);
+    $reviewseverity = $_POST['rating'];
+    $reviewdate = date( 'Y-m-d', strtotime(" today "));
+    $reviewVersion = $CurrentVersionOfPassport;
+}
+
+    $sqlreview = "INSERT INTO feedback (name, email, comment, rating, report_type, date, role, forVersion)
+    VALUES ('$reviewname', '$reviewemail', '$reviewtext', '$reviewseverity', 'review', '$reviewdate', 'teacher', '$reviewVersion')";
+
+    if ($conn->query($sqlreview) === TRUE) {
+    echo "<script> Materialize.toast('Review submitted successfully', 4000) </script>";
+    //echo "Review submitted successfully";
+    } else {
+    echo "Error: " . $sqlreview . "<br>" . $conn->error;
+
+}
+
+}
+?>

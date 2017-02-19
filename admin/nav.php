@@ -36,7 +36,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <link rel="manifest" href="/passport/manifest.json">
     <!--FavIcon-->
 
-    <link rel="shortcut icon" type="image/png" href="image/favicon.png"/>
+    <link rel="shortcut icon" type="image/png" href="/passport/image/favicon.png"/>
     <!--Browser Colors-->
     <!-- Chrome, Firefox OS and Opera -->
     <meta name="theme-color" content="#F44336">

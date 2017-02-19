@@ -43,7 +43,7 @@ $datas = $medooDB->select("passes", array(
     "studentAccountID" => $_SESSION['studentAccID'],
     "day_to_come[<>]" => array(
       date( 'Y-m-d', strtotime(' today ')),
-      date( 'Y-m-d', strtotime(' friday this week '))
+      date( 'Y-m-d', strtotime(' saturday this week '))
       //date("Y-m-d")
     )
 

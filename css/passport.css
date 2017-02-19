@@ -26,12 +26,12 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 .nav-right {
   float: right !important;
-  padding-right: 20px;
+  padding-right: 20px !important;
 }
 
 .nav-left {
   float: left !important;
-  padding-left: 20px;
+  padding-left: 20px !important;
 }
 
 .nav-sandwich {
@@ -175,4 +175,18 @@ See if you can make it all the "P" via an ::after
   background-color: #00b8d4 !important;
   transition: background-color .3s ease .15s;
 
+}
+
+.collection-item > .hover-color{
+  position: initial;
+}
+
+.collection-item > .hover-color::after{
+  position: absolute;
+  background: rgba(0,184,212,0.75);
+}
+
+.collection-item > .hover-color > img{
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
 }
