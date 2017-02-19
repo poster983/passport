@@ -47,8 +47,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
                 </div>
               </div>
-              <div id="recurring" class="col s12">
+              <div id="recurring" class="col s12 center">
                 <br><br>
+
                 <input type="radio" id="monday" name="recurrdate" value="MONDAY" />
                 <label for="monday">Every Monday</label>
                 &nbsp &nbsp

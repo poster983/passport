@@ -111,27 +111,27 @@ $blackout = $medooDB->select("blackout", array(
   "day",
   "period"
 ),array(
-  "AND" => array(
+  "AND #the first and condition" => array(
     "department" => $dep,
-    "OR" => array(
-      "day[<>]" => array(
+    "OR #the first condition" => array(
+      "day[<>] #the day condition" => array(
         date( 'Y-m-d', strtotime(' monday this week ')),
         date( 'Y-m-d', strtotime(' friday this week '))
         //date("Y-m-d")
       ),
       //i dont know why this works
-      "day" => "MONDAY",
-      "day" => "TUESDAY",
-      "day" => "WEDNESDAY",
-      "day" => "THURSDAY",
-      "day" => "FRIDAY"
+
+        "day" => array("MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY")
+
     )
 
   )
 
 ));
+
 foreach($blackout as $row)
 {
+  
 	//echo "day:" . $row["day"] . " - periods:" . $row["period"] . "<br/>";
   $currPeriod = $row["period"];
   $perarray = explode(",", $currPeriod);
@@ -160,6 +160,7 @@ foreach($blackout as $row)
         $_dayOfWeek = substr($row['day'], 0, 1) . strtolower(substr($row['day'], 1));
         $_dayOfWeekOverlay = $_dayOfWeek . "overlay";
         //echo "2";
+
       } else {
       $_dayOfWeek = date("l", strtotime($row["day"]));
       //echo "3";
