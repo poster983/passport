@@ -209,12 +209,26 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                     <span class="card-title">Students Leaving<sup>Beta</sup></span>
                     <div id="myPassesReturn">
                       <ul class="collection" style="border: 1px solid #424242 !important;">
-                        <li class="collection-item avatar grey darken-2 hoverable" style="border-bottom: 1px solid #424242">
-                          <div class="hover-color">
-                            <img src="/passport/image/favicon.png" alt="Joseph Hassell" class="circle">
+                        <li class="collection-item avatar grey darken-2 hoverable avatar-clickable" style="border-bottom: 1px solid #424242">
+                        <!--<div class="hover-color tint"> -->
+                        <div class="submitAnimationEnabled">
+                            <img src="/passport/image/favicon.png" alt="Joseph Hassell" class="circle avatar-img">
+                            <span class="avatar-icon"><i class="material-icons">create</i></span>
+                            <span class="returnIcon"><i class="material-icons">done</i></span>
                           </div>
+                      <!--</div>-->
                           <span class="title">Joseph Hassell</span>
                           <p>LEC</p>
+                          <p>A Period</p>
+                          <!--<a href="#!" class="secondary-content"><i class="material-icons">delete_forever</i></a>-->
+                        </li>
+                        <li class="collection-item avatar grey darken-2 hoverable avatar-clickable" style="border-bottom: 1px solid #424242">
+                        <!--<div class="hover-color tint"> -->
+                            <img src="/passport/image/favicon.png" alt="Joseph Hassell" class="circle avatar-img">
+                            <span class="avatar-icon"><i class="material-icons">create</i></span>
+                      <!--</div>-->
+                          <span class="title">Caro Hassell</span>
+                          <p>Lib</p>
                           <p>A Period</p>
                           <!--<a href="#!" class="secondary-content"><i class="material-icons">delete_forever</i></a>-->
                         </li>
@@ -244,6 +258,42 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <!--<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
 <script src="/passport/js/materialize.js"></script>
 <script src="/passport/js/passport.js"></script>
+
+<script>
+// Pass Avatar Button
+  //hover Effect
+  $("ul.collection > li.avatar-clickable").hover(
+    function(){
+      $("img.avatar-img", this).addClass("hover-color", 500);
+      $("span.avatar-icon", this).addClass("animate");
+    }, function() {
+      $("img.avatar-img", this).removeClass("hover-color", 300);
+      $("span.avatar-icon", this).removeClass("animate");
+    }
+  );
+//submit animation
+$("ul.collection > div.submitAnimationEnabled > li.avatar-clickable > div.submitAnimationEnabled > img.avatar-img").click(function(){
+  collectionAvatarSubmitAnimation($("i", this));
+});
+
+$("ul.collection > li.avatar-clickable > div.submitAnimationEnabled > .avatar-icon").click(function(){
+  collectionAvatarSubmitAnimation($("i", this));
+ console.log("hi");
+});
+
+function collectionAvatarSubmitAnimation(selector){
+  selector.addClass("animateSubmit");
+
+  selector.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend',
+    function(e) {
+      selector.removeClass("animateSubmit");
+      $('span.avatar-icon.animate').removeClass("animate");
+      console.log("done");
+  });
+  console.log("Animated");
+}
+
+</script>
 </body>
 
 </html>

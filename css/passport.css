@@ -70,6 +70,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
   opacity: 0;
   height: 0;
+  -webkit-transition: all .3s ease .15s;
   transition: all .3s ease .15s;
   overflow: hidden;
 
@@ -85,7 +86,6 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     left: 50%;
     -webkit-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
     transform: translateX(-50%);
     }
 /*
@@ -110,7 +110,6 @@ See if you can make it all the "P" via an ::after
 
     left: 50%;
     -webkit-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
     transform: translateX(-50%);
   z-index: 1;
 }
@@ -123,31 +122,47 @@ See if you can make it all the "P" via an ::after
       color: #F5F5F5;
       fill: currentcolor;
     -webkit-transform: translate(-50%, -50%) rotate(0deg);
-    -ms-transform: translate(-50%, -50%) rotate(0deg);
     transform: translate(-50%, -50%) rotate(0deg);
 
       z-index: 2;
 
-      animation-name: passport-logo-loading;
-      animation-duration: 4s;
-      animation-iteration-count: infinite;
+      -webkit-animation-name: passport-logo-loading;
+
+              animation-name: passport-logo-loading;
+      -webkit-animation-duration: 4s;
+              animation-duration: 4s;
+      -webkit-animation-iteration-count: infinite;
+              animation-iteration-count: infinite;
 
     }
 
-@keyframes passport-logo-loading {
+@-webkit-keyframes passport-logo-loading {
   0% {
-    -ms-transform: rotate(0deg) translate(-50%, -50%);
     -webkit-transform: rotate(0deg) translate(-50%, -50%);
     transform: rotate(0deg) translate(-50%, -50%);
 
   }
   20% {
-    -ms-transform: rotate(10deg) translate(-50%, -50%);
     -webkit-transform: rotate(10deg) translate(-50%, -50%);
     transform: rotate(10deg) translate(-50%, -50%);
   }
   60% {
-    -ms-transform: rotate(-10deg) translate(-50%, -80%);
+    -webkit-transform: rotate(-10deg) translate(-50%, -80%);
+    transform: rotate(-10deg) translate(-50%, -80%);
+  }
+}
+
+@keyframes passport-logo-loading {
+  0% {
+    -webkit-transform: rotate(0deg) translate(-50%, -50%);
+    transform: rotate(0deg) translate(-50%, -50%);
+
+  }
+  20% {
+    -webkit-transform: rotate(10deg) translate(-50%, -50%);
+    transform: rotate(10deg) translate(-50%, -50%);
+  }
+  60% {
     -webkit-transform: rotate(-10deg) translate(-50%, -80%);
     transform: rotate(-10deg) translate(-50%, -80%);
   }
@@ -158,14 +173,12 @@ See if you can make it all the "P" via an ::after
   position: relative;
   top: 50%;
  -webkit-transform: translateY(-50%);
- -ms-transform: translateY(-50%);
  transform: translateY(-50%);
  }
  .hCenter{
    position: absolute;
    left: 50%;
   -webkit-transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
   transform: translateX(-50%);
  }
 
@@ -173,20 +186,151 @@ See if you can make it all the "P" via an ::after
 .collection-item:hover > i{
 
   background-color: #00b8d4 !important;
+  -webkit-transition: background-color .3s ease .15s;
   transition: background-color .3s ease .15s;
 
 }
 
-.collection-item > .hover-color{
-  position: initial;
+/* target: hsl(188°, 100%, 42%)
+base: hsl(38, 24.5%, 60%)
+
+Conversion:
+H: 188-38=150
+S: 100+(24.5-100) =  -75.5 (relative to base 100%: 24.5)
+L: 100+ (42 - 60) =  82 (relative to base 100%: 18)
+
+*/
+.collection-item > div.submitAnimationEnabled > img.hover-color{
+  -webkit-filter: brightness(100%) sepia(1)  hue-rotate(140deg) saturate(300%) brightness(100%);
+  /*      ------ base color ------  -------  new target -------------------------------*/
+filter: brightness(100%) sepia(1)  hue-rotate(140deg) saturate(300%) brightness(100%);
+cursor: pointer;
 }
 
-.collection-item > .hover-color::after{
+.collection-item > div.submitAnimationEnabled > .avatar-icon{
   position: absolute;
-  background: rgba(0,184,212,0.75);
+  overflow: hidden;
+  left: 26px;
+  top: 18px;
+  display: none;
+  vertical-align: middle;
+  z-index: 20;
+  cursor: pointer;
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
 }
 
-.collection-item > .hover-color > img{
-  -webkit-filter: grayscale(100%);
-  filter: grayscale(100%);
+/*icon entrence*/
+.collection-item > div.submitAnimationEnabled > .avatar-icon.animate{
+
+  display: inline-block;
+  -webkit-animation: collectionAvatarIcon 1s;
+          animation: collectionAvatarIcon 1s;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+
+@-webkit-keyframes collectionAvatarIcon {
+  0% {
+    -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+
+@keyframes collectionAvatarIcon {
+  0% {
+    -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+
+/* submit pt1 */
+.collection-item > div.submitAnimationEnabled > .avatar-icon > i.animateSubmit{
+  -webkit-animation: collectionAvatarIconAnimateSubmit 1s;
+          animation: collectionAvatarIconAnimateSubmit 1s;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+
+}
+
+@-webkit-keyframes collectionAvatarIconAnimateSubmit {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(170deg);
+            transform: rotate(170deg);
+  }
+}
+
+@keyframes collectionAvatarIconAnimateSubmit {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(170deg);
+            transform: rotate(170deg);
+  }
+}
+
+
+/*Submit pt 2*/
+.collection-item > div.submitAnimationEnabled > .returnIcon {
+  position: absolute;
+  overflow: hidden;
+  left: 26px;
+  top: 18px;
+  display: none;
+  vertical-align: middle;
+  z-index: 20;
+  cursor: pointer;
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
+}
+.collection-item > div.submitAnimationEnabled > .returnIcon.animate{
+
+  -webkit-animation: collectionAvatarIconAnimateSubmitReturnIcon 1s;
+          animation: collectionAvatarIconAnimateSubmitReturnIcon 1s;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+
+
+
+@-webkit-keyframes collectionAvatarIconAnimateSubmitReturnIcon {
+  0% {
+    -webkit-transform: rotate(170deg);
+            transform: rotate(170deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+
+
+
+@keyframes collectionAvatarIconAnimateSubmitReturnIcon {
+  0% {
+    -webkit-transform: rotate(170deg);
+            transform: rotate(170deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
 }
