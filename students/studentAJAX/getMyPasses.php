@@ -76,13 +76,17 @@ foreach($datas as $data)
       $icon = "receipt";
       break;
   }
-
+  if ($data["reason_to_come"] == "") {
+    $rTC_Prepare = "";
+  } else {
+    $rTC_Prepare = "<p>\"" . $data["reason_to_come"] . "\"</p>";
+  }
 	echo "<li class=\"collection-item avatar grey darken-2 hoverable\" style=\"border-bottom: 1px solid #424242\">
     <i class=\"material-icons circle red\">" . $icon . "</i>
     <span class=\"title\">" . $data["place"] . "</span>
     <p>" . date("l", strtotime($data["day_to_come"])) . "</p>
     <p>" . $data["period"] . " Period</p>
-    <p>\"" . $data["reason_to_come"] . "\"</p>
+    " . $rTC_Prepare . "
     <!--<a href=\"#!\" class=\"secondary-content\"><i class=\"material-icons\">delete_forever</i></a>-->
   </li>";
 }
