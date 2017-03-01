@@ -202,6 +202,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <!-- Request a pass for students -->
     <!--Students Leaving-->
     <div class="section">
+      <div id="studentsLeavingReturn">
             <div class="row">
               <div class="col s12">
                 <div id="MyPassesCard" class="card grey darken-3 hoverable">
@@ -211,10 +212,12 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                       <ul class="collection" style="border: 1px solid #424242 !important;">
                         <li class="collection-item avatar grey darken-2 hoverable avatar-clickable" style="border-bottom: 1px solid #424242">
                         <!--<div class="hover-color tint"> -->
-                        <div class="submitAnimationEnabled">
+                        <div class="submitAnimationEnabled" onclick="collectionAvatarSubmitAnimation($(this));">
                             <img src="/passport/image/favicon.png" alt="Joseph Hassell" class="circle avatar-img">
-                            <span class="avatar-icon"><i class="material-icons">create</i></span>
-                            <span class="returnIcon"><i class="material-icons">done</i></span>
+
+                              <span class="avatar-icon"><i class="material-icons">create</i></span>
+                              <span class="returnIcon"><i class="material-icons small">done</i></span>
+
                           </div>
                       <!--</div>-->
                           <span class="title">Joseph Hassell</span>
@@ -224,12 +227,17 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         </li>
                         <li class="collection-item avatar grey darken-2 hoverable avatar-clickable" style="border-bottom: 1px solid #424242">
                         <!--<div class="hover-color tint"> -->
+                        <div class="submitAnimationEnabled" onclick="collectionAvatarSubmitAnimation($(this));">
                             <img src="/passport/image/favicon.png" alt="Joseph Hassell" class="circle avatar-img">
-                            <span class="avatar-icon"><i class="material-icons">create</i></span>
+
+                              <span class="avatar-icon"><i class="material-icons">create</i></span>
+                              <span class="returnIcon"><i class="material-icons small">done</i></span>
+
+                          </div>
                       <!--</div>-->
                           <span class="title">Caro Hassell</span>
-                          <p>Lib</p>
-                          <p>A Period</p>
+                          <p>Math</p>
+                          <p>D Period</p>
                           <!--<a href="#!" class="secondary-content"><i class="material-icons">delete_forever</i></a>-->
                         </li>
                       </ul>
@@ -239,13 +247,13 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
               </div>
             </div>
           </div>
-
+        </div>
 
   </div>
   <footer class="page-footer grey darken-3">
 <div class="footer-copyright">
   <div class="container">
-      <a class="black-text left" href="https://www.josephhassell.com/">Copyright © 2016 Joseph Hassell</a> &nbsp &nbsp
+      <a class="black-text left" href="https://www.josephhassell.com/">Copyright © 2016-2017 Joseph Hassell</a> &nbsp &nbsp
       <a class="black-text right" href="https://github.com/poster983/passport/blob/master/LICENSE">License </a> &nbsp &nbsp
       <a class="black-text right" href="https://poster983.github.io/passport/">Project Page &nbsp &nbsp</a>&nbsp &nbsp
   </div>
@@ -260,38 +268,62 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <script src="/passport/js/passport.js"></script>
 
 <script>
+
 // Pass Avatar Button
   //hover Effect
   $("ul.collection > li.avatar-clickable").hover(
     function(){
-      $("img.avatar-img", this).addClass("hover-color", 500);
-      $("span.avatar-icon", this).addClass("animate");
+      if ($(".submitAnimationEnabled", this).data("submit-success") != true) {
+        $("img.avatar-img", this).addClass("hover-color", 500);
+        $("span.avatar-icon", this).addClass("animate");
+      }
     }, function() {
-      $("img.avatar-img", this).removeClass("hover-color", 300);
-      $("span.avatar-icon", this).removeClass("animate");
+      if ($(".submitAnimationEnabled", this).data("submit-success") != true) {
+        $("img.avatar-img", this).removeClass("hover-color", 300);
+        $("span.avatar-icon", this).removeClass("animate");
+      }
     }
   );
 //submit animation
-$("ul.collection > div.submitAnimationEnabled > li.avatar-clickable > div.submitAnimationEnabled > img.avatar-img").click(function(){
-  collectionAvatarSubmitAnimation($("i", this));
-});
-
-$("ul.collection > li.avatar-clickable > div.submitAnimationEnabled > .avatar-icon").click(function(){
-  collectionAvatarSubmitAnimation($("i", this));
- console.log("hi");
-});
 
 function collectionAvatarSubmitAnimation(selector){
-  selector.addClass("animateSubmit");
-
-  selector.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend',
+  selector.find("span.avatar-icon > i").addClass("animateSubmit");
+  selector.find("span.returnIcon").addClass("animate");
+  selector.find("span.avatar-icon > i").one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
     function(e) {
-      selector.removeClass("animateSubmit");
+      selector.find("span.avatar-icon > i").removeClass("animateSubmit");
       $('span.avatar-icon.animate').removeClass("animate");
-      console.log("done");
+      //console.log("done");
   });
-  console.log("Animated");
+  selector.data("submit-success", true);
+  //console.log("Animated");
 }
+
+
+//Get Students Leaving
+function getStudentsLeaving(teacher, state) {
+  $('#studentsLeavingReturn').html("<div class=\"hCenter\">\r\n                <div class=\"preloader-wrapper big active\">\r\n                 <div class=\"spinner-layer spinner-blue\">\r\n                   <div class=\"circle-clipper left\">\r\n                     <div class=\"circle\"><\/div>\r\n                   <\/div><div class=\"gap-patch\">\r\n                     <div class=\"circle\"><\/div>\r\n                   <\/div><div class=\"circle-clipper right\">\r\n                     <div class=\"circle\"><\/div>\r\n                   <\/div>\r\n                 <\/div>\r\n\r\n                 <div class=\"spinner-layer spinner-red\">\r\n                   <div class=\"circle-clipper left\">\r\n                     <div class=\"circle\"><\/div>\r\n                   <\/div><div class=\"gap-patch\">\r\n                     <div class=\"circle\"><\/div>\r\n                   <\/div><div class=\"circle-clipper right\">\r\n                     <div class=\"circle\"><\/div>\r\n                   <\/div>\r\n                 <\/div>\r\n\r\n                 <div class=\"spinner-layer spinner-yellow\">\r\n                   <div class=\"circle-clipper left\">\r\n                     <div class=\"circle\"><\/div>\r\n                   <\/div><div class=\"gap-patch\">\r\n                     <div class=\"circle\"><\/div>\r\n                   <\/div><div class=\"circle-clipper right\">\r\n                     <div class=\"circle\"><\/div>\r\n                   <\/div>\r\n                 <\/div>\r\n\r\n                 <div class=\"spinner-layer spinner-green\">\r\n                   <div class=\"circle-clipper left\">\r\n                     <div class=\"circle\"><\/div>\r\n                   <\/div><div class=\"gap-patch\">\r\n                     <div class=\"circle\"><\/div>\r\n                   <\/div><div class=\"circle-clipper right\">\r\n                     <div class=\"circle\"><\/div>\r\n                   <\/div>\r\n                 <\/div>\r\n               <\/div>\r\n              <\/div> <br> <br> <h5 class='center'>Checking for Passes</h5>");
+  $.ajax({
+url: 'teacherAJAX/getStudentData.php',
+data: {'whatToDo':"getStudentsLeaving",'toState':state,'teacher':teacher},
+type: 'post',
+success: function(data) {
+  var returnPICS = PICS(data);
+  if (returnPICS.result == false) {
+    Materialize.toast(returnPICS.text, 15000);
+  }
+$('#studentsLeavingReturn').html("Returned Values");
+
+},
+error: function(xhr, desc, err) {
+  console.warn("Passport Info Code System: Returned with code \"1001\"-AJAX Error");
+  console.log(xhr);
+  console.error("Details: " + desc + "\nError:" + err);
+  console.warn(xhr.responseText)
+  Materialize.toast("There was an error, check console.", 15000);
+  $('#studentsLeavingReturn').html("");
+}
+})};
 
 </script>
 </body>
