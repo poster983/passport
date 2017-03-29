@@ -351,7 +351,7 @@ My Sanity :)
                               <option value="LEC">Executive Functioning (LEC)</option>
                               <option value="Math">Math Tutoring</option>
                               <option value="Library">Library</option>
-                              <option value="Help Desk">Help Desk</option>
+                              <!--<option value="Help Desk">Help Desk</option>-->
                               <option value="Writing Lab">Writing Lab</option>
                               <option value="Foreign Language">Foreign Language Tutoring</option>
                               <!-- NO LONGER USED <option value="Athletic Mentor">Athletic Mentor</option>-->

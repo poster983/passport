@@ -89,8 +89,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
       <form method="get" action="">
         <div class="input-field">
-          <input autocomplete="off" id="autocomplete-input" name="teacherName" type="search" placeholder="Search by Email" required class="autocomplete">
-          <label for="autocomplete-input"><i class="material-icons">search</i></label>
+          <input  id="t-Search" name="teacherName" type="search" placeholder="Search by Email" required>
+          <label for="t-Search"><i class="material-icons">search</i></label>
           <i class="material-icons">close</i>
 
 
@@ -202,51 +202,20 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <!-- Request a pass for students -->
     <!--Students Leaving-->
     <div class="section">
-      <div id="studentsLeavingReturn">
+
             <div class="row">
               <div class="col s12">
                 <div id="MyPassesCard" class="card grey darken-3 hoverable">
                   <div class="card-content white-text">
                     <span class="card-title">Students Leaving<sup>Beta</sup></span>
-                    <div id="myPassesReturn">
-                      <ul class="collection" style="border: 1px solid #424242 !important;">
-                        <li class="collection-item avatar grey darken-2 hoverable avatar-clickable" style="border-bottom: 1px solid #424242">
-                        <!--<div class="hover-color tint"> -->
-                        <div class="submitAnimationEnabled" onclick="collectionAvatarSubmitAnimation($(this));">
-                            <img src="/passport/image/favicon.png" alt="Joseph Hassell" class="circle avatar-img">
+                    <div id="studentsLeavingReturn">
 
-                              <span class="avatar-icon"><i class="material-icons">create</i></span>
-                              <span class="returnIcon"><i class="material-icons small">done</i></span>
-
-                          </div>
-                      <!--</div>-->
-                          <span class="title">Joseph Hassell</span>
-                          <p>LEC</p>
-                          <p>A Period</p>
-                          <!--<a href="#!" class="secondary-content"><i class="material-icons">delete_forever</i></a>-->
-                        </li>
-                        <li class="collection-item avatar grey darken-2 hoverable avatar-clickable" style="border-bottom: 1px solid #424242">
-                        <!--<div class="hover-color tint"> -->
-                        <div class="submitAnimationEnabled" onclick="collectionAvatarSubmitAnimation($(this));">
-                            <img src="/passport/image/favicon.png" alt="Joseph Hassell" class="circle avatar-img">
-
-                              <span class="avatar-icon"><i class="material-icons">create</i></span>
-                              <span class="returnIcon"><i class="material-icons small">done</i></span>
-
-                          </div>
-                      <!--</div>-->
-                          <span class="title">Caro Hassell</span>
-                          <p>Math</p>
-                          <p>D Period</p>
-                          <!--<a href="#!" class="secondary-content"><i class="material-icons">delete_forever</i></a>-->
-                        </li>
-                      </ul>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+
         </div>
 
   </div>
@@ -266,53 +235,35 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <!--<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
 <script src="/passport/js/materialize.js"></script>
 <script src="/passport/js/passport.js"></script>
+<script src="/passport/js/PICS.js"></script>
 
 <script>
+$(document).ready(function(){
+  console.log("Passport Loading...");
+  $.when(getStudentsLeaving("<?echo $_SESSION['teacherID'];?>"), getMessages()).done(function(a1, a2){
+    //$('#fullAjaxLoadingScreen').removeClass("loading");
+    console.log("Passport Loaded");
+  });
+});
 
 // Pass Avatar Button
   //hover Effect
-  $("ul.collection > li.avatar-clickable").hover(
-    function(){
-      if ($(".submitAnimationEnabled", this).data("submit-success") != true) {
-        $("img.avatar-img", this).addClass("hover-color", 500);
-        $("span.avatar-icon", this).addClass("animate");
-      }
-    }, function() {
-      if ($(".submitAnimationEnabled", this).data("submit-success") != true) {
-        $("img.avatar-img", this).removeClass("hover-color", 300);
-        $("span.avatar-icon", this).removeClass("animate");
-      }
-    }
-  );
-//submit animation
-
-function collectionAvatarSubmitAnimation(selector){
-  selector.find("span.avatar-icon > i").addClass("animateSubmit");
-  selector.find("span.returnIcon").addClass("animate");
-  selector.find("span.avatar-icon > i").one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
-    function(e) {
-      selector.find("span.avatar-icon > i").removeClass("animateSubmit");
-      $('span.avatar-icon.animate').removeClass("animate");
-      //console.log("done");
-  });
-  selector.data("submit-success", true);
-  //console.log("Animated");
-}
+  
 
 
 //Get Students Leaving
-function getStudentsLeaving(teacher, state) {
+function getStudentsLeaving(teacher) {
   $('#studentsLeavingReturn').html("<div class=\"hCenter\">\r\n                <div class=\"preloader-wrapper big active\">\r\n                 <div class=\"spinner-layer spinner-blue\">\r\n                   <div class=\"circle-clipper left\">\r\n                     <div class=\"circle\"><\/div>\r\n                   <\/div><div class=\"gap-patch\">\r\n                     <div class=\"circle\"><\/div>\r\n                   <\/div><div class=\"circle-clipper right\">\r\n                     <div class=\"circle\"><\/div>\r\n                   <\/div>\r\n                 <\/div>\r\n\r\n                 <div class=\"spinner-layer spinner-red\">\r\n                   <div class=\"circle-clipper left\">\r\n                     <div class=\"circle\"><\/div>\r\n                   <\/div><div class=\"gap-patch\">\r\n                     <div class=\"circle\"><\/div>\r\n                   <\/div><div class=\"circle-clipper right\">\r\n                     <div class=\"circle\"><\/div>\r\n                   <\/div>\r\n                 <\/div>\r\n\r\n                 <div class=\"spinner-layer spinner-yellow\">\r\n                   <div class=\"circle-clipper left\">\r\n                     <div class=\"circle\"><\/div>\r\n                   <\/div><div class=\"gap-patch\">\r\n                     <div class=\"circle\"><\/div>\r\n                   <\/div><div class=\"circle-clipper right\">\r\n                     <div class=\"circle\"><\/div>\r\n                   <\/div>\r\n                 <\/div>\r\n\r\n                 <div class=\"spinner-layer spinner-green\">\r\n                   <div class=\"circle-clipper left\">\r\n                     <div class=\"circle\"><\/div>\r\n                   <\/div><div class=\"gap-patch\">\r\n                     <div class=\"circle\"><\/div>\r\n                   <\/div><div class=\"circle-clipper right\">\r\n                     <div class=\"circle\"><\/div>\r\n                   <\/div>\r\n                 <\/div>\r\n               <\/div>\r\n              <\/div> <br> <br> <h5 class='center'>Checking for Passes</h5>");
   $.ajax({
 url: 'teacherAJAX/getStudentData.php',
-data: {'whatToDo':"getStudentsLeaving",'toState':state,'teacher':teacher},
+data: {'whatToDo':"getStudentsLeaving",'teacher':teacher},
 type: 'post',
 success: function(data) {
   var returnPICS = PICS(data);
   if (returnPICS.result == false) {
     Materialize.toast(returnPICS.text, 15000);
   }
-$('#studentsLeavingReturn').html("Returned Values");
+$('#studentsLeavingReturn').html(data.html);
 
 },
 error: function(xhr, desc, err) {
@@ -324,6 +275,11 @@ error: function(xhr, desc, err) {
   $('#studentsLeavingReturn').html("");
 }
 })};
+
+//Get Messages
+function getMessages(){
+  console.log("Remake message system");
+}
 
 </script>
 </body>
