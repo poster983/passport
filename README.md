@@ -1,3 +1,6 @@
+# NOTICE:  
+Passport is now under a feature lock(mostly)!  It is being replaced by [Passport-Live] (https://github.com/poster983/Passport-Live)  
+
 ![Passport for Schools](https://github.com/poster983/passport/blob/gh-pages/images/PassportHeader.png)
 
 
