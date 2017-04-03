@@ -58,7 +58,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                     <? barChartTally('Math') ?>
                 </div>
                 <div id="lib" class="col s12">
-                    <? barChartTally('Library') ?>
+                    <? barChartTally('Library') ?> 
                 </div>
                 <div id="HD" class="col s12">
                     <? barChartTally('Help Desk') ?>

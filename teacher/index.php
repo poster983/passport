@@ -5,6 +5,10 @@ $msg = "";
 
 include "adminconnect.php";
 ob_start();
+
+if (isset($_GET['teacherName'])) {
+
+}
 ?>
 <!DOCTYPE html>
 
@@ -67,7 +71,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <body class="grey darken-4">
   <!-- Dropdown Structure -->
   <ul id="threeDot" class="dropdown-content">
-    <li><a href="account.php">Account</a></li>
+    <li><a href="account.php">Account</a></li> 
     <li class="divider"></li>
     <li><a href="logout.php">Logout<i class="material-icons right">lock</i></a></li>
   </ul>
@@ -89,7 +93,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
       <form method="get" action="">
         <div class="input-field">
-          <input  id="t-Search" name="teacherName" type="search" placeholder="Search by Email" required>
+          <input  id="t-Search" name="teacherName" type="search" placeholder="Search by Email" value="<? echo $_GET['teacherName']; ?>">
           <label for="t-Search"><i class="material-icons">search</i></label>
           <i class="material-icons">close</i>
 
@@ -240,14 +244,15 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <script>
 $(document).ready(function(){
   console.log("Passport Loading...");
-  $.when(getStudentsLeaving("<?echo $_SESSION['teacherID'];?>"), getMessages()).done(function(a1, a2){
+  //TODO: Convert teacherName to ID
+  $.when(getStudentsLeaving("<? if($_GET['teacherName'] == "") { echo $_SESSION['teacherID']; } else { echo $_GET['teacherName']; } ?>"), getMessages()).done(function(a1, a2){
     //$('#fullAjaxLoadingScreen').removeClass("loading");
     console.log("Passport Loaded");
   });
 });
 
 // Pass Avatar Button
-  //hover Effect
+  //hover Effect 
   
 
 
