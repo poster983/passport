@@ -64,7 +64,7 @@ function emailConfirm($eemail, $fname, $lname, $verID, $verCrypt) {
 </div>
 </div>
 </center>';
-  $mail->AltBody = 'Lets activate your new Passport account {firstName}  Go Here: josephhassell.com';
+  $mail->AltBody = 'Lets activate your new Passport account {firstName}  Go Here: http://' . $_SERVER['HTTP_HOST'] . '/passport/students/verifyEmail.php?vID=' . $verID . '&verCrypt=' . $verCrypt . '';
 
   if(!$mail->send()) {
       $output = "Message could not be sent. <br> Mailer Error: " . $mail->ErrorInfo . "<br> Please try to login <a href='login.php'>HERE</a> and Passport will try to resend the email";

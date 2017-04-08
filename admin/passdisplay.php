@@ -37,7 +37,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
 
         <!--Import Google Icon Font-->
-        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
         <!--Let browser know website is optimized for mobile-->
@@ -50,7 +50,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <?
 
     include "../sqlconnect.php";
-
+   
 
 
 
@@ -111,7 +111,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     if ($result->num_rows > 0) {
 
 
-        echo "<table class='bordered responsive-table'><thead><tr><th>Is Here?</th><th>Student ID</th><th>Name</th><th>Email</th><th>Period</th><th>Study Hall Teacher</th><th>Department</th><th>Day</th><th>Reason to come</th><th>Exused By Study hall teacher</th></tr></thead>";
+        echo "<table class='bordered responsive-table'><thead><tr><th>Is Here?</th><th>Student ID</th><th>Name</th><th>Email</th><th>Period</th><th>Study Hall Teacher</th><th>Department</th><th>Day</th><th>Reason to come</th><th>Exused By Study hall teacher</th><th>Delete</th></tr></thead>";
         // output data of each row
         echo "<tbody>";
         while($row = $result->fetch_assoc()) {
@@ -127,7 +127,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
           $shTeacherExcused = "";
         }
 
-            echo "<tr><td> <input type='checkbox' id='" . $row["id"] . "' name='" . $row["id"] . "'" . $inputAll . " value='1' /> <label for='" . $row["id"] . "'>Is Here?</label> </td><td>" . $row["student_id"]. "</td><td>" . $row["lastname"].  ", " . $row["firstname"]. "</td><td>" . $row["email"]. "</td><td>" . $row["period"]. "</td><td>" . $row["sh_teacher"]. "</td><td>" . $row["place"]. "</td><td>" . $row["day_to_come"]. "</td><td>" . $row["reason_to_come"]. "</td><td><input type='checkbox' id='" . $row["id"] . "teacher' ". $shTeacherExcused . " disabled='disabled' /> <label for='" . $row["id"] . "teacher'>Excused?</label> </td></tr></tbody>";
+            echo "<tr id='" . $row["id"] . "td'><td> <input type='checkbox' id='" . $row["id"] . "' name='" . $row["id"] . "'" . $inputAll . " value='1' /> <label for='" . $row["id"] . "'>Is Here?</label> </td><td>" . $row["student_id"]. "</td><td>" . $row["lastname"].  ", " . $row["firstname"]. "</td><td>" . $row["email"]. "</td><td>" . $row["period"]. "</td><td>" . $row["sh_teacher"]. "</td><td>" . $row["place"]. "</td><td>" . $row["day_to_come"]. "</td><td>" . $row["reason_to_come"]. "</td><td><input type='checkbox' id='" . $row["id"] . "teacher' ". $shTeacherExcused . " disabled='disabled' /> <label for='" . $row["id"] . "teacher'>Excused?</label> </td><td id='" . $row["id"] . "del'><a class=\"btn-floating\" onclick=\"deletePass(" . $row["id"] . ")\"><i class=\"material-icons\">delete</i></a> </td></tr></tbody>";
         }
 
         echo "</tbody></table>";
@@ -183,5 +183,31 @@ if(isset($_POST['updateIsHere'])){
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="/passport/js/materialize.js"></script>
 <script src="/passport/js/init.js"></script>
+<script src="/passport/js/PICS.js"></script>
+<script>
+function deletePass(id) {
+    $('#'+id+'del').html("<div class=\"hCenter\">\r\n                <div class=\"preloader-wrapper small active\">\r\n                 <div class=\"spinner-layer spinner-blue\">\r\n                   <div class=\"circle-clipper left\">\r\n                     <div class=\"circle\"><\/div>\r\n                   <\/div><div class=\"gap-patch\">\r\n                     <div class=\"circle\"><\/div>\r\n                   <\/div><div class=\"circle-clipper right\">\r\n                     <div class=\"circle\"><\/div>\r\n                   <\/div>\r\n                 <\/div>\r\n\r\n                 <div class=\"spinner-layer spinner-red\">\r\n                   <div class=\"circle-clipper left\">\r\n                     <div class=\"circle\"><\/div>\r\n                   <\/div><div class=\"gap-patch\">\r\n                     <div class=\"circle\"><\/div>\r\n                   <\/div><div class=\"circle-clipper right\">\r\n                     <div class=\"circle\"><\/div>\r\n                   <\/div>\r\n                 <\/div>\r\n\r\n                 <div class=\"spinner-layer spinner-yellow\">\r\n                   <div class=\"circle-clipper left\">\r\n                     <div class=\"circle\"><\/div>\r\n                   <\/div><div class=\"gap-patch\">\r\n                     <div class=\"circle\"><\/div>\r\n                   <\/div><div class=\"circle-clipper right\">\r\n                     <div class=\"circle\"><\/div>\r\n                   <\/div>\r\n                 <\/div>\r\n\r\n                 <div class=\"spinner-layer spinner-green\">\r\n                   <div class=\"circle-clipper left\">\r\n                     <div class=\"circle\"><\/div>\r\n                   <\/div><div class=\"gap-patch\">\r\n                     <div class=\"circle\"><\/div>\r\n                   <\/div><div class=\"circle-clipper right\">\r\n                     <div class=\"circle\"><\/div>\r\n                   <\/div>\r\n                 <\/div>\r\n               <\/div>\r\n              <\/div>");
+                $.ajax({
+              url: 'studentAJAX/delete.php',
+              data: {'id':id,'adminIDConfirm':"<? echo $_SESSION['adminID']; ?>"},
+                type: 'post',
+              success: function(data) {
+                var returnPICS = PICS(data);
+                if (returnPICS.result == false) {
+                    $('#'+id+'del').html("<i class=\"small material-icons\">error_outline</i>");
+                } else {
+                    $('#'+id+'td').slideUp();
+                }
+
+                Materialize.toast(returnPICS.text, 15000);
+              },
+              error: function(xhr, desc, err) {
+              console.log(xhr);
+              console.log("Details: " + desc + "\nError:" + err);
+              //$('#myPassesReturn').html("There was an error.  Please check the console for more details.");
+              }
+            });
+}
+</script>
     </body>
 </html>
