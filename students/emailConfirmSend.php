@@ -36,9 +36,9 @@ function emailConfirm($eemail, $fname, $lname, $verID, $verCrypt) {
   $mail->isHTML(true);
 
   $mail->Subject = 'Passport Account Confirmation Email';
-  $mail->Body    = '<h1 style="text-align: center;">Hello ' . $fname . '</h1>
+  $mail->Body    = '<img src="http://' . $_SERVER['HTTP_HOST'] . '/passport/image/passportLogo/icon-144x144.png" alt="Passport header" style="width:10%;height:10%;">
 <br>
-<img src="https://github.com/poster983/passport/blob/gh-pages/images/PassportHeader.png?raw=true" alt="Passport header" style="width:100%;height:100%;">
+<h1 style="text-align: center;">Hello ' . $fname . '</h1>
 <br>
 <h3 style="text-align: center;">Lets activate your new Passport account.</h3>
 <center>
@@ -64,7 +64,7 @@ function emailConfirm($eemail, $fname, $lname, $verID, $verCrypt) {
 </div>
 </div>
 </center>';
-  $mail->AltBody = 'Lets activate your new Passport account {firstName}  Go Here: http://' . $_SERVER['HTTP_HOST'] . '/passport/students/verifyEmail.php?vID=' . $verID . '&verCrypt=' . $verCrypt . '';
+  $mail->AltBody = 'Lets activate your new Passport account ' . $fname . '  Go Here: http://' . $_SERVER['HTTP_HOST'] . '/passport/students/verifyEmail.php?vID=' . $verID . '&verCrypt=' . $verCrypt . '';
 
   if(!$mail->send()) {
       $output = "Message could not be sent. <br> Mailer Error: " . $mail->ErrorInfo . "<br> Please try to login <a href='login.php'>HERE</a> and Passport will try to resend the email";

@@ -122,9 +122,9 @@ function emailStudent($eemail, $fname, $lname, $pla, $da) {
   $mail->isHTML(true);
 
   $mail->Subject = 'Your Pass Has Been Cancelled';
-  $mail->Body    = '<h1 style="text-align: center;">Hello ' . $fname . '</h1>
+  $mail->Body    = '<img src="http://' . $_SERVER['HTTP_HOST'] . '/passport/image/passportLogo/icon-144x144.png" alt="Passport header" style="width:10%;height:10%;">
 <br>
-<img src="http://' . $_SERVER['HTTP_HOST'] . '/passport/image/passportLogo/icon-144x144.png" alt="Passport header" style="width:30%;height:30%;">
+<h1 style="text-align: center;">Hello ' . $fname . '</h1>
 <br>
 <h3 style="text-align: center;">Your ' . $pla . ' pass for: ' . $da . ', has been suspended.</h3>';
   $mail->AltBody = 'Your ' . $pla . ' pass for: ' . $da . ', has been suspended.';
